@@ -119,4 +119,57 @@ body {
   -webkit-transition: ease-in 0.1s;
   transition: ease-in 0.1s;
 }
+
+.right {
+  padding: 15px;
+  padding-top: 20%;
+  height: 100px;
+}
+
+.right p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+
+.right .dot {
+  width: 20px;
+}
+
+.event-card {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 17px -4px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 17px -4px rgba(0, 0, 0, 0.75);
+  margin-top: 30px;
+}
+
+.event-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  color: #4D4F59;
+  margin-bottom: 2px;
+}
+
+.event-card .number {
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.event-card .number p {
+  position: relative;
+  font-size: 30px;
+}
+
+.event-card img {
+  width: 40px;
+}
 /*# sourceMappingURL=index.css.map */

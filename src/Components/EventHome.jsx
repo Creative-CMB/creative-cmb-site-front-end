@@ -3,6 +3,7 @@ import EventFooter from '../Components/EventFooter';
 import EventNav from '../Components/EventNav';
 import EventMainCont from '../Components/EventMainCont';
 import EventSideNav from '../Components/EventSideNav';
+import EventSum from '../Components/EventSum';
 
 function EventHome() {
     return (
@@ -24,8 +25,7 @@ function EventHome() {
 
               
           <div className="col-lg-2">
-                  
-
+                <EventSum />
           </div>
       </div>
     );
