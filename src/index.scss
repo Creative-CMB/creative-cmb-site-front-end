@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+body{
+    //overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#root{
+    margin: 0;
+    padding: 0;
+    width: 99%;
+    //overflow-x: hidden;
+}
+.row{
+    height: 100vh;
+
+    .side{
+        background-color: #49B1FF;
+        overflow-x: hidden;
+
+        ul{
+            list-style: none;
+            //margin-top: 15%;
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: center;
+            // align-items: center;
+            text-align: center;
+            margin-left: 10px;
+
+            li img{
+               
+                width: 30%;
+            }
+            li {
+                 margin-top: 30px;
+                 padding: 10px 0px;
+            }
+            .drop{
+                margin-bottom: 90px;
+                //margin-top: -20px;
+            }
+        }
+    }
+
+    .main{
+        background-color: #ECEEF9;
+    }
+}
+.navbar{
+    font-family: 'Open Sans', sans-serif;
+   p{
+        font-weight: 900;
+        color: #4D4F59;
+   }
+   a{
+       background-color: transparent;
+       border-radius: 100px;
+   }
+   .user-img{
+       width: 30px;
+   }
+   .user-btn{
+       background-color: white;
+       border: none;
+   }
+   
+}
+
+.main-img{
+    position: relative;
+       width: 80%;
+       //margin-top: 0.1%;
+   }
+
+.maincont-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select-option{
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+.footer{
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.create-event:hover{
+    border-right: solid #ECEEF9 5px;
+    background-color: #62bbff ;
+    transition: ease-in 0.1s;
+}
