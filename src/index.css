@@ -312,6 +312,11 @@ form {
   position: fixed;
 }
 
+.item {
+  height: auto;
+  margin-top: 10px;
+}
+
 .item input {
   width: 100%;
   background-color: #eceef9;
@@ -325,5 +330,28 @@ form {
 
 .item a {
   color: white;
+}
+
+.select-item {
+  height: auto;
+  padding: 20px;
+}
+
+.select-item .row {
+  height: auto;
+}
+
+.select-item select {
+  width: 100%;
+  background-color: #eceef9;
+  border: none;
+  outline: none;
+  padding: 2px;
+  border-radius: 10px;
+  padding-left: 15px;
+}
+
+.btn {
+  padding: 2px;
 }
 /*# sourceMappingURL=index.css.map */

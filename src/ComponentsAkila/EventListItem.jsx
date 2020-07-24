@@ -23,10 +23,23 @@ class EventListItem extends Component {
               />
             </div>
             <div className="col-lg-2">
-              <input disabled  value={count} type="text" name="" id="" placeholder="Count" />
+              <input
+                disabled
+                value={count}
+                type="text"
+                name=""
+                id=""
+                placeholder="Count"
+              />
             </div>
             <div className="col-lg-1">
-              <a className="btn btn-primary" onClick={this.props.dlt.bind(this,id)}>Del</a>
+              <a
+                className="btn btn-primary"
+                style={{ color: "white" }}
+                onClick={this.props.dlt.bind(this, id)}
+              >
+                Del
+              </a>
             </div>
           </div>
         );

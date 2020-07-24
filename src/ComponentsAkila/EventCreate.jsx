@@ -4,13 +4,15 @@ import EventNav from './EventNav';
 import EventCreateChart from './EventCreateChart';
 import EventSum from './EventSum';
 import EventList from './EventList';
+import EventAddItem from "./EventAddItems";
+import uuid  from 'uuid';
 
 class EventCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: {},
-      items: [{ id: 1, itemName: "akila", count: "5" }],
+      items: [{ id: Math.random(), itemName: "akila", count: "5" }],
     };
   }
 
@@ -35,7 +37,15 @@ class EventCreate extends Component {
 
   //this will dlt the item in the entry
   dltItem = (id) => {
-    this.setState({ items : [...this.state.items.filter(item => item.id != id)]});
+    this.setState({
+      items: [...this.state.items.filter((item) => item.id != id)],
+    });
+  };
+
+  addItem = (item) => {
+    console.log(item);
+    const newItem = { id: Math.random(), itemName: item.itemName, count:item.count};
+    this.setState({ items: [...this.state.items,newItem] });
   }
 
   render() {
@@ -117,10 +127,10 @@ class EventCreate extends Component {
                   </div>
 
                   <div className="row">
-                    <div className="col-lg-2">
+                    <div className="col-lg-3">
                       <p>LOCATION</p>
                     </div>
-                    <div className="col-lg-10">
+                    <div className="col-lg-9">
                       <input
                         type="text"
                         name=""
@@ -167,6 +177,7 @@ class EventCreate extends Component {
             </div>
 
             <div className="event-card form-card">
+              <EventAddItem addItem={this.addItem} />
               <EventList items={this.state.items} dlt={this.dltItem} />
             </div>
           </form>
