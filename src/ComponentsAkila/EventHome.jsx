@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import EventFooter from '../Components/EventFooter';
-import EventNav from '../Components/EventNav';
-import EventMainCont from '../Components/EventMainCont';
-import EventSideNav from '../Components/EventSideNav';
-import EventSum from '../Components/EventSum';
+import EventFooter from './EventFooter';
+import EventNav from './EventNav';
+import EventMainCont from './EventMainCont';
+import EventSideNav from './EventSideNav';
+import EventSum from './EventSum';
+
 
 function EventHome() {
     return (
