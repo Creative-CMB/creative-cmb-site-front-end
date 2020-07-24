@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import dot from "../Images/Group 31.png";
-import EventCard from '../Components/EventCard';
+import EventCard from "../ComponentsAkila/EventCard";
 import img1 from "../Images/img1.png";
 import img2 from "../Images/img2.png";
 import img3 from "../Images/img3.png";

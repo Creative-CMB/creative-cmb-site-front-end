@@ -1,51 +1,53 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import drop from "../Images/drop.png";
 import create from "../Images/Icon material-create-new-folder.png";
-import dlt from "../Images/Icon material-update.png";
+import edit from "../Images/Icon material-update.png";
 import show from "../Images/Icon ionic-ios-stats.png";
 import Tooltip from "@material-ui/core/Tooltip";
-import edit from "../Images/Icon feather-delete.png";
+import dlt from "../Images/Icon feather-delete.png";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import EventCreate from "../ComponentsAkila/EventCreate";
 
 function EventSideNav() {
-    return (
-      <ul>
-        <li className="drop-event">
-          <Tooltip title="Click this button to hide the left navigation panal">
-            <a href="">
-              <img src={drop} alt="" className="drop" />
-            </a>
-          </Tooltip>
+  return (
+    <ul>
+      <li className="drop-event">
+        <Tooltip title="Click this button to hide the left navigation panal">
+          <a>
+            <img src={drop} alt="" className="drop" />
+          </a>
+        </Tooltip>
         </li>
         <li className="create-event">
+          <Link to="/create">
           <Tooltip title="Click here to create a new event">
-            <a href="">
               <img src={create} alt="" />
-            </a>
           </Tooltip>
+        </Link>
         </li>
         <li className="create-event">
+          <Link to="dlt-event">
           <Tooltip title="Click here to edit an existing event">
-            <a href="" className="edit-event">
               <img src={dlt} alt="" />
-            </a>
-          </Tooltip>
+            </Tooltip>
+          </Link>
         </li>
         <li className="create-event">
+          <Link to="edit-event">
           <Tooltip title="Click here to delete an exsisting event">
-            <a href="" className="dlt-event">
               <img src={edit} alt="" />
-            </a>
-          </Tooltip>
+            </Tooltip>
+          </Link>
         </li>
         <li className="create-event">
+          <Link to="show-all">
           <Tooltip title="Click here to show the event dashbord">
-            <a href="" className="show-dash">
               <img src={show} alt="" />
-            </a>
-          </Tooltip>
+            </Tooltip>
+          </Link>
         </li>
       </ul>
-    );
+  );
 }
 
 export default EventSideNav;
