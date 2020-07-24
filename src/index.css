@@ -311,4 +311,19 @@ form {
 .fix-right {
   position: fixed;
 }
+
+.item input {
+  width: 100%;
+  background-color: #eceef9;
+  border: none;
+  outline: none;
+  padding: 2px;
+  border-radius: 10px;
+  padding-left: 15px;
+  text-align: center;
+}
+
+.item a {
+  color: white;
+}
 /*# sourceMappingURL=index.css.map */
