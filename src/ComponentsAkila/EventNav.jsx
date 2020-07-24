@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import Tooltip from "@material-ui/core/Tooltip";
 import user from "../Images/user.png";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function EventNav() {
     return (
       <nav className="navbar">
-        <a className="navbar-brand" href="#">
+        <Link to="/" className="navbar-brand" href="#">
           <Tooltip title="Event dasjboard">
             <p>EVENT DASHBOARD</p>
           </Tooltip>
-        </a>
+        </Link>
 
-        <div class="dropdown">
+        <div className="dropdown">
           <a
-            class="btn btn-secondary user-btn"
+            className="btn btn-secondary user-btn"
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
