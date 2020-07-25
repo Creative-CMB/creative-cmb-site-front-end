@@ -24,11 +24,12 @@ class EventAddItems extends Component {
       const itemnames = ["Item1", "item2", "Item3", "item4", "Item5", "item6"];
       const counts = ["1", "2", "3", "4", "5", "6"];
 
-    return (
+      return (
+      
       <form onSubmit={this.onSubmitForm} className="select-item">
         <div className="row">
           <div className="col-lg-2">
-            <p>Select the Item</p>
+            <p>SELECT THE ITEM</p>
           </div>
           <div className="col-lg-6">
             <select name="itemName" id="" onChange={this.change}>

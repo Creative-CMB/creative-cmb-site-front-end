@@ -37,7 +37,7 @@ body {
 }
 
 .row {
-  height: 100vh;
+  height: auto;
 }
 
 .row .side {
@@ -206,12 +206,11 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: lighter;
   padding-left: 15px;
-  padding-top: 10px;
+  padding-top: 25px;
 }
 
 form {
   padding: 0px 20px 0px 20px;
-  height: 300vh;
 }
 
 .form-card {
@@ -305,7 +304,7 @@ form {
 
 .slide {
   overflow-y: scroll;
-  height: 200vh;
+  height: 100vh;
 }
 
 .fix-right {
@@ -353,5 +352,65 @@ form {
 
 .btn {
   padding: 2px;
+}
+
+.upload {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+}
+
+.upload form {
+  height: auto;
+}
+
+.upload input[type="file"], .upload button {
+  background-color: #eceef9;
+  width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.upload img {
+  width: 50%;
+}
+
+.upload .row {
+  height: 75px;
+}
+
+.emai {
+  width: 100%;
+}
+
+.email-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.upload-email {
+  height: auto;
+}
+
+.adddet {
+  width: 100%;
+}
+
+.adddet input {
+  width: 100%;
+}
+
+.save-event {
+  margin: 20px 0px 20px 0px;
+  width: 100%;
+  padding: 10px;
 }
 /*# sourceMappingURL=index.css.map */
