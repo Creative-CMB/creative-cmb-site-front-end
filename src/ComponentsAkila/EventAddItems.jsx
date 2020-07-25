@@ -4,10 +4,8 @@ class EventAddItems extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listItem: {
-        itemName: ["akila", "pramoe"],
-        count: [],
-      },
+        itemName: "",
+        count: "",
     };
   }
 
@@ -15,14 +13,16 @@ class EventAddItems extends Component {
 
     onSubmitForm = (e) => {
         e.preventDefault();
-        //alert('akila')
-        this.props.addItem(this.state.listItem);
-        this.setState({ listItem:''});
+      //console.log(this.state.itemName);
+      const listItem = { itemName: this.state.itemName, count: this.state.count };
+        this.props.addItem(listItem);
+        this.setState({ listItem:'',count:''});
   }
 
     render() {
       
-        const itemnames = ["akila", "pramoe"];
+      const itemnames = ["Item1", "item2", "Item3", "item4", "Item5", "item6"];
+      const counts = ["1", "2", "3", "4", "5", "6"];
 
     return (
       <form onSubmit={this.onSubmitForm} className="select-item">
@@ -32,7 +32,7 @@ class EventAddItems extends Component {
           </div>
           <div className="col-lg-6">
             <select name="itemName" id="" onChange={this.change}>
-              {this.state.listItem.itemName.map((name) => (
+              {itemnames.map((name) => (
                 <option value={name} name="" id="">
                   {name}
                 </option>
@@ -42,9 +42,11 @@ class EventAddItems extends Component {
 
           <div className="col-lg-2">
             <select name="count" id="" onChange={this.change}>
-              <option value={this.state.listItem.count} name="" id="">
-                {this.state.listItem.count}
-              </option>
+              {counts.map((itm) => (
+                <option value={itm} name="" id="">
+                  {itm}
+                </option>
+              ))}
             </select>
           </div>
           <div className="col-lg-2">

@@ -12,7 +12,7 @@ class EventCreate extends Component {
     super(props);
     this.state = {
       data: {},
-      items: [{ id: Math.random(), itemName: "akila", count: "5" }],
+      items: [],
     };
   }
 
@@ -43,9 +43,10 @@ class EventCreate extends Component {
   };
 
   addItem = (item) => {
-    console.log(item);
+    //console.log(item);
     const newItem = { id: Math.random(), itemName: item.itemName, count:item.count};
-    this.setState({ items: [...this.state.items,newItem] });
+    this.setState({ items: [...this.state.items, newItem] });
+    console.log(this.state.items);
   }
 
   render() {
