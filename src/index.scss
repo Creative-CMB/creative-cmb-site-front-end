@@ -186,7 +186,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: lighter;
   padding-left: 15px;
-  padding-top: 10px;
+  padding-top: 25px;
 }
 form {
   padding: 0px 20px 0px 20px;
@@ -281,44 +281,74 @@ form {
 .fix-right {
   position: fixed;
 }
-.item{
-    height: auto;
-    margin-top: 10px;
-    input{
-        width: 100%;
-      background-color: #eceef9;
-      border: none;
-      outline: none;
-      padding: 2px;
-      border-radius: 10px;
-      padding-left: 15px;
-      text-align: center;
-    }
-
-    a{
-        color: white;
-    }
-      
-}
-.select-item{
-    height: auto;
-    padding: 20px;
-
-    .row{
-        height: auto;
-    }
-      select {
-      width: 100%;
-     // height: 20px;
-      background-color: #eceef9;
-      border: none;
-      outline: none;
-      padding: 2px;
-      border-radius: 10px;
-      padding-left: 15px;
-    }
-}
-.btn{
+.item {
+  height: auto;
+  margin-top: 10px;
+  input {
+    width: 100%;
+    background-color: #eceef9;
+    border: none;
+    outline: none;
     padding: 2px;
+    border-radius: 10px;
+    padding-left: 15px;
+    text-align: center;
+  }
+
+  a {
+    color: white;
+  }
+}
+.select-item {
+  height: auto;
+  padding: 20px;
+
+  .row {
+    height: auto;
+  }
+  select {
+    width: 100%;
+    // height: 20px;
+    background-color: #eceef9;
+    border: none;
+    outline: none;
+    padding: 2px;
+    border-radius: 10px;
+    padding-left: 15px;
+  }
+}
+.btn {
+  padding: 2px;
+}
+.upload{
+  width: fit-content;
+  text-align: center;
+  form{
+    height: auto;
+  }
+
+input[type="file"],button {
+    background-color: #eceef9;
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+
 }
 
+
+  img{
+    width: 50%;
+  }
+  
+  .row{
+    height: 75px;
+  }
+}
+.emai{
+  width: 100%;
+}
+.email-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

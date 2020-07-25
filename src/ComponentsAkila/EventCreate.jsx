@@ -5,7 +5,8 @@ import EventCreateChart from './EventCreateChart';
 import EventSum from './EventSum';
 import EventList from './EventList';
 import EventAddItem from "./EventAddItems";
-import uuid  from 'uuid';
+import EventSchUpload from '../ComponentsAkila/EventSchUpload';
+import EventSentEmail from './EventSentEmail';
 
 class EventCreate extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class EventCreate extends Component {
     this.state = {
       data: {},
       items: [],
+      email:'',
     };
   }
 
@@ -44,9 +46,18 @@ class EventCreate extends Component {
 
   addItem = (item) => {
     //console.log(item);
-    const newItem = { id: Math.random(), itemName: item.itemName, count:item.count};
+    const newItem = {
+      id: Math.random(),
+      itemName: item.itemName,
+      count: item.count,
+    };
     this.setState({ items: [...this.state.items, newItem] });
     console.log(this.state.items);
+  };
+
+  submitEmail = (email) => {
+    this.setState({email:email});
+    console.log(this.state.email);
   }
 
   render() {
@@ -180,6 +191,15 @@ class EventCreate extends Component {
             <div className="event-card form-card">
               <EventAddItem addItem={this.addItem} />
               <EventList items={this.state.items} dlt={this.dltItem} />
+            </div>
+
+            <div className="row">
+              <div className="col-lg-6">
+                <EventSchUpload />
+              </div>
+              <div className="col-lg-6">
+                <EventSentEmail submitEmail={this.submitEmail} />
+              </div>
             </div>
           </form>
         </div>
