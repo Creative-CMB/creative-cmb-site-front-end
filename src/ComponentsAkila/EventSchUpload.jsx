@@ -16,7 +16,7 @@ class EventSchUpload extends Component {
               <div className="row">
                 <div className="col-lg-6">
                   <p>
-                    Upload Your <br /> Schedule Here
+                    UPLOAD YPUR <br /> SCHEDULE HERE
                   </p>
                   <form action="">
                     <input type="file" name="" id="" />

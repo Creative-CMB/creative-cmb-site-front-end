@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import EventSideNav from "./EventSideNav";
-import EventNav from './EventNav';
-import EventCreateChart from './EventCreateChart';
-import EventSum from './EventSum';
-import EventList from './EventList';
+import EventNav from "./EventNav";
+import EventCreateChart from "./EventCreateChart";
+import EventSum from "./EventSum";
+import EventList from "./EventList";
 import EventAddItem from "./EventAddItems";
-import EventSchUpload from '../ComponentsAkila/EventSchUpload';
-import EventSentEmail from './EventSentEmail';
+import EventSchUpload from "../ComponentsAkila/EventSchUpload";
+import EventSentEmail from "./EventSentEmail";
+import EventAddDetails from './EventAdDetails';
+import EventFooter from './EventFooter';
 
 class EventCreate extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class EventCreate extends Component {
     this.state = {
       data: {},
       items: [],
-      email:'',
+      email: "",
     };
   }
 
@@ -56,9 +58,9 @@ class EventCreate extends Component {
   };
 
   submitEmail = (email) => {
-    this.setState({email:email});
+    this.setState({ email: email });
     console.log(this.state.email);
-  }
+  };
 
   render() {
     return (
@@ -193,7 +195,7 @@ class EventCreate extends Component {
               <EventList items={this.state.items} dlt={this.dltItem} />
             </div>
 
-            <div className="row">
+            <div className="row upload-email">
               <div className="col-lg-6">
                 <EventSchUpload />
               </div>
@@ -201,7 +203,19 @@ class EventCreate extends Component {
                 <EventSentEmail submitEmail={this.submitEmail} />
               </div>
             </div>
+
+            <div>
+              <EventAddDetails />
+            </div>
+
+            <div className="row">
+              <div className="col-lg-12">
+                <input type="submit" value="SAVE EVENT" className="btn btn-primary save-event"/>
+              </div>
+            </div>
           </form>
+
+          <EventFooter />
         </div>
 
         <div className="col-lg-2 fix-right">
@@ -213,5 +227,5 @@ class EventCreate extends Component {
     );
   }
 }
- 
+
 export default EventCreate;

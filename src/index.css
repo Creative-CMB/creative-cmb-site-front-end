@@ -37,7 +37,7 @@ body {
 }
 
 .row {
-  height: 100vh;
+  height: auto;
 }
 
 .row .side {
@@ -211,7 +211,6 @@ body {
 
 form {
   padding: 0px 20px 0px 20px;
-  height: 300vh;
 }
 
 .form-card {
@@ -305,7 +304,7 @@ form {
 
 .slide {
   overflow-y: scroll;
-  height: 200vh;
+  height: 100vh;
 }
 
 .fix-right {
@@ -395,5 +394,23 @@ form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.upload-email {
+  height: auto;
+}
+
+.adddet {
+  width: 100%;
+}
+
+.adddet input {
+  width: 100%;
+}
+
+.save-event {
+  margin: 20px 0px 20px 0px;
+  width: 100%;
+  padding: 10px;
 }
 /*# sourceMappingURL=index.css.map */

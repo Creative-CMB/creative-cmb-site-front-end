@@ -44,7 +44,7 @@ body {
   //overflow-x: hidden;
 }
 .row {
-  height: 100vh;
+  height: auto;
 
   .side {
     background-color: #49b1ff;
@@ -190,7 +190,7 @@ body {
 }
 form {
   padding: 0px 20px 0px 20px;
-  height: 300vh;
+  //height: 50vh;
 }
 .form-card {
   background-color: white;
@@ -276,7 +276,7 @@ form {
 }
 .slide {
   overflow-y: scroll;
-  height: 200vh;
+  height: 100vh;
 }
 .fix-right {
   position: fixed;
@@ -351,4 +351,18 @@ input[type="file"],button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+  .upload-email{
+    height: auto;
+  }
+.adddet{
+  width: 100%;
+  input{
+    width: 100%;
+  }
+}
+.save-event{
+  margin: 20px 0px 20px 0px;
+  width: 100%;
+  padding: 10px;
 }
