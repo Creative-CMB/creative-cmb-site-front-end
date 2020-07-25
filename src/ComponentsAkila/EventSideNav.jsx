@@ -12,41 +12,41 @@ function EventSideNav() {
   return (
     <ul>
       <li className="drop-event">
-        <Tooltip title="Click this button to hide the left navigation panal">
-          <a>
+        <Link to="/event">
+          <Tooltip title="Go to home">
             <img src={drop} alt="" className="drop" />
-          </a>
-        </Tooltip>
-        </li>
-        <li className="create-event">
-          <Link to="/create">
-          <Tooltip title="Click here to create a new event">
-              <img src={create} alt="" />
           </Tooltip>
         </Link>
-        </li>
-        <li className="create-event">
-          <Link to="dlt-event">
+      </li>
+      <li className="create-event">
+        <Link to="/create">
+          <Tooltip title="Click here to create a new event">
+            <img src={create} alt="" />
+          </Tooltip>
+        </Link>
+      </li>
+      <li className="create-event">
+        <Link to="/dlt-event">
           <Tooltip title="Click here to edit an existing event">
-              <img src={dlt} alt="" />
-            </Tooltip>
-          </Link>
-        </li>
-        <li className="create-event">
-          <Link to="edit-event">
+            <img src={dlt} alt="" />
+          </Tooltip>
+        </Link>
+      </li>
+      <li className="create-event">
+        <Link to="/edit-event">
           <Tooltip title="Click here to delete an exsisting event">
-              <img src={edit} alt="" />
-            </Tooltip>
-          </Link>
-        </li>
-        <li className="create-event">
-          <Link to="show-all">
+            <img src={edit} alt="" />
+          </Tooltip>
+        </Link>
+      </li>
+      <li className="create-event">
+        <Link to="/show-all">
           <Tooltip title="Click here to show the event dashbord">
-              <img src={show} alt="" />
-            </Tooltip>
-          </Link>
-        </li>
-      </ul>
+            <img src={show} alt="" />
+          </Tooltip>
+        </Link>
+      </li>
+    </ul>
   );
 }
 

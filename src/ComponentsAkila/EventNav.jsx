@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function EventNav() {
     return (
       <nav className="navbar">
-        <Link to="/" className="navbar-brand" href="#">
+        <Link to="/event" className="navbar-brand" href="#">
           <Tooltip title="Event dasjboard">
             <p>EVENT DASHBOARD</p>
           </Tooltip>

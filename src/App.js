@@ -9,7 +9,7 @@ import EventCreate from './ComponentsAkila/EventCreate';
 function App() {
   return (
     <Router>
-      <Route component={EventHome} exact path="/"></Route>
+      <Route component={EventHome} exact path="/event"></Route>
       <Route component={EventCreate} path="/create"></Route>
     </Router>
 
