@@ -62,6 +62,7 @@ class DashboardTemp extends Component {
             aspectRatio: 5,
             curvature: 2,
             hitRadius: 3, cornerRadius: 20,
+            responsive:true
           },
         ],
       },

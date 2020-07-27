@@ -37,6 +37,7 @@ class DashEx extends Component {
                     },
                     curvature: 1,
                     cornerRadius: 13,
+                    responsive:true
                 }} />
             </div>
          );
