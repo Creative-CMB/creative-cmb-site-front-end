@@ -15,6 +15,11 @@ import DashEx from './DashEx';
 import DashOrders from './DashOrders';
 import DashOrderSum from './DashOrderSum';
 import DashTrans from './DashTrans';
+import DashTicket from './DashTicket';
+import EventFooter from '../ComponentsAkila/EventFooter';
+import DashNavItem from './DashNavItem';
+import dash from './images/dash.png';
+import DashLogo from './DashLogo';
 
 class DashboardTemp extends Component {
     constructor(props) {
@@ -74,7 +79,15 @@ class DashboardTemp extends Component {
     render() { 
         return (
           <div className="dash-main row">
-            <div className="col-lg-2 dash-side"></div>
+            <div className="col-lg-2 dash-side">
+              <DashLogo />
+              <DashNavItem title="DASHBOARD" img={dash} />
+              <DashNavItem title="USER PROFILE" img={dash} />
+              <DashNavItem title="EVENTS" img={dash} />
+              <DashNavItem title="RENTALS" img={dash} />
+              <DashNavItem title="ADVERTISING" img={dash} />
+              <DashNavItem title="TICKETS" img={dash} />
+            </div>
             <div className="col-lg-10 dash-mid">
               <div className="row dash-mid-row">
                 <div className="col-lg-3"><DashCard title="TOTAL USERS" img={img1} count="140" indi={up} stat="20%"/></div>
@@ -101,7 +114,12 @@ class DashboardTemp extends Component {
                  <DashTrans />
                 </div>
                 <div className="col-lg-8 ">
-                 
+                  <DashTicket />
+                </div>
+              </div>
+              <div className="row dash-footer">
+                <div className="col-lg-12">
+                  <EventFooter />
                 </div>
               </div>
             </div>

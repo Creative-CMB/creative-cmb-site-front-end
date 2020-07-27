@@ -12,7 +12,7 @@ class DashEx extends Component {
         return ( 
             <div className="dash-chart dash-ex">
                 <h1 className="dash-top-3">OVERVIEW</h1>
-                <h1 className="dash-top-4">SALES VALUE</h1>
+                <h1 className="dash-top-4">MONTHLY EXPENSES</h1>
                 <Bar height="250px" data={this.props.data} options={{
                     scales: {
                         xAxes: [{

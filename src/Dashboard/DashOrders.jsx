@@ -37,17 +37,19 @@ class DashOrders extends Component {
             <div className=" dash-orders-compo">
                 <h1 className="dash-top-3">OVERVIEW</h1>
                 <h1 className="dash-top-4">RECENT ORDERS</h1>
-                <table>
-                    <tr className="dash-table-head">
-                        <td><th>USER</th></td>
-                        <td><th>DATE</th></td>
-                        <td><th>TIME</th></td>
-                        <td><th>TYPE</th></td>
-                        <td><th>VENUE</th></td>
-                        <td><th>URGRNT?</th></td>
-                    </tr>
-                    {loop}
-                </table>
+                <div>
+                    <table>
+                        <tr className="dash-table-head">
+                            <td><th>USER</th></td>
+                            <td><th>DATE</th></td>
+                            <td><th>TIME</th></td>
+                            <td><th>TYPE</th></td>
+                            <td><th>VENUE</th></td>
+                            <td><th>URGRNT?</th></td>
+                        </tr>
+                        {loop}
+                    </table>
+                </div>
             </div>
          );
     }

@@ -37,7 +37,7 @@ class DashOrderSum
         return ( 
             <div className="dash-order-sum-main">
                 <h1 className="dash-top-3">OVERVIEW</h1>
-                <h1 className="dash-top-4">SALES VALUE</h1>
+                <h1 className="dash-top-4">TOTAL ODERS COVERAGE</h1>
                 <Pie height="250px" data={this.state.data}/>
             </div>
          );
