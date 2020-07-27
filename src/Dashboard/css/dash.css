@@ -90,7 +90,6 @@ html {
   background-color: white;
   margin-left: 10px;
   border-radius: 10px;
-  height: 370px;
 }
 
 .dash-top-3 {
@@ -126,5 +125,18 @@ html {
   padding: 7px;
   border-radius: 5px;
   color: white;
+}
+
+.dash-order-sum-main {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.dash-trans {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 5px;
 }
 /*# sourceMappingURL=dash.css.map */

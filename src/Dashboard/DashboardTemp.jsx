@@ -13,6 +13,8 @@ import right from './images/right.png';
 import DashSales from './DashSales';
 import DashEx from './DashEx';
 import DashOrders from './DashOrders';
+import DashOrderSum from './DashOrderSum';
+import DashTrans from './DashTrans';
 
 class DashboardTemp extends Component {
     constructor(props) {
@@ -91,7 +93,15 @@ class DashboardTemp extends Component {
                   <DashOrders />
                 </div>
                 <div className="col-lg-4">
-                
+                <DashOrderSum />
+                </div>
+              </div>
+              <div className="row ">
+                <div className="col-lg-4">
+                 <DashTrans />
+                </div>
+                <div className="col-lg-8 ">
+                 
                 </div>
               </div>
             </div>

@@ -9,8 +9,8 @@ class DashOrders extends Component {
          }
     }
 
-    componentDidMount() {
-        this.fetchDataArrfetchDataArr();
+    componentWillMount() {
+        this.fetchDataArr();
     }
 
     fetchDataArr() {
