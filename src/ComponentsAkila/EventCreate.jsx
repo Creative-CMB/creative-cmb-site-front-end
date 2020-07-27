@@ -9,6 +9,7 @@ import EventSchUpload from "../ComponentsAkila/EventSchUpload";
 import EventSentEmail from "./EventSentEmail";
 import EventAddDetails from './EventAdDetails';
 import EventFooter from './EventFooter';
+import '../index.css'
 
 class EventCreate extends Component {
   constructor(props) {
