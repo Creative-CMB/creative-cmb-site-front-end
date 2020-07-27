@@ -1,14 +1,107 @@
 body{
-    margin: 0;
-    padding: 0;
+    margin:0px;
+    padding: 0px;
 }
-.mid{
-    background-image: url('../images/Rectangle2.png');
-    width: 200px;
-    mar
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #49b1ff;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
 }
 .dash-main{
-    .side{
-        background-color: white;
+    position: relative;
+    .dash-mid{
+        background-color: #E5E5E5;
+        .dash-mid-row{
+            background: linear-gradient(90deg, rgba(73,220,252,1) 0%, rgba(58,161,255,1) 100%, rgba(58,161,255,1) 100%);
+            padding: 10px 20px 25px 20px;
+            box-shadow: 5px 5px 13px 0px rgba(0,0,0,0.75);
+        }
+
+        .dash-sales{
+            //margin-top: 10px;
+            //background: linear-gradient(90deg, rgba(23,43,77,1) 0%, rgba(35,30,128,1) 100%, rgba(58,161,255,1) 100%);
+            border-radius: 10px;
+            background-image: linear-gradient(to left bottom, #231e80, #122576, #092969, #0d2a5c, #172b4d);
+            border: none;
+            padding: 10px;
+            //margin:15px;
+            height:370px;
+        }
     }
+}
+.dash-card{
+    background-color: white;
+    width: auto;
+
+    .dash-sub-top{
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .dash-indi{
+        width: 20px;
+    }
+    .dash-card-img{
+        width: 50px;
+    }
+}
+.dash-chart{
+    padding: 20px;
+    
+    .dash-top-1{
+        color: #5E72E4;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .dash-top-2{
+        color: white;
+        font-weight: bolder;
+        font-size: 30px;
+    }
+}
+.dash-sales-row {
+     padding: 20px;
+     position: relative;
+    //margin: 10px;
+    
+}
+.dash-ex{
+    background-color: white;
+    //padding: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+     height:370px;
+
+
+
+}
+.dash-top-3{
+    color: #5E72E4;;
+     font-size: 10px;
+    font-weight: bold;
+}
+.dash-top-4{
+      color: rgb(25, 27, 38);
+        font-weight: bolder;
+        font-size: 30px;
+}
+.dash-orders-main{
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
 }
