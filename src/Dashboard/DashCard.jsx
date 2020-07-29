@@ -1,4 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Skeleton, Switch, Card, Avatar } from 'antd';
+import { Typography } from 'antd';
+
+const { Meta } = Card;
+const { Title,Text } = Typography;
 
 class DashCard extends Component {
     constructor(props) {
@@ -6,27 +11,20 @@ class DashCard extends Component {
         this.state = {  }
     }
     render() { 
-        return ( 
-            <div className="event-card dash-card">
-                <p>{this.props.title}</p>
-
-                <div className="row number">
-                    <div className="col-lg-7">
-                        <p>{this.props.count}</p>
-                    </div>
-
-                    <div className="col-lg-5">
-                        <img className="dash-card-img" src={this.props.img} alt="" />
-                    </div>
-                </div>
-
-                <div className="row number">
-                    <div className="col-lg-12">
-                        <span><img src={this.props.indi} alt="" className="dash-indi" /> 	&nbsp; {this.props.stat} <span className="dash-sub-top">SINCE LAST MONTH</span></span> 
-                    </div>
-                </div>
-            </div>
-         );
+        return (
+          <Card style={{ marginTop: 16,marginLeft:10 }}>
+            <Meta
+              avatar={<Avatar size={"large"} src={this.props.img} />}
+              title={this.props.title}
+            />
+            <Title level={2}>{(this, this.props.count)}</Title>
+            <Text type="secondary">
+              <Avatar size={20} src={this.props.miniIco} />
+              &nbsp;&nbsp;
+              {this.props.percent}% Since Last Month
+            </Text>
+          </Card>
+        );
     }
 }
  
