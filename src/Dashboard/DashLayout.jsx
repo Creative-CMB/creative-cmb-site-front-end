@@ -109,6 +109,18 @@ class DashLayout extends Component {
                     <Link to="/analytics">Chat</Link>
                   </Menu.Item>
                 </SubMenu>
+
+                <SubMenu key="sub3" icon={<LaptopOutlined />} title="Pages">
+                  <Menu.Item key="9">
+                    <Link to="/analytics">Create Event</Link>
+                  </Menu.Item>
+                  <Menu.Item key="10">
+                    <Link to="/analytics">Edit Event</Link>
+                  </Menu.Item>
+                  <Menu.Item key="11">
+                    <Link to="/analytics">Delete Event</Link>
+                  </Menu.Item>
+                </SubMenu>
               </Menu>
             </Sider>
             <Content style={{ padding: "0 24px", minHeight: 280 }}>
