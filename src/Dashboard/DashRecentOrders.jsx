@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Tag, Space, Card } from 'antd';
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import Item from 'antd/lib/list/Item';
+import { Button } from "antd";
 
 
 const { Column, ColumnGroup } = Table;
@@ -58,12 +59,19 @@ class DashRecentOrders extends Component {
             return (
               <tr>
                 <td>{item.key}</td>
-                    <td>{item.firstName}  {item.lastName}</td>
+                <td>
+                  {item.firstName} {item.lastName}
+                </td>
                 <td>{item.date}</td>
-                    <td>{item.time}</td>
-                    <td>{item.typev}</td>
+                <td>{item.time}</td>
+                <td>{item.typev}</td>
                 <td>Cell</td>
                 <td>Cell</td>
+                <td>
+                  <Button type="primary" danger>
+                    Go to event
+                  </Button>
+                </td>
               </tr>
             );
         });
@@ -74,7 +82,7 @@ class DashRecentOrders extends Component {
             style={{ width: "auto", marginTop: 16 }}
           >
             <p className="dash-top-1">OVERVIEW</p>
-            <p className="dash-top-2">SALES VALUES</p>
+            <p className="dash-top-2">RECENT ODERS</p>
             <MDBTable responsive className="dash-order-table">
               <MDBTableHead>
                 <tr>

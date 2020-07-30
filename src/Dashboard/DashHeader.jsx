@@ -16,12 +16,12 @@ class DashHeader extends Component {
     render() { 
         return (
             <PageHeader
-                title="Title"
+                title="M.L.Akila Liyanage"
                 className="site-page-header"
-                subTitle="This is a subtitle"
+                subTitle="Admin-Marketing"
                 tags={<Tag color="green">Online</Tag>}
                 extra={[
-                    <Button key="3">Operation</Button>,
+                    <Button key="3" type="default">Log-Out</Button>,
                     <Button key="2">Operation</Button>,
                     <Button key="1" type="primary">
                         Primary

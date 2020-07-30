@@ -42,7 +42,7 @@ class DashChartEx extends Component {
     return (
       <Card style={{ marginTop: 16, marginLeft: 10 }}>
         <p className="dash-top-1">OVERVIEW</p>
-        <p className="dash-top-2">SALES VALUES</p>
+        <p className="dash-top-2">MONTHLY EXPENSES</p>
         <Chart
           options={this.state.options}
           series={this.state.series}
