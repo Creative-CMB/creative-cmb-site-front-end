@@ -21,10 +21,9 @@ class DashHeader extends Component {
                 subTitle="Admin-Marketing"
                 tags={<Tag color="green">Online</Tag>}
                 extra={[
-                    <Button key="3" type="default">Log-Out</Button>,
-                    <Button key="2">Operation</Button>,
+                    <Button key="2">My Account</Button>,
                     <Button key="1" type="primary">
-                        Primary
+                        Log Out
       </Button>,
                 ]}
                 avatar={{ src: 'https://avatars1.githubusercontent.com/u/8186664?s=460&v=4' }}
