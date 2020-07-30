@@ -7,9 +7,7 @@ body {
   /* "auto" or "thin"  */
   scrollbar-color: blue white;
 }
-#root{
-  width: 100%;
-}
+
 * {
   padding: 0;
   margin: 0;

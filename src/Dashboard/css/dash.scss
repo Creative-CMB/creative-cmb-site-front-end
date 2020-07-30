@@ -1,0 +1,53 @@
+.dash-card-count{
+    color: #0C0953;
+    font-weight: bolder;
+    font-size: 35px;
+}
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(14, 32, 144, 0.3);
+	background-color: #F5F5F5;
+}
+::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb
+{
+	background-color: #49B1FF;	
+	background-image: -webkit-linear-gradient(
+        45deg,
+        #49B1FF 25%,
+        transparent 25%,
+        transparent 50%,
+        #269efa 50%,
+        #05365c 75%,
+        transparent 75%,
+        transparent)
+}
+
+.dash-top-1{
+    font-weight: bold;
+    color: #5E72E4;
+    margin-bottom: 0px;
+}
+.dash-top-2{
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 0;
+    color: #191A4D;
+}
+body{
+    background-color: red;
+}
+.site-page-header{
+    background-color: red;
+}
+.dash-order-table{
+    th{
+        background-color: #49B1FF;
+    }
+}
+

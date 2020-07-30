@@ -28,6 +28,10 @@ import arr1 from "./images/up.png";
 import arr2 from "./images/down.png";
 import arr3 from "./images/right.png";
 import arr4 from "./images/side.png";
+import DashSalesChart from './DashSalesChart';
+import DashChartEx from './DashChartEx';
+import DashRecentOrders from './DashRecentOrders';
+import DashHeader from './DashHeader';
 
 
 const { SubMenu } = Menu;
@@ -50,6 +54,7 @@ class DashLayout extends Component {
       const { current } = this.state;
     return (
       <Layout>
+        <DashHeader />
         <Content style={{ padding: "0 20px" }}>
           <Layout
             className="site-layout-background"
@@ -64,7 +69,8 @@ class DashLayout extends Component {
                 mode="inline"
                 defaultSelectedKeys={["1"]}
                 defaultOpenKeys={["sub1"]}
-                style={{ height: "100%" }}
+                            style={{ height: "100%" }}
+                            theme="dark"
               >
                 <SubMenu icon={<UserOutlined />} title="User Settings">
                   <Menu.ItemGroup title="My Account">
@@ -188,6 +194,22 @@ class DashLayout extends Component {
                     miniIco={arr4}
                     percent="60"
                   />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={24} sm={24} md={12} lg={15}>
+                  <DashSalesChart />
+                </Col>
+                <Col xs={24} sm={24} md={12} lg={9}>
+                    <DashChartEx />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={24} sm={24} md={12} lg={24}>
+                  <DashRecentOrders />
+                </Col>
+                <Col xs={24} sm={24} md={12} lg={24}> 
+                 
                 </Col>
               </Row>
             </Content>
