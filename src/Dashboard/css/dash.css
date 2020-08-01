@@ -49,4 +49,8 @@ body {
   background: #ececec;
   padding: 10px;
 }
+
+.ant-drawer-body {
+  padding: 0px;
+}
 /*# sourceMappingURL=dash.css.map */

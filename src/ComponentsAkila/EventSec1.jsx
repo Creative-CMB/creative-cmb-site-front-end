@@ -1,8 +1,21 @@
 import React, { Component, useState } from "react";
-import { Card, Row, Col, Form, Input, Affix, Select, Checkbox } from "antd";
+import {
+  Card,
+  Row,
+  Col,
+  Form,
+  Input,
+  Affix,
+  Select,
+  Checkbox,
+  DatePicker,
+  TimePicker,
+} from "antd";
 import { red } from "@ant-design/colors";
+import moment from "moment";
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 class EventSec1 extends Component {
   constructor(props) {
@@ -18,6 +31,9 @@ class EventSec1 extends Component {
       time: "",
       delivery: false,
       eq: [],
+      des: "",
+      date: "",
+      time:'',
     };
   }
 
@@ -56,13 +72,13 @@ class EventSec1 extends Component {
     )
       .then((res) => res.json())
       .then((data) => this.setState({ eq: data }));
-    
+
     const eqs = this.state.eq;
     const loop = eqs.map((eq) => {
       return (
-         <Option key={eq.id} value={eq.title}>
-        {eq.title}
-      </Option>
+        <Option key={eq.id} value={eq.title}>
+          {eq.title}
+        </Option>
       );
     });
 
@@ -93,6 +109,15 @@ class EventSec1 extends Component {
     // }
     console.log(this.state.delivery);
     //console.log(e.target.checked);
+  };
+  //handle the date
+  handleDate = (date, dateString) => {
+    console.log(dateString);
+    this.setState({ date: dateString });
+  };
+  //handle the time
+  handleTime = (timeString) => {
+    this.setState({time:timeString})
   };
   render() {
     // const loop = this.fetchEventTypes;
@@ -148,26 +173,28 @@ class EventSec1 extends Component {
               </Form.Item>
             </Col>
             <Col lg={12} md={12} sm={24} xs={24} style={{ padding: "10px" }}>
-              <Form.Item label="Success">
-                <Input
-                  name="eventname"
-                  onChange={this.handleInput.bind(this)}
-                  placeholder="I'm the content"
-                  id="success"
-                  // onBlur={this.checkInput}
-                />
+              <Form.Item label="Description">
+                <TextArea onChange={this.handleInput.bind(this)} name="des" />
               </Form.Item>
-              <Form.Item label="Success">
-                <Input
-                  name="eventname"
-                  onChange={this.handleInput.bind(this)}
-                  placeholder="I'm the content"
-                  id="success"
-                  //onBlur={this.checkInput}
-                />
+              <Form.Item label="Event Date & Time">
+                <Row>
+                  <Col lg={12} md={12} sm={24} sm={24} style={{ marginTop: 5 }}>
+                    <DatePicker
+                      style={{ width: "90%" }}
+                      onChange={this.handleDate.bind(this)}
+                    />
+                  </Col>
+                  <Col lg={12} md={12} sm={24} sm={24} style={{ marginTop: 5 }}>
+                    <TimePicker
+                      onChange={this.handleTime.bind(this)}
+                      defaultOpenValue={moment("00:00:00", "HH:mm:ss")}
+                      style={{ width: "90%" }}
+                    />
+                  </Col>
+                </Row>
               </Form.Item>
               <Form.Item
-                label="Success"
+                label="Location"
                 hasFeedback
                 validateStatus={this.state.class}
               >
@@ -177,15 +204,6 @@ class EventSec1 extends Component {
                   placeholder="I'm the content"
                   id="success"
                   // onBlur={this.checkInput}
-                />
-              </Form.Item>
-              <Form.Item label="Success">
-                <Input
-                  name="eventname"
-                  onChange={this.handleInput.bind(this)}
-                  placeholder="I'm the content"
-                  id="success"
-                  //onBlur={this.checkInput}
                 />
               </Form.Item>
             </Col>
