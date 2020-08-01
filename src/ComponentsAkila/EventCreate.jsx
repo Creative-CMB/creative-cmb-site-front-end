@@ -1,232 +1,210 @@
-import React, { Component } from "react";
-import EventSideNav from "./EventSideNav";
-import EventNav from "./EventNav";
-import EventCreateChart from "./EventCreateChart";
-import EventSum from "./EventSum";
-import EventList from "./EventList";
-import EventAddItem from "./EventAddItems";
-import EventSchUpload from "../ComponentsAkila/EventSchUpload";
-import EventSentEmail from "./EventSentEmail";
-import EventAddDetails from './EventAdDetails';
+import React, { Component } from 'react';
+import "antd/dist/antd.css";
+import { Layout, Menu, Breadcrumb, Drawer } from "antd";
+import {
+  UserOutlined,
+  LaptopOutlined,
+  NotificationOutlined,
+    DashboardOutlined,
+  UserAddOutlined
+} from "@ant-design/icons";
 import EventFooter from './EventFooter';
-import '../index.css'
+import {
+  MailOutlined,
+  AppstoreOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Row, Col,Card,Typography ,Affix} from "antd";
+import DashHeader from '../Dashboard/DashHeader';
+import EventTimeline from './EventTimeline';
+import EventSec1 from './EventSec1';
+import DashProgressChart from './DashProgressChart';
+
+
+const { SubMenu } = Menu;
+const { Header, Content, Footer, Sider } = Layout;
+const { Title } = Typography;
+
 
 class EventCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
-      items: [],
-      email: "",
+      current: "mail",
+      visible: false,
+      setVisible: false,
     };
   }
 
-  componentWillMount() {
-    this.getChartData();
-  }
-
-  getChartData() {
-    this.setState({
-      data: {
-        //labels: ["Complete", "Not complete"],
-        datasets: [
-          {
-            label: "complete",
-            data: [60, 40],
-            backgroundColor: ["#0f4c75", "#3282b8"],
-          },
-        ],
-      },
-    });
-  }
-
-  //this will dlt the item in the entry
-  dltItem = (id) => {
-    this.setState({
-      items: [...this.state.items.filter((item) => item.id != id)],
-    });
+  showDrawer = () => {
+    console.log("clicked")
+    this.setState({ visible:true  });
   };
 
-  addItem = (item) => {
-    //console.log(item);
-    const newItem = {
-      id: Math.random(),
-      itemName: item.itemName,
-      count: item.count,
-    };
-    this.setState({ items: [...this.state.items, newItem] });
-    console.log(this.state.items);
+  onClose = () => {
+    this.setState({ visible : false});
   };
 
-  submitEmail = (email) => {
-    this.setState({ email: email });
-    console.log(this.state.email);
+  handleClick = (e) => {
+    console.log("click ", e);
+    this.setState({ current: e.key });
   };
 
   render() {
+    const { current } = this.state;
     return (
-      <div className="row">
-        <div className="col-lg-1.5 side">
-          <EventSideNav />
-        </div>
+      <Layout>
+        <DashHeader showDrawer={this.showDrawer.bind(this)} />
+        <Content style={{ padding: "0 5px" }}>
+          <Layout
+            className="site-layout-background"
+            style={{ padding: "10px 0" }}
+          >
+            <Drawer
+              title="Creative Cmb"
+              placement="left"
+              closable={true}
+              onClose={this.onClose.bind(this)}
+              visible={this.state.visible}
+              style={{ padding: 0 }}
+              drawerStyle={{ padding: 0 }}
+              maskStyle={{ padding: 0 }}
+              className="ant-drawer-body"
+              bodyStyle={{ padding: "0px" }}
+            >
+              <Sider
+                //breakpoint="lg"
+                className="site-layout-background"
+                width="auto"
+                collapsible="true"
+                //collapsedWidth={0}
+                trigger={null}
+              >
+                <Menu
+                  mode="inline"
+                  defaultSelectedKeys={["1"]}
+                  defaultOpenKeys={["sub1"]}
+                  style={{ height: "100%" }}
+                  theme="dark"
+                >
+                  <SubMenu icon={<UserOutlined />} title="User Settings">
+                    <Menu.ItemGroup title="My Account">
+                      <Menu.Item key="setting:1">Recover Password</Menu.Item>
+                      <Menu.Item key="setting:2">My Account</Menu.Item>
+                    </Menu.ItemGroup>
+                  </SubMenu>
 
-        <div className="col main slide" id="style-6">
-          <EventNav />
+                  <SubMenu
+                    key="sub1"
+                    icon={<DashboardOutlined />}
+                    title="Dashboard"
+                  >
+                    <Menu.Item key="1">
+                      <Link to="/create-event">Create Event</Link>
+                    </Menu.Item>
+                    <Menu.Item key="2">
+                      <Link to="/delete-event">Delete Event</Link>
+                    </Menu.Item>
+                    <Menu.Item key="3">
+                      <Link to="/update-event">Update Event</Link>
+                    </Menu.Item>
+                  </SubMenu>
+                  <SubMenu
+                    key="sub2"
+                    icon={<LaptopOutlined />}
+                    title="Applications"
+                  >
+                    <Menu.Item key="7">
+                      <Link to="/analytics">Emails</Link>
+                    </Menu.Item>
+                    <Menu.Item key="8">
+                      <Link to="/analytics">Downloads</Link>
+                    </Menu.Item>
+                  </SubMenu>
+                </Menu>
+              </Sider>
+            </Drawer>
+            <Sider
+              breakpoint="lg"
+              className="site-layout-background"
+              width={200}
+              collapsible="true"
+              collapsedWidth={0}
+              trigger={null}
+            >
+              <Menu
+                mode="inline"
+                defaultSelectedKeys={["1"]}
+                defaultOpenKeys={["sub1"]}
+                style={{ height: "100%" }}
+                theme="dark"
+              >
+                <SubMenu icon={<UserOutlined />} title="User Settings">
+                  <Menu.ItemGroup title="My Account">
+                    <Menu.Item key="setting:1">Recover Password</Menu.Item>
+                    <Menu.Item key="setting:2">My Account</Menu.Item>
+                  </Menu.ItemGroup>
+                </SubMenu>
 
-          <div className="sub-topic">
-            <p>CREATE AN EVENT</p>
-          </div>
-
-          <form action="">
-            <div className="light-sub-topic">
-              <p>Basic Details</p>
-            </div>
-
-            <div className="event-card form-card">
-              <div className="row main-row">
-                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-side">
-                  <div className="row">
-                    <div className="col-lg-3">
-                      <p>EVENT NAME</p>
-                    </div>
-                    <div className="col-lg-9">
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder="Like : My Birthday Party"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-lg-5">
-                      <p>EVENT CREATOR NAME</p>
-                    </div>
-                    <div className="col-lg-7">
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder="Like : John Doe"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-lg-5">
-                      <p>EVENT CREATOR PHONE</p>
-                    </div>
-                    <div className="col-lg-7">
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder=" Like : +94 XX XXXX XXX"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-lg-3">
-                      <p>EVENT TYPE</p>
-                    </div>
-                    <div className="col-lg-9">
-                      <select name="cars" id="cars">
-                        <option value="volvo">Select Type</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-lg-3">
-                      <p>LOCATION</p>
-                    </div>
-                    <div className="col-lg-9">
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder="Resident name, street name, town"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 left-side">
-                  <div className="row">
-                    <div className="col-lg-3">
-                      <p>DESCRIPTION</p>
-                    </div>
-                    <div className="col-lg-9">
-                      <textarea name="" id="" cols="30" rows="10"></textarea>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-lg-2">
-                      <p>DATE</p>
-                    </div>
-                    <div className="col-lg-10">
-                      <input type="date" name="" id="" />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-lg-2">
-                      <p>TIME</p>
-                    </div>
-                    <div className="col-lg-10">
-                      <input type="time" name="" id="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="light-sub-topic">
-              <p>EQUIPMENTS NEEDED FOR THE EVENT</p>
-            </div>
-
-            <div className="event-card form-card">
-              <EventAddItem addItem={this.addItem} />
-              <EventList items={this.state.items} dlt={this.dltItem} />
-            </div>
-
-            <div className="row upload-email">
-              <div className="col-lg-6">
-                <EventSchUpload />
-              </div>
-              <div className="col-lg-6">
-                <EventSentEmail submitEmail={this.submitEmail} />
-              </div>
-            </div>
-
-            <div>
-              <EventAddDetails />
-            </div>
-
-            <div className="row">
-              <div className="col-lg-12">
-                <input type="submit" value="SAVE EVENT" className="btn btn-primary save-event"/>
-              </div>
-            </div>
-          </form>
-
+                <SubMenu
+                  key="sub1"
+                  icon={<DashboardOutlined />}
+                  title="Dashboard"
+                >
+                  <Menu.Item key="1">
+                    <Link to="/create-event">Create Event</Link>
+                  </Menu.Item>
+                  <Menu.Item key="2">
+                    <Link to="/delete-event">Delete Event</Link>
+                  </Menu.Item>
+                  <Menu.Item key="3">
+                    <Link to="/update-event">Update Event</Link>
+                  </Menu.Item>
+                </SubMenu>
+                <SubMenu
+                  key="sub2"
+                  icon={<LaptopOutlined />}
+                  title="Applications"
+                >
+                  <Menu.Item key="7">
+                    <Link to="/analytics">Emails</Link>
+                  </Menu.Item>
+                  <Menu.Item key="8">
+                    <Link to="/analytics">Downloads</Link>
+                  </Menu.Item>
+                </SubMenu>
+              </Menu>
+            </Sider>
+            <Content style={{ padding: "0 24px", minHeight: 280 }}>
+              <Row>
+                <Col lg={24} md={24} sm={23} xs={24}>
+                  <Title style={{ marginBottom: "0rem" }}>
+                    EVENT DASHBOARD
+                  </Title>
+                  <Title
+                    level={3}
+                    type={"secondary"}
+                    style={{ marginTop: "0rem" }}
+                  >
+                    Create a new event
+                  </Title>
+                </Col>
+              </Row>
+              <Row>
+                <Col lg={24} md={24} sm={24} xs={24}>
+                  <EventSec1 progress={this.progress} />
+                </Col>
+              </Row>
+            </Content>
+          </Layout>
+        </Content>
+        <Footer style={{ textAlign: "center" }}>
           <EventFooter />
-        </div>
-
-        <div className="col-lg-2 fix-right">
-          <EventCreateChart data={this.state.data} />
-
-          <EventSum />
-        </div>
-      </div>
+        </Footer>
+      </Layout>
     );
   }
 }
-
+ 
 export default EventCreate;

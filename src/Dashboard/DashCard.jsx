@@ -1,4 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Skeleton, Switch, Card, Avatar } from 'antd';
+import { Typography } from 'antd';
+import { Statistic, Row, Col } from "antd";
+import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
+const { Meta } = Card;
+const { Title,Text } = Typography;
 
 class DashCard extends Component {
     constructor(props) {
@@ -6,27 +12,25 @@ class DashCard extends Component {
         this.state = {  }
     }
     render() { 
-        return ( 
-            <div className="event-card dash-card">
-                <p>{this.props.title}</p>
-
-                <div className="row number">
-                    <div className="col-lg-7">
-                        <p>{this.props.count}</p>
-                    </div>
-
-                    <div className="col-lg-5">
-                        <img className="dash-card-img" src={this.props.img} alt="" />
-                    </div>
-                </div>
-
-                <div className="row number">
-                    <div className="col-lg-12">
-                        <span><img src={this.props.indi} alt="" className="dash-indi" /> 	&nbsp; {this.props.stat} <span className="dash-sub-top">SINCE LAST MONTH</span></span> 
-                    </div>
-                </div>
-            </div>
-         );
+        return (
+          <Card
+            style={{ marginTop: 3, marginLeft: 10 }}
+            className="site-statistic-demo-card"
+          >
+            <Meta
+              avatar={<Avatar size={"large"} src={this.props.img} />}
+              title={this.props.title}
+            />
+            <p className="dash-card-count">{(this, this.props.count)}</p>
+            <Statistic
+              value={9.1}
+              precision={2}
+              valueStyle={{ color: "#3f8600" }}
+              prefix={<ArrowUpOutlined />}
+              suffix="%"
+            />
+          </Card>
+        );
     }
 }
  
