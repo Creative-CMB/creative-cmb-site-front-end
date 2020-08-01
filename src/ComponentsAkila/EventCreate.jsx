@@ -196,9 +196,6 @@ class EventCreate extends Component {
                   <EventSec1 progress={this.progress} />
                 </Col>
               </Row>
-              <Row>
-                <Col lg={24} md={24} sm={24} xs={24}></Col>
-              </Row>
             </Content>
           </Layout>
         </Content>

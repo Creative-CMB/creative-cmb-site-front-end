@@ -12,6 +12,7 @@ import {
   TimePicker,
   Upload,
   message,
+  Button,
 } from "antd";
 import { red } from "@ant-design/colors";
 import moment from "moment";
@@ -316,6 +317,11 @@ class EventSec1 extends Component {
               <Form.Item label="Your Email" hasFeedback validateStatus={this.state.emailval}>
                 <Input name="email" onBlur={this.validateEmail.bind(this)} onChange={this.handleInput.bind(this)} placeholder="Event details will be sent to this email" id="success" />
               </Form.Item>
+            </Col>
+          </Row>
+          <Row style={{marginTop:20}}>
+            <Col lg={24} md={24} sm={24} xs={24}>
+              <Button block size={"large"} type="primary">Submit</Button>
             </Col>
           </Row>
         </form>
