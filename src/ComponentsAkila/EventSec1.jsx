@@ -18,6 +18,8 @@ import { red } from "@ant-design/colors";
 import moment from "moment";
 import { InboxOutlined } from "@ant-design/icons";
 import * as EmailValidator from "email-validator";
+import axios from 'axios';
+import { Redirect } from "react-router";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -43,6 +45,7 @@ class EventSec1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id:Math.random(),
       eventname: "",
       creatorname: "",
       creatorphone: "",
@@ -60,6 +63,7 @@ class EventSec1 extends Component {
       headC: "",
       email: "",
       emailval: "warning",
+      status:null,
     };
   }
 
@@ -159,13 +163,36 @@ class EventSec1 extends Component {
        );
     }
   };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const dataObj = this.state;
+    //console.log(this.state);
+    // fetch('https://my-json-server.typicode.com/akilaliyanage/json-fake-api-server/event', {
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type':'application/json'
+    //   },
+    //   body: JSON.stringify(dataObj)
+    // }).then(res => res.json()).then((data) => console.log(data));
+
+    axios.post(
+      "https://my-json-server.typicode.com/akilaliyanage/json-fake-api-server/event"
+      , dataObj).then(res => this.setState({ status: res.status }));
+    
+    //console.log(this.state.status);
+    
+  }
 
   render() {
     // const loop = this.fetchEventTypes;
     //const value = this.checkInput;
+        if (this.state.status == 201) {
+          console.log(this.state.status);
+          return <Redirect to="/success" />;
+        }
     return (
       <Card className="dash-sec1-card">
-        <form action="">
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <p className="dash-top-1" style={{ marginBottom: "10px" }}>
             Basic Details
           </p>
@@ -321,7 +348,7 @@ class EventSec1 extends Component {
           </Row>
           <Row style={{marginTop:20}}>
             <Col lg={24} md={24} sm={24} xs={24}>
-              <Button block size={"large"} type="primary">Submit</Button>
+              <Button htmlType="submit" block size={"large"} type="primary">Submit</Button>
             </Col>
           </Row>
         </form>
