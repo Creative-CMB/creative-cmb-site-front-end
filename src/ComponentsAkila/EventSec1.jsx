@@ -10,12 +10,33 @@ import {
   Checkbox,
   DatePicker,
   TimePicker,
+  Upload,
+  message,
 } from "antd";
 import { red } from "@ant-design/colors";
 import moment from "moment";
+import { InboxOutlined } from "@ant-design/icons";
+import * as EmailValidator from "email-validator";
 
 const { Option } = Select;
 const { TextArea } = Input;
+const { Dragger } = Upload;
+const props = {
+  name: "file",
+  multiple: true,
+  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+  onChange(info) {
+    const { status } = info.file;
+    if (status !== "uploading") {
+      console.log(info.file, info.fileList);
+    }
+    if (status === "done") {
+      message.success(`${info.file.name} file uploaded successfully.`);
+    } else if (status === "error") {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  },
+};
 
 class EventSec1 extends Component {
   constructor(props) {
@@ -33,7 +54,11 @@ class EventSec1 extends Component {
       eq: [],
       des: "",
       date: "",
-      time:'',
+      time: "",
+      budget: "",
+      headC: "",
+      email: "",
+      emailval: "warning",
     };
   }
 
@@ -87,7 +112,7 @@ class EventSec1 extends Component {
 
   handleInput = (e) => {
     //const evntObj = e.target;
-    console.log(e.target.value);
+    console.log(e.target.name ," - ",e.target.value);
     this.setState({ [e.target.name]: e.target.value });
     //const [stateval] = this.state.data;
 
@@ -117,8 +142,23 @@ class EventSec1 extends Component {
   };
   //handle the time
   handleTime = (timeString) => {
-    this.setState({time:timeString})
+    this.setState({ time: timeString });
   };
+
+  validateEmail = (e) => {
+    console.log(this.state.emailval);
+    console.log(this.state.email);
+    //console.log(EmailValidator.validate(e.target.value))
+    if (EmailValidator.validate(e.target.value)) {
+      this.setState({ emailval:"success"})
+      console.log(this.state.emailval);
+    } else {
+       alert(
+         " ⚠⚠ the email you have enterd is in incorrect format. please enter the email again ⚠⚠⚠"
+       );
+    }
+  };
+
   render() {
     // const loop = this.fetchEventTypes;
     //const value = this.checkInput;
@@ -168,7 +208,6 @@ class EventSec1 extends Component {
                   // onBlur={this.checkInput}
                   //onChange={this.handleInput.bind(this)}
                 >
-                  {this.fetchEventTypes()}
                 </Select>
               </Form.Item>
             </Col>
@@ -199,7 +238,7 @@ class EventSec1 extends Component {
                 validateStatus={this.state.class}
               >
                 <Input
-                  name="eventname"
+                  name="location"
                   onChange={this.handleInput.bind(this)}
                   placeholder="I'm the content"
                   id="success"
@@ -233,6 +272,50 @@ class EventSec1 extends Component {
               <Checkbox onClick={this.checkbox.bind(this)} name="delivery">
                 Do you want to deliver those items to the venue?
               </Checkbox>
+            </Col>
+          </Row>
+          <p className="dash-top-1" style={{ marginBottom: "10px" }}>
+            Event Documents and Other Details
+          </p>
+          <Row>
+            <Col lg={12} md={12} sm={24} xs={24}>
+              <Dragger {...props}>
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">
+                  Click or drag file to this area to upload
+                </p>
+                <p className="ant-upload-hint">
+                  Support for a single PDF documet. Strictly prohibit from
+                  uploading company data or other band files. Only the Event
+                  Schedule
+                </p>
+              </Dragger>
+            </Col>
+            <Col style={{ padding: 10 }} lg={12} md={12} sm={24} xs={24}>
+              <Form.Item label="Expected Budget">
+                <Input
+                  name="budget"
+                  onChange={this.handleInput.bind(this)}
+                  placeholder="Value in Sri Lankan Rupees"
+                  id="success"
+                  //onBlur={this.checkInput}
+                  width="100%"
+                />
+              </Form.Item>
+              <Form.Item label="Expected Head Count">
+                <Input
+                  name="headC"
+                  onChange={this.handleInput.bind(this)}
+                  placeholder="If none keep this blank"
+                  id="success"
+                  //onBlur={this.checkInput}
+                />
+              </Form.Item>
+              <Form.Item label="Your Email" hasFeedback validateStatus={this.state.emailval}>
+                <Input name="email" onBlur={this.validateEmail.bind(this)} onChange={this.handleInput.bind(this)} placeholder="Event details will be sent to this email" id="success" />
+              </Form.Item>
             </Col>
           </Row>
         </form>
