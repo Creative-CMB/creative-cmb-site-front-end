@@ -19,7 +19,7 @@ class DashHeader extends Component {
                 title="M.L.Akila Liyanage"
                 className="site-page-header"
                 subTitle="Admin-Marketing"
-                tags={<Tag color="green">Online</Tag>}
+                tags={<Tag color="blue">Online</Tag>}
                 extra={[
                     <Button key="2">My Account</Button>,
                     <Button key="1" type="primary">

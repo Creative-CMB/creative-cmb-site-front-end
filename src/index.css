@@ -12,7 +12,7 @@ body {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 #style-6::-webkit-scrollbar-track {
@@ -27,16 +27,7 @@ body {
 
 #style-6::-webkit-scrollbar-thumb {
   background-color: #49b1ff;
-  background-image: -webkit-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.2) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.2) 75%,
-    transparent 75%,
-    transparent
-  );
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
 }
 
 #root {
@@ -111,11 +102,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .select-option {
@@ -134,11 +125,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border-radius: 10px;
 }
 
@@ -169,7 +160,7 @@ body {
   border: none;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 17px -4px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 17px -4px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 17px -4px rgba(0, 0, 0, 0.75);
   margin-top: 15px;
 }
 
@@ -186,11 +177,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .event-card .number p {
@@ -374,8 +365,7 @@ form {
   height: auto;
 }
 
-.upload input[type="file"],
-.upload button {
+.upload input[type="file"], .upload button {
   background-color: #eceef9;
   width: 90%;
   padding: 10px;
@@ -399,11 +389,11 @@ form {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .upload-email {

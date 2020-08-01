@@ -15,7 +15,6 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import "antd/dist/antd.css";
 import { Row, Col,Card,Typography ,Affix} from "antd";
 import DashHeader from '../Dashboard/DashHeader';
 import EventTimeline from './EventTimeline';
@@ -33,7 +32,6 @@ class EventCreate extends Component {
     super(props);
       this.state = {
         current: "mail",
-        percent:0,
       };
   }
 
@@ -42,10 +40,6 @@ class EventCreate extends Component {
     this.setState({ current: e.key });
   };
 
-  progress = (obj) => {
-    console.log(obj);
-    this.setState({ percent: obj });
-  }
     render() {
       const { current } = this.state;
     return (
@@ -56,7 +50,6 @@ class EventCreate extends Component {
             className="site-layout-background"
             style={{ padding: "24px 0" }}
           >
-            <Affix>
               <Sider
                 breakpoint="sm"
                 className="site-layout-background"
@@ -103,10 +96,8 @@ class EventCreate extends Component {
                       <Link to="/analytics">Downloads</Link>
                     </Menu.Item>
                   </SubMenu>
-                  <DashProgressChart percent={this.state.percent}/>
                 </Menu>
               </Sider>
-            </Affix>
             <Content style={{ padding: "0 24px", minHeight: 280 }}>
               <Row>
                 <Col lg={24} md={24} sm={23} xs={24}>
