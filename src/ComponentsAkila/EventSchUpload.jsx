@@ -17,7 +17,7 @@ class EventSchUpload extends Component {
           <div className="light-sub-topic">
             <p>EVENT SCHEDULE UPDATE</p>
           </div>
-          <div className="event-card">
+          <div className="event-card" style={{ backgroundColor: "white" }}>
             <Dragger>
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />

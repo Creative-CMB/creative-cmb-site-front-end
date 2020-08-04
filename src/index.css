@@ -128,18 +128,14 @@ body {
 .footer {
   text-align: center;
   background-color: white;
-  padding: 5px;
-  padding-bottom: -10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  padding: 10px;
   border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  padding: 0;
+  margin: 0;
 }
 
 .create-event:hover {
@@ -168,8 +164,8 @@ body {
   padding: 15px;
   border: none;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 17px -4px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 17px -4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 5px -4px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 5px -4px rgba(0, 0, 0, 0.75);
   margin-top: 15px;
 }
 
@@ -178,6 +174,7 @@ body {
   font-weight: bold;
   color: #4d4f59;
   margin-bottom: 2px;
+  font-size: 14px;
 }
 
 .event-card .number {
@@ -224,7 +221,7 @@ form {
 
 .form-card {
   background-color: white;
-  padding: 35px 40px;
+  padding: 25px 25px;
   height: auto;
   margin: 0;
 }
@@ -241,6 +238,7 @@ form {
   padding: 2px;
   border-radius: 10px;
   padding-left: 15px;
+  font-weight: 13px;
 }
 
 .form-card .right-side select {
