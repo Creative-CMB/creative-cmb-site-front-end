@@ -79,11 +79,19 @@ body {
   }
 }
 .navbar {
+  margin: 0;
+  padding-bottom: 0rem;
   font-family: "Open Sans", sans-serif;
   margin: 0;
+  .navbar-brand{
+    padding: 0;
+    margin: 0;
+  }
   p {
     font-weight: 900;
     color: #4d4f59;
+     padding: 0;
+    margin: 0;
   }
   a {
     background-color: transparent;
@@ -186,7 +194,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: lighter;
   padding-left: 15px;
-  padding-top: 25px;
+  padding-top: 10px;
 }
 form {
   padding: 0px 20px 0px 20px;
@@ -365,4 +373,7 @@ input[type="file"],button {
   margin: 20px 0px 20px 0px;
   width: 100%;
   padding: 10px;
+}
+.dropdown-item{
+  border-radius: 1px;
 }

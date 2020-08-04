@@ -9,6 +9,10 @@ import EventSchUpload from "../ComponentsAkila/EventSchUpload";
 import EventSentEmail from "./EventSentEmail";
 import EventAddDetails from './EventAdDetails';
 import EventFooter from './EventFooter';
+import { Upload, message } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+
+const { Dragger } = Upload;
 
 class EventCreate extends Component {
   constructor(props) {

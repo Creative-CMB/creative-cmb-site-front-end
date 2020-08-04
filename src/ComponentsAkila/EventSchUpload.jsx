@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import upload from "../Images/upload.png";
+import { Upload, message } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+import "antd/dist/antd.css";
+
+const { Dragger } = Upload;
 
 class EventSchUpload extends Component {
     constructor(props) {
@@ -7,29 +12,27 @@ class EventSchUpload extends Component {
         this.state = {  }
     }
     render() { 
-        return (
-          <div>
-            <div className="light-sub-topic up-topic">
-              <p>UPLOAD YOUR EVENT SCHEDULE HERE</p>
-            </div>
-            <div className="event-card form-card upload">
-              <div className="row">
-                <div className="col-lg-6">
-                  <p>
-                    UPLOAD YPUR <br /> SCHEDULE HERE
-                  </p>
-                  <form action="">
-                    <input type="file" name="" id="" />
-                  </form>
-                </div>
-
-                <div className="col-lg-6">
-                  <img src={upload} alt="upload" />
-                </div>
-              </div>
-            </div>
+      return (
+        <div>
+          <div className="light-sub-topic">
+            <p>EVENT SCHEDULE UPDATE</p>
           </div>
-        );
+          <div className="event-card">
+            <Dragger>
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-text">
+                Click or drag file to this area to upload
+              </p>
+              <p className="ant-upload-hint">
+                Support for a single PDF file upload. Strictly prohibit from
+                uploading company data or other band files
+              </p>
+            </Dragger>
+          </div>
+        </div>
+      );
     }
 }
  

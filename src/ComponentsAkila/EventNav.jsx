@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function EventNav() {
     return (
-      <nav className="navbar">
+      <nav style={{paddingBottom:0}} className="navbar">
         <Link to="/event" className="navbar-brand" href="#">
           <Tooltip title="Event dasjboard">
             <p>EVENT DASHBOARD</p>
@@ -24,15 +24,13 @@ function EventNav() {
             <img src={user} className="user-img" alt="" /> Akila Pramod
           </a>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" href="#">
-              Action
-            </a>
-            <a className="dropdown-item" href="#">
-              Another action
-            </a>
-            <a className="dropdown-item" href="#">
-              Something else here
-            </a>
+            <Link className="dropdown-item" to="/my-account">
+              My Account
+            </Link>
+
+            <Link className="dropdown-item" to="/logout">
+              Log Out
+            </Link>
           </div>
         </div>
       </nav>
