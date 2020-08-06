@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 
+$phone : 840px;
+
+@mixin phone {
+  @media (max-width:#{$phone}) {
+    @content;
+  }
+}
+
 body {
   overflow: hidden;
   margin: 0;
@@ -76,17 +84,10 @@ body {
 
   .main {
     background-color: #eceef9;
+    //padding: 0;
   }
 }
-.navbar {
-  margin: 0;
-  padding-bottom: 0rem;
-  font-family: "Open Sans", sans-serif;
-  margin: 0;
-  .navbar-brand{
-    padding: 0;
-    margin: 0;
-  }
+
   p {
     font-weight: 900;
     color: #4d4f59;
@@ -96,28 +97,43 @@ body {
   a {
     background-color: transparent;
     border-radius: 100px;
+
+    @include phone{
+      background-color: #49B1FF;
+      border-radius: 100px;
+    }
+
+   
   }
   .user-img {
     width: 30px;
+
+    @include phone{
+      background-color: white;
+      padding: 3px;
+    }
   }
   .user-btn {
     background-color: white;
     border: none;
+
+    @include phone{
+      background-color: #49B1FF;
+    }
   }
-}
+
 
 .main-img {
   position: relative;
-  width: 73%;
+  width: 100%;
+   //display: flex;
+  //justify-content: center;
+  //align-items: center;
   //margin-top: 0.1%;
 }
 
-.maincont-img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .select-option {
+  width: 100%;
   text-align: center;
   font-size: 20px;
   padding: 10px;
@@ -158,13 +174,13 @@ body {
   padding: 15px;
   border: none;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 7px -4px rgba(0, 0, 0, 0.75);
   margin-top: 15px;
 
   p {
     font-family: "Open Sans", sans-serif;
-    font-weight: bold;
-    color: #4d4f59;
+    font-weight: normal;
+    color: #000000;
     margin-bottom: 2px;
     font-size: 14px;
   }
@@ -200,7 +216,11 @@ body {
   padding-top: 10px;
 }
 form {
-  padding: 0px 20px 0px 20px;
+  padding: 0px 10px 0px 20px;
+
+  @include phone{
+    overflow-x: hidden;
+  }
   //height: 50vh;
 }
 .form-card {
@@ -288,10 +308,17 @@ form {
 }
 .slide {
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 100vh;
+  padding: 0;
+
 }
 .fix-right {
   position: fixed;
+
+  @include phone{
+    display: none;
+  }
 }
 .item {
   height: auto;
@@ -380,4 +407,24 @@ input[type="file"],button {
 }
 .dropdown-item{
   border-radius: 1px;
+}
+.maincont{
+  height: 100vh;
+
+  @include phone{
+    //overflow: scroll;
+    height: 110vh;
+  }
+
+}
+.maincont-img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+  @include phone{
+    margin-top: 50px;
+     width: 90%;
+  }
 }

@@ -68,57 +68,54 @@ body {
   background-color: #eceef9;
 }
 
-.navbar {
-  margin: 0;
-  padding-bottom: 0rem;
-  font-family: "Open Sans", sans-serif;
-  margin: 0;
-}
-
-.navbar .navbar-brand {
-  padding: 0;
-  margin: 0;
-}
-
-.navbar p {
+p {
   font-weight: 900;
   color: #4d4f59;
   padding: 0;
   margin: 0;
 }
 
-.navbar a {
+a {
   background-color: transparent;
   border-radius: 100px;
 }
 
-.navbar .user-img {
+@media (max-width: 840px) {
+  a {
+    background-color: #49B1FF;
+    border-radius: 100px;
+  }
+}
+
+.user-img {
   width: 30px;
 }
 
-.navbar .user-btn {
+@media (max-width: 840px) {
+  .user-img {
+    background-color: white;
+    padding: 3px;
+  }
+}
+
+.user-btn {
   background-color: white;
   border: none;
 }
 
-.main-img {
-  position: relative;
-  width: 73%;
+@media (max-width: 840px) {
+  .user-btn {
+    background-color: #49B1FF;
+  }
 }
 
-.maincont-img {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.main-img {
+  position: relative;
+  width: 100%;
 }
 
 .select-option {
+  width: 100%;
   text-align: center;
   font-size: 20px;
   padding: 10px;
@@ -164,15 +161,15 @@ body {
   padding: 15px;
   border: none;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 5px -4px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 5px -4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 7px -4px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 7px -4px rgba(0, 0, 0, 0.75);
   margin-top: 15px;
 }
 
 .event-card p {
   font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  color: #4d4f59;
+  font-weight: normal;
+  color: #000000;
   margin-bottom: 2px;
   font-size: 14px;
 }
@@ -216,7 +213,13 @@ body {
 }
 
 form {
-  padding: 0px 20px 0px 20px;
+  padding: 0px 10px 0px 20px;
+}
+
+@media (max-width: 840px) {
+  form {
+    overflow-x: hidden;
+  }
 }
 
 .form-card {
@@ -311,11 +314,19 @@ form {
 
 .slide {
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 100vh;
+  padding: 0;
 }
 
 .fix-right {
   position: fixed;
+}
+
+@media (max-width: 840px) {
+  .fix-right {
+    display: none;
+  }
 }
 
 .item {
@@ -423,5 +434,29 @@ form {
 
 .dropdown-item {
   border-radius: 1px;
+}
+
+.maincont {
+  height: 100vh;
+}
+
+@media (max-width: 840px) {
+  .maincont {
+    height: 110vh;
+  }
+}
+
+.maincont-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+@media (max-width: 840px) {
+  .maincont-img {
+    margin-top: 50px;
+    width: 90%;
+  }
 }
 /*# sourceMappingURL=index.css.map */

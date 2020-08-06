@@ -10,7 +10,7 @@ import EventCreate from "../ComponentsAkila/EventCreate";
 
 function EventSideNav() {
   return (
-    <ul>
+    <ul className="event-side-nav">
       <li className="drop-event">
         <Link to="/event">
           <Tooltip title="Go to home">

@@ -2,38 +2,32 @@ import React, { Component } from 'react'
 import Tooltip from "@material-ui/core/Tooltip";
 import user from "../Images/user.png";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import drop from '../Images/drop.png';
+import { Menu, Dropdown } from 'antd';
+import { Avatar } from 'antd';
+import { Button } from 'antd';
+import './css/nav.css'; 
 
 function EventNav() {
-    return (
-      <nav style={{paddingBottom:0}} className="navbar">
-        <Link to="/event" className="navbar-brand" href="#">
-          <Tooltip title="Event dasjboard">
-            <p>EVENT DASHBOARD</p>
-          </Tooltip>
-        </Link>
-
-        <div className="dropdown">
-          <a
-            className="btn btn-secondary user-btn"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <img src={user} className="user-img" alt="" /> Akila Pramod
-          </a>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <Link className="dropdown-item" to="/my-account">
-              My Account
-            </Link>
-
-            <Link className="dropdown-item" to="/logout">
-              Log Out
-            </Link>
-          </div>
-        </div>
-      </nav>
+  return ( 
+    <div>
+      <nav>
+        <input type="checkbox" id="check"/>
+          <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+          </label>
+        <Link to="/event"><label class="logo">Event Dashboard</label></Link>
+        <ul>
+          <li className="nav-items">Create Event</li>
+          <li className="nav-items">Update Event Event</li>
+          <li className="nav-items">Delete Event Event</li>
+            <li><Avatar size={"large"} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /></li>
+            <li>Akila Liyanage</li>
+            <li><Button type="primary">My Account</Button></li>
+          <li> <Button danger>Log Out</Button></li>
+          </ul>
+        </nav>
+    </div>  
     );
 }
 

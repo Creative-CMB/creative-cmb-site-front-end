@@ -11,6 +11,7 @@ import EventAddDetails from './EventAdDetails';
 import EventFooter from './EventFooter';
 import { Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
+import EventMobileNav from './EventMobileNav';
 
 const { Dragger } = Upload;
 
@@ -80,7 +81,7 @@ class EventCreate extends Component {
             <p>CREATE AN EVENT</p>
           </div>
 
-          <form action="">
+          <form action="" className="event-form">
             <div className="light-sub-topic">
               <p>Basic Details</p>
             </div>
