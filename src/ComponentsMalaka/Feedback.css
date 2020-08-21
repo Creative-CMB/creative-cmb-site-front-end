@@ -1,0 +1,28 @@
+body {
+  background-color: #ECEEF9;
+}
+
+.star-rating {
+  line-height: 32px;
+  font-size: 1.25em;
+}
+
+.star-rating .fa-star {
+  color: yellow;
+}
+
+h2 {
+  text-align: center;
+}
+
+.btn btn-secondary {
+  right: auto;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.btn btn-secondary {
+  padding-left: 12px;
+}
+/*# sourceMappingURL=Feedback.css.map */
