@@ -7,6 +7,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import EventCreate from './ComponentsAkila/EventCreate';
 import EventEditHome from './ComponentsAkila/EventEditHome';
 import Feedback from './ComponentsMalaka/FeedbackTemp';
+import Adminfeedback from './ComponentsMalaka/feedadmin';
+import Editfeedbac from './ComponentsMalaka/editfeedback';
+
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
       <Route component={EventCreate} path="/create"></Route>
       <Route component={EventEditHome} path="/edit"></Route>
       <Route component={Feedback} path="/feedback"></Route>
+      <Route component={Adminfeedback} path="/adminfeedback"></Route>
+      <Route component={Editfeedbac} path="/editfeedback"></Route>
+
     </Router>
 
   );
