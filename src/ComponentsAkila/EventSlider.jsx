@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Carousel } from "antd";
-import slide1 from '../Images/slide1.png'
+import slide1 from '../Images/slide1.png';
+import img1 from '../Images/img1.png'
 
 
 const contentStyle = {
@@ -24,6 +25,7 @@ const contentStyleText = {
 };
 
 
+
 class EventSlider extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +40,7 @@ class EventSlider extends Component {
     return (
       <div>
         <Carousel style={contentStyle} afterChange={this.onChange}>
-          <div style={{backgroundImage:`url({slide1})`}}>
+          <div>
             <h3 style={contentStyleText}>my birthday party</h3>
           </div>
           <div>
