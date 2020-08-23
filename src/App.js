@@ -9,14 +9,35 @@ import EventEditHome from "./ComponentsAkila/EventEditHome";
 import Test from "./ComponentsSanda/main";
 import TicketForm from "./ComponentsSanda/TicketForm";
 
+import InventoryItems from './ComponentsHimasha/InventoryItems';
+import RentalDetails from './ComponentsHimasha/RentalDetails';
+import AddItems from './ComponentsHimasha/AddItems';
+
+import Feedback from './ComponentsMalaka/FeedbackTemp';
+import Adminfeedback from './ComponentsMalaka/feedadmin';
+import Editfeedbac from './ComponentsMalaka/editfeedback';
+
+
+
 function App() {
   return (
     <Router>
       <Route component={EventHome} exact path="/event"></Route>
       <Route component={EventCreate} path="/create"></Route>
       <Route component={EventEditHome} path="/edit"></Route>
+
       <Route component={Test} path="/test"></Route>
       <Route component={TicketForm} path="/ticket"></Route>
+
+
+      <Route component={InventoryItems} path= "/inventory"></Route>
+      <Route component={AddItems} path= "/add"></Route>
+
+      <Route component={Feedback} path="/feedback"></Route>
+      <Route component={Adminfeedback} path="/adminfeedback"></Route>
+      <Route component={Editfeedbac} path="/editfeedback"></Route>
+
+
     </Router>
   );
 }
