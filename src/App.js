@@ -16,6 +16,8 @@ import AddItems from './ComponentsHimasha/AddItems';
 import Feedback from './ComponentsMalaka/FeedbackTemp';
 import Adminfeedback from './ComponentsMalaka/feedadmin';
 import Editfeedbac from './ComponentsMalaka/editfeedback';
+import homefeedback from './ComponentsMalaka/homefeed';
+
 
 
 
@@ -36,6 +38,8 @@ function App() {
       <Route component={Feedback} path="/feedback"></Route>
       <Route component={Adminfeedback} path="/adminfeedback"></Route>
       <Route component={Editfeedbac} path="/editfeedback"></Route>
+      <Route component={homefeedback} path="/homefeed"></Route>
+
 
 
     </Router>
