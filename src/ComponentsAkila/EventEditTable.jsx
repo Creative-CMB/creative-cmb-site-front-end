@@ -26,6 +26,9 @@ class EventEditTable extends Component {
     this.state = {
       event: [],
       visible: false,
+      selectedIndex: '',
+      selectedEvent: {},
+      
     };
   }
 
@@ -62,7 +65,13 @@ class EventEditTable extends Component {
     });
   };
 
-  showDrawer = () => {
+  showDrawer = (id) => {
+    this.setState({ selectedIndex: id });
+    this.state.event.map((item) => {
+      if (item.id === id) {
+        this.setState({ selectedEvent: item });
+      }
+    })
     this.setState({
       visible: true,
     });
@@ -96,7 +105,7 @@ class EventEditTable extends Component {
           key="action"
           render={(text, record) => (
             <Space size="middle">
-              <Button onClick={this.showDrawer} type="primary">
+            <Button onClick={() => this.showDrawer(record.id)} type="primary">
                 Edit this event
               </Button>
               <Button
