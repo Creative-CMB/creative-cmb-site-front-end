@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Table, Tag, Space } from "antd";
+import { Table, Tag, Space, TimePicker  } from "antd";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
+import moment from 'moment';
 import {
   Modal,
   notification,
@@ -111,11 +112,11 @@ class EventEditTable extends Component {
       </Table>
 
         <Drawer
-          title="Create a new account"
-          width={720}
+          title="Update event"
+          width="auto"
           onClose={this.onClose}
           visible={this.state.visible}
-          bodyStyle={{ paddingBottom: 80 }}
+          bodyStyle={{ paddingBottom: 10 }}
           footer={
             <div
               style={{
@@ -135,24 +136,23 @@ class EventEditTable extends Component {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item
-                  name="name"
-                  label="Name"
-                  rules={[{ required: true, message: 'Please enter user name' }]}
+                  name="eventName"
+                  label="Event Name"
+                  rules={[{ required: true, message: 'Please enter a event name' }]}
                 >
-                  <Input placeholder="Please enter user name" />
+                  <Input placeholder="Please enter a event name" name="eventName" />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item
-                  name="url"
-                  label="Url"
+                  name="creatorName"
+                  label="Event Creator Name"
                   rules={[{ required: true, message: 'Please enter url' }]}
                 >
                   <Input
                     style={{ width: '100%' }}
-                    addonBefore="http://"
-                    addonAfter=".com"
-                    placeholder="Please enter url"
+                    name="creatorName"
+                    placeholder="Please enter the name"
                   />
                 </Form.Item>
               </Col>
@@ -160,25 +160,29 @@ class EventEditTable extends Component {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item
-                  name="owner"
-                  label="Owner"
-                  rules={[{ required: true, message: 'Please select an owner' }]}
+                  name="phone"
+                  label="Event Creator Phone"
+                  rules={[{ required: true, message: 'Please enter the phone number' }]}
                 >
-                  <Select placeholder="Please select an owner">
-                    <Option value="xiao">Xiaoxiao Fu</Option>
-                    <Option value="mao">Maomao Zhou</Option>
-                  </Select>
+                  <Input
+                    style={{ width: '100%' }}
+                    name="phone"
+                    placeholder="Please enter the phone number"
+                  />
+                  
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item
-                  name="type"
-                  label="Type"
+                  name="eventType"
+                  label="Event Type"
                   rules={[{ required: true, message: 'Please choose the type' }]}
                 >
                   <Select placeholder="Please choose the type">
-                    <Option value="private">Private</Option>
-                    <Option value="public">Public</Option>
+                    <Option value="private">Birthday</Option>
+                    <Option value="public">Political campaign</Option>
+                    <Option value="public">Political campaign</Option>
+                    <Option value="public">Other</Option>
                   </Select>
                 </Form.Item>
               </Col>
@@ -186,25 +190,37 @@ class EventEditTable extends Component {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item
-                  name="approver"
-                  label="Approver"
-                  rules={[{ required: true, message: 'Please choose the approver' }]}
+                  name="location"
+                  label="Location"
+                  rules={[{ required: true, message: 'Please enter thr Location' }]}
                 >
-                  <Select placeholder="Please choose the approver">
-                    <Option value="jack">Jack Ma</Option>
-                    <Option value="tom">Tom Liu</Option>
-                  </Select>
+                  <Input
+                    style={{ width: '100%' }}
+                    name="location"
+                    placeholder="Enter thr location"
+                  />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item
                   name="dateTime"
-                  label="DateTime"
+                  label="Date of the Event"
                   rules={[{ required: true, message: 'Please choose the dateTime' }]}
                 >
-                  <DatePicker.RangePicker
+                  <DatePicker style={{ width: '100%' }} />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={24}>
+                <Form.Item
+                  name="dateTime"
+                  label="Date of the Event"
+                  rules={[{ required: true, message: 'Please choose the dateTime' }]}
+                >
+                  <TimePicker
                     style={{ width: '100%' }}
-                    getPopupContainer={trigger => trigger.parentElement}
+                    defaultOpenValue={moment('00:00:00', 'HH:mm:ss')}
                   />
                 </Form.Item>
               </Col>
@@ -222,6 +238,54 @@ class EventEditTable extends Component {
                   ]}
                 >
                   <Input.TextArea rows={4} placeholder="please enter url description" />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={24}>
+                <Form.Item
+                  name="items"
+                  label="Select Equipments"
+                  rules={[{ required: true, message: 'Please choose the items' }]}
+                >
+                  <Select
+                    mode="tags"
+                    style={{ width: '100%' }}
+                    placeholder="Please select"
+                    defaultValue={['a10', 'c12']}
+                  >
+                   
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={24}>
+                <Form.Item
+                  name="headCount"
+                  label="Select Equipments"
+                  rules={[{ required: true, message: 'Please insert the head count' }]}
+                >
+                  <Input
+                    style={{ width: '100%' }}
+                    name="headCount"
+                    placeholder="Enter the head Count"
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={24}>
+                <Form.Item
+                  name="budget"
+                  label="Enter the Budget"
+                  rules={[{ required: true, message: 'Please insert your budget' }]}
+                >
+                  <Input
+                    style={{ width: '100%' }}
+                    name="budget"
+                    placeholder="Enter the head budget"
+                  />
                 </Form.Item>
               </Col>
             </Row>
