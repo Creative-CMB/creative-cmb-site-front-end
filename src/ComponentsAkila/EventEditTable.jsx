@@ -51,6 +51,7 @@ class EventEditTable extends Component {
         //delete the event
 
         //open the notification
+      
 
         const args = {
           message: "Notification",

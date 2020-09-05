@@ -17,6 +17,15 @@ import Feedback from './ComponentsMalaka/FeedbackTemp';
 import Adminfeedback from './ComponentsMalaka/feedadmin';
 import Editfeedbac from './ComponentsMalaka/editfeedback';
 
+import AddEmployee from './ComponentsDeepika/AddEmployee';
+import AddDepartment from './ComponentsDeepika/AddDepartment';
+import AddDeptManager from './ComponentsDeepika/AddDeptManager';
+import AddDeptSupervisor from './ComponentsDeepika/AddDeptSupervisor';
+import AddDeptEmployee from './ComponentsDeepika/AddDeptEmployee';
+import AddLeave from './ComponentsDeepika/AddLeave';
+import AddSalary from './ComponentsDeepika/AddSalary';
+import EmployeeManagementHome from './ComponentsDeepika/EmployeeManagementHome';
+
 
 
 
@@ -37,6 +46,16 @@ function App() {
       <Route component={Feedback} path="/feedback"></Route>
       <Route component={Adminfeedback} path="/adminfeedback"></Route>
       <Route component={Editfeedbac} path="/editfeedback"></Route>
+
+      <Route component={AddEmployee} path="/addEmployee"></Route>
+      <Route component={AddDepartment} path="/addDepartment"></Route>
+      <Route component={AddDeptManager} path="/addDeptManager"></Route>
+      <Route component={AddDeptSupervisor} path="/addDeptSupervisor"></Route>
+      <Route component={AddDeptEmployee} path="/addDeptEmployee"></Route>
+      <Route component={AddLeave} path="/addLeave"></Route>
+      <Route component={AddSalary} path="/addSalary"></Route>
+      <Route component={EmployeeManagementHome} path="/employeeHome"></Route>
+      
 
 
 
