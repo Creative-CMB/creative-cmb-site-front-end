@@ -18,6 +18,15 @@ import Adminfeedback from './ComponentsMalaka/feedadmin';
 import Editfeedbac from './ComponentsMalaka/editfeedback';
 
 
+import Startup from "./ComponentsSid/Startup";
+import Signup from "./ComponentsSid/Signup";
+import Login from "./ComponentsSid/Login";
+import UserAccount from "./ComponentsSid/UserAccount";
+import UserDashboard from "./ComponentsSid/UserDashboard";
+=======
+
+
+
 
 
 function App() {
@@ -38,6 +47,11 @@ function App() {
       <Route component={Adminfeedback} path="/adminfeedback"></Route>
       <Route component={Editfeedbac} path="/editfeedback"></Route>
 
+      <Route component={Startup} path="/startup"/>
+      <Route component={Signup} path="/signup"/>
+      <Route component={Login} path="/login"/>
+      <Route component={UserAccount} path="/useraccount"/>
+      <Route component={UserDashboard} path="/userdashboard"/>
 
 
     </Router>
