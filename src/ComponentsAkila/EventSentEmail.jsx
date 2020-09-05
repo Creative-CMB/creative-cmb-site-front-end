@@ -62,7 +62,7 @@ class EventSentEmail extends Component {
             closable
             onClose={this.onClose}
           />
-          <div className="row item">
+          <div style={{height:"40px",paddingLeft:0}} className="row item">
             <div className="col-lg-9 email-div">
               <input
                 type="text"

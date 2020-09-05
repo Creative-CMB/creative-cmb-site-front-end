@@ -32,6 +32,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "reactstrap": "^8.5.1",
+    "unsplash-js": "^6.0.0",
     "uuid": "^8.2.0"
   },
   "scripts": {

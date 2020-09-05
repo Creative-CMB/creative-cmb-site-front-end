@@ -12,7 +12,9 @@ import EventFooter from "./EventFooter";
 import { Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import EventMobileNav from "./EventMobileNav";
-import EventSlider from "./EventSlider";
+import EventSlider from './EventSlider';
+import EventEditCard from './EventEditCard';
+import EventEditTable from "./EventEditTable";
 
 const { Dragger } = Upload;
 
@@ -23,11 +25,22 @@ class EventCreate extends Component {
       data: {},
       items: [],
       email: "",
+      myEvents:[],
     };
   }
 
   componentWillMount() {
     this.getChartData();
+  }
+
+  componentDidMount() {
+    this.fetchEditCardData();
+  }
+
+  fetchEditCardData = () => {
+    fetch(
+      "https://my-json-server.typicode.com/akilaliyanage/json-fake-api-server/types"
+    ).then(response => response.json()).then(data => this.setState({myEvents:data}));
   }
 
   getChartData() {
@@ -78,13 +91,14 @@ class EventCreate extends Component {
         <div className="col main slide" id="style-6">
           <EventNav />
 
-         <EventSlider />
+          <EventSlider />
+
+          <EventEditTable/>
 
           <EventFooter />
         </div>
 
         <div className="col-lg-2 fix-right">
-
           <EventSum />
         </div>
       </div>

@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import "./ComponentsAkila/EventHome";
 import EventHome from "./ComponentsAkila/EventHome";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link,HashRouter } from "react-router-dom";
 import EventCreate from "./ComponentsAkila/EventCreate";
 import EventEditHome from "./ComponentsAkila/EventEditHome";
 import Test from "./ComponentsSanda/main";
@@ -17,11 +17,14 @@ import Feedback from './ComponentsMalaka/FeedbackTemp';
 import Adminfeedback from './ComponentsMalaka/feedadmin';
 import Editfeedbac from './ComponentsMalaka/editfeedback';
 
+
 import Startup from "./ComponentsSid/Startup";
 import Signup from "./ComponentsSid/Signup";
 import Login from "./ComponentsSid/Login";
 import UserAccount from "./ComponentsSid/UserAccount";
 import UserDashboard from "./ComponentsSid/UserDashboard";
+=======
+
 
 
 
