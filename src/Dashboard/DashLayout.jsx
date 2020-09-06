@@ -118,7 +118,7 @@ class DashLayout extends Component {
 
                 <SubMenu key="sub3" icon={<LaptopOutlined />} title="Pages">
                   <Menu.Item key="9">
-                    <Link to="/analytics">Create Event</Link>
+                    <Link to="/create-event">Create Event</Link>
                   </Menu.Item>
                   <Menu.Item key="10">
                     <Link to="/analytics">Edit Event</Link>
