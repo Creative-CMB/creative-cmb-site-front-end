@@ -34,18 +34,20 @@ export default class AddDeptEmployee extends Component {
                 <div className="row">
                 
 
-                <div className="col-lg-1.5 side">
+                <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"700px"}}>
                     {/*Navigation bar */}
+                    <br></br>
                     <EmployeeSideNavBar />
                 </div>
 
                 <div className="col main">
   
                     {/*Middle page components */}
-                <h1 style={{color: "DodgerBlue", fontSize: '30px', fontWeight:"bold"}}><center>ADD EMPLOYEES FOR DEPARTMENTS</center></h1><br></br>
+                    <br></br>
+                <h1 style={{color: "DodgerBlue", fontSize: '30px', fontWeight:"bold"}}><center>ADD EMPLOYEES FOR DEPARTMENTS</center></h1><br></br><br></br><br></br>
                 <Card style={{ width: 600 }}>
 
-                <form style={{ fontSize: '20px',fontWeight:"bold"}}>
+                <form style={{ fontSize: '15px',fontWeight:"bold"}}>
                     Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="Employee_ID"></input><br></br><br></br>
                     Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="Department_ID" ></input><br></br><br></br>
                     From : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date"onChange= {this.formData} name="From_Date"></input><br></br><br></br>
@@ -54,7 +56,7 @@ export default class AddDeptEmployee extends Component {
                 </form>
                 </Card>
                 <div>
-                    <br></br>
+                    <br></br><br></br><br></br><br></br>
                 <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add Employee"></input>
                 </div>
               </div>

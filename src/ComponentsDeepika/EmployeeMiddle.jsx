@@ -6,7 +6,8 @@ import sample from "../Images/emp1.jpg";
 function EmployeeMiddle() {
     return (
         <div>
-        <div className="HomeHeading">
+          <br></br>
+        <div className="HomeHeading" style={{height:"100%"}}>
           <p style={{color: "DodgerBlue", fontSize: '30px'}}>
             <center>
             EMPLOYEE MANAGEMENT
@@ -18,7 +19,7 @@ function EmployeeMiddle() {
             <center>
             <img src={sample} alt="" className="emp-main" />
             </center>
-          </p><br></br>
+          </p>
           
         </div>
         <div className="selectpdf">

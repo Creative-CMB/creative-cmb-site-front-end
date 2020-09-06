@@ -17,6 +17,7 @@ class EmployeeSideNavBar extends Component {
                     mode="inline"
                     style={{ height: "100%", margin: "0", borderRight: "200", background: "LightBlue",justifyContent: "center"}}
                     >
+                    
                     <h1 style={{color: "black", fontSize: '20px'}}><center><Link to="/employeeHome" >Employee Home</Link></center></h1><br></br>
                     <SubMenu style={{padding:0,margin:0,textAlign:"left"}} key="sub1" icon={<UserOutlined />} title="Emplyee Details">
                         <Menu.Item style={{padding:0,margin:0,textAlign:"left", background: "azure"}}key="1"><Link to="/addEmployee" >Add Employees</Link></Menu.Item>

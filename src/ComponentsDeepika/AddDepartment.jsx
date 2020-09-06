@@ -33,15 +33,17 @@ export default class AddDepartment extends Component {
                 <div className="row">
                 
 
-                <div className="col-lg-1.5 side">
+                <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"700px"}}>
                     {/*Navigation bar */}
+                    <br></br>
                     <EmployeeSideNavBar />
                 </div>
 
                 <div className="col main">
 
                     {/*Middle page components */}
-                    <h1 style={{color: "DodgerBlue", fontSize: '30px',fontWeight:"bold"}}><center>ADD DEPARTMENT</center></h1><br></br>
+                    <br></br>
+                    <h1 style={{color: "DodgerBlue", fontSize: '30px',fontWeight:"bold"}}><center>ADD DEPARTMENT</center></h1><br></br><br></br>
                     <Card style={{ width: 1000,}}>
 
                     <form style={{fontSize: '15px',fontWeight:"bold"}}>
@@ -53,7 +55,7 @@ export default class AddDepartment extends Component {
                     </form>
                 </Card>
                 <div>
-                    <br></br><br></br>
+                    <br></br><br></br><br></br>
                     
                 <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add supervisor"></input>
                 </div>
