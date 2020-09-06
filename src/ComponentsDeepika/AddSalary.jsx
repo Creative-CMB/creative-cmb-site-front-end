@@ -47,25 +47,26 @@ export default class AddSalary extends Component {
                 <div className="col main">
   
                     {/*Middle page components */}
-                <h1 style={{color: "DodgerBlue", fontSize: '30px'}}><center>Add Leaves</center></h1><br></br>
+                <h1 style={{color: "DodgerBlue", fontSize: '30px',fontWeight:"bold"}}><center>ADD SALARY DETAILS</center></h1><br></br>
                 <div style={{ padding: "30px",background: "#ececec"}}>
                 <Row gutter={50}>
                 <Col span={12}>
                     <Card >
-                    <form style={{fontSize: '20px'}}>
-                    Salary ID : <input type="text" onChange= {this.formData} name="Salary_ID"></input><br></br><br></br>
-                    Employee Name : <input type="text" onChange= {this.formData} name="Employee_Name" ></input><br></br><br></br>
-                    Department Name : <input type="text"onChange= {this.formData} name="Dept_Name"></input><br></br><br></br>
-                    Basic Salary : <input type="text" onChange={this.formData} name="Basic_Salary"></input><br></br><br></br>
+                    <form style={{fontWeight:"bold"}}>
+                    Salary ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="Salary_ID"></input><br></br><br></br>
+                    Employee Name : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="Employee_Name" ></input><br></br><br></br>
+                    Department Name : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text"onChange= {this.formData} name="Dept_Name"></input><br></br><br></br><br></br>
+                    Basic Salary : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange={this.formData} name="Basic_Salary"></input><br></br><br></br>
+                    Extra Hours : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange={this.formData} name="Extra_Hours"></input><br></br><br></br>
                     </form>
                     </Card>
                 </Col>
                 <Col span={12}>
                     <Card >
-                        <form style={{fontSize: '20px'}}>
-                        Extra Hours : <input type="text" onChange={this.formData} name="Extra_Hours"></input><br></br><br></br>
-                        Bonus : <input type="text" onChange={this.formData} name="Bonus"></input><br></br><br></br>
-                        Month : <select value={this.state.Month}>
+                        <form style={{fontWeight:"bold"}}>
+                        
+                        Bonus : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange={this.formData} name="Bonus"></input><br></br><br></br>
+                        Month : <select style={{border: "3px solid #ccc",float: "right",width: "68%"}} value={this.state.Month}>
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
@@ -79,16 +80,18 @@ export default class AddSalary extends Component {
                                 <option value="November">November</option>
                                 <option value="December">December</option>
                                 </select><br></br><br></br>
-                        Year : <input type="text" maxLength="4" onChange= {this.formData} name="Year"></input><br></br><br></br>
-                        Date : <input type="date" onChange= {this.formData} name="Paid_Date"></input><br></br>  <br></br>         
-                        Paid : <input type="checkbox" checked={this.state.condition} onChange= {this.formData} name="Paid"></input><br></br>
+                        Year : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" maxLength="4" onChange= {this.formData} name="Year"></input><br></br><br></br>
+                        Date : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date" onChange= {this.formData} name="Paid_Date"></input><br></br>  <br></br>         
+                        Paid : <input style={{border: "3px solid #ccc"}} type="checkbox" checked={this.state.condition} onChange= {this.formData} name="Paid"></input><br></br>
                     
                         </form>
                     </Card>
                 </Col>
                 </Row>
             </div>
-
+            <div>
+                <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add salary detail"></input>
+                </div>
               </div>
               </div>
             </div>

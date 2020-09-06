@@ -7,6 +7,7 @@ export default class AddDepartment extends Component {
         constructor(props) {
             super(props);
             this.state = { 
+                Admin_ID:'',
                 ID:'',
                 Name:'',
                 Manager:''
@@ -40,17 +41,22 @@ export default class AddDepartment extends Component {
                 <div className="col main">
 
                     {/*Middle page components */}
-                    <h1 style={{color: "DodgerBlue", fontSize: '30px'}}><center>Add Department</center></h1><br></br>
-                    <Card style={{ width: 800 }}>
+                    <h1 style={{color: "DodgerBlue", fontSize: '30px',fontWeight:"bold"}}><center>ADD DEPARTMENT</center></h1><br></br>
+                    <Card style={{ width: 1000,}}>
 
-                    <form style={{fontSize: '20px'}}>
-                        Department ID : <input type="text" onChange= {this.formData} name="ID"></input><br></br><br></br>
-                        Name : <input type="text" onChange= {this.formData} name="Name" ></input><br></br><br></br>
-                        Manager of Department : <input type="text" onChange= {this.formData} name="Manager"></input><br></br><br></br>
+                    <form style={{fontSize: '15px',fontWeight:"bold"}}>
+                        Admin ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="Admin_ID"></input><br></br><br></br>
+                        Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="ID"></input><br></br><br></br>
+                        Name : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="Name" ></input><br></br><br></br>
+                        Manager of Department : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="Manager"></input><br></br><br></br>
                         
                     </form>
-                </Card>,
-              
+                </Card>
+                <div>
+                    <br></br><br></br>
+                    
+                <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add supervisor"></input>
+                </div>
               
                 </div>
                 

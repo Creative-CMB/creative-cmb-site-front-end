@@ -15,7 +15,7 @@ import AddItems from './ComponentsHimasha/AddItems';
 
 import Feedback from './ComponentsMalaka/FeedbackTemp';
 import Adminfeedback from './ComponentsMalaka/feedadmin';
-import Editfeedbac from './ComponentsMalaka/editfeedback';
+
 
 import AddEmployee from './ComponentsDeepika/AddEmployee';
 import AddDepartment from './ComponentsDeepika/AddDepartment';
@@ -45,7 +45,7 @@ function App() {
 
       <Route component={Feedback} path="/feedback"></Route>
       <Route component={Adminfeedback} path="/adminfeedback"></Route>
-      <Route component={Editfeedbac} path="/editfeedback"></Route>
+      
 
       <Route component={AddEmployee} path="/addEmployee"></Route>
       <Route component={AddDepartment} path="/addDepartment"></Route>
