@@ -40,7 +40,7 @@ class TicketForm extends Component {
   }
 
   fetchAdmins = () =>{
-    axios.get("http://127.0.0.1:8000/admins/").then(res=>
+    axios.get("http://127.0.0.1:8000/admin-list/").then(res=>
       {
         const admins=res.data;
         this.setState({admins});

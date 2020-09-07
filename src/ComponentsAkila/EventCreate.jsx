@@ -11,7 +11,12 @@ import EventAddDetails from "./EventAdDetails";
 import EventFooter from "./EventFooter";
 import { Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
+<<<<<<< HEAD
 import EventMobileNav from "./EventMobileNav";
+=======
+import EventMobileNav from './EventMobileNav';
+import axios from 'axios';
+>>>>>>> 1bbb6e52bf7b11d6b5769921a80e4eeda3bc6d6f
 
 const { Dragger } = Upload;
 
@@ -67,6 +72,17 @@ class EventCreate extends Component {
     console.log(this.state.email);
   };
 
+  OnSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://my-json-server.typicode.com/akilaliyanage/json-fake-api-server/event",
+        JSON.stringify(this.state.data)
+      )
+      .then((res) => console.log(res.status))
+      .catch((err) => console.log(err));
+  }
+
   render() {
     return (
       <div className="row">
@@ -81,7 +97,7 @@ class EventCreate extends Component {
             <p>CREATE AN EVENT</p>
           </div>
 
-          <form action="" className="event-form">
+          <form className="event-form" onSubmit={this.OnSubmit.bind(this)}>
             <div className="light-sub-topic">
               <p>Basic Details</p>
             </div>

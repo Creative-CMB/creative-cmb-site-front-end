@@ -1,0 +1,9 @@
+h1{
+    padding-left: 10%;
+}
+.button-modal-footer{
+    position:relative;
+    flex:1;
+    display: flex;
+    width: 100%;
+}
