@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./cssSanda/Ticket.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'randomstring'
 import imgp from "./img/6386.png";
 import TktNavBar from "./TktNavBar";
 import EventFooter from "../ComponentsAkila/EventFooter";
@@ -21,7 +20,9 @@ class TicketForm extends Component {
       quant: "",
       event: "",
       events:[],
-      admins:[]
+      admins:[],
+      admin:'',
+      exdate:'',
     };
   }
 
@@ -37,7 +38,8 @@ class TicketForm extends Component {
       })
 
       // fetch("http://127.0.0.1:8000/events/").then(response => response.json()).then(data => console.log(data))
-  }
+
+    }
 
   fetchAdmins = () =>{
     axios.get("http://127.0.0.1:8000/admin-list/").then(res=>
@@ -50,7 +52,6 @@ class TicketForm extends Component {
 
   inputData = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-
     this.setState({ radstatus: !this.state.radstatus });
 
     console.log(
@@ -58,11 +59,17 @@ class TicketForm extends Component {
       this.state.tname,
       this.state.type,
       this.state.price,
-      this.state.quant
+      this.state.quant,
+      this.state.event
     );
     console.log(this.state.radstatus);
     console.log(this.state.event);
   };
+
+  drop = (e) =>{
+    this.setState({[e.target.name] : e.target.value})
+    console.log(this.state.event)
+  }
 
   onCreateTicket = () => {
     console.log();
@@ -73,10 +80,32 @@ class TicketForm extends Component {
 
     const tktData = {
       ticket_id : "TKT"+this.state.tid,
-      event_id : this.state.event,
-      admin_id : ""
-
+      event_id : "EVT39PEjsh",
+      admin_id : "USR39PEjsh",
+      tkt_name : this.state.tname,
+      tkt_type : this.state.type,
+      status : this.state.radstatus,
+      price : this.state.price,
+      expiration_date : this.state.exdate,
+      image : "kfjfjksdbkjsd",
+      no_of_tickets : this.state.quant
     }
+
+    console.log(tktData)
+
+    var url = "http://127.0.0.1:8000/ticket-create/";
+
+    fetch(url,{
+      method: 'POST',
+      headers:{
+        'Content-type':'application/json',
+      },
+      body: JSON.stringify(tktData)
+    }).then((response) => {
+      alert(response)
+    }).catch(function(err){
+      alert(err)
+    })
   }
 
   render() {
@@ -209,6 +238,20 @@ class TicketForm extends Component {
 
                 <div class="row">
                   <div class="col-3">
+                    <label for="event">Expiration Date:</label>
+                  </div>
+                  <div class="col-5">
+                    <input
+                      onChange={this.inputData}
+                      type="date"
+                      id="exdate"
+                      name="exdate"
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-3">
                     <label for="event">Event</label>
                   </div>
                   <div class="col-5">
@@ -218,6 +261,23 @@ class TicketForm extends Component {
 
                         return(
                           <option value={ev.event_id}>{ev.event_id}</option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-3">
+                    <label for="event">Admin</label>
+                  </div>
+                  <div class="col-5">
+                    <select onChange={this.in} id="admin" name="admin">
+                      {this.state.admins.map((ad) =>{
+                        const adId = ad.id;
+                        const adName = ad.username;
+
+                        return(
+                          <option value={ad.id}>{ad.username}</option>
                         );
                       })}
                     </select>

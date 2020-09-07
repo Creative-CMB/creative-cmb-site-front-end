@@ -13,23 +13,15 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.5.2",
-<<<<<<< HEAD
-    "axios": "^0.20.0",
-=======
     "axios": "^0.19.2",
->>>>>>> 1bbb6e52bf7b11d6b5769921a80e4eeda3bc6d6f
     "bootstrap": "^4.5.1",
     "chart.js": "^2.9.3",
     "crypto-random-string": "^3.3.0",
     "email-validator": "^2.0.4",
     "google-map-react": "^2.0.8",
     "jquery": "^3.5.1",
-<<<<<<< HEAD
-    "randomstring": "^1.1.5",
-=======
     "node-sass": "^4.14.1",
     "perfect-scrollbar": "^1.5.0",
->>>>>>> 1bbb6e52bf7b11d6b5769921a80e4eeda3bc6d6f
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-chartjs-2": "^2.9.0",

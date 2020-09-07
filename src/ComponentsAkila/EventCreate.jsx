@@ -11,12 +11,8 @@ import EventAddDetails from "./EventAdDetails";
 import EventFooter from "./EventFooter";
 import { Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
-<<<<<<< HEAD
-import EventMobileNav from "./EventMobileNav";
-=======
 import EventMobileNav from './EventMobileNav';
 import axios from 'axios';
->>>>>>> 1bbb6e52bf7b11d6b5769921a80e4eeda3bc6d6f
 
 const { Dragger } = Upload;
 
