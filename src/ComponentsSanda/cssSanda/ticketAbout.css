@@ -1,0 +1,25 @@
+.about-left-col {
+  flex-basis: 50%;
+}
+.about-left-col img {
+  width: 100%;
+}
+.about-right-col {
+  flex-basis: 50%;
+  text-align: right;
+}
+.about-text {
+  max-width: 500px;
+  margin-right: 100px; /* a space*/
+  display: inline-block;
+}
+.about-text h2 {
+  margin: 50px 0 10px;
+  font-size: 28px;
+  font-style: italic;
+}
+.about-text h3 {
+  font-size: 20px;
+  font-style: italic;
+  color: #797979;
+}

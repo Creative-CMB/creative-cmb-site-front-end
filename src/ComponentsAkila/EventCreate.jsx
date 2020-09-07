@@ -7,11 +7,11 @@ import EventList from "./EventList";
 import EventAddItem from "./EventAddItems";
 import EventSchUpload from "../ComponentsAkila/EventSchUpload";
 import EventSentEmail from "./EventSentEmail";
-import EventAddDetails from './EventAdDetails';
-import EventFooter from './EventFooter';
+import EventAddDetails from "./EventAdDetails";
+import EventFooter from "./EventFooter";
 import { Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
-import EventMobileNav from './EventMobileNav';
+import EventMobileNav from "./EventMobileNav";
 
 const { Dragger } = Upload;
 
@@ -215,7 +215,11 @@ class EventCreate extends Component {
 
             <div className="row">
               <div className="col-lg-12">
-                <input type="submit" value="SAVE EVENT" className="btn btn-primary save-event"/>
+                <input
+                  type="submit"
+                  value="SAVE EVENT"
+                  className="btn btn-primary save-event"
+                />
               </div>
             </div>
           </form>
