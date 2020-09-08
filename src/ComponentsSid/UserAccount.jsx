@@ -21,18 +21,15 @@ class UserAccount extends Component {
                         <div className="row" style={{backgroundColor:"#03c6fc",height: 60}}>
                             <div className="container" style={{float:"center",paddingTop: 40,  paddingLeft: 30, width:300}}>
                                 <div class="row shadow p-3 mb-5  rounded" style={{backgroundColor:"#c92e91",height: 100, width: 300}} >
-                                    
                                     <div className="col-lg-3 col-md-4 col-sm-4 col-sm-4" style={{height: 70, width: 40}}>
                                         <img src={user_pic} style={{height:70, width:70}}></img>
                                     </div>
                                     <div className="col-lg-9 col-md-8 col-sm-8 col-sm-8" style={{paddingLeft: 50, height: 70, width: 400, wordWrap:"break-word"}}>
                                         <h3 style={{color:"white"}}>John Smith</h3>
                                     </div>
-
                                 </div>
                             </div>   
                         </div>
-
                         <div className="row">
                             <div className="col-lg-6 col-md-6 col-sm-6 col-xm-6" style={{backgroundColor:"",height: 980}}>
                                 <div className="container" style={{float:"center", paddingTop: 120, paddingLeft: 20, width:300}}>
@@ -56,17 +53,6 @@ class UserAccount extends Component {
                                                 <h5 style={{color:"gray"}}>Smith</h5><br/>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6 col-sm-6" style={{backgroundColor:"", height: 20, width: 150, wordWrap:"break-word"}}>
-                                                
-                                                <h5>Gender</h5><br/>
-                                            
-                                            </div>
-                                            <div className="col-lg-6 col-md-6 col-sm-6 col-sm-6" style={{backgroundColor:"", height: 20, width: 150, wordWrap:"break-word"}}>
-                                                
-                                                <h5 style={{color:"gray"}}>Male</h5><br/>
-                                                
-                                            </div>
-                                            <div className="col-lg-6 col-md-6 col-sm-6 col-sm-6" style={{backgroundColor:"", height: 20, width: 150, wordWrap:"break-word"}}>
-                                            
                                                 <h5>Date of Birth</h5>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6 col-sm-6" style={{backgroundColor:"", height: 20, width: 150, wordWrap:"break-word"}}>
@@ -93,12 +79,8 @@ class UserAccount extends Component {
                                                 <h5>Mobile Number</h5><br/>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6 col-sm-6" style={{backgroundColor:"", height: 30, width: 150, wordWrap:"break-word"}}>
-                                            
-                                            <h5 style={{color:"gray"}}>0713453672</h5>
+                                                <h5 style={{color:"gray"}}>0713453672</h5>
                                             </div>
-                                        
-                                            
-                                        
                                         </div>    
                                     </div>
                                 </div>
@@ -205,7 +187,7 @@ class UserAccount extends Component {
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="inputDOB"><h5><b>Date of Birth</b></h5></label>
-                                            <input class="form-control form-control-lg" type="datetime-local" value="" id="inputDOB"/>
+                                            <input class="form-control form-control-lg" type="date" value="" id="inputDOB"/>
                                         </div>
                                     </div>
 
@@ -220,27 +202,7 @@ class UserAccount extends Component {
                                             <input type="text" class="form-control form-control-lg" id="inputCity"/>
                                         </div>
                                     </div>
-                                    <fieldset class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <label for="inputGender"><h5><b>Gender</b></h5></label>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="gridRadios" id="male" value="option1" checked/>
-                                                    <label class="form-check-label" for="gridRadios1">
-                                                        <h5>Male</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="gridRadios" id="female" value="option2"/>
-                                                    <label class="form-check-label" for="gridRadios2">
-                                                        <h5>Female</h5>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset><br/>
+                                    <br/>
                                     <button type="submit" class="btn btn-primary btn-lg">Save </button>
                                     
                                     <small id="loginPrompt" class="form-text text-muted">If you want to change any details of yourself, use this form. </small>
