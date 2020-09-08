@@ -1,0 +1,14 @@
+.table {
+  height: 50%;
+  text-align: center;
+  border: 1px double #b5cfff;
+  width: 100%;
+}
+
+.thead {
+  background: linear-gradient(to bottom, #99ccff 0%, #99ffcc 100%);
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  font-size: 20px;
+}
