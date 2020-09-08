@@ -11,7 +11,7 @@ class EventListItem extends Component {
         const { id, itemName,count } = this.props.item;
 
         return (
-          <div className="row item">
+          <div className="row item" style={{height:"20px",marginTop:"20px"}}>
             <div className="col-lg-9">
               <input
                 disabled
@@ -20,6 +20,7 @@ class EventListItem extends Component {
                 name=""
                 id=""
                 placeholder="Item name"
+                style={{ width: "100%", backgroundColor:"#eceef9",border:"none",outline:"none",padding:"2px",borderRadius:"10px",paddingLeft:"15px",textAlign:"center"}}
               />
             </div>
             <div className="col-lg-2">
@@ -30,6 +31,7 @@ class EventListItem extends Component {
                 name=""
                 id=""
                 placeholder="Count"
+                style={{ width: "100%", backgroundColor: "#eceef9", border: "none", outline: "none", padding: "2px", borderRadius: "10px", paddingLeft: "15px", textAlign: "center" }}
               />
             </div>
             <div className="col-lg-1">

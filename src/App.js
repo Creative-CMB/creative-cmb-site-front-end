@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import EventCreate from "./ComponentsAkila/EventCreate";
 import EventEditHome from "./ComponentsAkila/EventEditHome";
+import EventSuccess from './ComponentsAkila/EventSuccess';
 
 import TicketForm from "./ComponentsSanda/TicketForm";
 import TktTemplate from "./ComponentsSanda/TktTemplate";
@@ -38,6 +39,7 @@ function App() {
       <Route component={EventHome} path="/event"></Route>
       <Route component={EventCreate} path="/create"></Route>
       <Route component={EventEditHome} path="/edit"></Route>
+      <Route component = {EventSuccess}path = "/success" ></Route>
 
       <Route component={TicketForm} path="/ticket"></Route>
       <Route component={TktTemplate} path="/template"></Route>
