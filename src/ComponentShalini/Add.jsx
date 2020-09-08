@@ -39,7 +39,7 @@ class Add extends React.Component {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
-           < Invoice/>
+           
           </Modal>
         </>
       );

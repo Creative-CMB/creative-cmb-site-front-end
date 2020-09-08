@@ -28,6 +28,9 @@ import PackageForm from "./ComponentShalini/PackageForm";
 import PackageBasic from "./ComponentShalini/PackageBasic";
 import Add from "./ComponentShalini/Add";
 import CreateAdd from "./ComponentShalini/CreateAdd";
+import Api from "./ComponentKajan/ApiInvoice";
+import InvoiceAdd from "./ComponentKajan/InvoiceAdd";
+import PackForm from "./ComponentShalini/PackForm";
 
 
 
@@ -51,6 +54,10 @@ function App() {
       <Route component={InvoiceDashboard} path='/Invoice'></Route>
       <Route component={Payment} path='/Payment'></Route>
       <Route component={EditInvoice} path='/EditInvoice'></Route>
+      <Route component={Api} path='/apiinvo'></Route>
+      <Route component={InvoiceAdd} path='/invoadd'></Route>
+
+
 
 
       
@@ -60,6 +67,7 @@ function App() {
       <Route component={PackageBasic} path='/Basic'></Route>
       <Route component={Add} path='/Adddemo'></Route>
       <Route component={CreateAdd} path='/advertise'></Route>
+      <Route component={PackForm} path='/packform'></Route>
 
 
 

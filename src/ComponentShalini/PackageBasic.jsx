@@ -11,6 +11,8 @@ import pack from "../Images/pack.png";
 import cusicon from "../Images/AdCustomer.png";
 import background from "../Images/background.jpg";
 import {Space} from 'antd';
+import Table from 'react-bootstrap/Table'
+
 
 
 
@@ -21,7 +23,18 @@ import {Space} from 'antd';
 class shali extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            data:[]
+         }
+    }
+
+    componentDidMount(){
+        this.fetchData();
+    }
+
+    fetchData = () =>{
+        var url = "http://127.0.0.1:8000/package-list/";
+        fetch(url).then(res => res.json).then(data => this.setState({data}))
     }
     render() { 
         return ( 
@@ -73,46 +86,36 @@ class shali extends Component {
      </div>
 
             <div className="shali-table-wrapper">
-           <Link to="/create"><img style={{position:"absolute", top:"70px",right:"150px"}}src={edi}></img></Link>
-           <Link to="/create"><img style={{position:"absolute", top:"70px",right:"50px"}}src={del}></img></Link>
-           <Link to="/create"><img style={{position:"absolute", top:"220px",right:"150px"}}src={edi}></img></Link>
-           <Link to="/create"><img style={{position:"absolute", top:"220px",right:"50px"}}src={del}></img></Link>
-           <Link to="/create"><img style={{position:"absolute", top:"370px",right:"150px"}}src={edi}></img></Link>
-           <Link to="/create"><img style={{position:"absolute", top:"370px",right:"50px"}}src={del}></img></Link>
-
-
-            <a>
-     <div className="wrapper4">
-                <div className="row">
-                     
-                     <img src={platinum}></img>
-                     
-                <h2 style={{top:"10px",left:"20px",position:"relative"}}>Platinum Package</h2>
-                
-     
-     </div>
-     </div>
-     </a>
-
-     <div className="wrapper5">
-                <div className="row">
-                <img src={gold}></img>
-                <h2 style={{top:"10px",left:"20px",position:"relative"}}>Gold Package</h2>
-                
-     </div>
-     </div>
-    
-
-     <div className="wrapper6">
-                <div className="row">
-                <img src={silver}></img>
-                <h2 style={{top:"10px",left:"20px",position:"relative"}}>Silver Package</h2>
-               
-                
-     </div>
-     </div>
-
-     <img style={{position:"relative", left:"1000px", bottom:"40px"}}src={pack}></img>
+            <Table responsive>
+  <thead>
+    <tr>
+      <th>#</th>
+      {Array.from({ length: 12 }).map((_, index) => (
+        <th key={index}>Table heading</th>
+      ))}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      {Array.from({ length: 12 }).map((_, index) => (
+        <td key={index}>Table cell {index}</td>
+      ))}
+    </tr>
+    <tr>
+      <td>2</td>
+      {Array.from({ length: 12 }).map((_, index) => (
+        <td key={index}>Table cell {index}</td>
+      ))}
+    </tr>
+    <tr>
+      <td>3</td>
+      {Array.from({ length: 12 }).map((_, index) => (
+        <td key={index}>Table cell {index}</td>
+      ))}
+    </tr>
+  </tbody>
+</Table>
 
      
      </div>

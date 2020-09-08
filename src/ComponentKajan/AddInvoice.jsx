@@ -38,15 +38,16 @@ class AddInvoice extends Component {
     super(props);
 
     this.state = {
-      firstName: null,
-      lastName: null,
-      email: null,
-      password: null,
+      ordername: null,
+      amount: null,
+      status: null,
+      paymenttype:null,
+      date: null,
       formErrors: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
+        ordername: "",
+        status: "",
+        paymenttype: "",
+        amount: "",
       },
     };
   }
@@ -57,10 +58,10 @@ class AddInvoice extends Component {
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
-        First Name: ${this.state.firstName}
-        Last Name: ${this.state.lastName}
-        Email: ${this.state.email}
-        Password: ${this.state.password}
+        Order Name: ${this.state.ordername}
+        Amount: ${this.state.amount}
+        Status: ${this.state.status}
+        Payment Type: ${this.state.paymenttype}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -73,22 +74,18 @@ class AddInvoice extends Component {
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "firstName":
-        formErrors.firstName =
-          value.length < 3 ? "minimum 3 characaters required" : "";
+      case "ordername":
+        formErrors.ordername =
+          value.length < 3? "Required Data" : "";
         break;
-      case "lastName":
-        formErrors.lastName =
-          value.length < 3 ? "minimum 3 characaters required" : "";
+      case "amount":
+        formErrors.amount =
+          value.length < 3 ? "Required Data" : "";
         break;
-      case "email":
-        formErrors.email = emailRegex.test(value)
-          ? ""
-          : "invalid email address";
-        break;
-      case "password":
-        formErrors.password =
-          value.length < 6 ? "minimum 6 characaters required" : "";
+        case "paymenttype":
+          formErrors.paymenttype =
+            value.length < 3? "Required Data" : "";
+      
         break;
       default:
         break;
@@ -105,44 +102,35 @@ class AddInvoice extends Component {
         <div className='form-wrapper'>
           <h1>Add Invoice</h1>
           <form onSubmit={this.handleSubmit} noValidate>
-            <div className='firstName'>
-              <label htmlFor='Ordername'>OrderNo</label>
+            <div className='ordername'>
+              <label htmlFor='Ordername'>Order Name</label>
               <input
                 className='form-control form-control-sm'
-                className={formErrors.firstName.length > 0 ? "error" : null}
+                className={formErrors.ordername.length > 0 ? "error" : null}
                 placeholder='Order No'
                 type='text'
-                name='firstName'
+                name='ordername'
                 noValidate
                 onChange={this.handleChange}
               />
 
-              {formErrors.firstName.length > 0 && (
-                <span className='errorMessage'>{formErrors.firstName}</span>
+              {formErrors.ordername.length > 0 && (
+                <span className='errorMessage'>{formErrors.ordername}</span>
               )}
             </div>
-            <div className='form-group'>
-              <label for='exampleInputEmail1'>Order Name</label>
-              <input
-                className='form-control form-control-sm'
-                placeholder='Order Name'
-                type='email'
-                class='form-control'
-                id='exampleInputEmail1'
-                aria-describedby='emailHelp'></input>
-            </div>
+            
             <div className='lastName'>
               <label htmlFor='lastName'>Customer Name</label>
               <input
-                className={formErrors.lastName.length > 0 ? "error" : null}
+                className={formErrors.amount.length > 0 ? "error" : null}
                 placeholder='Customer Name'
                 type='text'
-                name='lastName'
+                name='amount'
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.lastName.length > 0 && (
-                <span className='errorMessage'>{formErrors.lastName}</span>
+              {formErrors.amount.length > 0 && (
+                <span className='errorMessage'>{formErrors.amount}</span>
               )}
             </div>
             <br></br>
@@ -160,24 +148,27 @@ class AddInvoice extends Component {
             <DatePicker onChange={onChange} />
             </Space>
            
-          
-
-            <div className='password'>
-              <label htmlFor='password'>Total Amount</label>
+            <div className='ordername'>
+              <label htmlFor='Ordername'>Amount</label>
               <input
                 className='form-control form-control-sm'
-                className={formErrors.password.length > 0 ? "error" : null}
-                placeholder='Total Amount'
-                type='password'
-                name='password'
+                className={formErrors.amount.length > 0 ? "error" : null}
+                placeholder='Amount'
+                type='text'
+                name='amount'
                 noValidate
                 onChange={this.handleChange}
               />
 
-              {formErrors.password.length > 0 && (
-                <span className='errorMessage'>{formErrors.password}</span>
+              {formErrors.amount.length > 0 && (
+                <span className='errorMessage'>{formErrors.amount}</span>
               )}
             </div>
+
+            
+
+              
+            
                 <lable>Status</lable>
                 <div className="col-lg-9">
             <div class="custom-control custom-radio" >

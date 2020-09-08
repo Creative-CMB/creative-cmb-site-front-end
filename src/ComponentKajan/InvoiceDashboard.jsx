@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import {Card,Col,Row, Table, Space} from 'antd';
+import {Card,Col,Row, Table, Space, Button} from 'antd';
 import Money from "../Images/money.png";
 import Success from "../Images/success.png";
 import Unsuccess from "../Images/unsuccess.png";
 import Edit from "../Images/edit2.png";
 import Delete from "../Images/delete1.png";
 import EventNav from "../ComponentsAkila/EventNav";
+import axios from "axios";
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 
 
@@ -15,9 +17,14 @@ import EventNav from "../ComponentsAkila/EventNav";
 
 
 const columns = [
-    {title: 'Customer Name', dataIndex:'Customername', key:'custName'},
+    
+
+    {title: 'Order Name', dataIndex:'Ordername', key:'orderName'},
+    {title: 'payment Date', dataIndex:'payment date', key:'payment date'},
     {title: 'Order Name', dataIndex:'Ordername', key:'orderName'},
     {title: 'PaymentType', dataIndex:'PaymentType', key:'type'},
+    {title: 'Status', dataIndex:'Status', key:'Status'},
+
     {title: 'Amount', dataIndex:'Amount', key:'amount'},
     {title:'Action',
     dataIndex:'',
@@ -36,16 +43,15 @@ render:() => (
 const data = [
     {
         key:1,
-        Customername:'Kaju',
         Ordername:'Music concert',
         PaymentType:'Cash',
-        Amount:'Rs.20000'
+        Amount:'Rs.20000',
+
 
     },
 
     {
         key:2,
-        Customername:'Kaju',
         Ordername:'Music concert',
         PaymentType:'Cash',
         Amount:'Rs.20000'
@@ -53,7 +59,6 @@ const data = [
     },
     {
         key:3,
-        Customername:'Kaju',
         Ordername:'Music concert',
         PaymentType:'Cash',
         Amount:'Rs.20000'
@@ -62,10 +67,48 @@ const data = [
 ];
 
 class InvoiceDashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
+    constructor() {
+        super();
+        this.state = { 
+            invoice:[],
+         }
+}
+
+
+componentDidMount(){
+    this.fetchDetails()
+  }
+
+  fetchDetails = () =>{
+    console.log('fetching...')
+
+    fetch('http://127.0.0.1:8000/invoice-list/')
+    .then(response => response.json())
+    .then(data => 
+      this.setState({
+        invoice:data
+      }) 
+      )
+  }
+
+
+
+tableData() {
+    var self = this 
+    return this.state.invoice.map((item) => {
+        return (
+           <tr>
+              <td>{item.invoice_id}</td>
+              <td> {item.order_name} </td>
+              <td> {item.amount} </td>
+              <td> {item.inv_status} </td>
+              <td> {item.date} </td>
+              <td> <Link to="/add"> <Button type="button" size="sm"  >Edit</Button></Link></td>
+              <td> <Button type="submit" size="sm" onClick={() => this.deleteEquipment(item)}>Delete</Button> </td>
+           </tr>
+        )
+     })
+}
     render() { 
         return ( 
             <div>
@@ -117,10 +160,34 @@ class InvoiceDashboard extends Component {
      </div>
      </div>
      <div className="table-wrapper">
-     <Table 
-            columns={columns}
-            dataSource={data}>
-                </Table>
+     <div  className = "container" >
+                <div >
+                <div className="table-wrapper-scroll-y my-custom-scrollbar">
+                <table className= "table table-hover">
+                    <thead style={{backgroundColor:"#50b4c3", color:"white"}}>
+                        <tr>
+                        <th>thead1</th>
+                        <th>thead1</th>
+                        <th>thead1</th>
+                        <th>thead1</th>
+                        <th>thead1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.tableData()}
+                    </tbody>
+                </table>
+                </div>
+    
+                <div >
+
+
+                </div>
+
+
+                </div>
+            </div>
+           
                 <button className="button-add">Add Invoice</button>
                 <button className="button-print">Print Invoice</button>
 
