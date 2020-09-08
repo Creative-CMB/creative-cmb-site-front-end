@@ -12,7 +12,7 @@ function EmployeeMiddle() {
             <center>
             EMPLOYEE MANAGEMENT
             </center>
-          </p><br></br>
+          </p>
         </div>
         <div className="HomeImage">
           <p>
@@ -23,7 +23,7 @@ function EmployeeMiddle() {
           
         </div>
         <div className="selectpdf">
-          <p>
+          <p style={{fontSize:"18px"}}>
             <center>
             SELECT BUTTON TO GET PDF FILE
             </center>
@@ -33,16 +33,16 @@ function EmployeeMiddle() {
   
         <div className="row" style={{marginBottom:20,marginLeft:10,marginTop:10}}>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button block >Department</Button>
+            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block >Department</Button>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button block>Employee Details</Button>
+            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Employee Details</Button>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button block>Leave Details</Button>
+            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Leave Details</Button>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button block>Salary Details</Button>
+            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Salary Details</Button>
           </div>
         </div>
         </div>

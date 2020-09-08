@@ -25,6 +25,13 @@ import AddDeptEmployee from './ComponentsDeepika/AddDeptEmployee';
 import AddLeave from './ComponentsDeepika/AddLeave';
 import AddSalary from './ComponentsDeepika/AddSalary';
 import EmployeeManagementHome from './ComponentsDeepika/EmployeeManagementHome';
+import ViewDepartment from './ComponentsDeepika/ViewDepartment';
+import ViewDeptEmployee from './ComponentsDeepika/ViewDeptEmployee';
+import ViewDeptManager from './ComponentsDeepika/ViewDeptManager';
+import ViewDeptSupervisors from './ComponentsDeepika/ViewDeptSupervisors';
+import ViewEmployee from './ComponentsDeepika/ViewEmployee';
+import ViewLeave from './ComponentsDeepika/ViewLeave';
+import ViewSalary from './ComponentsDeepika/ViewSalary';
 
 
 
@@ -54,7 +61,15 @@ function App() {
       <Route component={AddDeptEmployee} path="/addDeptEmployee"></Route>
       <Route component={AddLeave} path="/addLeave"></Route>
       <Route component={AddSalary} path="/addSalary"></Route>
+      <Route component={ViewDepartment} path="/viewdept"></Route>
+      <Route component={ViewDeptEmployee} path="/viewdeptemp"></Route>
+      <Route component={ViewDeptManager} path="/viewdeptmanag"></Route>
+      <Route component={ViewDeptSupervisors} path="/viewdeptsuper"></Route>
+      <Route component={ViewEmployee} path="/viewemp"></Route>
+      <Route component={ViewLeave} path="/viewleave"></Route>
+      <Route component={ViewSalary} path="/viewsalary"></Route>
       <Route component={EmployeeManagementHome} path="/employeeHome"></Route>
+
       
 
 
