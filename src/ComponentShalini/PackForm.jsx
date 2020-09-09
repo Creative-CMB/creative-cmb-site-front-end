@@ -2,9 +2,11 @@
 
 import React, { Component } from "react";
 import { Radio, message } from "antd";
-//import packing from '../Images/packpic1.png';
+import packing from '../Images/pack2.png';
 import { Checkbox } from 'antd';
-import axios from 'axios'
+import axios from 'axios';
+import NavApp from "../ComponentKajan/NavApp";
+
 
 
 
@@ -170,12 +172,15 @@ class PackForm extends Component {
     return (
         
       <div>
+        <div>
+          < NavApp/>
+        </div>
       <div className='row'>
         <div className=' col-sm-6 col-md-6 col-lg-6'>
           <div class='container py-3'>
             <div class='row'>
               <div class='mx-auto col-sm-12'>
-                <div class='card' style={{height:"600px", top:"80px",right:"-20px"}}>
+                <div class='card' style={{height:"500px", top:"80px",right:"-20px"}}>
                 <span class="border border-primary"></span>
 
         
@@ -191,7 +196,7 @@ class PackForm extends Component {
                         <label class='col-lg-6 col-form-label mt-3 form-control-label'>
                           Package name
                         </label>
-                        <div class='col mt-3 '>
+                        <div class='col-lg-9 '>
                           <input className='form-control form-control-sm'
                           className={formErrors.packageName.length > 0 ? "error" : null}
                             class='form-control'
@@ -209,12 +214,12 @@ class PackForm extends Component {
                         </div>
                       
                       <div class='row'>
-                        <label class='col-lg-6 mt-3 offset-md-1 col-form-label form-control-label'>
+                        <label class='col-lg-4  col-form-label form-control-label'>
                             Package Type
                         </label>
                         
 
-                        <div class='col-sm-6 mt-3'>
+                        <div class='col-sm-9'>
                         <select
               onChange={this.handleChange}
               className='form-control form-control-sm'
@@ -229,10 +234,10 @@ class PackForm extends Component {
             </div>
             
                       <div class='row'>
-                        <label class='col-lg-3 mt-5  col-form-label form-control-label'>
+                        <label class='col-lg-4 col-form-label form-control-label'>
                           Package price
                         </label>
-                        <div class='col-lg-6 mt-5'>
+                        <div class='col-sm-9'>
                           <input className='form-control form-control-sm'
                           className={formErrors.packagePrice.length > 0 ? "error" : null}
                             class='form-control'
@@ -250,39 +255,39 @@ class PackForm extends Component {
                     
                       </div>
                       <div class='form-group row'>
-                        <label class='col-lg-3 mt-5 col-form-label form-control-label'>
+                        <label class='col-sm-3 mt-4 col-form-label'>
                           Features
                         </label>
-                        <div class='col mt-5 '>
-                        <label>Email promotion</label>
+                        <div className='col mt-5'>
+                        
                         <input
                         type='radio'
                         name='features'
                         value="email"
                         noValidate
-                        onChange={this.handleChange}/>
-
-                        <div class='col mt-4'>
-                        <label>Newsletter</label>
+                        onChange={this.handleChange}/><label>Email promotion</label>
+                        </div>
+                        <div class='col mt-5'>
+                        
                         <input
                         type='radio'
                         name='features'
                         value="newsletter"
                         noValidate
-                        onChange={this.handleChange}/>
-
-                        <div class='col mt-4 '>
-                        <label>Poster design</label>
+                        onChange={this.handleChange}/><label>Newsletter</label>
+                        </div>
+                        <div class='col mt-5 '>
+                        
                         <input
                         type='radio'
                         name='features'
                         value="poster design"
                         noValidate
-                        onChange={this.handleChange}/>
+                        onChange={this.handleChange}/><label>Poster design</label>
                         </div>
-                        </div>
+                        
                       
-                      </div>
+                      
                       
                       
 
@@ -300,7 +305,7 @@ class PackForm extends Component {
     
         <div
             className='col-sm-9 mt-6 col-md-6 col-lg-6'>
-                
+                <img style={{position:"relative",top:"80px",right:"-40px",width:"80%"}} src={packing}></img>
           </div>
         </div>
       </div>

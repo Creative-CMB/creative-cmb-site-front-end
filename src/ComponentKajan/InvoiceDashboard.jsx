@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card,Col,Row, Table, Space, Button} from 'antd';
+import {Card,Col,Row, Table, Space, Button,Scroll} from 'antd';
 import Money from "../Images/money.png";
 import Success from "../Images/success.png";
 import Unsuccess from "../Images/unsuccess.png";
@@ -8,6 +8,8 @@ import Delete from "../Images/delete1.png";
 import EventNav from "../ComponentsAkila/EventNav";
 import axios from "axios";
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import KajanNav from "./KajanNav";
+
 
 
 
@@ -91,20 +93,37 @@ componentDidMount(){
       )
   }
 
+  delete = (id) => {
+      var url = "http://127.0.0.1:8000/invoice-delete/" + id + "/"
+;
+fetch(url,{
+    method:"DELETE",
+    headers:{
+        'Content-type':'application/jason',
+    },
+}).then((response) => {
+    this.fetchDetails()
+}).catch(err => console.log(err))
+}
+
 
 
 tableData() {
     var self = this 
     return this.state.invoice.map((item) => {
         return (
+
+            
            <tr>
               <td>{item.invoice_id}</td>
               <td> {item.order_name} </td>
               <td> {item.amount} </td>
               <td> {item.inv_status} </td>
               <td> {item.date} </td>
-              <td> <Link to="/add"> <Button type="button" size="sm"  >Edit</Button></Link></td>
-              <td> <Button type="submit" size="sm" onClick={() => this.deleteEquipment(item)}>Delete</Button> </td>
+              <Space size="large">
+        <Link to="/invoadd"><button type = "button" class="btn btn-outline-primary" >Edit</button></Link>
+        <button type="button" class="btn btn-outline-danger"  onClick={()=> this.delete(item.invoice_id)}>Delete</button>
+    </Space>
            </tr>
         )
      })
@@ -114,7 +133,8 @@ tableData() {
             <div>
                 <body>
                 
-                <div><EventNav /></div>
+                <div><KajanNav /></div>
+                
             <div className="site-card-wrapper1">
                 <div className="row">
                 <div className="col-sm-4">
@@ -163,14 +183,14 @@ tableData() {
      <div  className = "container" >
                 <div >
                 <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                <table className= "table table-hover">
-                    <thead style={{backgroundColor:"#50b4c3", color:"white"}}>
+                <table className= "table table-hover ">
+                    <thead>
                         <tr>
-                        <th>thead1</th>
-                        <th>thead1</th>
-                        <th>thead1</th>
-                        <th>thead1</th>
-                        <th>thead1</th>
+                        <th>Invoice Id</th>
+                        <th>Orders</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -188,7 +208,7 @@ tableData() {
                 </div>
             </div>
            
-                <button className="button-add">Add Invoice</button>
+              <Link to="/invoadd" > <button className="button-add">Add Invoice</button></Link>
                 <button className="button-print">Print Invoice</button>
 
 

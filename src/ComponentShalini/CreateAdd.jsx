@@ -73,7 +73,7 @@ class CreateAdd extends Component {
                         <h4>Create Advertisment</h4>
                         </div>
                         </div>
-                      <form class='form' role='form'>
+                      <form class='forms' role='form'>
                         <div class='row'>
                           <label class='col-lg-6 col-form-label form-control-label'>
                             Customer name

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from "./NavBar";
+import KajanNav from "./KajanNav";
 import PaymentCard from "./PaymentCard";
 import pay from "../Images/paypic.png";
 import {Radio, Input,Button} from "antd";
@@ -38,7 +38,7 @@ class Payment extends Component {
 
         return ( 
             <div>
-                < NavBar/>
+                < KajanNav/>
                 <div>
                 < PaymentCard/>
                 </div>

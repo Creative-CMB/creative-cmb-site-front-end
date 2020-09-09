@@ -1,11 +1,13 @@
 /** @format */
 
 import React, { Component } from "react";
-import adpic1 from "../Images/adpic1.png";
+import invoicepic from "../Images/invoicepic.jpg";
 import { DatePicker, Radio, Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { shadows } from '@material-ui/system';
-import axios from 'axios'
+import axios from 'axios';
+import KajanNav from "./KajanNav";
+
 
 
 
@@ -200,27 +202,30 @@ class InvoiceAdd extends Component {
   
     return (
       <div>
+        <div>
+          < KajanNav/>
+        </div>
         <div className='row'>
           <div className=' col-sm-6 col-md-6 col-lg-6'>
             <div class='container py-3'>
               <div class='row'>
                 <div class='mx-auto col-sm-12'>
-                  <div class='card' style={{height:"500px", top:"80px", boxShadow:"2"}}>
+                  <div class='card shadow p-3 mb-5 bg-white rounded' style={{height:"600px", top:"60px", left:"20px"}}>
                     
                     <div class='card-body'>
                         <div className="row">
-                            <div className="col-md-6 offset-md-4">
+                            <div style={{color:"blue"}} className="col offset-md-4">
                         <h4>Create Invoice</h4>
                         </div>
                         </div>
-                      <form onSubmit={this.sendData} class='form'>
-                        <div class='row'>
-                          <label class='col-lg-6 col-form-label form-control-label'>
+                      <form onSubmit={this.sendData}>
+                        <div class='form-group'>
+                          <label>
                             Order name
                           </label>
-                          <div class='col-lg-9'>
+                          
                           <input
-                className='form-control form-control-sm'
+                className='form-control'
                 className={formErrors.ordername.length > 0 ? "error" : null}
                 placeholder='Order Name'
                 type='text'
@@ -232,17 +237,19 @@ class InvoiceAdd extends Component {
               {formErrors.ordername.length > 0 && (
                 <span className='errorMessage'>{formErrors.ordername}</span>
               )}
-                          </div>
-                        </div>
-                        <div class='row'>
-                          <label class='col-lg-4 col-form-label form-control-label'>
+              </div>
+                          
+                          
+                        
+                        <div class='form-group'>
+                          <label>
                             Amount
                           </label>
                           
 
-                          <div class='col-sm-9'>
+                          
                           <input
-                className='form-control form-control-sm'
+                className='form-control'
                 className={formErrors.amount.length > 0 ? "error" : null}
                 placeholder='Amount'
                 type='text'
@@ -254,42 +261,42 @@ class InvoiceAdd extends Component {
               {formErrors.amount.length > 0 && (
                 <span className='errorMessage'>{formErrors.amount}</span>
               )}
-                          </div>
+                          
                         </div>
-                        <div class='form-group row'>
-                          <label class='col-lg-6 mt-3 col-form-label form-control-label'>
+                        <div class='form-group'>
+                          <label>
                             Payment date
                           </label>
                           <div class='col-lg-9 col-md-9 col-sm-9'>
                           <input type="date" id="birthday" name="date" onChange={this.handleChange}/>
                           </div>
                         </div>
-                        <div class='form-group row' >
-                          <label className='col-lg-6 mt-3 offset-sm-3 col-form-label form-control-label'>
+                        <div class='form-group' >
+                          <label>
                             Payment type
                           </label>
 
-                          <div class='col-sm-9'>
+                          
                           <select
                           name="paytype"
-                  className='form-control form-control-sm'
+                  className='form-control'
                   onChange={this.handleChange}
                   defaultValue='Select Time Period'
-                  style={{position:"relative", left:"50px"}}>
+                  >
                   <option defaultValue></option>
                   <option value='Pay here'>Pay here</option>
                   <option value='Cash'>Cash</option>
                 </select>
-                          </div>
+                        
                         </div>
-                        <div class='form-group row'>
-                          <label class='col-lg-6 mt-3 col-form-label form-control-label'>
+                        <div class='form-group'>
+                          <label>
                             Status
                           </label>
                           
                           <div className="col">
                             
-                          <label>Success</label>
+                          
                           <input
                
                 
@@ -298,10 +305,11 @@ class InvoiceAdd extends Component {
                 noValidate
                 onChange={this.handleChange}
               />
+              <label>Success</label>
               </div>
               <div class='col'>
                           
-                          <label>UnSuccess</label>
+                          
                           <input
                
                 
@@ -310,6 +318,7 @@ class InvoiceAdd extends Component {
                 noValidate
                 onChange={this.handleChange}
               />
+              <label>UnSuccess</label>
               </div>
                 
                           </div>
@@ -323,7 +332,7 @@ class InvoiceAdd extends Component {
                           
                         </div>
 
-                        <input class="btn btn-md btn-primary btn-block mt-3" value="Submit" type="submit"></input>
+                        <input className="btn btn-md btn-block  button-submit" value="Submit" type="submit"></input>
 
                         
                         
@@ -338,7 +347,7 @@ class InvoiceAdd extends Component {
 
           <div
             className='col-sm-9 mt-6 col-md-6 col-lg-6'>
-            <img src={adpic1}></img>
+            <img style={{width:"90%",top:"40px",right:"-30px",position:"relative"}}src={invoicepic}></img>
           </div>
         </div>
       </div>

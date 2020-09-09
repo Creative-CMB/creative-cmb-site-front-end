@@ -216,6 +216,19 @@ background: linear-gradient(180deg, #49DCFC 0%, #3AA1FF 100%);
 border-radius: 10px;
 }
 
+.button-submit{
+
+width: 100px;
+height: 40px;
+border:none;
+color:black;
+
+
+
+background: linear-gradient(180deg, #49DCFC 0%, #3AA1FF 100%);
+border-radius: 10px;
+}
+
 .button-print{
   position: absolute;
 width: 100px;
@@ -230,11 +243,7 @@ background: linear-gradient(180deg, #4694DB 0%, #3AA1FF 100%);
 border-radius: 10px;
 }
 
-form {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
+
 
 h1 {
   text-align: center;
@@ -247,7 +256,7 @@ h1 {
 
 label {
   font-size: 0.8em;
-  margin-bottom: 0.25em;
+  
   color: #222;
   font-weight: lighter;
 }

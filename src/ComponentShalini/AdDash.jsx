@@ -3,6 +3,8 @@ import AdIcon from "../Images/AdIcon.png";
 import Edit from "../Images/edit2.png";
 import Delete from "../Images/delete1.png";
 import {Space} from "antd";
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+
 
 
 
@@ -12,8 +14,30 @@ import {Space} from "antd";
 class AdDash extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+          package:[],
+         }
     }
+
+    componentDidMount
+    (){
+      this.fetchDetails()
+    }
+
+    fetchDetails = () =>{
+      console.log('fetching...')
+  
+      fetch('http://127.0.0.1:8000/invoice-list/')
+      .then(response => response.json())
+      .then(data => 
+        this.setState({
+          invoice:data
+        }) 
+        )
+    }
+
+    
+
     render() { 
         return ( 
             
@@ -140,6 +164,8 @@ class AdDash extends Component {
 
   </tbody>
 </table>
+<Link to="/advertise"><button type="button" class="btn btn-primary">Add</button></Link>
+
 </div>
      
      </div>
