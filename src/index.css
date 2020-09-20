@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 body {
+
+  overflow: overflow-x;
+
   overflow-x: hidden;
+
   margin: 0;
   padding: 0;
   scrollbar-width: auto;

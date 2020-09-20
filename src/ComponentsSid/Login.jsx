@@ -7,6 +7,9 @@ class Login extends Component {
         super(props);
         this.state = {  }
     }
+    
+
+
     render() { 
         return ( 
            <div>
@@ -28,7 +31,8 @@ class Login extends Component {
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-12">
-                                            <input type="email" class="form-control form-control-lg" id="inputEmail" placeholder="Email Address"/>
+                                            <input type="email" class="form-control form-control-lg" id="inputEmail" placeholder="Email Address"
+                                                 autoFocus/>
                                             <br/>
                                         </div>
                                     </div>
