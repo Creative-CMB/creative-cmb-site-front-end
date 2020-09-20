@@ -26,7 +26,7 @@ function EventSideNav() {
         </Link>
       </li>
       <li className="create-event">
-        <Link to="/dlt-event">
+        <Link to="/edit">
           <Tooltip title="Click here to edit an existing event">
             <img src={dlt} alt="" />
           </Tooltip>

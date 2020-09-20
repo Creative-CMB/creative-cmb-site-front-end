@@ -39,7 +39,7 @@ class EventCreate extends Component {
 
   fetchEditCardData = () => {
     fetch(
-      "https://my-json-server.typicode.com/akilaliyanage/json-fake-api-server/types"
+      "http://127.0.0.1:8000/events/"
     ).then(response => response.json()).then(data => this.setState({myEvents:data}));
   }
 

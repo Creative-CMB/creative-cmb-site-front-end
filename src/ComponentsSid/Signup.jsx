@@ -77,6 +77,7 @@ class Signup extends Component {
         this.setState({errors, [name]: value});
     }
 
+
     handleSubmit = (event) => {
         event.preventDefault();
         if(validateForm(this.state.errors)) {
@@ -85,6 +86,7 @@ class Signup extends Component {
           console.error('Invalid Form')
         }
       }
+
 
     render() { 
         const {errors} = this.state;
@@ -102,7 +104,11 @@ class Signup extends Component {
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xm-8" style={{backgroundColor:"white",height: 800}}>
                         <div className="container" style={{float:"center", paddingTop: 40, width:500}}>
                             <div class="row shadow p-3 mb-5 bg-white rounded" >
+
                                 <form onSubmit={this.handleSubmit} noValidate>
+
+                                <form onSubmit={this.submitdata}>
+
                                     <div class="form-row">
                                         <div class="col">
                                             <h1><b>Create an account</b></h1> <br/>
