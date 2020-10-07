@@ -178,9 +178,9 @@ class EventEditTable extends Component {
   };
 
   getdate = (e) => {
-    //alert(e);
+    alert(e);
     this.setState({ date: e });
-  };
+  };   
 
   setTime = (val) => {
     //alert(val);
