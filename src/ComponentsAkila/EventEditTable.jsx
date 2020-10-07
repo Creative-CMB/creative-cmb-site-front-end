@@ -94,10 +94,13 @@ class EventEditTable extends Component {
       },
       () => console.log(this.state.selectedEvent)
     );
+
+    console.log(this.state.selectedEvent);
   };
 
   onClose = () => {
-    //window.location.reload(false);
+    //this.setState({ selectedEvent: null });
+    window.location.reload(false);
     this.setState(
       {
         visible: false,
@@ -133,7 +136,8 @@ class EventEditTable extends Component {
   };
 
   selectData = (e) => {
-    this.setState({ type: e.target.value });
+    this.setState({ type: e[0] });
+    alert(e);
   };
 
   confirm = (data) => {
@@ -172,6 +176,16 @@ class EventEditTable extends Component {
     console.log(e);
     message.error("Click on No");
   };
+
+  getdate = (e) => {
+    //alert(e);
+    this.setState({ date: e });
+  };
+
+  setTime = (val) => {
+    //alert(val);
+    this.setState({time:val})
+  }
 
   render() {
     return (
@@ -298,13 +312,14 @@ class EventEditTable extends Component {
                 >
                   <Select
                     mode="tags"
-                    onChange={this.selectData}
+                    name="type"
+                    onChange={(value) => this.selectData(value)}
                     placeholder="Please choose the type"
                     defaultValue={this.state.selectedEvent.event_type}
                   >
                     <Option value="wedding">Wedding</Option>
                     <Option value="election campaign">Election Campaign</Option>
-                    <option value="seminar">Seminar</option>
+                    <Option value="seminar">Seminar</Option>
                     <Option value="seminar"></Option>
                     <Option value="othout-door campaigner">
                       out-door campaign
@@ -340,7 +355,9 @@ class EventEditTable extends Component {
                   ]}
                 >
                   <DatePicker
-                    onChange={this.updateData}
+                    onChange={(value) =>
+                      this.getdate(value.format("YYYY-MM-DD"))
+                    }
                     name="date"
                     style={{ width: "100%" }}
                     defaultValue={moment(this.state.selectedEvent.date)}
@@ -358,7 +375,7 @@ class EventEditTable extends Component {
                   ]}
                 >
                   <TimePicker
-                    onChange={this.updateData}
+                    onChange={(value) => this.setTime(value.format("hh:mm:ss"))}
                     name="time"
                     style={{ width: "100%" }}
                     defaultValue={moment(
