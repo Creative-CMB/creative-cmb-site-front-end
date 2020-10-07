@@ -129,6 +129,18 @@ class EventEditTable extends Component {
     };
 
     console.log("data", data);
+
+    var url = "http://127.0.0.1:8000/event-update/" + this.state.selectedEvent.event_id;
+    console.log("data", url);
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data)
+    }).then((response) => console.log(response.status)).catch(err => console.log(err));
+
   };
 
   updateData = (e) => {
@@ -137,7 +149,7 @@ class EventEditTable extends Component {
 
   selectData = (e) => {
     this.setState({ type: e[0] });
-    alert(e);
+    //alert(e);
   };
 
   confirm = (data) => {
@@ -178,7 +190,7 @@ class EventEditTable extends Component {
   };
 
   getdate = (e) => {
-    alert(e);
+    //alert(e);
     this.setState({ date: e });
   };   
 
