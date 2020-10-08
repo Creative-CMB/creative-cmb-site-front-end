@@ -320,15 +320,6 @@ class EventCreate extends Component {
                 </div>
               </div>
 
-              <div className="light-sub-topic">
-                <p>EQUIPMENTS NEEDED FOR THE EVENT</p>
-              </div>
-
-              <div className="event-card form-card">
-                <EventAddItem addItem={this.addItem} />
-                <EventList items={this.state.items} dlt={this.dltItem} />
-              </div>
-
               <div className="row upload-email">
                 <div className="col-lg-6">
                   <EventSchUpload />
