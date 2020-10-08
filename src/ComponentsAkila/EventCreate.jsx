@@ -46,6 +46,9 @@ class EventCreate extends Component {
   componentWillMount() {
     this.getChartData();
   }
+  componentDidMount(){
+      document.title = "CreateCMB | Create new Event";
+  }
 
   getChartData() {
     this.setState({

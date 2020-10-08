@@ -42,12 +42,16 @@ class EventEditTable extends Component {
       time: "",
       des: "",
       budget: "",
-      status:"",
+      status: "",
     };
   }
 
   componentWillMount() {
     this.fetchEventData();
+  }
+
+  componentDidMount() {
+    document.title = "CreateCMB | Edit Event";
   }
   fetchEventData = () => {
     fetch("http://127.0.0.1:8000/events/")
@@ -133,7 +137,8 @@ class EventEditTable extends Component {
 
     console.log("data", data);
 
-    var url = "http://127.0.0.1:8000/event-update/" + this.state.selectedEvent.event_id;
+    var url =
+      "http://127.0.0.1:8000/event-update/" + this.state.selectedEvent.event_id;
     console.log("data", url);
 
     fetch(url, {
@@ -143,9 +148,8 @@ class EventEditTable extends Component {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => this.setState({ status :response.status}))
+      .then((response) => this.setState({ status: response.status }))
       .catch((err) => console.log(err));
-
   };
 
   updateData = (e) => {
@@ -197,293 +201,290 @@ class EventEditTable extends Component {
   getdate = (e) => {
     //alert(e);
     this.setState({ date: e });
-  };   
+  };
 
   setTime = (val) => {
     //alert(val);
-    this.setState({time:val})
-  }
+    this.setState({ time: val });
+  };
 
   render() {
     if (this.state.status == "200") {
-       return (<EventSuccess id={this.state.selectedEvent.event_id} />);
+      return <EventSuccess id={this.state.selectedEvent.event_id} />;
     } else {
-       return (
-         <>
-           <Table dataSource={this.state.event} className="mt-5">
-             <Column title="Event Name" dataIndex="event_name" key="id" />
-             <Column
-               title="Description"
-               dataIndex="description"
-               key="description"
-               className="d-none d-md-block"
-             />
-             <Column title="Date" dataIndex="date" key="date" />
-             <Column title="Time" dataIndex="time" key="time" />
-             <Column
-               title="Action"
-               key="action"
-               render={(text, record) => (
-                 <Space size="middle">
-                   <Button
-                     onClick={() => this.showDrawer(record.event_id)}
-                     type="primary"
-                   >
-                     Edit this event
-                   </Button>
-                   <Popconfirm
-                     title="Are you sure delete this task?"
-                     onConfirm={() => this.confirm(record.event_id)}
-                     onCancel={this.cancel}
-                     okText="Yes"
-                     cancelText="No"
-                   >
-                     <a href="#">Delete</a>
-                   </Popconfirm>
-                 </Space>
-               )}
-             />
-           </Table>
+      return (
+        <>
+          <Table dataSource={this.state.event} className="mt-5">
+            <Column title="Event Name" dataIndex="event_name" key="id" />
+            <Column
+              title="Description"
+              dataIndex="description"
+              key="description"
+              className="d-none d-md-block"
+            />
+            <Column title="Date" dataIndex="date" key="date" />
+            <Column title="Time" dataIndex="time" key="time" />
+            <Column
+              title="Action"
+              key="action"
+              render={(text, record) => (
+                <Space size="middle">
+                  <Button
+                    onClick={() => this.showDrawer(record.event_id)}
+                    type="primary"
+                  >
+                    Edit this event
+                  </Button>
+                  <Popconfirm
+                    title="Are you sure delete this task?"
+                    onConfirm={() => this.confirm(record.event_id)}
+                    onCancel={this.cancel}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <a href="#">Delete</a>
+                  </Popconfirm>
+                </Space>
+              )}
+            />
+          </Table>
 
-           <Drawer
-             title="Update event"
-             width="auto"
-             onClose={this.onClose}
-             visible={this.state.visible}
-             bodyStyle={{ paddingBottom: 10 }}
-             footer={
-               <div
-                 style={{
-                   textAlign: "right",
-                 }}
-               >
-                 <Button onClick={this.onClose} style={{ marginRight: 8 }}>
-                   Cancel
-                 </Button>
-                 <Button onClick={this.submitData} type="primary">
-                   Submit
-                 </Button>
-               </div>
-             }
-           >
-             <Form layout="vertical" hideRequiredMark>
-               <Row gutter={16}>
-                 <Col span={12}>
-                   <Form.Item
-                     name="eventName"
-                     label="Event Name"
-                     rules={[
-                       { required: true, message: "Please enter a event name" },
-                     ]}
-                   >
-                     <Input
-                       placeholder="Please enter a event name"
-                       key={this.state.selectedEvent.event_name}
-                       name="eventName"
-                       defaultValue={this.state.selectedEvent.event_name}
-                       onChange={this.updateData}
-                     />
-                   </Form.Item>
-                 </Col>
-                 <Col span={12}>
-                   <Form.Item
-                     name="creatorName"
-                     label="Event Creator Name"
-                     rules={[{ required: true, message: "Please enter url" }]}
-                   >
-                     <Input
-                       style={{ width: "100%" }}
-                       name="creatorName"
-                       onChange={this.updateData}
-                       placeholder="Please enter the name"
-                       defaultValue={
-                         this.state.selectedEvent.event_creator_name
-                       }
-                     />
-                   </Form.Item>
-                 </Col>
-               </Row>
-               <Row gutter={16}>
-                 <Col span={12}>
-                   <Form.Item
-                     name="phone"
-                     label="Event Creator Phone"
-                     rules={[
-                       {
-                         required: true,
-                         message: "Please enter the phone number",
-                       },
-                     ]}
-                   >
-                     <Input
-                       style={{ width: "100%" }}
-                       onChange={this.updateData}
-                       name="phone"
-                       placeholder="Please enter the phone number"
-                       defaultValue={this.state.selectedEvent.creator_phone}
-                     />
-                   </Form.Item>
-                 </Col>
-                 <Col span={12}>
-                   <Form.Item
-                     name="eventType"
-                     label="Event Type"
-                     rules={[
-                       { required: true, message: "Please choose the type" },
-                     ]}
-                   >
-                     <Select
-                       mode="tags"
-                       name="type"
-                       onChange={(value) => this.selectData(value)}
-                       placeholder="Please choose the type"
-                       defaultValue={this.state.selectedEvent.event_type}
-                     >
-                       <Option value="wedding">Wedding</Option>
-                       <Option value="election campaign">
-                         Election Campaign
-                       </Option>
-                       <Option value="seminar">Seminar</Option>
-                       <Option value="seminar"></Option>
-                       <Option value="othout-door campaigner">
-                         out-door campaign
-                       </Option>
-                     </Select>
-                   </Form.Item>
-                 </Col>
-               </Row>
-               <Row gutter={16}>
-                 <Col span={12}>
-                   <Form.Item
-                     name="location"
-                     label="Location"
-                     rules={[
-                       { required: true, message: "Please enter thr Location" },
-                     ]}
-                   >
-                     <Input
-                       style={{ width: "100%" }}
-                       onChange={this.updateData}
-                       name="location"
-                       placeholder="Enter thr location"
-                       defaultValue={this.state.selectedEvent.location}
-                     />
-                   </Form.Item>
-                 </Col>
-                 <Col span={12}>
-                   <Form.Item
-                     name="dateTime"
-                     label="Date of the Event"
-                     rules={[
-                       {
-                         required: true,
-                         message: "Please choose the dateTime",
-                       },
-                     ]}
-                   >
-                     <DatePicker
-                       onChange={(value) =>
-                         this.getdate(value.format("YYYY-MM-DD"))
-                       }
-                       name="date"
-                       style={{ width: "100%" }}
-                       defaultValue={moment(this.state.selectedEvent.date)}
-                     />
-                   </Form.Item>
-                 </Col>
-               </Row>
-               <Row gutter={16}>
-                 <Col span={24}>
-                   <Form.Item
-                     name="dateTime"
-                     label="Time of the Event"
-                     rules={[
-                       {
-                         required: true,
-                         message: "Please choose the dateTime",
-                       },
-                     ]}
-                   >
-                     <TimePicker
-                       onChange={(value) =>
-                         this.setTime(value.format("hh:mm:ss"))
-                       }
-                       name="time"
-                       style={{ width: "100%" }}
-                       defaultValue={moment(
-                         this.state.selectedEvent.time,
-                         "HH:mm:ss"
-                       )}
-                     />
-                   </Form.Item>
-                 </Col>
-               </Row>
-               <Row gutter={16}>
-                 <Col span={24}>
-                   <Form.Item
-                     name="description"
-                     label="Description"
-                     rules={[
-                       {
-                         required: true,
-                         message: "please enter url description",
-                       },
-                     ]}
-                   >
-                     <Input
-                       rows={4}
-                       onChange={this.updateData}
-                       name="des"
-                       placeholder="please enter url description"
-                       defaultValue={this.state.selectedEvent.description}
-                     />
-                   </Form.Item>
-                 </Col>
-               </Row>
-               <Row gutter={16}>
-                 <Col span={24}>
-                   <Form.Item
-                     name="items"
-                     label="Select Equipments"
-                     rules={[
-                       { required: true, message: "Please choose the items" },
-                     ]}
-                   >
-                     <Select
-                       mode="tags"
-                       style={{ width: "100%" }}
-                       placeholder="Please select"
-                       defaultValue={["a10", "c12"]}
-                     ></Select>
-                   </Form.Item>
-                 </Col>
-               </Row>
+          <Drawer
+            title="Update event"
+            width="auto"
+            onClose={this.onClose}
+            visible={this.state.visible}
+            bodyStyle={{ paddingBottom: 10 }}
+            footer={
+              <div
+                style={{
+                  textAlign: "right",
+                }}
+              >
+                <Button onClick={this.onClose} style={{ marginRight: 8 }}>
+                  Cancel
+                </Button>
+                <Button onClick={this.submitData} type="primary">
+                  Submit
+                </Button>
+              </div>
+            }
+          >
+            <Form layout="vertical" hideRequiredMark>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    name="eventName"
+                    label="Event Name"
+                    rules={[
+                      { required: true, message: "Please enter a event name" },
+                    ]}
+                  >
+                    <Input
+                      placeholder="Please enter a event name"
+                      key={this.state.selectedEvent.event_name}
+                      name="eventName"
+                      defaultValue={this.state.selectedEvent.event_name}
+                      onChange={this.updateData}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name="creatorName"
+                    label="Event Creator Name"
+                    rules={[{ required: true, message: "Please enter url" }]}
+                  >
+                    <Input
+                      style={{ width: "100%" }}
+                      name="creatorName"
+                      onChange={this.updateData}
+                      placeholder="Please enter the name"
+                      defaultValue={this.state.selectedEvent.event_creator_name}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    name="phone"
+                    label="Event Creator Phone"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter the phone number",
+                      },
+                    ]}
+                  >
+                    <Input
+                      style={{ width: "100%" }}
+                      onChange={this.updateData}
+                      name="phone"
+                      placeholder="Please enter the phone number"
+                      defaultValue={this.state.selectedEvent.creator_phone}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name="eventType"
+                    label="Event Type"
+                    rules={[
+                      { required: true, message: "Please choose the type" },
+                    ]}
+                  >
+                    <Select
+                      mode="tags"
+                      name="type"
+                      onChange={(value) => this.selectData(value)}
+                      placeholder="Please choose the type"
+                      defaultValue={this.state.selectedEvent.event_type}
+                    >
+                      <Option value="wedding">Wedding</Option>
+                      <Option value="election campaign">
+                        Election Campaign
+                      </Option>
+                      <Option value="seminar">Seminar</Option>
+                      <Option value="seminar"></Option>
+                      <Option value="othout-door campaigner">
+                        out-door campaign
+                      </Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    name="location"
+                    label="Location"
+                    rules={[
+                      { required: true, message: "Please enter thr Location" },
+                    ]}
+                  >
+                    <Input
+                      style={{ width: "100%" }}
+                      onChange={this.updateData}
+                      name="location"
+                      placeholder="Enter thr location"
+                      defaultValue={this.state.selectedEvent.location}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name="dateTime"
+                    label="Date of the Event"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please choose the dateTime",
+                      },
+                    ]}
+                  >
+                    <DatePicker
+                      onChange={(value) =>
+                        this.getdate(value.format("YYYY-MM-DD"))
+                      }
+                      name="date"
+                      style={{ width: "100%" }}
+                      defaultValue={moment(this.state.selectedEvent.date)}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={24}>
+                  <Form.Item
+                    name="dateTime"
+                    label="Time of the Event"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please choose the dateTime",
+                      },
+                    ]}
+                  >
+                    <TimePicker
+                      onChange={(value) =>
+                        this.setTime(value.format("hh:mm:ss"))
+                      }
+                      name="time"
+                      style={{ width: "100%" }}
+                      defaultValue={moment(
+                        this.state.selectedEvent.time,
+                        "HH:mm:ss"
+                      )}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={24}>
+                  <Form.Item
+                    name="description"
+                    label="Description"
+                    rules={[
+                      {
+                        required: true,
+                        message: "please enter url description",
+                      },
+                    ]}
+                  >
+                    <Input
+                      rows={4}
+                      onChange={this.updateData}
+                      name="des"
+                      placeholder="please enter url description"
+                      defaultValue={this.state.selectedEvent.description}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={24}>
+                  <Form.Item
+                    name="items"
+                    label="Select Equipments"
+                    rules={[
+                      { required: true, message: "Please choose the items" },
+                    ]}
+                  >
+                    <Select
+                      mode="tags"
+                      style={{ width: "100%" }}
+                      placeholder="Please select"
+                      defaultValue={["a10", "c12"]}
+                    ></Select>
+                  </Form.Item>
+                </Col>
+              </Row>
 
-               <Row gutter={16}>
-                 <Col span={24}>
-                   <Form.Item
-                     name="budget"
-                     label="Enter the Budget"
-                     rules={[
-                       { required: true, message: "Please insert your budget" },
-                     ]}
-                   >
-                     <Input
-                       style={{ width: "100%" }}
-                       onChange={this.updateData}
-                       name="budget"
-                       placeholder="Enter the head budget"
-                       defaultValue={this.state.selectedEvent.budget}
-                     />
-                   </Form.Item>
-                 </Col>
-               </Row>
-             </Form>
-           </Drawer>
-         </>
-       );
+              <Row gutter={16}>
+                <Col span={24}>
+                  <Form.Item
+                    name="budget"
+                    label="Enter the Budget"
+                    rules={[
+                      { required: true, message: "Please insert your budget" },
+                    ]}
+                  >
+                    <Input
+                      style={{ width: "100%" }}
+                      onChange={this.updateData}
+                      name="budget"
+                      placeholder="Enter the head budget"
+                      defaultValue={this.state.selectedEvent.budget}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Form>
+          </Drawer>
+        </>
+      );
     }
-   
   }
 }
 
