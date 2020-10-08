@@ -15,6 +15,7 @@ import EventMobileNav from './EventMobileNav';
 import axios from 'axios';
 import cryptoRandomString from "crypto-random-string";
 import EventSuccess from './EventSuccess'
+import {  Button, Space } from "antd";
 
 const { Dragger } = Upload;
 
@@ -22,23 +23,23 @@ class EventCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event_id:cryptoRandomString({length:7}),
+      event_id: cryptoRandomString({ length: 7 }),
       data: {},
       items: [],
       email: "",
       eqs: [],
-      eventName: '',
-      creatorName: '',
-      creatorPhone: '',
-      eventType: '',
-      location: '',
-      des: '',
-      eventDate: '',
-      eventTime: '',
-      budget: '',
-      headCount: '',
-      occType: '',
-      headder:''
+      eventName: "",
+      creatorName: "",
+      creatorPhone: "",
+      eventType: "",
+      location: "",
+      des: "",
+      eventDate: "",
+      eventTime: "",
+      budget: "",
+      headCount: "",
+      occType: "",
+      headder: "",
     };
   }
 
@@ -61,8 +62,6 @@ class EventCreate extends Component {
     });
   }
 
-
-
   //this will dlt the item in the entry
   dltItem = (id) => {
     this.setState({
@@ -83,13 +82,43 @@ class EventCreate extends Component {
 
   textdata = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   submitEmail = (email) => {
     this.setState({ email: email });
     console.log(this.state.email);
   };
 
+  //validate the phone number
+  validatePhone = () => {
+    let phoneNum = this.state.creatorPhone;
+    if (isNaN(phoneNum)) {
+      message.error(
+        "oopz!!! " +
+          phoneNum +
+          " is not recognized as a valid phone number. Please check the input and try again"
+      );
+    } else if (phoneNum.length != 10) {
+      message.error(
+        "oopz!!! the enterd phone number is not recognized as a valid mobile number. The number of digits should be 10"
+      );
+    }
+  };
+
+  //validate additional details
+  validateAddDet = () => {
+    let budget = this.state.budget;
+    let headCount = this.state.headCount;
+    
+
+    if (isNaN(budget)) {
+      message.error("oopz!!! the budget should be a numeric value");
+    } else if (isNaN(headCount)) {
+      message.error("oopz!!! the head count should be a numeric value");
+    }
+  };
+
+ 
   OnSubmit = (e) => {
     e.preventDefault();
 
@@ -109,31 +138,31 @@ class EventCreate extends Component {
       event_type: this.state.eventType,
       location: this.state.location,
       description: this.state.des,
-      event_creator_name:this.state.creatorName
-    }
+      event_creator_name: this.state.creatorName,
+    };
 
     console.log(data);
 
     fetch("http://127.0.0.1:8000/create-event/", {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-type':'application/json',
+        "Content-type": "application/json",
       },
-      body:JSON.stringify(data)
-    }).then((response) => {
-      // alert(response.status)
-      this.setState({ headder:response.status})
-    }).catch((err) => {
-      alert(err)
+      body: JSON.stringify(data),
     })
-
-  }
+      .then((response) => {
+        // alert(response.status)
+        this.setState({ headder: response.status });
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
   render() {
     if (this.state.headder == "200") {
-      return (<EventSuccess id={this.state.event_id}/>)
-    }
-    else {
+      return <EventSuccess id={this.state.event_id} />;
+    } else {
       return (
         <div className="row">
           <div className="col-lg-1.5 side">
@@ -193,6 +222,7 @@ class EventCreate extends Component {
                         <input
                           type="text"
                           name="creatorPhone"
+                          onBlur={this.validatePhone}
                           onChange={this.textdata}
                           id=""
                           placeholder=" Like : +94 XX XXXX XXX"
@@ -205,12 +235,20 @@ class EventCreate extends Component {
                         <p>EVENT TYPE</p>
                       </div>
                       <div className="col-lg-9">
-                        <select name="eventType" id="cars" onChange={this.textdata}>
+                        <select
+                          name="eventType"
+                          id="cars"
+                          onChange={this.textdata}
+                        >
                           <option value="select type">Select Type</option>
                           <option value="wedding">Wedding</option>
-                          <option value="election campaign">Election Campaign</option>
+                          <option value="election campaign">
+                            Election Campaign
+                          </option>
                           <option value="seminar">Seminar</option>
-                          <option value="out-door campaign">Out-door Campaigns</option>
+                          <option value="out-door campaign">
+                            Out-door Campaigns
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -237,7 +275,13 @@ class EventCreate extends Component {
                         <p>DESCRIPTION</p>
                       </div>
                       <div className="col-lg-9">
-                        <textarea onChange={this.textdata} name="des" id="" cols="30" rows="10"></textarea>
+                        <textarea
+                          onChange={this.textdata}
+                          name="des"
+                          id=""
+                          cols="30"
+                          rows="10"
+                        ></textarea>
                       </div>
                     </div>
 
@@ -246,7 +290,12 @@ class EventCreate extends Component {
                         <p>DATE</p>
                       </div>
                       <div className="col-lg-10">
-                        <input onChange={this.textdata} type="date" name="eventDate" id="" />
+                        <input
+                          onChange={this.textdata}
+                          type="date"
+                          name="eventDate"
+                          id=""
+                        />
                       </div>
                     </div>
 
@@ -255,7 +304,13 @@ class EventCreate extends Component {
                         <p>TIME</p>
                       </div>
                       <div className="col-lg-10">
-                        <input eventDate type="time" name="eventTime" onChange={this.textdata} id="" />
+                        <input
+                          eventDate
+                          type="time"
+                          name="eventTime"
+                          onChange={this.textdata}
+                          id=""
+                        />
                       </div>
                     </div>
                   </div>
@@ -287,40 +342,83 @@ class EventCreate extends Component {
                   </div>
                   <div className="event-card form-card adddet">
                     <form action="" style={{ height: "auto" }}>
-                      <div style={{ height: "50px", paddingLeft: 0 }} className="row item">
+                      <div
+                        style={{ height: "50px", paddingLeft: 0 }}
+                        className="row item"
+                      >
                         <div className="col-lg-1">
                           <p>BUDGET</p>
                         </div>
                         <div className="col-lg-11">
-                          <input type="text"
+                          <input
+                            type="text"
                             onChange={this.textdata}
+                            onBlur={this.validateAddDet}
                             name="budget"
-                            style={{ width: "100%", backgroundColor: "#eceef9", border: "none", outline: "none", padding: "2px", borderRadius: "10px", paddingLeft: "15px", textAlign: "center" }} />
-                        </div>
-                      </div>
-
-                      <div style={{ height: "50px", paddingLeft: 0 }} className="row item">
-                        <div className="col-lg-2">
-                          <p>APPROX. HEAD COUNT</p>
-                        </div>
-                        <div className="col-lg-10">
-                          <input type="text"
-                            onChange={this.textdata}
-                            name="headCount"
-                            style={{ width: "100%", backgroundColor: "#eceef9", border: "none", outline: "none", padding: "2px", borderRadius: "10px", paddingLeft: "15px", textAlign: "center" }}
+                            style={{
+                              width: "100%",
+                              backgroundColor: "#eceef9",
+                              border: "none",
+                              outline: "none",
+                              padding: "2px",
+                              borderRadius: "10px",
+                              paddingLeft: "15px",
+                              textAlign: "center",
+                            }}
                           />
                         </div>
                       </div>
 
-                      <div style={{ height: "50px", paddingLeft: 0 }} className="row item">
+                      <div
+                        style={{ height: "50px", paddingLeft: 0 }}
+                        className="row item"
+                      >
+                        <div className="col-lg-2">
+                          <p>APPROX. HEAD COUNT</p>
+                        </div>
+                        <div className="col-lg-10">
+                          <input
+                            type="text"
+                            onChange={this.textdata}
+                            onBlur={this.validateAddDet}
+                            name="headCount"
+                            style={{
+                              width: "100%",
+                              backgroundColor: "#eceef9",
+                              border: "none",
+                              outline: "none",
+                              padding: "2px",
+                              borderRadius: "10px",
+                              paddingLeft: "15px",
+                              textAlign: "center",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div
+                        style={{ height: "50px", paddingLeft: 0 }}
+                        className="row item"
+                      >
                         <div className="col-lg-3">
                           <p>OCCATION TYPE (DAY/NIGHT)</p>
                         </div>
                         <div className="col-lg-9">
-                          <input type="text"
+                          <input
+                            type="text"
                             onChange={this.textdata}
                             name="occType"
-                            style={{ width: "100%", backgroundColor: "#eceef9", border: "none", outline: "none", padding: "2px", borderRadius: "10px", paddingLeft: "15px", textAlign: "center" }} />
+                            style={{
+                              width: "100%",
+                              backgroundColor: "#eceef9",
+                              border: "none",
+                              outline: "none",
+                              padding: "2px",
+                              borderRadius: "10px",
+                              paddingLeft: "15px",
+                              textAlign: "center",
+                            }}
+                          />
                         </div>
                       </div>
                     </form>
