@@ -291,7 +291,7 @@ class PackForm extends Component {
                       
                       
 
-                      <input class="mt-5 btn btn-md btn-primary btn-block mt-3" value="CREATE PACKAGE" type="submit"></input>
+                      <input class="col-lg-5 mt-5 btn btn-md btn btn-secondary mt-3" value="CREATE PACKAGE" type="submit"></input>
 
        
                     </div></form>

@@ -147,10 +147,10 @@ class InvoiceAdd extends Component {
     e.preventDefault();
     var stat = '';
     if(this.state.status == true){
-      stat = "success"
+      stat = "Unsuccess"
     }
     else{
-      stat="unsuccess"
+      stat="success"
     }
 
     const data = {
@@ -305,7 +305,7 @@ class InvoiceAdd extends Component {
                 noValidate
                 onChange={this.handleChange}
               />
-              <label>Success</label>
+              <label>UnSuccess</label>
               </div>
               <div class='col'>
                           
@@ -318,7 +318,7 @@ class InvoiceAdd extends Component {
                 noValidate
                 onChange={this.handleChange}
               />
-              <label>UnSuccess</label>
+              <label>Success</label>
               </div>
                 
                           </div>

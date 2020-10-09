@@ -30,6 +30,7 @@ import Add from "./ComponentShalini/Add";
 import CreateAdd from "./ComponentShalini/CreateAdd";
 import Api from "./ComponentKajan/ApiInvoice";
 import InvoiceAdd from "./ComponentKajan/InvoiceAdd";
+import Home from "./ComponentKajan/Home";
 import PackForm from "./ComponentShalini/PackForm";
 
 
@@ -56,6 +57,8 @@ function App() {
       <Route component={EditInvoice} path='/EditInvoice'></Route>
       <Route component={Api} path='/apiinvo'></Route>
       <Route component={InvoiceAdd} path='/invoadd'></Route>
+      <Route component={Home} path='/home'></Route>
+
 
 
 

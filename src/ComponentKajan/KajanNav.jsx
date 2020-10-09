@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import {Button,Navbar,NavLink,Nav,NavDropdown} from "react-bootstrap";
+import logo from '../Images/logo.png';
 
 
 
 
 function KajanNav() {
     return(
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <Link class="nav-link" to="/Payment">Payment <span class="sr-only">(current)</span></Link>
-      </li>
-      <li class="nav-item">
-        <Link className="nav-link" to="/invoice">Dashboard</Link>
-      </li>
+      <Navbar variant="light">
+      <Navbar.Brand href="#home"><img className="mt-4" src={logo}></img></Navbar.Brand>
+      <Nav className="ml-auto">
+        <Nav.Link href="#home">Home</Nav.Link>
+        <Nav.Link href="#Services">About</Nav.Link>
+        <NavDropdown title="Services" id="collasible-nav-dropdown">
+        <NavDropdown.Item href="#action/3.1">Tickets</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.2">Advertisements</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Equipment Rentals</NavDropdown.Item>
+        
+      </NavDropdown>
+        <Nav.Link href="#Events">Events</Nav.Link>
+        <Nav.Link href="#Events">Contact Us</Nav.Link>
+
+      </Nav>
       
-     
-      
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
+    </Navbar>
     )
 }
  
