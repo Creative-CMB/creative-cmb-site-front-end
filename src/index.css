@@ -2,7 +2,11 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 body {
-  overflow: hidden;
+
+  overflow: overflow-x;
+
+  overflow-x: hidden;
+
   margin: 0;
   padding: 0;
   scrollbar-width: auto;
@@ -341,7 +345,7 @@ form {
 }
 
 .item {
-  height: auto;
+  height: 20px;
   margin-top: 10px;
 }
 
@@ -470,15 +474,5 @@ form {
     margin-top: 50px;
     width: 90%;
   }
-}
-
-.side-menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: 0px;
-  width: 250px;
-  height: 100%;
-  background: linear-gradient(180deg, #49dcfc 0%, #3aa1ff 100%);
 }
 /*# sourceMappingURL=index.css.map */

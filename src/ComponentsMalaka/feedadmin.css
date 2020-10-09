@@ -34,7 +34,7 @@ div.screen{
 .item .img, .item span{background:#214273; border-radius:3px;}
 .item .img{float:left; width:71px; height:71px; margin-left:-93px;}
 .item span{height:11px; width:180px; margin-bottom:19px; float:left;}
-.item span:nth-of-type(3){width:75px; margin-botom:0;}
+.item span:nth-of-type(3){width:75px; margin-bottom:0;}
 
 div.burger {
 	height: 30px; 

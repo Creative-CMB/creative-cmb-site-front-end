@@ -13,7 +13,7 @@ class EventAddDetails extends Component {
         </div>
         <div className="event-card form-card adddet">
           <form action="" style={{ height: "auto" }}>
-            <div className="row item">
+            <div style={{ height: "50px", paddingLeft: 0 }} className="row item">
               <div className="col-lg-1">
                 <p>BUDGET</p>
               </div>
@@ -22,7 +22,7 @@ class EventAddDetails extends Component {
               </div>
             </div>
 
-            <div className="row item">
+            <div style={{height:"50px",paddingLeft:0}} className="row item">
               <div className="col-lg-2">
                 <p>APPROX. HEAD COUNT</p>
               </div>
@@ -31,7 +31,7 @@ class EventAddDetails extends Component {
               </div>
             </div>
 
-            <div className="row item">
+            <div style={{ height: "50px", paddingLeft: 0 }} className="row item">
               <div className="col-lg-3">
                 <p>OCCATION TYPE (DAY/NIGHT)</p>
               </div>

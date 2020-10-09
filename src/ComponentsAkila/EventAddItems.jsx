@@ -1,31 +1,43 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import axios from "axios";
 
 class EventAddItems extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        itemName: "",
-        count: "",
+      itemName: "",
+      count: "",
+      eqs: [],
     };
   }
 
-  change = (e) => this.setState({ [e.target.name]: e.target.value });
-
-    onSubmitForm = (e) => {
-        e.preventDefault();
-      //console.log(this.state.itemName);
-      const listItem = { itemName: this.state.itemName, count: this.state.count };
-        this.props.addItem(listItem);
-        this.setState({ listItem:'',count:''});
+  componentDidMount() {
+    this.fetcheq();
   }
 
-    render() {
-      
-      const itemnames = ["Item1", "item2", "Item3", "item4", "Item5", "item6"];
-      const counts = ["1", "2", "3", "4", "5", "6"];
+  fetcheq = () => {
+    axios.get("http://127.0.0.1:8000/get-equipments/").then((res) => {
+      const eqs = res.data;
+      this.setState({ eqs });
+      console.log(this.state.eqs);
+    });
+  };
 
-      return (
-      
+  change = (e) => this.setState({ [e.target.name]: e.target.value });
+
+  onSubmitForm = (e) => {
+    e.preventDefault();
+    //console.log(this.state.itemName);
+    const listItem = { itemName: this.state.itemName, count: this.state.count };
+    this.props.addItem(listItem);
+    this.setState({ listItem: "", count: "" });
+  };
+
+  render() {
+    const itemnames = ["Item1", "item2", "Item3", "item4", "Item5", "item6"];
+    const counts = ["1", "2", "3", "4", "5", "6","7","8","9","10","more"];
+
+    return (
       <form onSubmit={this.onSubmitForm} className="select-item">
         <div className="row">
           <div className="col-lg-2">
@@ -33,9 +45,9 @@ class EventAddItems extends Component {
           </div>
           <div className="col-lg-6">
             <select name="itemName" id="" onChange={this.change}>
-              {itemnames.map((name) => (
-                <option value={name} name="" id="">
-                  {name}
+              {this.state.eqs.map((name) => (
+                <option value={name.name} name="" id="">
+                  {name.name}
                 </option>
               ))}
             </select>
@@ -66,5 +78,5 @@ class EventAddItems extends Component {
     );
   }
 }
- 
+
 export default EventAddItems;
