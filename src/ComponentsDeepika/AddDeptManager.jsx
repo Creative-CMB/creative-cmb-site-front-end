@@ -126,8 +126,8 @@ export default class AddDeptManager extends Component {
                         >
                 <Card style={{ width: 600 }}>
                 
-                    Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
-                    Department ID : <select onChange={this.formData} id="dept" name="dept_id" style={{border: "3px solid #ccc",float: "right",width: "68%"}}>
+                    Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
+                    Department ID : <select onChange={this.formData} id="dept" name="dept_id" style={{border: "3px solid #ccc",height:30,float: "right",width: "68%"}}>
                                         {this.state.deptId.map((e) =>{
                                             const dmId = e.id;
                                             const dmName = e.username;
@@ -137,8 +137,8 @@ export default class AddDeptManager extends Component {
                                             );
                                         })}
                             </select><br></br><br></br>
-                    From : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
-                    To : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>   
+                    From : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
+                    To : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>   
                 
                 </Card>
                 </form>

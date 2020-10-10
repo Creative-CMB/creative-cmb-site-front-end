@@ -56,24 +56,18 @@ class ViewEmployee extends Component {
           
                         <br></br>
                         <h1 style={{color: "DodgerBlue", fontSize: '30px',fontWeight:"bold"}}><center>EMPLOYEE DETAILS</center></h1><br></br><br></br>
-                        <div style={{alignItems:"center"}}>
-                        <Search
-                            placeholder="Search by ID"
-                            enterButton="Search"
-                            size="large"
-                            
-                            onSearch={value => console.log(value)}
-                        ></Search>
-                        </div>
+                        
+                    
                         <br></br>
                         <div>
                         <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block ><Link to="/addEmployee" >Add Employee</Link></Button>
                         </div>
+                        <br></br>
 
                         <div>
                             <div className="table-responsive">
                             <table className="table" style={{fontSize:"10px"}}>
-                                <thead className="thead">
+                                <thead className="theads">
                                 <tr>
                                     <th>Employee ID</th>
                                     <th>Employee Name</th>

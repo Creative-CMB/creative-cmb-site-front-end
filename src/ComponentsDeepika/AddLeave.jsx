@@ -73,14 +73,14 @@ export default class AddLeave extends Component {
                             fontWeight:"bold"}}
                             >
 
-                    Leave ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="leave_id" ></input><br></br><br></br>
-                    Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="employee_id" ></input><br></br><br></br>
-                    Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text"onChange= {this.formData} name="dept_id"></input><br></br><br></br><br></br>
-                    Leave Type :  <select style={{border: "3px solid #ccc",float: "right",width: "68%"}} >
+                    Leave ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="leave_id" ></input><br></br><br></br>
+                    Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="employee_id" ></input><br></br><br></br>
+                    Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text"onChange= {this.formData} name="dept_id"></input><br></br><br></br><br></br>
+                    Leave Type :  <select style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} >
                                 <option value="Paid">Paid</option>
                                 <option value="Non-Paid">Non-paid</option>
                                 </select><br></br><br></br>
-                    Month : <select style={{border: "3px solid #ccc",float: "right",width: "68%"}} >
+                    Month : <select style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} >
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
@@ -105,10 +105,10 @@ export default class AddLeave extends Component {
                                 fontWeight:"bold"}}
                                 >
                        
-                        Year : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" maxLength="4" onChange= {this.formData} name="year"></input><br></br><br></br>
-                        Date : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date" onChange= {this.formData} name="date"></input><br></br><br></br>
-                        Reason : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="reason"></input><br></br><br></br>
-                        Status : <select style={{border: "3px solid #ccc",float: "right",width: "68%"}} >
+                        Year : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" maxLength="4" onChange= {this.formData} name="year"></input><br></br><br></br>
+                        Date : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date" onChange= {this.formData} name="date"></input><br></br><br></br>
+                        Reason : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="reason"></input><br></br><br></br>
+                        Status : <select style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} >
                                 <option value="Accepted">Accepted</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Canceled">Canceled</option>
