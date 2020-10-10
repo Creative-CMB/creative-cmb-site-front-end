@@ -11,7 +11,7 @@ import EventSchUpload from "../ComponentsAkila/EventSchUpload";
 import EventSentEmail from "./EventSentEmail";
 import EventAddDetails from "./EventAdDetails";
 import EventFooter from "./EventFooter";
-import { Upload, message } from "antd";
+import { Upload, message, notification, Spin } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import EventMobileNav from './EventMobileNav';
 import axios from 'axios';
@@ -23,6 +23,8 @@ import "jspdf-autotable"
 import { format } from "date-fns"
 
 const { Dragger } = Upload;
+
+
 
 class EventCreate extends Component {
   constructor(props) {
@@ -45,6 +47,7 @@ class EventCreate extends Component {
       headCount: "",
       occType: "",
       headder: "",
+      classname:true
     };
   }
 
@@ -185,6 +188,14 @@ class EventCreate extends Component {
 
     this.generatePDF(data);
 
+   const args = {
+     message: <Spin  />,
+     description:
+       "Please Wait... The form is submitting. Once successfull you will be redirect to the success page",
+     duration: 0,
+   };
+   notification.open(args);
+
     console.log(data);
 
     fetch("http://127.0.0.1:8000/create-event/", {
@@ -203,12 +214,13 @@ class EventCreate extends Component {
       });
   };
 
-  render() {
+  render() {      
     if (this.state.headder == "200") {
       return <EventSuccess id={this.state.event_id} />;
     } else {
       return (
         <div className="row">
+          
           <div className="col-lg-1.5 side">
             <EventSideNav />
           </div>
@@ -235,6 +247,7 @@ class EventCreate extends Component {
                       <div className="col-lg-9">
                         <input
                           type="text"
+                          required
                           onChange={this.textdata}
                           name="eventName"
                           id=""
@@ -250,6 +263,7 @@ class EventCreate extends Component {
                       <div className="col-lg-7">
                         <input
                           type="text"
+                          required
                           name="creatorName"
                           onChange={this.textdata}
                           id=""
@@ -266,6 +280,7 @@ class EventCreate extends Component {
                         <input
                           type="text"
                           name="creatorPhone"
+                          required
                           onBlur={this.validatePhone}
                           onChange={this.textdata}
                           id=""
@@ -281,10 +296,11 @@ class EventCreate extends Component {
                       <div className="col-lg-9">
                         <select
                           name="eventType"
+                          required
                           id="cars"
                           onChange={this.textdata}
                         >
-                          <option value="select type">Select Type</option>
+                          <option value="">Select Type</option>
                           <option value="wedding">Wedding</option>
                           <option value="election campaign">
                             Election Campaign
@@ -303,6 +319,7 @@ class EventCreate extends Component {
                       </div>
                       <div className="col-lg-9">
                         <input
+                          required
                           type="text"
                           name="location"
                           onChange={this.textdata}
@@ -320,6 +337,7 @@ class EventCreate extends Component {
                       </div>
                       <div className="col-lg-9">
                         <textarea
+                          required
                           onChange={this.textdata}
                           name="des"
                           id=""
@@ -335,6 +353,7 @@ class EventCreate extends Component {
                       </div>
                       <div className="col-lg-10">
                         <input
+                          required
                           onChange={this.textdata}
                           type="date"
                           name="eventDate"
@@ -349,6 +368,7 @@ class EventCreate extends Component {
                       </div>
                       <div className="col-lg-10">
                         <input
+                          required
                           eventDate
                           type="time"
                           name="eventTime"
@@ -386,6 +406,7 @@ class EventCreate extends Component {
                         </div>
                         <div className="col-lg-11">
                           <input
+                            required
                             type="text"
                             onChange={this.textdata}
                             onBlur={this.validateAddDet}
@@ -414,6 +435,7 @@ class EventCreate extends Component {
                         <div className="col-lg-10">
                           <input
                             type="text"
+                            required
                             onChange={this.textdata}
                             onBlur={this.validateAddDet}
                             name="headCount"
@@ -440,6 +462,7 @@ class EventCreate extends Component {
                         </div>
                         <div className="col-lg-9">
                           <input
+                            required
                             type="text"
                             onChange={this.textdata}
                             name="occType"
