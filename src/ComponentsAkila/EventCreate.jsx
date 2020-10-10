@@ -15,7 +15,10 @@ import EventMobileNav from './EventMobileNav';
 import axios from 'axios';
 import cryptoRandomString from "crypto-random-string";
 import EventSuccess from './EventSuccess'
-import {  Button, Space } from "antd";
+import { Button, Space } from "antd";
+import jsPDF from "jspdf"
+import "jspdf-autotable"
+import { format } from "date-fns"
 
 const { Dragger } = Upload;
 
@@ -121,6 +124,40 @@ class EventCreate extends Component {
     }
   };
 
+  //function to create a PDF file whick contains the newly created data
+  //this function will get the newly created data and will create a pdf
+
+  generatePDF = (eventdata) => {
+    //initilize the pds
+    const doc = new jsPDF();
+
+    //column definition
+    const tableColumns = ["Event Id", "User ID", "Event name", "Budget", "Time of the event", "Location", "Date", "Head Count", "Creator Name"];
+    const tableRows = [];
+
+    const rowdata = [
+      eventdata.event_id,
+      eventdata.user_id,
+      eventdata.event_name,
+      eventdata.budget,
+      eventdata.time,
+      eventdata.location,
+      eventdata.date,
+      eventdata.head_count,
+      eventdata.event_creator_name
+    ];
+
+    tableRows.push(rowdata);
+
+    doc.autoTable(tableColumns, tableRows, { startY: 20 });
+    const date = Date().split(" ");
+    //the filename will be the current systems date
+    const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
+    doc.text(eventdata.event_creator_name + "'s " + eventdata.event_name + "           - note that this is an auto generated file.", 14, 15);
+    doc.save(`report_${dateStr}.pdf`);
+
+  }
+
  
   OnSubmit = (e) => {
     e.preventDefault();
@@ -143,6 +180,8 @@ class EventCreate extends Component {
       description: this.state.des,
       event_creator_name: this.state.creatorName,
     };
+
+    this.generatePDF(data);
 
     console.log(data);
 
