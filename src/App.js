@@ -44,6 +44,27 @@ import Home from "./ComponentKajan/Home";
 import PackForm from "./ComponentShalini/PackForm";
 
 
+import Feedback from './ComponentsMalaka/FeedbackTemp';
+import Adminfeedback from './ComponentsMalaka/feedadmin';
+
+
+import AddEmployee from './ComponentsDeepika/AddEmployee';
+import AddDepartment from './ComponentsDeepika/AddDepartment';
+import AddDeptManager from './ComponentsDeepika/AddDeptManager';
+import AddDeptSupervisor from './ComponentsDeepika/AddDeptSupervisor';
+import AddDeptEmployee from './ComponentsDeepika/AddDeptEmployee';
+import AddLeave from './ComponentsDeepika/AddLeave';
+import AddSalary from './ComponentsDeepika/AddSalary';
+import EmployeeManagementHome from './ComponentsDeepika/EmployeeManagementHome';
+import ViewDepartment from './ComponentsDeepika/ViewDepartment';
+import ViewDeptEmployee from './ComponentsDeepika/ViewDeptEmployee';
+import ViewDeptManager from './ComponentsDeepika/ViewDeptManager';
+import ViewDeptSupervisors from './ComponentsDeepika/ViewDeptSupervisors';
+import ViewEmployee from './ComponentsDeepika/ViewEmployee';
+import ViewLeave from './ComponentsDeepika/ViewLeave';
+import ViewSalary from './ComponentsDeepika/ViewSalary';
+
+
 
 
 import Startup from "./ComponentsSid/Startup";
@@ -115,6 +136,27 @@ function App() {
 
 
 
+      <Route component={Feedback} path="/feedback"></Route>
+      <Route component={Adminfeedback} path="/adminfeedback"></Route>
+      
+
+      <Route component={AddEmployee} path="/addEmployee"></Route>
+      <Route component={AddDepartment} path="/addDepartment"></Route>
+      <Route component={AddDeptManager} path="/addDeptManager"></Route>
+      <Route component={AddDeptSupervisor} path="/addDeptSupervisor"></Route>
+      <Route component={AddDeptEmployee} path="/addDeptEmployee"></Route>
+      <Route component={AddLeave} path="/addLeave"></Route>
+      <Route component={AddSalary} path="/addSalary"></Route>
+      <Route component={ViewDepartment} path="/viewdept"></Route>
+      <Route component={ViewDeptEmployee} path="/viewdeptemp"></Route>
+      <Route component={ViewDeptManager} path="/viewdeptmanag"></Route>
+      <Route component={ViewDeptSupervisors} path="/viewdeptsuper"></Route>
+      <Route component={ViewEmployee} path="/viewemp"></Route>
+      <Route component={ViewLeave} path="/viewleave"></Route>
+      <Route component={ViewSalary} path="/viewsalary"></Route>
+      <Route component={EmployeeManagementHome} path="/employeeHome"></Route>
+
+      
       <Route component={Feedback} path='/feedback'></Route>
       <Route component={Adminfeedback} path='/adminfeedback'></Route>
       <Route component={Editfeedbac} path='/editfeedback'></Route>
