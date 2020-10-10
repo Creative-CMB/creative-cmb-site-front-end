@@ -1,16 +1,88 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import home_icon from '../Images/home_icon.png';
 import logo_creative from '../Images/logo_creative.png';
 
 
+const cryptoRandomString = require('crypto-random-string')
 
 class AddUsers extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {
+            users: [],
+            user_id: cryptoRandomString({ length: 7 }),
+            date_of_birth: "",
+            first_name: "",
+            last_name: "",
+            mobile_number: "",
+            email: "",
+            
+            district: "",
+            city: "",
+          };
     }
+
+    componentWillMount() {
+        this.getChartData();
+      }
+    
+    componentDidMount(){
+        document.title = "CreateCMB | Add Users";
+    }
+
+    getChartData() {
+        this.setState({
+          data: {
+            datasets: [
+              {
+                label: "complete",
+                data: [60, 40],
+                backgroundColor: ["#0f4c75", "#3282b8"],
+              },
+            ],
+          },
+        });
+    }
+
+    textdata = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+
+      
+    OnSubmit = (e) => {
+        e.preventDefault();
+
+        //sending final data
+        const data = {
+            user_id: "USR"+this.state.user_id,
+            date_of_birth: this.state.date_of_birth,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            mobile_number: this.state.mobile_number,
+            email: this.state.email,
+            
+            district: this.state.district,
+            city: this.state.city,
+        };
+
+        console.log(data);
+
+        fetch("http://127.0.0.1:8000/new-user/", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(data)}).then((response) => {
+            alert(response.headers)
+          }).catch(function(err){
+            alert(err)
+          })
+
+        
+          
+    };
+
     render() { 
         return ( 
             <div>
@@ -49,7 +121,7 @@ class AddUsers extends Component {
                                 
                                 <div className="container" style={{marginLeft: 120, paddingTop: 70, width:1150}}>
                                     <div class="row shadow p-3 mb-5 rounded" style={{backgroundColor:"#f7f5f5"}}>
-                                        <form>
+                                        <form onSubmit={this.OnSubmit.bind(this)}>
                                             <div className="row">   
                                                 <div className="col-lg-8" style={{backgroundColor:"", width:920}}>
                                                     <h5 style={{color:"gray"}}><b>Personal Information</b></h5>
@@ -67,21 +139,25 @@ class AddUsers extends Component {
                                                         <div className="col-lg-6" style={{backgroundColor:"", width:920}}>
                                                             <div class="form-row" style={{marginTop:20}}>
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="form-control" id="inputFName" placeholder="First name"/>
+                                                                    <input type="text" class="form-control" id="inputFName" placeholder="First name"
+                                                                        name="first_name" onChange={this.textdata}/>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="form-control" id="inputLName" placeholder="Last name"/>
+                                                                    <input type="text" class="form-control" id="inputLName" placeholder="Last name"
+                                                                        name="last_name" onChange={this.textdata}/>
                                                                     <br/>
                                                                 </div>
                                                             </div>
                                                             <div class="form-row" style={{marginTop:0}}>
                                                                 <div class="col-md-12">
-                                                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email Address"/>
+                                                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email Address"
+                                                                        name="email" onChange={this.textdata}/>
                                                                 </div>
                                                             </div>
                                                             <div class="form-row" style={{marginTop:20, marginBottom:10}}>
                                                                 <div class="col-md-12">
-                                                                    <input type="tel" class="form-control" id="inputMobileNo" placeholder="Mobile Number"/>
+                                                                    <input type="tel" class="form-control" id="inputMobileNo" placeholder="Mobile Number"
+                                                                        name="mobile_number" onChange={this.textdata}/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -90,7 +166,8 @@ class AddUsers extends Component {
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-12">
                                                                         <label for="inputDOB"><h6 style={{color:"gray"}}>Date of Birth</h6></label>
-                                                                        <input class="form-control " type="date" value="" id="inputDOB"/>
+                                                                        <input class="form-control" type="date" id="inputDOB"
+                                                                            name="date_of_birth" onChange={this.textdata}/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -103,11 +180,13 @@ class AddUsers extends Component {
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-12" style={{marginTop:10}}>
                                                                     <label for="inputCity"><h6 style={{color:"gray"}}>City</h6></label>
-                                                                    <input type="text" class="form-control" id="inputCity"/>
+                                                                    <input type="text" class="form-control" id="inputCity"
+                                                                        name="city" onChange={this.textdata}/>
                                                                 </div>
                                                                 <div class="form-group col-md-12">
                                                                     <label for="inputCity"><h6 style={{color:"gray"}}>District</h6></label>
-                                                                    <input type="text" class="form-control" id="inputCity"/>
+                                                                    <input type="text" class="form-control" id="inputCity"
+                                                                        name="district" onChange={this.textdata}/>
                                                                 </div>
                                                             </div>
                                                         </div>
