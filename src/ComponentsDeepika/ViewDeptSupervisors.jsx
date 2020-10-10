@@ -58,7 +58,7 @@ class ViewDeptSupervisors extends Component {
             <div className="col main1" style={{height:"100%"}}>
   
                 <br></br>
-                <h1 style={{color: "DodgerBlue", fontSize: '30px',fontWeight:"bold"}}><center>DEPARTMENT EMPLOYEES</center></h1><br></br><br></br>
+                <h1 style={{color: "DodgerBlue", fontSize: '30px',fontWeight:"bold"}}><center>DEPARTMENT SUPERVISOR</center></h1><br></br><br></br>
                 <div style={{alignItems:"center"}}>
                 <Search
                     placeholder="Search by ID"

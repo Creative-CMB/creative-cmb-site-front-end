@@ -21,7 +21,7 @@ export default class AddDeptEmployee extends Component {
             this.fetchAdmins();
         }
 
-        fetchEmployee = () =>{
+        fetchAdmins = () =>{
             axios.get("http://127.0.0.1:8000/admin-list/").then(res=>
             {
                 const admins=res.data;

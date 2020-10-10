@@ -10,8 +10,8 @@ export default class AddDepartment extends Component {
             this.state = { 
                 admins:[],
                 empId:[],
-                admin_id:'AD101',
-                dept_id:'CMD001',
+                admin_id:'',
+                dept_id:'',
                 dept_name:'',
                 dept_manager_name:''
              }

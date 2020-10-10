@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
+import axios from 'axios';
 
 export default class AddDeptManager extends Component {
 
         constructor(props) {
             super(props);
             this.state = { 
+                deptId:[],
+                empIdd:'',
                 emp_id:'',
                 dept_id:'',
                 from_date:'',
@@ -15,18 +18,79 @@ export default class AddDeptManager extends Component {
         }
 
     
-        formData = (event) => {
-            this.setState({
-                [event.target.name]: event.target.value
-                
-            })
-
-            this.setState({
-                condition: !this.state.condition
-            })
-
-            console.log(this.state.name, this.state.model, this.state.condition)
+        componentDidMount(){
+            this.fetchdm();
         }
+
+        fetchdm = () =>{
+            axios.get("http://127.0.0.1:8000/deptManager-list/").then(res=>
+            {
+                const deptId=res.data;
+                this.setState({deptId});
+            })
+        }
+
+        fetchid = () =>{
+            axios.get("http://127.0.0.1:8000/deptManager-list/").then(res=>
+            {
+                const deptId=res.data;
+                this.setState({deptId});
+            })
+        }
+
+       
+        formData = (e) => {
+            this.setState({ [e.target.name]: e.target.value });
+            this.setState({ radstatus: !this.state.radstatus });
+
+            console.log(
+                this.state.dept_id,
+                this.state.from_date, 
+                
+            );
+            console.log(this.state.radstatus);
+            console.log(this.state.event);
+        };
+
+        drop = (e) =>{
+            this.setState({[e.target.name]:e.target.value})
+            console.log(this.state.event)
+        }
+
+        onCreateEmp = () => {
+            console.log();
+        };
+
+        formSubmit  = (e) =>{
+            e.preventDefault();
+        
+
+        const dmData ={
+            emp_id : this.state.emp_id,
+            dept_id : this.state.dept_id,
+            from_date : this.state.from_date,
+            to_date : this.state.to_date,
+
+        };
+
+        console.log(dmData)
+
+        var url = "http://127.0.0.1:8000/deptManager-Create/";
+
+        fetch(url,{
+            method:'POST',
+            headers:{
+                'content-type':'application/json',
+            },
+            body:JSON.stringify(dmData)
+
+        }).then((response)=>{
+            alert(response)
+        }).catch(function(err){
+            alert(err)
+        })
+    }
+       
        
     render() {
         return (
@@ -55,18 +119,29 @@ export default class AddDeptManager extends Component {
                         ><center>ADD MANAGERS FOR DEPARTMENTS</center>
                 </h1>
                 <br></br><br></br><br></br><br></br>
-                <Card style={{ width: 600 }}>
-                <form 
+                <form onSubmit= {this.formSubmit}
                     style={{
                         fontSize: '15px',
                         fontWeight:"bold"}}
                         >
+                <Card style={{ width: 600 }}>
+                
                     Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
-                    Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="dept_id" ></input><br></br><br></br>
+                    Department ID : <select onChange={this.formData} id="dept" name="dept_id" style={{border: "3px solid #ccc",float: "right",width: "68%"}}>
+                                        {this.state.deptId.map((e) =>{
+                                            const dmId = e.id;
+                                            const dmName = e.username;
+
+                                            return(
+                                            <option value={e.id}>{e.username}</option>
+                                            );
+                                        })}
+                            </select><br></br><br></br>
                     From : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
                     To : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>   
-                </form>
+                
                 </Card>
+                </form>
                 <div>
                 <br></br><br></br><br></br>
 

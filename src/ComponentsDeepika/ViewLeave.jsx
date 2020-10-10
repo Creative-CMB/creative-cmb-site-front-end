@@ -94,7 +94,7 @@ class ViewLeave extends Component {
                                     return(
                                     <tr>
                                     <td>{user.leave_id}</td>
-                                    <td>{user.employee_id}</td>
+                                    <td>{user.emp_det_id}</td>
                                     <td>{user.dept_id}</td>
                                     <td>{user.leave_type}</td>
                                     <td>{user.month}</td>
