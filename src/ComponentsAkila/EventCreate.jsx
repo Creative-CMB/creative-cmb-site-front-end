@@ -45,7 +45,10 @@ class EventCreate extends Component {
       headCount: "",
       occType: "",
       headder: "",
-      classname:true
+      phoneVal: false,
+      addDetVal: false,
+      userId:"USR1rgda67"
+      
     };
   }
 
@@ -111,6 +114,8 @@ class EventCreate extends Component {
       message.error(
         "oopz!!! the enterd phone number is not recognized as a valid mobile number. The number of digits should be 10"
       );
+    } else {
+      this.setState({ phoneVal: !this.state.phoneVal });
     }
   };
 
@@ -124,6 +129,8 @@ class EventCreate extends Component {
       message.error("oopz!!! the budget should be a numeric value");
     } else if (isNaN(headCount)) {
       message.error("oopz!!! the head count should be a numeric value");
+    } else {
+      this.setState({ addDetVal: !this.state.addDetVal });
     }
   };
 
@@ -165,51 +172,55 @@ class EventCreate extends Component {
   OnSubmit = (e) => {
     e.preventDefault();
 
-    //sending final data
-    const data = {
-      event_id: "EVT" + this.state.event_id,
-      user_id: "USR1rgdj67",
-      event_name: this.state.eventName,
-      budget: this.state.budget,
-      email_address: this.state.email,
-      occassion_type: this.state.occType,
-      time: this.state.eventTime,
-      head_count: this.state.headCount,
-      creator_phone: this.state.creatorPhone,
-      schedule_file: "kjacbjdcbdjcb",
-      date: this.state.eventDate,
-      event_type: this.state.eventType,
-      location: this.state.location,
-      description: this.state.des,
-      event_creator_name: this.state.creatorName,
-    };
+    if (this.state.phoneVal && this.state.addDetVal) {
+      //sending final data
+      const data = {
+        event_id: "EVT" + this.state.event_id,
+        user_id: "USR1rgda67",
+        event_name: this.state.eventName,
+        budget: this.state.budget,
+        email_address: this.state.email,
+        occassion_type: this.state.occType,
+        time: this.state.eventTime,
+        head_count: this.state.headCount,
+        creator_phone: this.state.creatorPhone,
+        schedule_file: "kjacbjdcbdjcb",
+        date: this.state.eventDate,
+        event_type: this.state.eventType,
+        location: this.state.location,
+        description: this.state.des,
+        event_creator_name: this.state.creatorName,
+      };
 
-    this.generatePDF(data);
+      this.generatePDF(data);
 
-   const args = {
-     message: <Spin  />,
-     description:
-       "Please Wait... The form is submitting. Once successfull you will be redirect to the success page",
-     duration: 0,
-   };
-   notification.open(args);
+      const args = {
+        message: <Spin />,
+        description:
+          "Please Wait... The form is submitting. Once successfull you will be redirect to the success page",
+        duration: 0,
+      };
+      notification.open(args);
 
-    console.log(data);
+      console.log(data);
 
-    fetch("http://127.0.0.1:8000/create-event/", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        // alert(response.status)
-        this.setState({ headder: response.status });
+      fetch("http://127.0.0.1:8000/create-event/", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((err) => {
-        alert(err);
-      });
+        .then((response) => {
+          // alert(response.status)
+          this.setState({ headder: response.status });
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    } else {
+       message.error("Some of the enterd data are not in proper order!!! Please re-check");
+    }
   };
 
   render() {      
@@ -499,7 +510,7 @@ class EventCreate extends Component {
           <div className="col-lg-2 fix-right">
             <EventCreateChart data={this.state.data} />
 
-            <EventSum />
+            <EventSum userId={this.state.userId}/>
           </div>
         </div>
       );

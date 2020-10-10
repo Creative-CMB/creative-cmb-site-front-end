@@ -9,7 +9,7 @@ class EventCard extends Component {
     render() { 
         return (
           <div className="event-card">
-                <p>Total Events Created</p>
+                <p>{this.props.title}</p>
                 
                 <div className="row number">
                     <div className="col-lg-6">
