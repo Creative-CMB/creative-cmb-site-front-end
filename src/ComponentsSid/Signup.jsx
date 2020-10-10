@@ -191,6 +191,7 @@ class Signup extends Component {
                                     <small id="loginPrompt" class="form-text text-muted">Already have an account? <a href="/login" ><b>Login</b></a> </small>
                                 
                                 </form>
+                                </form>
                             </div>
                         </div>
                     </div>
