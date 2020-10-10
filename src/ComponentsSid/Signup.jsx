@@ -191,7 +191,9 @@ class Signup extends Component {
                                     <small id="loginPrompt" class="form-text text-muted">Already have an account? <a href="/login" ><b>Login</b></a> </small>
                                 
                                 </form>
-                            </div>
+                            </form>
+                            
+                            
                         </div>
                     </div>
 
@@ -200,6 +202,7 @@ class Signup extends Component {
                     </div>
                    
                </div>
+           </div>
            </div>
          );
     }
