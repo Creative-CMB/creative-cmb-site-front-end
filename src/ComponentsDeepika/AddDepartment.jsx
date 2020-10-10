@@ -22,6 +22,7 @@ export default class AddDepartment extends Component {
             this.fetchAdmins();
         }
 
+        //Admin data as foreign key
         fetchAdmins = () =>{
             axios.get("http://127.0.0.1:8000/admin-list/").then(res=>
             {
