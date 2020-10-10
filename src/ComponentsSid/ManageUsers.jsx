@@ -43,7 +43,14 @@ class ManageUsers extends Component {
             last_name: "",
             mobile_number: "",
             email: "",
-            selectedUser: {},            
+            selectedUser: {}, 
+            selectedCity: "",
+            selectedFirst_name: "",
+            selectedLast_name: "",
+            selectedMobile_number: "",
+            selectedEmail: "",
+            selectedDate_of_birth: "",
+            selectedDistrict: "",
             district: "",
             city: "",
           };
@@ -129,13 +136,13 @@ class ManageUsers extends Component {
     submitData = () => {
         const data = {
             user_id: this.state.selectedUser.user_id,
-            date_of_birth: this.state.selectedUser.date_of_birth,
-            first_name: this.state.selectedUser.first_name,
-            last_name: this.state.selectedUser.last_name,
-            mobile_number: this.state.selectedUser.mobile_number,
-            email: this.state.selectedUser.email,            
-            district: this.state.selectedUser.district,
-            city: this.state.selectedUser.city,
+            date_of_birth: this.state.selectedDate_of_birth,
+            first_name: this.state.selectedFirst_name,
+            last_name: this.state.selectedLast_name,
+            mobile_number: this.state.selectedMobile_number,
+            email: this.state.selectedEmail,            
+            district: this.state.selectedDistrict,
+            city: this.state.selectedCity,
         };
 
         console.log("data", data);
@@ -198,7 +205,7 @@ class ManageUsers extends Component {
   
     getdate = (e) => {
         //alert(e);
-        this.setState({ date: e });
+        this.setState({ selectedDate_of_birth: e });
     };
 
     render() { 
@@ -311,7 +318,7 @@ class ManageUsers extends Component {
                                                                 <Input
                                                                 placeholder="Please enter a first name"
                                                                 key={this.state.selectedUser.first_name}
-                                                                name="first_name"
+                                                                name="selectedFirst_name"
                                                                 defaultValue={this.state.selectedUser.first_name}
                                                                 onChange={this.updateData}
                                                                 />
@@ -327,7 +334,7 @@ class ManageUsers extends Component {
                                                             >
                                                                 <Input
                                                                 placeholder="Please enter a last name"
-                                                                name="last_name"
+                                                                name="selectedLast_name"
                                                                 defaultValue={this.state.selectedUser.last_name}
                                                                 onChange={this.updateData}
                                                                 />
@@ -344,7 +351,7 @@ class ManageUsers extends Component {
                                                             >
                                                                 <Input
                                                                 placeholder="Please enter an email"
-                                                                name="email"
+                                                                name="selectedEmail"
                                                                 defaultValue={this.state.selectedUser.email}
                                                                 onChange={this.updateData}
                                                                 />
@@ -360,7 +367,7 @@ class ManageUsers extends Component {
                                                             >
                                                                 <Input
                                                                 placeholder="Please enter a mobile number"
-                                                                name="mobile_number"
+                                                                name="selectedMobile_number"
                                                                 defaultValue={this.state.selectedUser.mobile_number}
                                                                 onChange={this.updateData}
                                                                 />
@@ -381,7 +388,7 @@ class ManageUsers extends Component {
                                                                 onChange={(value) =>
                                                                     this.getdate(value.format("YYYY-MM-DD"))
                                                                 }
-                                                                name="date_of_birth"
+                                                                name="selectedDate_of_birth"
                                                                 style={{ width: "100%" }}
                                                                 defaultValue={moment(this.state.selectedUser.date_of_birth)}
                                                                 />
@@ -402,7 +409,7 @@ class ManageUsers extends Component {
                                                                 <Input
                                                                 rows={4}
                                                                 onChange={this.updateData}
-                                                                name="city"
+                                                                name="selectedCity"
                                                                 placeholder= "please enter a city"
                                                                 defaultValue={this.state.selectedUser.city}
                                                                 />
@@ -424,7 +431,7 @@ class ManageUsers extends Component {
                                                                 <Input
                                                                 rows={4}
                                                                 onChange={this.updateData}
-                                                                name="district"
+                                                                name="selectedDistrict"
                                                                 placeholder= "please enter a district"
                                                                 defaultValue={this.state.selectedUser.district}
                                                                 />
