@@ -12,7 +12,7 @@ class EventSlider extends Component {
   }
   render() { 
     return (
-      <Carousel style={{ width: "100%", overflowY: "none", height: "200px" }}>
+      <Carousel style={{ width: "100%", overflowY: "none", height: "200px",zIndex:"0"}}>
         <Carousel.Item>
           <img
             style={{ height: "200px", marginLeft: 5 }}
