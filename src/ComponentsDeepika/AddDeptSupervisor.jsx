@@ -60,10 +60,10 @@ export default class AddDeptSupervisor extends Component {
                         fontSize: '15px',
                         fontWeight:"bold"}}
                         >
-                    Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
-                    Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="dept_id" ></input><br></br><br></br>
-                    From : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
-                    To : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>                   
+                    Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
+                    Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id" ></input><br></br><br></br>
+                    From : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
+                    To : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>                   
                 </form>
                 </Card>
                 <div>

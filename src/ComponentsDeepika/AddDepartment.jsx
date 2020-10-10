@@ -134,11 +134,11 @@ export default class AddDepartment extends Component {
                                             );
                                         })}
                             </select> */}
-                            Admin ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="admin_id"></input>
+                            Admin ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="admin_id"></input>
                             <br></br><br></br>
-                            Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="dept_id"></input><br></br><br></br>
-                            Name : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="dept_name" ></input><br></br><br></br>
-                            Manager of Department : <input style={{border: "3px solid #ccc",float: "right",width: "68%"}} type="text" onChange= {this.formData} name="dept_manager_name" ></input><br></br><br></br>
+                            Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id"></input><br></br><br></br>
+                            Name : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_name" ></input><br></br><br></br>
+                            Manager of Department : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_manager_name" ></input><br></br><br></br>
                             
                             {/* Manager of Department : <select onChange={this.formData} id="empid" name="dept_manager_name" style={{border: "3px solid #ccc",float: "right",width: "68%"}} >
                                         {this.state.empId.map((e) =>{

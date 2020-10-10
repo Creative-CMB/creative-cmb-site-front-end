@@ -44,9 +44,6 @@ import Home from "./ComponentKajan/Home";
 import PackForm from "./ComponentShalini/PackForm";
 
 
-import Feedback from './ComponentsMalaka/FeedbackTemp';
-import Adminfeedback from './ComponentsMalaka/feedadmin';
-
 
 import AddEmployee from './ComponentsDeepika/AddEmployee';
 import AddDepartment from './ComponentsDeepika/AddDepartment';

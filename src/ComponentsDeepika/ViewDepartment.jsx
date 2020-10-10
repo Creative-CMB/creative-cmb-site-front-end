@@ -59,24 +59,16 @@ class ViewDepartment extends Component {
                 <br></br>
                 <h1 style={{color: "DodgerBlue", fontSize: '30px',fontWeight:"bold"}}><center>DEPARTMENT</center></h1><br></br><br></br>
                 {/*Search Bar */}
-                <div style={{alignItems:"center"}}>
-                <Search
-                    placeholder="Search by ID"
-                    enterButton="Search"
-                    size="large"
-                    
-                    onSearch={value => console.log(value)}
-                ></Search>
-                </div>
+            
                 <br></br>
                 <div>
                     <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block ><Link to="/addDepartment" >Add Department</Link></Button>
-                </div>
+                </div><br></br>
 
 
                         <div className="table-responsive">
                             <table className="table" style={{fontSize:"13px"}}>
-                                <thead className="thead">
+                                <thead className="theads">
                                 <tr>
                                     <th>Department ID</th>
                                     <th>Admin ID</th>
