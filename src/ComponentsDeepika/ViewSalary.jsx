@@ -99,7 +99,7 @@ class ViewSalary extends Component {
                                     <td>{user.bonus}</td>
                                     <td>{user.basic_sal} + {user.bonus} </td>
                                     <td>{user.month}</td>
-                                    <td>{user.year}</td>
+                                    <td>{user.Year}</td>
                                     <td>{user.paid}</td>
                                     <td>{user.Paid_Date}</td>
                                     
