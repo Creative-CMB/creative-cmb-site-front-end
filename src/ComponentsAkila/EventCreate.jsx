@@ -115,7 +115,7 @@ class EventCreate extends Component {
         "oopz!!! the enterd phone number is not recognized as a valid mobile number. The number of digits should be 10"
       );
     } else {
-      this.setState({ phoneVal: !this.state.phoneVal });
+      this.setState({ phoneVal: true });
     }
   };
 
@@ -130,7 +130,7 @@ class EventCreate extends Component {
     } else if (isNaN(headCount)) {
       message.error("oopz!!! the head count should be a numeric value");
     } else {
-      this.setState({ addDetVal: !this.state.addDetVal });
+      this.setState({ addDetVal: true });
     }
   };
 
