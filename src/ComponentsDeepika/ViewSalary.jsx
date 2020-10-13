@@ -75,9 +75,6 @@ class ViewSalary extends Component {
                                     <th>Basic Salary</th>
                                     <th>Extra Hours</th>
                                     <th>Bonus</th>
-                                    <th>Extra Payment</th>
-                                    <th>Leaves</th>
-                                    <th>Reduction</th>
                                     <th>Total Salary</th>
                                     <th>Month</th>
                                     <th>Year</th>
@@ -100,10 +97,7 @@ class ViewSalary extends Component {
                                     <td>{user.basic_sal}</td>
                                     <td>{user.extra_hours}</td>
                                     <td>{user.bonus}</td>
-                                    <td>600</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>13600</td>
+                                    <td>{user.basic_sal} + {user.bonus} </td>
                                     <td>{user.month}</td>
                                     <td>{user.year}</td>
                                     <td>{user.paid}</td>

@@ -13,7 +13,7 @@ export default class AddDeptManager extends Component {
                 emp_id:'',
                 dept_id:'',
                 from_date:'',
-                to_date:''                
+                to_date:'',              
              }
         }
 
@@ -127,25 +127,21 @@ export default class AddDeptManager extends Component {
                 <Card style={{ width: 600 }}>
                 
                     Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
-                    Department ID : <select onChange={this.formData} id="dept" name="dept_id" style={{border: "3px solid #ccc",height:30,float: "right",width: "68%"}}>
-                                        {this.state.deptId.map((e) =>{
-                                            const dmId = e.id;
-                                            const dmName = e.username;
-
-                                            return(
-                                            <option value={e.id}>{e.username}</option>
-                                            );
-                                        })}
-                            </select><br></br><br></br>
+                    Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id"></input><br></br><br></br>
                     From : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
                     To : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>   
                 
                 </Card>
+                
+
+                <div>
+                <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add Manager"></input>
+                </div>
                 </form>
                 <div>
-                <br></br><br></br><br></br>
+                
 
-                <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add Manager"></input>
+                
                 </div>
                 </div>
             </div>

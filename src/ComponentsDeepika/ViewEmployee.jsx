@@ -77,7 +77,6 @@ class ViewEmployee extends Component {
                                     <th>Position</th>
                                     <th>Address</th>
                                     <th>Email</th>
-                                    <th>Qulaification</th>
                                     <th>Trained Years</th>
                                     <th>Date of Birth</th>
                                     <th>Joined Date</th>
@@ -99,7 +98,6 @@ class ViewEmployee extends Component {
                                     <td>{user.position}</td>
                                     <td>{user.address}</td>
                                     <td>{user.email}</td>
-                                    <td>{user.qualification}</td>
                                     <td>{user.trained_years}</td>
                                     <td>{user.dob}</td>
                                     <td>{user.joined_date}</td>

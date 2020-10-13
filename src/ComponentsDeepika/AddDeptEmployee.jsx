@@ -103,7 +103,7 @@ export default class AddDeptEmployee extends Component {
                 {/*Middle page components */}
                 <br></br>
                     <h1 style={{color: "DodgerBlue", fontSize: '30px', fontWeight:"bold"}}><center>ADD EMPLOYEES FOR DEPARTMENTS</center></h1><br></br><br></br><br></br><br></br>
-                    <form   
+                    <form   onSubmit= {this.formSubmit}  
                             style={{ 
                                 fontSize: '15px',
                                 fontWeight:"bold"}}
@@ -117,11 +117,14 @@ export default class AddDeptEmployee extends Component {
                             To : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>
                         
                     </Card>
+
+                    <br></br><br></br><br></br><br></br>
+                    <div>
+                    <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add Employee"></input>
+                    </div>
                     </form>
                 <div>
-                <br></br><br></br><br></br><br></br>
-
-                <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add Employee"></input>
+                
                 </div>
                 </div>    
             </div>
