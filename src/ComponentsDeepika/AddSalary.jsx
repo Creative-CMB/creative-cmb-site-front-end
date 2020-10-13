@@ -14,7 +14,7 @@ export default class AddSalary extends Component {
                 extra_hours:'0',
                 bonus:'',
                 month:'',
-                year:'2021',
+                year:'',
                 paid:'',
                 Paid_Date:''
              }

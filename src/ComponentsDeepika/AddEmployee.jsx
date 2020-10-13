@@ -160,7 +160,7 @@ class AddEmployees extends Component {
                             Name : <input id="name"style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="employee_name" ></input><br></br><br></br>
                             Primary phone : <input id="phone1" style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" placeholder=" Like : 07X XXXX XXX" maxLength="10" onChange= {this.formData} name="primary_phone"></input><br></br><br></br>
                             Secondary phone : <input id="phone2"style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text"  placeholder=" Like : 07X XXXX XXX"  maxLength="10" onChange= {this.formData} name="secondary_phone"></input><br></br><br></br>
-                            Position :  <select id="position" style={{border: "3px solid #ccc",float: "right",width: "68%",height:40,fontSize:10}} onChange={this.formData} name="position">
+                            Position :  <select id="pos" style={{border: "3px solid #ccc",float: "right",width: "68%",height:40,fontSize:10}} onChange={this.formData} name="position">
                                         <option value="Manager" >Manager</option>
                                         <option value="Supervisor">Supervisor</option>
                                         <option value="Employee">Employee</option>
@@ -181,7 +181,7 @@ class AddEmployees extends Component {
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         </select><br></br><br></br>
-                            Permanent : <select id="per"  style={{border: "3px solid #ccc",float: "right",width: "70%",height:40,fontSize:10}} name="permenent" onChange= {this.formData}>
+                            Permanent : <select id="perm"  style={{border: "3px solid #ccc",float: "right",width: "70%",height:40,fontSize:10}} name="permenent" onChange= {this.formData}>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                         </select><br></br><br></br>
