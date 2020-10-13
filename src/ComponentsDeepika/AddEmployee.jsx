@@ -146,7 +146,7 @@ class AddEmployees extends Component {
                     <Col span={12}>
                         <Card >
                         
-                            Admin ID :<select onChange={this.formData} id="admin" name="admin_id" style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}}>
+                            Admin ID :<select onChange={this.formData} id="admin" name="admin_id" style={{border: "3px solid #ccc",float: "right",width: "68%",height:40,fontSize:10}}>
                                         {this.state.admins.map((ad) =>{
                                             const adId = ad.id;
                                             const adName = ad.username;
@@ -160,11 +160,11 @@ class AddEmployees extends Component {
                             Name : <input id="name"style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="employee_name" ></input><br></br><br></br>
                             Primary phone : <input id="phone1" style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" placeholder=" Like : 07X XXXX XXX" maxLength="10" onChange= {this.formData} name="primary_phone"></input><br></br><br></br>
                             Secondary phone : <input id="phone2"style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text"  placeholder=" Like : 07X XXXX XXX"  maxLength="10" onChange= {this.formData} name="secondary_phone"></input><br></br><br></br>
-                            Position :  <select id="position" style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} onChange={this.formData} name="position">
+                            Position :  <select id="position" style={{border: "3px solid #ccc",float: "right",width: "68%",height:40,fontSize:10}} onChange={this.formData} name="position">
                                         <option value="Manager" >Manager</option>
                                         <option value="Supervisor">Supervisor</option>
                                         <option value="Employee">Employee</option>
-                                        </select><br></br><br></br>
+                                        </select><br></br><br></br><br></br>
                             Address : <input id="add" style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="textarea" rows="3" onChange= {this.formData} name="address"></input><br></br><br></br>
                             Email : <input id="email" style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="email" onChange= {this.formData} name="email"></input><br></br><br></br>
                            
@@ -177,15 +177,15 @@ class AddEmployees extends Component {
                             Qualification : <input id="qua" style={{border: "3px solid #ccc",float: "right",width: "70%",height:30}} type="text" onChange= {this.formData} name="qualification"></input><br></br><br></br>
                             Trained Years : <input id="traind" style={{border: "3px solid #ccc",float: "right",width: "70%",height:30}} type="text" onChange= {this.formData} name="trained_years"></input><br></br><br></br>
                             Date Of Birth : <input id="dob" style={{border: "3px solid #ccc",float: "right",width: "70%",height:30}} type="date" onChange= {this.formData} name="dob"></input><br></br><br></br>
-                            Gender : <select id="gen"style={{border: "3px solid #ccc",float: "right",width: "70%",height:30}}  name="gender" onChange= {this.formData}>
+                            Gender : <select id="gen"style={{border: "3px solid #ccc",float: "right",width: "70%",height:40,fontSize:10}}  name="gender" onChange= {this.formData}>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         </select><br></br><br></br>
-                            Permanent : <select id="per"  style={{border: "3px solid #ccc",float: "right",width: "70%",height:30}} name="permenent" onChange= {this.formData}>
+                            Permanent : <select id="per"  style={{border: "3px solid #ccc",float: "right",width: "70%",height:40,fontSize:10}} name="permenent" onChange= {this.formData}>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                         </select><br></br><br></br>
-                            Joined Date : <input id="jdate"  style={{border: "3px solid #ccc",float: "right",width: "70%",height:30}} type="date" onChange= {this.formData} name="joined_date"></input><br></br><br></br><br></br><br></br><br></br><br></br>
+                            Joined Date : <input id="jdate"  style={{border: "3px solid #ccc",float: "right",width: "70%",height:40,fontSize:10}} type="date" onChange= {this.formData} name="joined_date"></input><br></br><br></br><br></br><br></br><br></br><br></br>
                 
                         </Card>
                     </Col>

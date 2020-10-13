@@ -124,7 +124,7 @@ export default class AddDepartment extends Component {
                                 >
                     <Card style={{ width: 1000,}}>
 
-                            {/* Admin ID :<select onChange={this.formData} id="admin" name="admin_id" style={{border: "3px solid #ccc",float: "right",width: "68%"}}>
+                             <br></br>Admin ID :<select onChange={this.formData} id="admin" name="admin_id" style={{border: "3px solid #ccc",float: "right",width: "68%",height:45}}>
                                         {this.state.admins.map((ad) =>{
                                             const adId = ad.id;
                                             const adName = ad.username;
@@ -133,10 +133,10 @@ export default class AddDepartment extends Component {
                                             <option value={ad.id}>{ad.username}</option>
                                             );
                                         })}
-                            </select> */}
-                            Admin ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="admin_id"></input>
+                            </select> 
+                           
                             <br></br><br></br>
-                            Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id"></input><br></br><br></br>
+                            <br></br>Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id"></input><br></br><br></br>
                             Name : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_name" ></input><br></br><br></br>
                             Manager of Department : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_manager_name" ></input><br></br><br></br>
                             

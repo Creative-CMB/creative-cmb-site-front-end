@@ -9,21 +9,61 @@ export default class AddDeptSupervisor extends Component {
                 emp_id:'',
                 dept_id:'',
                 from_date:'',
-                to_date:''                
+                to_date:'',            
              }
         }
         
-        formData = (event) => {
-            this.setState({
-                [event.target.name]: event.target.value
+        formData = (e) => {
+                this.setState({ [e.target.name]: e.target.value });
+                this.setState({ radstatus: !this.state.radstatus });
                 
-            })
 
-            this.setState({
-                condition: !this.state.condition
+                console.log(
+                    this.state.dept_id,
+                    this.state.from_date, 
+                    
+                );
+                console.log(this.state.radstatus);
+                console.log(this.state.event);
+            };
+    
+            drop = (e) =>{
+                this.setState({[e.target.name]:e.target.value})
+                console.log(this.state.event)
+            }
+    
+            onCreateEmp = () => {
+                console.log();
+            };
+    
+            formSubmit  = (e) =>{
+                e.preventDefault();
+            
+    
+            const dsData ={
+                emp_id : this.state.emp_id,
+                dept_id : this.state.dept_id,
+                from_date : this.state.from_date,
+                to_date : this.state.to_date,
+    
+            };
+    
+            console.log(dsData)
+    
+            var url = "http://127.0.0.1:8000/deptSupervisor-Create/";
+    
+            fetch(url,{
+                method:'POST',
+                headers:{
+                    'content-type':'application/json',
+                },
+                body:JSON.stringify(dsData)
+    
+            }).then((response)=>{
+                alert(response)
+            }).catch(function(err){
+                alert(err)
             })
-
-            console.log(this.state.name, this.state.model, this.state.condition)
         }
        
 
@@ -54,22 +94,26 @@ export default class AddDeptSupervisor extends Component {
                 </h1>
                 <br></br><br></br><br></br><br></br>
 
-                <Card style={{ width: 600 }}>
-                <form   
+                
+                <form  onSubmit= {this.formSubmit} 
                     style={{
                         fontSize: '15px',
                         fontWeight:"bold"}}
                         >
+                    <Card style={{ width: 600 }}>
                     Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
                     Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id" ></input><br></br><br></br>
                     From : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
-                    To : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>                   
+                    To : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>    
+                    </Card>
+                    <br></br><br></br><br></br>
+                        <div>
+                <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add supervisor"></input>               
+                </div>
                 </form>
-                </Card>
+                
                 <div>
-                <br></br><br></br><br></br>
-
-                <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add supervisor"></input>
+                
                 </div>
                 </div> 
             </div>
