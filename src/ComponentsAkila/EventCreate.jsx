@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { Component } from "react";
 import EventSideNav from "./EventSideNav";
 import EventNav from "./EventNav";
