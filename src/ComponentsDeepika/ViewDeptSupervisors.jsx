@@ -177,7 +177,7 @@ class ViewDeptSupervisors extends Component {
                                     }}>
                                     <Popconfirm
                                         title="Are you sure delete this Department Supervisor?"
-                                        onConfirm={() => this.confirm(user.dept_id)}
+                                        onConfirm={() => this.confirm(user.emp_id)}
                                         onCancel={this.cancel}
                                         okText="Yes,Delete"
                                         cancelText="No,Cancel"
