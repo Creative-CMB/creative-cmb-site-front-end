@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./cssSanda/welcome.css";
 
+import imgwelcome from "./img/welcome.png";
+
 class TktWelcome extends Component {
   constructor(props) {
     super(props);
@@ -8,7 +10,7 @@ class TktWelcome extends Component {
   }
   render() {
     return (
-      <div style={{ height: "80vh" }}>
+      <div >
         {/* <h1
           style={{
             display: "flex",
@@ -42,11 +44,12 @@ class TktWelcome extends Component {
             MY TICKETS
           </button>
         </div> */}
-        <div class="header-text" style={{ marginLeft: "10px" }}>
-          <h1>Welcome!</h1>
+        <div class="header-text" style={{ marginLeft: "10px"}}>
+          <h1 style={{color:"blue",  textAlign: "center",textTransform: "uppercase",color: "#4CAF50"}}>Welcome!</h1>
           <span class="square"></span>
-          <p>Reserve your Tickets here and enjoy!</p>
-          <button class="common-btn">Read more</button>
+          <p style={{color:"DodgerBlue", fontSize:"15px", fontFamily:"Arial , Helvetica, sans-serif"}}>Reserve your Tickets here and enjoy!</p>
+          {/* <button class="common-btn">Read more</button> */}
+          <img className="d-block w-100" src={imgwelcome} alt="Third slide" style={{height:"80%" , width:"80%"}}/>
           <div class="line">
             <span class="line-1"></span>
             <br />

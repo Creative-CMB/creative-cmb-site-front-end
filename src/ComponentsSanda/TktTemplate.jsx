@@ -6,7 +6,8 @@ import TktWelcome from "./TktWelcome";
 import TktImgSlider from "./TktImgSlider";
 import TktEventCard from "./TktEventCard";
 import TktAbout from "./TktAbout";
-import img4 from "./img/5.jpg";
+import BookTable from "./BookTable";
+import img4 from "./img/tikpic.png";
 
 class TktTemplate extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class TktTemplate extends Component {
   }
   render() {
     return (
-      <div style={{ padding: "20px", backgroundColor: "#8d93ab" }}>
+      <div style={{ padding: "10px", backgroundColor: "#8d93ab" }}>
         <div style={{ overflowX: "hidden", backgroundColor: "white" }}>
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -38,9 +39,9 @@ class TktTemplate extends Component {
               <TktImgSlider />
             </div>
           </div>
-
-          <div className="row">
-            <div
+          <div className="row" style={{marginLeft:"10px"}}>
+          <h1>Upcoming Events</h1>
+{/*             <div
               className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
               style={{
                 width: "200vh",
@@ -51,7 +52,8 @@ class TktTemplate extends Component {
             >
               <h1>EVENT</h1>
               <TktEventCard title={this.state.Currenttitle} des="test desc 1" />
-            </div>
+            </div> */}
+            <BookTable/>
           </div>
 
           <div className="row">
@@ -67,7 +69,7 @@ class TktTemplate extends Component {
           <div className="row" style={{ marginTop: "20px" }}>
             <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12"></div>
             <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-              <img className="d-block w-100" src={img4} alt="Third slide" />
+              <img className="d-block w-100" src={img4} alt="Third slide" style={{height:"80%" , width:"80%"}}/>
             </div>
             <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
               <TktAbout />
