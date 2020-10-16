@@ -272,12 +272,14 @@ h1 {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-label {
+ label {
   font-size: 0.8em;
   
   color: #222;
   font-weight: lighter;
 }
+
+
 
 input {
   padding: 5px 5px;

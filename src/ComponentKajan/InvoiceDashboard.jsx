@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card,Col,Row, Table, Space, Button,Scroll} from 'antd';
+import {Card,Col,Row,Radio, Table,Select, Space, Button,Scroll,Modal,Drawer,Form,Input, DatePicker} from 'antd';
 import Money from "../Images/money.png";
 import Success from "../Images/success.png";
 import Unsuccess from "../Images/unsuccess.png";
@@ -7,6 +7,8 @@ import Edit from "../Images/edit2.png";
 import Delete from "../Images/delete1.png";
 import EventNav from "../ComponentsAkila/EventNav";
 import axios from "axios";
+import moment from "moment";
+
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import KajanNav from "./KajanNav";
 
@@ -16,70 +18,41 @@ import KajanNav from "./KajanNav";
 
 
 
+const { Option } = Select;
 
 
-const columns = [
-    
-
-    {title: 'Order Name', dataIndex:'Ordername', key:'orderName'},
-    {title: 'payment Date', dataIndex:'payment date', key:'payment date'},
-    {title: 'Order Name', dataIndex:'Ordername', key:'orderName'},
-    {title: 'PaymentType', dataIndex:'PaymentType', key:'type'},
-    {title: 'Status', dataIndex:'Status', key:'Status'},
-
-    {title: 'Amount', dataIndex:'Amount', key:'amount'},
-    {title:'Action',
-    dataIndex:'',
-    key:'x',
-render:() => (
-    <Space size="middle">
-        <a><img src={Edit}></img></a>
-        <a><img src={Delete}></img></a>
-    </Space>
-),
-    
-                
-},
-];
-
-const data = [
-    {
-        key:1,
-        Ordername:'Music concert',
-        PaymentType:'Cash',
-        Amount:'Rs.20000',
 
 
-    },
 
-    {
-        key:2,
-        Ordername:'Music concert',
-        PaymentType:'Cash',
-        Amount:'Rs.20000'
-
-    },
-    {
-        key:3,
-        Ordername:'Music concert',
-        PaymentType:'Cash',
-        Amount:'Rs.20000'
-
-    },
-];
-
-class InvoiceDashboard extends Component {
-    constructor() {
-        super();
-        this.state = { 
+class TestInvoCrud extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {  
             invoice:[],
+            selectedIndex:"",
+            selectedInvoice:{},
+            value: 1,
+            visible:false,
+            ordername: "",
+            paytype:"",
+            inv_amount: "",
+            status:"",
+            invo_date: "",
+            
+            
          }
 }
 
 
-componentDidMount(){
-    this.fetchDetails()
+ componentWillMount(){
+   this.fetchDetails();
+ }
+
+ componentDidMount(){
+  document.title = "CreateCMB | Manage Invoice";
   }
+
+ 
 
   fetchDetails = () =>{
     console.log('fetching...')
@@ -106,6 +79,68 @@ fetch(url,{
 }).catch(err => console.log(err))
 }
 
+showDrawer = (id) => {
+    this.state.invoice
+      .filter((item) => item.invoice_id === id)
+      .map((filterdItem) => this.setState({ selectedInvoice: filterdItem }));
+
+    this.setState(
+      {
+        visible: true,
+      },
+      () => console.log(this.state.selectedInvoice)
+    );
+
+    console.log(this.state.selectedInvoice);
+  };
+
+  onClose = () => {
+    window.location.reload(false);
+    this.setState(
+      {
+        visible: false,
+      },
+      () => console.log(this.state.visible)
+    );
+  };
+
+  sendData = () => {
+    
+      const data = {
+      invoice_id :this.state.selectedInvoice.invoice_id,
+      order_name : this.state.ordername,
+      amount : this.state.inv_amount,
+      inv_status : this.state.status,
+      payment_type : this.state.paytype,
+      date : this.state.invo_date,
+    };
+
+    console.log("data" , data);
+
+    var url = "http://127.0.0.1:8000/invoice-update/" + this.state.selectedInvoice.invoice_id + "/";
+    console.log("data",url);
+
+    fetch(url,{
+      method:'POST',
+      headers:{
+        'Content-type' : 'application/json',
+      },
+      body:JSON.stringify(data),
+    }).then(res => console.log(res.status)).catch(err => console.log(err));
+  };
+
+  updateData = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  selectData = (e) => {
+    this.setState({ type: e[0] });
+  };
+
+
+  getdate = (e) => {
+    this.setState({ date: e });
+  };
 
 
 tableData() {
@@ -121,7 +156,8 @@ tableData() {
               <td> {item.inv_status} </td>
               <td> {item.date} </td>
               <Space size="large">
-        <Link to="/invoadd"><button type = "button" class="btn btn-outline-primary" >Edit</button></Link>
+        <Button type = "button" class="btn btn-outline-primary" onClick={() => this.showDrawer(item.invoice_id)}>Edit</Button>
+       
         <button type="button" class="btn btn-outline-danger"  onClick={()=> this.delete(item.invoice_id)}>Delete</button>
     </Space>
            </tr>
@@ -135,6 +171,7 @@ tableData() {
                 
                 <div><KajanNav /></div>
                 
+               
             <div className="site-card-wrapper1">
                 <div className="row">
                 <div className="col-sm-4">
@@ -210,7 +247,134 @@ tableData() {
            
               <Link to="/invoadd" > <button className="button-add">Add Invoice</button></Link>
                 <button className="button-print">Print Invoice</button>
+            <Drawer
+            title = "Update invoice"
+            width="400px"
+            onClose = {this.onClose}
+            visible={this.state.visible}
+            bodyStyle={{paddingBottom:10}}
+            footer={
+                <div
+                  style={{
+                    textAlign: "right",
+                  }}
+                >
+             <Button onClick={this.onClose} style={{ marginRight: 8 }}>
+                  Cancel
+                </Button>
+                <Button onClick={this.sendData} type="primary">
+                  Update
+                </Button>
+              </div>
+            }
+          >
+              <Form layout="vertical" hideRequiredMark>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    name="ordername"
+                    label="Order Name"
+                    rules={[
+                      { required: true, message: "Please enter a Order name" },
+                    ]}
+                  >
+                    <Input
+                    onChange={this.updateData}
+                      placeholder="Please enter Order name"
+                      name="ordername"
+                      defaultValue={this.state.selectedInvoice.order_name}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name="inv_amount"
+                    label="Price"
+                    rules={[
+                      { required: true, message: "Please enter Price" },
+                    ]}
+                  >
+                    <Input
+                      onChange={this.updateData}
+                      placeholder="Please enter Price"
+                      name="inv_amount"
 
+                      defaultValue={this.state.selectedInvoice.amount}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+                    </Row>
+                    <Row>
+                    <Col span={12}>
+                  <Form.Item
+                    name="invo_date"
+                    label="Date"
+                    rules={[
+                      { required: true, message: "Please enter Date" },
+                    ]}
+                  >
+                    
+                    <div class='form-group'>
+                          <label>
+                            Payment date
+                          </label>
+                          <div class='col-lg-9 col-md-9 col-sm-9'>
+                          <input type="date"
+                           onChange={(value) =>
+                            this.getdate(value.format("YYYY-MM-DD"))
+                          }
+                          name="invo_date"
+                           onChange={this.updateData}
+                           defaultValue={moment(this.state.selectedInvoice.date)}/>
+                          </div>
+                        </div>
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name="paytype"
+                    label="Payment type"
+                    rules={[
+                      { required: true, message: "Please enter Payment type" },
+                    ]}
+                  >
+                    <Input
+                      onChange={this.updateData}
+                      placeholder="Please enter Payment type"
+                      name="paytype"
+
+                      defaultValue={this.state.selectedInvoice.payment_type}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+               
+                    </Row>
+                    <Row>
+                      <Col span={12}>
+                      <Form.Item
+                    name="status"
+                    label="Status"
+                    rules={[
+                      { required: true, message: "Please enter Status" },
+                    ]}
+                  >
+                    <Input
+                      onChange={this.updateData}
+                      placeholder="Please enter Status"
+                      name="status"
+                      defaultValue={this.state.selectedInvoice.inv_status}
+                      
+                    />
+                  </Form.Item>
+                      
+                      </Col>
+                    </Row>
+                    </Form>
+          </Drawer>
+                    
 
      </div>
      </body>
@@ -222,4 +386,4 @@ tableData() {
     }
 }
  
-export default InvoiceDashboard;
+export default TestInvoCrud;
