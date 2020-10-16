@@ -75,6 +75,7 @@ class TicketEdit extends Component {
     if (window.confirm("Confirm Deletion")) {
       var url = "http://127.0.0.1:8000/ticket-delete/" + tik.ticket_id + "/";
       fetch(url, {
+        //credentials:'include',
         method: "DELETE",
         headers: {
           "Content-type": "application/json",

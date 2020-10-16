@@ -115,6 +115,7 @@ class TicketForm extends Component {
       .catch(function (err) {
         alert(err);
       }); */
+      this.handleInputs()
 
       //batch
 
@@ -124,6 +125,7 @@ class TicketForm extends Component {
         qty:this.state.quant
       }
 
+      console.log("batch before fetch")
       
       fetch("http://127.0.0.1:8000/batch-create/", {
         method: "POST",
@@ -167,10 +169,27 @@ class TicketForm extends Component {
 
   };
 
-/*   pageRefresh() {
-    window.location.reload(false);
+  handleInputs = () => { 
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    );
+
+    this.setState({
+      event: [{}],
+      tname: [{}],
+      admin: [{}],
+      type: [{}],
+      price: [{}],
+      quant: [{}],
+      exdate: [{}],
+    })
   }
- */
+
+/* 
+  pageRefresh() {
+    window.location.reload(false);
+  } */
+ 
   render() {
     return (
       <div>
@@ -367,15 +386,17 @@ class TicketForm extends Component {
                     </div>
                   </div>
                   <button
-                   
+                  // onDoubleClick={this.pageRefresh}
                     type="submit"
                     className="btn btn-primary"
+                    
                   >
                     <p
                       style={{
                         color: "white",
                         fontFamily: "times new roman",
                         fontSize: "20px",
+                        
                       }}
                     >
                       Create Ticket

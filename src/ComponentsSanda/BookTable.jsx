@@ -8,8 +8,34 @@ class BookTable extends Component {
             tik: [],
             name:"",
             price:"",
+            is_clicked:false,
+            cancel_is_clicked:true,
          }
     }
+
+    setButtonStatus=()=>{
+      this.setState({is_clicked:true})
+      console.log(this.state.is_clicked)
+
+      if(this.state.is_clicked){
+        console.log("clicked")
+      }
+
+      this.setCancelButton()
+    }
+
+    setCancelButton=()=>{
+      if(this.state.is_clicked){
+        this.setState({cancel_is_clicked:true})
+        console.log("cancel clicked")
+      }
+      
+      if(this.state.is_clicked==false){
+        this.setState({cancel_is_clicked:false})
+      }
+    }
+
+
     render() { 
         return ( 
         <div className="table-responsive">
@@ -38,10 +64,11 @@ class BookTable extends Component {
                     <td>Price</td>
                     <td>Type</td>
                     <td>
-                      <Button
+                      <Button 
+                        disabled={this.state.is_clicked}
                         type="button"
                         class="btn btn-primary"
-                       // onClick={()=>this.editMode(tik.ticket_id)}
+                        onClick={this.setButtonStatus}
                       //  data-toggle="modal"
                        // data-target="#exampleModalCenter"
                       >
@@ -50,8 +77,9 @@ class BookTable extends Component {
                     </td>
                     <td>
                       <Button
-                        type="submit"
-                      //  onClick={() => this.confirmDelete(tik)}
+                        disabled={this.state.cancel_is_clicked}
+                        type="button"
+                       
                         className="btn btn-danger"
                       >
                         Cancel
