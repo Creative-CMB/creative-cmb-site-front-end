@@ -14,25 +14,70 @@ export default class AddSalary extends Component {
                 extra_hours:'0',
                 bonus:'',
                 month:'',
-                year:'2021',
+                year:'',
                 paid:'',
                 Paid_Date:''
              }
         }
         
         
-        formData = (event) => {
-            this.setState({
-                [event.target.name]: event.target.value
+        formData = (e) => {
+            this.setState({ [e.target.name]: e.target.value });
+            this.setState({ radstatus: !this.state.radstatus });
+
+            console.log(
+                this.state.emp_det_id,
+                this.state.month,
                 
-            })
+            );
+            console.log(this.state.radstatus);
+            console.log(this.state.event);
+        };
 
-            this.setState({
-                condition: !this.state.condition
-            })
-
-            console.log(this.state.name, this.state.model, this.state.condition)
+        drop = (e) =>{
+            this.setState({[e.target.name]:e.target.value})
+            console.log(this.state.event)
         }
+
+        onCreateEmp = () => {
+            console.log();
+        };
+
+        formSubmit  = (e) =>{
+            e.preventDefault();
+        
+
+        const salData ={
+            sal_id:this.state.sal_id,
+                emp_det_id:this.state.emp_det_id,
+                dept_id:this.state.dept_id,
+                basic_sal:this.state.basic_sal,
+                extra_hours:this.state.extra_hours,
+                bonus:this.state.bonus,
+                month:this.state.month,
+                year:this.state.year,
+                paid:this.state.paid,
+                Paid_Date:this.state.Paid_Date,
+
+        };
+
+        console.log(salData)
+
+        var url = "http://127.0.0.1:8000/Salary-Create/";
+
+        fetch(url,{
+            method:'POST',
+            headers:{
+                'content-type':'application/json',
+            },
+            body:JSON.stringify(salData)
+
+        }).then((response)=>{
+            alert(response)
+        }).catch(function(err){
+            alert(err)
+        })
+    }
        
         
     render() {
@@ -62,6 +107,11 @@ export default class AddSalary extends Component {
                 </h1>
                 <br></br><br></br>
 
+                <form onSubmit= {this.formSubmit}
+                            style={{
+                                fontWeight:"bold"}}
+                                >
+
                 <div 
                     style={{
                         padding: "30px",
@@ -70,29 +120,23 @@ export default class AddSalary extends Component {
                 <Row gutter={50}>
                 <Col span={12}>
                     <Card >
-                        <form 
-                            style={{
-                                fontWeight:"bold"}}
-                                >
+                        
 
                         Salary ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="sal_id" ></input><br></br><br></br>
                         Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_det_id" ></input><br></br><br></br>
                         Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text"onChange= {this.formData} name="dept_id"></input><br></br><br></br><br></br>
                         Basic Salary : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData} name="basic_sal"></input><br></br><br></br>
                         Extra Hours : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData} name="extra_hours"></input><br></br><br></br><br></br>
-                        </form>
+                        
                     </Card>
                 </Col>
                 <Col span={12}>
 
                     <Card >
-                        <form 
-                            style={{
-                                fontWeight:"bold"}}
-                                >
+                        
                         
                         Bonus : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData} name="bonus"></input><br></br><br></br>
-                        Month : <select style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} >
+                        Month : <select id="month"style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}}onChange= {this.formData} name="month">
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
@@ -108,12 +152,12 @@ export default class AddSalary extends Component {
                                 </select><br></br><br></br>
                         Year : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" maxLength="4" onChange= {this.formData} name="year"></input><br></br><br></br>
                         Date : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date" onChange= {this.formData} name="Paid_Date"></input><br></br>  <br></br>         
-                        Paid : <select style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} >
+                        Paid : <select id="Paid" style={{border: "3px solid #ccc",float: "right",width: "68%",height:42}} onChange= {this.formData} name="paid" >
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                         </select><br></br><br></br><br></br><br></br>
                     
-                        </form>
+                        
                     </Card>
                 </Col>
                 </Row>
@@ -123,6 +167,8 @@ export default class AddSalary extends Component {
 
                 <input style={{width:"100%", cursor: "pointer",backgroundColor:"DodgerBlue",border:"none",padding:"12px 28px",margin:"2px 1px",borderRadius:"2px",fontWeight:"bold"}} type="submit" value="Add salary detail"></input>
                 </div>
+            </form>
+            
                 </div>
             </div>
             </div>

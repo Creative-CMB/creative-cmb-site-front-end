@@ -4,7 +4,22 @@ import { Input } from 'antd';
 import { Button } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ExclamationCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+    Modal,
+    notification,
+    Drawer,
+    Form,
+    Col,
+    Row,
+    Select,
+    DatePicker,
+    Popconfirm,
+    message,
+  } from "antd";
 
+  const { confirm } = Modal;
+  const { Option } = Select;
 const { Search } = Input;
 
 class ViewSalary extends Component {
@@ -32,18 +47,60 @@ class ViewSalary extends Component {
         
     }
 
+    showDeleteConfirm = (data) => {
+        confirm({
+          title: "Are you sure delete this Salary detail?",
+          icon: <ExclamationCircleOutlined />,
+          content:
+            "You are gonna delete " +
+            data +
+            " from the database. Once you click on the delete button, the deletion can not reverse back ⚠⚠",
+          okText: "Yes,Delete",
+          okType: "danger",
+          cancelText: "No,Cancel",
+          onOk() {
+           
+            const args = {
+              message: "Notification",
+              description: "You have successfully deleted Salary detail " + data,
+              duration: 0,
+            };
+            notification.open(args);
+          },
+          onCancel() {
+            console.log("Cancel");
+          },
+        });
+      };
+    //tookend
 
-    delete = (id) =>{
-        var url = "http://127.0.0.1:8000/Salary-Delete/" + id + "/";
-        fetch(url,{
-            method:"DELETE",
-            headers:{
-                'Content-type':'application/json',
-            },
-        }).then((response) => {
-            this.fetchEmpDetails()
-        }).catch(err => console.log(err))
-    }
+
+
+    confirm = (data) => {
+        var url = "http://127.0.0.1:8000/Salary-Delete/" + data + "/";
+    
+        fetch(url, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+          
+          .catch((err) => console.log(err));
+        console.log(data);
+        const args = {
+          message: "Notification",
+          description: "You have successfully deleted Salary detail " + data,
+          duration: 0,
+        };
+        notification.open(args);
+      };
+    
+      cancel = (e) => {
+        console.log(e);
+        message.error("Canceled deleting Salary detail");
+      };
+
 
     render() { 
         return ( 
@@ -75,9 +132,6 @@ class ViewSalary extends Component {
                                     <th>Basic Salary</th>
                                     <th>Extra Hours</th>
                                     <th>Bonus</th>
-                                    <th>Extra Payment</th>
-                                    <th>Leaves</th>
-                                    <th>Reduction</th>
                                     <th>Total Salary</th>
                                     <th>Month</th>
                                     <th>Year</th>
@@ -100,12 +154,9 @@ class ViewSalary extends Component {
                                     <td>{user.basic_sal}</td>
                                     <td>{user.extra_hours}</td>
                                     <td>{user.bonus}</td>
-                                    <td>600</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>13600</td>
+                                    <td>{user.basic_sal} + {user.bonus} </td>
                                     <td>{user.month}</td>
-                                    <td>{user.year}</td>
+                                    <td>{user.Year}</td>
                                     <td>{user.paid}</td>
                                     <td>{user.Paid_Date}</td>
                                     
@@ -126,21 +177,28 @@ class ViewSalary extends Component {
                                         }}>Edit</Button>
                                     </td>
                                     <td>
-                                        <Button type="button" onClick={() => this.delete(user.sal_id)} className="btn btn-danger"
-                                        style={{
-                                            color:"white",
-                                            padding:"5px 10px",
-                                            fontSize:"10px",
-                                            fontWeight:"bold",
-                                            cursor:"pointer",
-                                            backgroundColor:"white",
-                                            color:"black",
-                                            border:"2px solid red",
+                                    <Button
+                                    style={{
+                                        color:"white",
+                                        padding:"5px 10px",
+                                        fontSize:"10px",
+                                        fontWeight:"bold",
+                                        cursor:"pointer",
+                                        backgroundColor:"white",
+                                        color:"black",
+                                        border:"2px solid red",
 
-                                        }}>
-                                       
-                                        Delete
-                                        </Button>
+                                    }}>
+                                    <Popconfirm
+                                        title="Are you sure delete this Salary detail?"
+                                        onConfirm={() => this.confirm(user.sal_id)}
+                                        onCancel={this.cancel}
+                                        okText="Yes,Delete"
+                                        cancelText="No,Cancel"
+                                    >
+                                        <a href="#">Delete</a>
+                                    </Popconfirm>
+                                    </Button>
                                     </td>
                                     </tr>
                                     );
