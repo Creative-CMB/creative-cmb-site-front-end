@@ -11,15 +11,20 @@ import EventSchUpload from "../ComponentsAkila/EventSchUpload";
 import EventSentEmail from "./EventSentEmail";
 import EventAddDetails from "./EventAdDetails";
 import EventFooter from "./EventFooter";
-import { Upload, message } from "antd";
+import { Upload, message, notification, Spin } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import EventMobileNav from './EventMobileNav';
 import axios from 'axios';
 import cryptoRandomString from "crypto-random-string";
 import EventSuccess from './EventSuccess'
-import {  Button, Space } from "antd";
+import { Button, Space } from "antd";
+import jsPDF from "jspdf"
+import "jspdf-autotable"
+import { format } from "date-fns"
 
 const { Dragger } = Upload;
+
+
 
 class EventCreate extends Component {
   constructor(props) {
@@ -42,6 +47,10 @@ class EventCreate extends Component {
       headCount: "",
       occType: "",
       headder: "",
+      phoneVal: false,
+      addDetVal: false,
+      userId:"USR1rgda67"
+      
     };
   }
 
@@ -107,6 +116,8 @@ class EventCreate extends Component {
       message.error(
         "oopz!!! the enterd phone number is not recognized as a valid mobile number. The number of digits should be 10"
       );
+    } else {
+      this.setState({ phoneVal: !this.state.phoneVal });
     }
   };
 
@@ -120,56 +131,107 @@ class EventCreate extends Component {
       message.error("oopz!!! the budget should be a numeric value");
     } else if (isNaN(headCount)) {
       message.error("oopz!!! the head count should be a numeric value");
+    } else {
+      this.setState({ addDetVal: !this.state.addDetVal });
     }
   };
+
+  //function to create a PDF file whick contains the newly created data
+  //this function will get the newly created data and will create a pdf
+
+  generatePDF = (eventdata) => {
+    //initilize the pds
+    const doc = new jsPDF();
+
+    //column definition
+    const tableColumns = ["Event Id", "User ID", "Event name", "Budget", "Time of the event", "Location", "Date", "Head Count", "Creator Name"];
+    const tableRows = [];
+
+    const rowdata = [
+      eventdata.event_id,
+      eventdata.user_id,
+      eventdata.event_name,
+      eventdata.budget,
+      eventdata.time,
+      eventdata.location,
+      eventdata.date,
+      eventdata.head_count,
+      eventdata.event_creator_name
+    ];
+
+    tableRows.push(rowdata);
+
+    doc.autoTable(tableColumns, tableRows, { startY: 20 });
+    const date = Date().split(" ");
+    //the filename will be the current systems date
+    const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
+    doc.text(eventdata.event_creator_name + "'s " + eventdata.event_name + "           - note that this is an auto generated file.", 14, 15);
+    doc.save(`report_${dateStr}.pdf`);
+
+  }
 
  
   OnSubmit = (e) => {
     e.preventDefault();
 
-    //sending final data
-    const data = {
-      event_id: "EVT" + this.state.event_id,
-      user_id: "USR1rgdj67",
-      event_name: this.state.eventName,
-      budget: this.state.budget,
-      email_address: this.state.email,
-      occassion_type: this.state.occType,
-      time: this.state.eventTime,
-      head_count: this.state.headCount,
-      creator_phone: this.state.creatorPhone,
-      schedule_file: "kjacbjdcbdjcb",
-      date: this.state.eventDate,
-      event_type: this.state.eventType,
-      location: this.state.location,
-      description: this.state.des,
-      event_creator_name: this.state.creatorName,
-    };
+    if (this.state.phoneVal && this.state.addDetVal) {
+      //sending final data
+      const data = {
+        event_id: "EVT" + this.state.event_id,
+        user_id: "USR1rgda67",
+        event_name: this.state.eventName,
+        budget: this.state.budget,
+        email_address: this.state.email,
+        occassion_type: this.state.occType,
+        time: this.state.eventTime,
+        head_count: this.state.headCount,
+        creator_phone: this.state.creatorPhone,
+        schedule_file: "kjacbjdcbdjcb",
+        date: this.state.eventDate,
+        event_type: this.state.eventType,
+        location: this.state.location,
+        description: this.state.des,
+        event_creator_name: this.state.creatorName,
+      };
 
-    console.log(data);
+      this.generatePDF(data);
 
-    fetch("http://127.0.0.1:8000/create-event/", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        // alert(response.status)
-        this.setState({ headder: response.status });
+      const args = {
+        message: <Spin />,
+        description:
+          "Please Wait... The form is submitting. Once successfull you will be redirect to the success page",
+        duration: 0,
+      };
+      notification.open(args);
+
+      console.log(data);
+
+      fetch("http://127.0.0.1:8000/create-event/", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((err) => {
-        alert(err);
-      });
+        .then((response) => {
+          // alert(response.status)
+          this.setState({ headder: response.status });
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    } else {
+       message.error("Some of the enterd data are not in proper order!!! Please re-check");
+    }
   };
 
-  render() {
+  render() {      
     if (this.state.headder == "200") {
       return <EventSuccess id={this.state.event_id} />;
     } else {
       return (
         <div className="row">
+          
           <div className="col-lg-1.5 side">
             <EventSideNav />
           </div>
@@ -196,6 +258,7 @@ class EventCreate extends Component {
                       <div className="col-lg-9">
                         <input
                           type="text"
+                          required
                           onChange={this.textdata}
                           name="eventName"
                           id=""
@@ -211,6 +274,7 @@ class EventCreate extends Component {
                       <div className="col-lg-7">
                         <input
                           type="text"
+                          required
                           name="creatorName"
                           onChange={this.textdata}
                           id=""
@@ -227,6 +291,7 @@ class EventCreate extends Component {
                         <input
                           type="text"
                           name="creatorPhone"
+                          required
                           onBlur={this.validatePhone}
                           onChange={this.textdata}
                           id=""
@@ -242,10 +307,11 @@ class EventCreate extends Component {
                       <div className="col-lg-9">
                         <select
                           name="eventType"
+                          required
                           id="cars"
                           onChange={this.textdata}
                         >
-                          <option value="select type">Select Type</option>
+                          <option value="">Select Type</option>
                           <option value="wedding">Wedding</option>
                           <option value="election campaign">
                             Election Campaign
@@ -264,6 +330,7 @@ class EventCreate extends Component {
                       </div>
                       <div className="col-lg-9">
                         <input
+                          required
                           type="text"
                           name="location"
                           onChange={this.textdata}
@@ -281,6 +348,7 @@ class EventCreate extends Component {
                       </div>
                       <div className="col-lg-9">
                         <textarea
+                          required
                           onChange={this.textdata}
                           name="des"
                           id=""
@@ -296,6 +364,7 @@ class EventCreate extends Component {
                       </div>
                       <div className="col-lg-10">
                         <input
+                          required
                           onChange={this.textdata}
                           type="date"
                           name="eventDate"
@@ -310,6 +379,7 @@ class EventCreate extends Component {
                       </div>
                       <div className="col-lg-10">
                         <input
+                          required
                           eventDate
                           type="time"
                           name="eventTime"
@@ -347,6 +417,7 @@ class EventCreate extends Component {
                         </div>
                         <div className="col-lg-11">
                           <input
+                            required
                             type="text"
                             onChange={this.textdata}
                             onBlur={this.validateAddDet}
@@ -375,6 +446,7 @@ class EventCreate extends Component {
                         <div className="col-lg-10">
                           <input
                             type="text"
+                            required
                             onChange={this.textdata}
                             onBlur={this.validateAddDet}
                             name="headCount"
@@ -401,6 +473,7 @@ class EventCreate extends Component {
                         </div>
                         <div className="col-lg-9">
                           <input
+                            required
                             type="text"
                             onChange={this.textdata}
                             name="occType"
@@ -439,7 +512,7 @@ class EventCreate extends Component {
           <div className="col-lg-2 fix-right">
             <EventCreateChart data={this.state.data} />
 
-            <EventSum />
+            <EventSum userId={this.state.userId}/>
           </div>
         </div>
       );
