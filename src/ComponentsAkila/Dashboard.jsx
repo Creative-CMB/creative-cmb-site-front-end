@@ -3,6 +3,7 @@ import { Layout, Menu, Breadcrumb,Alert } from 'antd';
 import MaterialCard from "./MaterialCard";
 import FetchEventChart from "./FetchEventChart";
 import Footer from "./EventFooter";
+import TimeLine from "./TimeLine";
 
 
 const { Header, Content } = Layout;
@@ -35,14 +36,24 @@ class Dashboard extends Component {
                     </Breadcrumb>
                         <div className="site-layout-background" style={{ padding: 10 }}>
                             <Alert message="Total Events and User Data" type="info" />
+
+                        <div className="row mt-4">
+                            <div className="col-lg-4">
+                                <MaterialCard/>
+                            </div>
+                            <div className="col-lg-8">
+                                    <FetchEventChart />
+                            </div>
+                            </div>
+
                             <div className="row mt-4">
                                 <div className="col-lg-4">
-                                    <MaterialCard/>
+                                    <Alert message="Total Events and User Data" type="success" />
+                                    <TimeLine />
                                 </div>
-                                <div className="col-lg-8">
-                                    <FetchEventChart />
+                                <div className="col-lg-4">
+                                        <FetchEventChart />
                                 </div>
-                                
                        </div>
                     </div>
                     </Content>

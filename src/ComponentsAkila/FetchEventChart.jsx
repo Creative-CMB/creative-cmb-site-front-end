@@ -82,7 +82,7 @@ class FetchEventChart extends Component {
     return {
         labels: months,
         datasets: [{
-            label: "Active Users",
+            label: "Active Events",
             borderColor: "#0278ae",
             pointBorderColor: "#FFF",
             pointBackgroundColor: "#0278ae",
