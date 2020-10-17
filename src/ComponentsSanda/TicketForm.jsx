@@ -85,7 +85,7 @@ class TicketForm extends Component {
   submitData = (e) => {
     e.preventDefault();
 
-    const tktData = {
+    var tktData = {
       ticket_id: "TKT" + this.state.tid,
       event_id: this.state.event,
       admin_id: this.state.admin,
@@ -98,6 +98,19 @@ class TicketForm extends Component {
       no_of_tickets: this.state.quant,
     };
 
+    var batchData={
+      batch_id:"BID" + this.state.batchid,
+      ticket_id:tktData.ticket_id,
+      qty:this.state.quant
+    }
+
+   /*  const batchTicketData={
+      batch_ticket_id:"BTD" +cryptoRandomString({ length: 7 }),
+      batch_id: batchData.batch_id,
+      cus_id : "",
+      availability_status:"available"
+    } */
+
     console.log(tktData);
 
     var url = "http://127.0.0.1:8000/ticket-create/";
@@ -108,25 +121,13 @@ class TicketForm extends Component {
         "Content-type": "application/json",
       },
       body: JSON.stringify(tktData),
-    }).then(response=>console.log(response.status)).catch(err=>console.log(err))
-    /* .then((response) => {
-        console.log(response.status);
-      })
-      .catch(function (err) {
-        alert(err);
-      }); */
-      this.handleInputs()
-
-      //batch
-
-      const batchData={
+    }).then(response=>console.log(response.status)).then(()=>{
+      /* const batchData={
         batch_id:"BID" + this.state.batchid,
         ticket_id:tktData.ticket_id,
         qty:this.state.quant
-      }
+      } */
 
-      console.log("batch before fetch")
-      
       fetch("http://127.0.0.1:8000/batch-create/", {
         method: "POST",
         headers: {
@@ -134,11 +135,38 @@ class TicketForm extends Component {
         },
         body: JSON.stringify(batchData),
       }).then(response=>console.log(response.status)).catch(err=>console.log(err))
+    }).then(() => this.ticketdata(batchData)).catch(err=>console.log(err))
 
+
+
+
+      //data dismiss in form
+      this.handleInputs()
+
+      //batch
+
+    /*   const batchData={
+        batch_id:"BID" + this.state.batchid,
+        ticket_id:tktData.ticket_id,
+        qty:this.state.quant
+      } */
+
+      console.log("batch before fetch")
+      
+     /*  fetch("http://127.0.0.1:8000/batch-create/", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(batchData),
+      }).then(response=>console.log(response.status)).catch(err=>console.log(err))
+ */
       console.log(batchData)
 
 
       //batch ticket
+
+      /* var batchTicketList=[]
 
       for(var i=0; i<parseInt(this.state.quant); i++){
         console.log('count', i)
@@ -152,22 +180,49 @@ class TicketForm extends Component {
 
         console.log(batchTicketData)
 
-        setTimeout(function(){
-          fetch("http://127.0.0.1:8000/batchTicket-create/",{
-            method:"POST",
-            headers: {
-              "Content-type":"application/json",
-            },
-            body: JSON.stringify(batchTicketData),
-          }).then(response=>console.log(response.status)).catch(err=>console.log(err))
-         
-        }, 5000);
-
-
+        batchTicketList.push(batchTicketData)
 
       }
 
+      fetch("http://127.0.0.1:8000/batchTicket-create/",{
+        method:"POST",
+        headers: {
+          "Content-type":"application/json",
+        },
+        body: JSON.stringify(batchTicketList),
+      }).then(response=>console.log(response.status)).catch(err=>console.log(err)) */
+     
+
   };
+
+  ticketdata = (batchData) =>{
+    var batchTicketList=[]
+
+      for(var i=0; i<parseInt(this.state.quant); i++){
+        console.log('count', i)
+
+       const batchTicketData={
+          batch_ticket_id:"BTD" +cryptoRandomString({ length: 7 }),
+          batch_id: batchData.batch_id,
+          cus_id : "",
+          availability_status:"available"
+        } 
+
+        console.log(batchTicketData)
+
+        batchTicketList.push(batchTicketData)
+
+      }
+      console.log(batchTicketList)
+
+      fetch("http://127.0.0.1:8000/batchTicket-create/",{
+        method:"POST",
+        headers: {
+          "Content-type":"application/json",
+        },
+        body: JSON.stringify(batchTicketList),
+      }).then(response=>console.log(response.status)).catch(err=>console.log(err))
+  }
 
   handleInputs = () => { 
     Array.from(document.querySelectorAll("input")).forEach(
