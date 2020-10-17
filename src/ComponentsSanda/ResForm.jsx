@@ -1,42 +1,44 @@
 import React, { Component } from "react";
 
+const cryptoRandomString = require("crypto-random-string");
+
 class ResForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rid: "",
+      rid: cryptoRandomString({ length: 7 }),
       tktname: "",
       eventName: "",
       cusname: "",
       resdate: "",
+      status: "",
     };
   }
+
+  enterData = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(
+      this.state.rid,
+      this.state.tktname,
+      this.state.eventName,
+      this.state.cusname,
+      this.state.resdate,
+      this.state.status
+    );
+  };
+
   render() {
     return (
       <div>
         <div className="res-container">
-          <form className="formstyle">
-            <div className="row">
-              <div className="col-3">
-                <label for="fname">Reservation ID:</label>
-              </div>
-              <div className="col-5">
-                <input
-                  onChange={this.inputData}
-                  type="text"
-                  id="rid"
-                  name="rid"
-                  placeholder="tck001"
-                />
-              </div>
-            </div>
+          <form className="formstyle" onSubmit={this.submitResData}>
             <div className="row">
               <div className="col-3">
                 <label for="fname">Ticket Name:</label>
               </div>
               <div className="col-5">
                 <input
-                  onChange={this.inputData}
+                  onChange={this.enterData}
                   type="text"
                   id="tktname"
                   name="tktname"
@@ -50,7 +52,7 @@ class ResForm extends Component {
               </div>
               <div className="col-5">
                 <input
-                  onChange={this.inputData}
+                  onChange={this.enterData}
                   type="text"
                   id="eventName"
                   name="eventName"
@@ -65,7 +67,7 @@ class ResForm extends Component {
               </div>
               <div className="col-5">
                 <input
-                  onChange={this.inputData}
+                  onChange={this.enterData}
                   type="text"
                   id="cusname"
                   name="cusname"
@@ -80,37 +82,38 @@ class ResForm extends Component {
               </div>
               <div className="col-5">
                 <input
-                  onChange={this.inputData}
-                  type="text"
+                  onChange={this.enterData}
+                  type="date"
                   id="resdate"
                   name="resdate"
-                  placeholder="12.05.2020"
                 />
               </div>
             </div>
+            <div className="row">
+              <div className="col-3">
+                <label for="fname">Status:</label>
+              </div>
+              <div className="col-5">
+                <input
+                  onChange={this.enterData}
+                  type="text"
+                  id="status"
+                  name="status"
+                />
+              </div>
+            </div>
+            <button type="submit" className="btn btn-primary">
+              <p
+                style={{
+                  color: "white",
+                  fontFamily: "times new roman",
+                  fontSize: "20px",
+                }}
+              >
+                Confirm
+              </p>
+            </button>
           </form>
-          <button
-            className="btn btn-primary"
-            // onclick={this.onCreateTicket}
-            style={{
-              backgroundColor: "#6495ED",
-              padding: "5px",
-              width: "20%",
-              height: "45px",
-              marginLeft: "380px",
-              borderRadius: "10px",
-            }}
-          >
-            <p
-              style={{
-                color: "white",
-                fontFamily: "times new roman",
-                fontSize: "20px",
-              }}
-            >
-              Confirm
-            </p>
-          </button>
         </div>
       </div>
     );
