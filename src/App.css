@@ -536,11 +536,9 @@ input::placeholder {
 
 th,td{
   padding: 20px 100px;
-  
 }
 
 .paytype{
-
   position: relative;
   bottom:400px;
   left:800px;

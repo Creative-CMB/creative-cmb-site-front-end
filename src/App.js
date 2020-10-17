@@ -21,8 +21,9 @@ import TktTemplate from "./ComponentsSanda/TktTemplate";
 import ResTemplate from "./ComponentsSanda/ResTemplate";
 import TicketEdit from "./ComponentsSanda/TicketEdit"
 
+import Rental from './ComponentsHimasha/Rental';
 import InventoryItems from "./ComponentsHimasha/InventoryItems";
-import RentalDetails from "./ComponentsHimasha/RentalDetails";
+//import RentalDetails from "./ComponentsHimasha/RentalDetails";
 import AddItems from "./ComponentsHimasha/AddItems";
 
 import Feedback from "./ComponentsMalaka/FeedbackTemp";
@@ -134,7 +135,7 @@ function App() {
 
       <Route component={InventoryItems} path="/inventory"></Route>
       <Route component={AddItems} path="/add"></Route>
-
+      <Route component={Rental} path='/rent' ></Route>
 
 
       <Route component={Feedback} path="/feedback"></Route>
