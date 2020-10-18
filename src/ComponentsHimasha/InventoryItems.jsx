@@ -102,8 +102,6 @@ export default class InventoryItems extends Component {
       }
 
 
-
-
     tableData() {
       return this.state.equipment.map((item) => {
           return (

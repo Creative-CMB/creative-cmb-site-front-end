@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import EquipmentRental from './EquipmentRental'
+import {Button} from 'react-bootstrap'
+import * as Scroll from 'react-scroll';
+import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 const cryptoRandomString  = require("crypto-random-string");
+
 
 export default class Rental extends Component {
 
@@ -13,7 +17,12 @@ export default class Rental extends Component {
         price:'',
         eqp_id:'',
         isChecked:false,
-        checkedID:'',
+        status:false,
+
+    }
+
+    scrollToBottom() {
+        scroll.scrollToBottom();
     }
 
     componentDidMount() {
@@ -32,11 +41,13 @@ export default class Rental extends Component {
 
     fetchSelectedItems(){
         console.log('fetching rental data')
-        fetch('http://127.0.0.1:8000/rental-details/')
-        .then(response => response.json())
-        .then(data =>
-            this.setState({
-                selectedItems:data}))
+        if(this.state.status == false){
+            fetch('http://127.0.0.1:8000/rental-by-id/admin6/')
+            .then(response => response.json())
+            .then(data =>
+                this.setState({
+                    selectedItems:data}))
+        }
     }
 
     deleteRental = (id) => {
@@ -85,6 +96,7 @@ export default class Rental extends Component {
             name: name,
             quantity: quantity,
             price: price,
+            customer_id:'admin6',
             equipment_id: eqp_id,
         }
 
@@ -117,14 +129,6 @@ export default class Rental extends Component {
         }).catch(err=>console.log(err));
   }
 
-  handleCheckedElements = (id, e) => {
-      const check = e.target.checked
-      this.setState({isChecked: check})
-      if(this.state.isChecked){
-          this.setState({checkedID: id})
-          console.log('checked ids : ' , id)
-      }
-  }
 
     render(){
         return(
@@ -156,19 +160,28 @@ export default class Rental extends Component {
                             <td> <input type="number" name="quantity" 
                                     onChange={this.getQuantity.bind(this, price, eq_id, name)}/></td>
                             <td> <form onSubmit={this.addEquipments}>
-                                    <input type="submit"></input>
+                                    <button type="submit" className="btn btn-primary btn-sm">Select Item</button>
                                 </form></td>
-                                <td> <input type="checkbox" onChange={this.handleCheckedElements.bind(this, eq_id) } ></input> </td>
                         </tr>
                     )
                 })
                     }
                     </tbody>
                 </table>
+
+                <div>
+                <Button type="button" onClick={this.scrollToBottom}>Rent Equipment</Button>
+                </div>
+
                 </div>
 
                
-                <EquipmentRental selected_item = {this.state.selectedItems} deleteRental = {this.deleteRental} />
+                <EquipmentRental 
+                selected_item = {this.state.selectedItems} 
+                deleteRental = {this.deleteRental} />
+
+
+
                 </div>
                 
                 </div>
