@@ -256,7 +256,7 @@ class TicketForm extends Component {
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <TktNavBar
-                <button>Home</button>
+                
                 link2="Ticket Details"
                 link3="Reservation Details"
               />
