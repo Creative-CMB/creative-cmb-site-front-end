@@ -78,12 +78,12 @@ class EventEditTable extends Component {
         //open the notification
       
 
-        const args = {
-          message: "Notification",
-          description: "You have successfully deleted event " + data,
-          duration: 0,
-        };
-        notification.open(args);
+        // const args = {
+        //   message: "Notification",
+        //   description: "You have successfully deleted event " + data,
+        //   duration: 0,
+        // };
+        // notification.open(args);
       },
       onCancel() {
         console.log("Cancel");
@@ -186,12 +186,12 @@ class EventEditTable extends Component {
       })
       .catch((err) => console.log(err));
     console.log(data);
-    const args = {
-      message: "Notification",
-      description: "You have successfully deleted event " + data,
-      duration: 0,
-    };
-    notification.open(args);
+    // const args = {
+    //   message: "Notification",
+    //   description: "You have successfully deleted event " + data,
+    //   duration: 0,
+    // };
+    // notification.open(args);
   };
 
   cancel = (e) => {

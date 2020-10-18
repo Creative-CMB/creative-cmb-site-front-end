@@ -69,6 +69,9 @@ import Login from "./ComponentsSid/Login";
 import UserAccount from "./ComponentsSid/UserAccount";
 import UserDashboard from "./ComponentsSid/UserDashboard";
 
+//admin panal
+import Dashboard from "./ComponentsAkila/Dashboard";
+
 import AddUsers from "./ComponentsSid/AddUsers";
 import ManageUsers from "./ComponentsSid/ManageUsers";
 import UpdateUsers from "./ComponentsSid/UpdateUsers";
@@ -120,7 +123,8 @@ function App() {
       <Route component={EventHome} path="/event"></Route>
       <Route component={EventCreate} path="/create"></Route>
       <Route component={EventEditHome} path="/edit"></Route>
-      <Route component = {EventSuccess}path = "/success" ></Route>
+      <Route component={EventSuccess} path="/success" ></Route>
+      <Route component={Dashboard} path="/admin" ></Route>
 
       <Route component={TicketForm} path="/ticket"></Route>
       <Route component={TktTemplate} path="/template"></Route>
