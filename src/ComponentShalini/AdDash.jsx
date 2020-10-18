@@ -4,6 +4,7 @@ import Edit from "../Images/edit2.png";
 import Delete from "../Images/delete1.png";
 import {Space} from "antd";
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import "./Css/shali.css";
 
 
 
@@ -15,7 +16,7 @@ class AdDash extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-          package:[],
+          advertistment:[],
          }
     }
 
@@ -27,15 +28,51 @@ class AdDash extends Component {
     fetchDetails = () =>{
       console.log('fetching...')
   
-      fetch('http://127.0.0.1:8000/invoice-list/')
+      fetch('http://127.0.0.1:8000/advertisement-list/')
       .then(response => response.json())
       .then(data => 
         this.setState({
-          invoice:data
+          advertistment:data
         }) 
         )
     }
+    
+    delete = (id) => {
+      var url = "http://127.0.0.1:8000/advertisement-delete/" + id + "/"
+;
+fetch(url,{
+    method:"DELETE",
+    headers:{
+        'Content-type':'application/jason',
+    },
+}).then((response) => {
+    this.fetchDetails()
+}).catch(err => console.log(err))
+}
+    
 
+AdvertisementData() {
+      var self = this 
+      return this.state.advertistment.map((item) => {
+          return (
+  
+              
+             <tr>
+                <td>{item.ad_id}</td>
+                <td> {item.duration} </td>
+                <td> {item.ad_title} </td>
+                <td> {item.date} </td>
+                <td> {item.ad_type} </td>
+                <Space size="large">
+          <button type = "button" class="btn btn-outline-primary">Edit</button>
+         
+          <button type="button" class="btn btn-outline-danger" onClick={()=> this.delete(item.ad_id)}>Delete</button>
+  
+      </Space>
+             </tr>
+          )
+       })
+  }
     
 
     render() { 
@@ -91,76 +128,15 @@ class AdDash extends Component {
      <table class="table">
   <thead>
     <tr>
-      <th scope="col">adID</th>
-      <th scope="col">customer</th>
-      <th scope="col">packageType</th>
-      <th scope="col">AdTitle</th>
-      <th scope="col">Image</th>
-      <th scope="col">Date</th>
-      <th scope="col">Duration</th>
-      <th scope="col">Action</th>
-
-
-
+      <th>adID</th>
+      <th>Duration</th>
+      <th>Ad Title</th>
+      <th>Date</th>
+      <th>Package Type</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>shala</td>
-      <td>silver</td>
-      <td>Exhibition</td>
-      <td>IMG20.png</td>
-      <td>12.10.2019</td>
-      <td>1 week</td>
-      <td><Space size="middle">
-        <a className="a-class">Edit</a>
-        <a className="a-class">Delete</a>
-    </Space></td>
-
-
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>kevin</td>
-      <td>platinum</td>
-      <td>Music Concert</td>
-      <td></td>
-      <td>10.03.2020</td>
-      <td>2 week</td>
-      <td><Space size="middle">
-        <a className="a-class">Edit</a>
-        <a className="a-class">Delete</a>
-    </Space></td>
-
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>janaka</td>
-      <td>gold</td>
-      <td>Product Launching</td>
-      <td>IMG05.png</td>
-      <td>10.03.2020</td>
-      <td>2 week</td>
-      <td><Space size="middle">
-        <a className="a-class">Edit</a>
-        <a className="a-class">Delete</a>
-    </Space></td>
-    </tr>
-
-    <tr>
-      <th scope="row">4</th>
-      <td>Niro</td>
-      <td>silver</td>
-      <td>Batch party</td>
-      <td>IMG10.jpg</td>
-      <td>05.04.2020</td>
-      <td>1 week</td>
-      <td><Space size="middle">
-        <a className="a-class">Edit</a>
-        <a className="a-class">Delete</a>
-    </Space></td>
-    </tr>
+  {this.AdvertisementData()}
 
   </tbody>
 </table>

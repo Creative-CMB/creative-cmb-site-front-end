@@ -32,7 +32,6 @@ import Editfeedbac from "./ComponentsMalaka/editfeedback";
 import DemoInvoice from "./ComponentKajan/DemoInvoice";
 import AddInvoice from "./ComponentKajan/AddInvoice";
 import InvoiceDashboard from "./ComponentKajan/InvoiceDashboard";
-import EditInvoice from "./ComponentKajan/EditInvoice";
 import Advertise from "./ComponentShalini/Advertise";
 import AdDash from "./ComponentShalini/AdDash";
 import PackageForm from "./ComponentShalini/PackageForm";
@@ -51,7 +50,6 @@ import AddDepartment from './ComponentsDeepika/AddDepartment';
 import AddDeptManager from './ComponentsDeepika/AddDeptManager';
 import AddDeptSupervisor from './ComponentsDeepika/AddDeptSupervisor';
 import AddDeptEmployee from './ComponentsDeepika/AddDeptEmployee';
-import AddLeave from './ComponentsDeepika/AddLeave';
 import AddSalary from './ComponentsDeepika/AddSalary';
 import EmployeeManagementHome from './ComponentsDeepika/EmployeeManagementHome';
 import ViewDepartment from './ComponentsDeepika/ViewDepartment';
@@ -59,7 +57,6 @@ import ViewDeptEmployee from './ComponentsDeepika/ViewDeptEmployee';
 import ViewDeptManager from './ComponentsDeepika/ViewDeptManager';
 import ViewDeptSupervisors from './ComponentsDeepika/ViewDeptSupervisors';
 import ViewEmployee from './ComponentsDeepika/ViewEmployee';
-import ViewLeave from './ComponentsDeepika/ViewLeave';
 import ViewSalary from './ComponentsDeepika/ViewSalary';
 
 
@@ -99,9 +96,9 @@ function App() {
       <Route component={AddInvoice} path='/AddInvoice'></Route>
       <Route component={InvoiceDashboard} path='/Invoice'></Route>
       <Route component={Payment} path='/Payment'></Route>
-      <Route component={EditInvoice} path='/EditInvoice'></Route>
       <Route component={Api} path='/apiinvo'></Route>
       <Route component={InvoiceAdd} path='/invoadd'></Route>
+
       <Route component={Home} path='/home'></Route>
 
 
@@ -148,14 +145,12 @@ function App() {
       <Route component={AddDeptManager} path="/addDeptManager"></Route>
       <Route component={AddDeptSupervisor} path="/addDeptSupervisor"></Route>
       <Route component={AddDeptEmployee} path="/addDeptEmployee"></Route>
-      <Route component={AddLeave} path="/addLeave"></Route>
       <Route component={AddSalary} path="/addSalary"></Route>
       <Route component={ViewDepartment} path="/viewdept"></Route>
       <Route component={ViewDeptEmployee} path="/viewdeptemp"></Route>
       <Route component={ViewDeptManager} path="/viewdeptmanag"></Route>
       <Route component={ViewDeptSupervisors} path="/viewdeptsuper"></Route>
       <Route component={ViewEmployee} path="/viewemp"></Route>
-      <Route component={ViewLeave} path="/viewleave"></Route>
       <Route component={ViewSalary} path="/viewsalary"></Route>
       <Route component={EmployeeManagementHome} path="/employeeHome"></Route>
 

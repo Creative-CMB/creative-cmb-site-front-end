@@ -5,6 +5,8 @@ import event from "../Images/eventhome1.png";
 import {Nav} from "react-bootstrap";
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import {Divider} from "antd";
+import "./Css/kajan.css";
+
 
 
 class Home extends Component {

@@ -15,8 +15,8 @@ class TicketForm extends Component {
     this.state = {
       tid: cryptoRandomString({ length: 7 }),
       event: "",
+      admin: "USR39PEjsh",
       tname: "",
-      admin: "",
       type: "",
       price: "",
       radstatus: false,
@@ -71,12 +71,19 @@ class TicketForm extends Component {
     );
     console.log(this.state.radstatus);
     console.log(this.state.event);
+    console.log(this.state.admin);
   };
 
   drop = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state.event);
   };
+
+  inputAdmin = (val) => {
+    console.log(val.target.value)
+    this.setState({admin:val.target.value})
+  }
+
 
   onCreateTicket = () => {
     console.log();
@@ -121,21 +128,45 @@ class TicketForm extends Component {
         "Content-type": "application/json",
       },
       body: JSON.stringify(tktData),
-    }).then(response=>console.log(response.status)).then(()=>{
+    }).then(response=>console.log(response)).then(()=>{
       /* const batchData={
         batch_id:"BID" + this.state.batchid,
         ticket_id:tktData.ticket_id,
         qty:this.state.quant
       } */
-
       fetch("http://127.0.0.1:8000/batch-create/", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify(batchData),
+      }).then(response => console.log(response))
+      
+    }).catch(err=>console.log(err))
+
+    setTimeout(function () {
+            for(var i=0; i<batchData.qty; i++){
+        //console.log('count', i)
+
+       const batchTicketData={
+          batch_ticket_id:"BTD" +cryptoRandomString({ length: 7 }),
+          batch_id: batchData.batch_id,
+          cus_id : "",
+          availability_status:"available"
+        } 
+
+        console.log(batchTicketData)
+
+         fetch("http://127.0.0.1:8000/batchTicket-create/",{
+        method:"POST",
+        headers: {
+          "Content-type":"application/json",
+        },
+        body: JSON.stringify(batchTicketData),
       }).then(response=>console.log(response.status)).catch(err=>console.log(err))
-    }).then(() => this.ticketdata(batchData)).catch(err=>console.log(err))
+
+      }  
+    },3000)
 
 
 
@@ -195,34 +226,6 @@ class TicketForm extends Component {
 
   };
 
-  ticketdata = (batchData) =>{
-    var batchTicketList=[]
-
-      for(var i=0; i<parseInt(this.state.quant); i++){
-        console.log('count', i)
-
-       const batchTicketData={
-          batch_ticket_id:"BTD" +cryptoRandomString({ length: 7 }),
-          batch_id: batchData.batch_id,
-          cus_id : "",
-          availability_status:"available"
-        } 
-
-        console.log(batchTicketData)
-
-        batchTicketList.push(batchTicketData)
-
-      }
-      console.log(batchTicketList)
-
-      fetch("http://127.0.0.1:8000/batchTicket-create/",{
-        method:"POST",
-        headers: {
-          "Content-type":"application/json",
-        },
-        body: JSON.stringify(batchTicketList),
-      }).then(response=>console.log(response.status)).catch(err=>console.log(err))
-  }
 
   handleInputs = () => { 
     Array.from(document.querySelectorAll("input")).forEach(
@@ -359,6 +362,7 @@ class TicketForm extends Component {
                     </div>
                     <div class="col-5">
                       <select onChange={this.inputData} id="event" name="event">
+                         <option value="default">select value</option>
                         {this.state.events.map((ev) => {
                           const evId = ev.event_id;
 
@@ -375,12 +379,10 @@ class TicketForm extends Component {
                       <label for="event">Admin</label>
                     </div>
                     <div class="col-5">
-                      <select onChange={this.inputData} id="admin" name="admin">
+                      <select onChange={this.inputAdmin} id="admin" name="admin">
+                        <option value="default">select value</option>
                         {this.state.admins.map((ad) => {
-                          const adId = ad.id;
-                          const adName = ad.username;
-
-                          return <option value={ad.id}>{ad.username}</option>;
+                          return(<option value={ad.id}>{ad.username}</option>)
                         })}
                       </select>
                     </div>
