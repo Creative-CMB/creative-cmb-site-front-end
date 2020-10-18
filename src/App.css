@@ -28,182 +28,6 @@
   }
 }
 
-.kajan-nav{
-  background-color: lemonchiffon;
-}
-
-.wrapper {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #bed0df;
-}
-
-.form-wrapper {
-  width: 500px;
-  height: 600px;
-  display: flex;
-  flex-direction:column;
-  padding: 20px 40px;
-  border-radius: 10px;
-  box-shadow: 0px 10px 50px #555;
-  background-color: #ffffff;
-}
-
-.site-card-wrapper1{
-  position: relative;
-  top:50px;
-  left:70px;
-  width: 300px;
-  height: 148px;
-  display: flex;
-  flex-direction:column;
-  padding: 20px 40px;
-  border-radius: 25px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #ffffff;
-}
-
-
-
-.site-card-wrapper2{
-  position: relative;
-  top:-96px;
-  left:550px;
-  width: 300px;
-  height: 148px;
-  display: flex;
-  flex-direction:column;
-  padding: 20px 40px;
-  border-radius: 25px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #ffffff;
-}
-
-.site-card-wrapper3{
-  position: relative;
-  top:-244px;
-  left:1035px;
-  width: 300px;
-  height: 148px;
-  display: flex;
-  flex-direction:column;
-  padding: 20px 40px;
-  border-radius: 25px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #ffffff;
-}
-
-.wrapper3{
-  position: relative;
-  top:-244px;
-  left:1035px;
-  width: 350px;
-  height: 148px;
-  display: flex;
-  padding: 20px 40px;
-  border-radius: 25px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: #A6FFC9;
-  }
-
-  .wrapper3:hover {
-    color: #86C29C;
-    background-color: #ADDFAD;
-    border: 2px solid #86C29C;
-  }
-
-  .wrapper2{
-    position: relative;
-    top:-96px;
-    left:550px;
-    width: 350px;
-    height: 148px;
-    padding: 20px 40px;
-    border-radius: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: #FDFFAF;  }
-
-    .wrapper2:hover {
-      color: #FFEA61;
-      background-color: #FFF192;
-      border: 2px solid #FFEA62;
-    }
-
-  .wrapper1{
-    position: relative;
-    top:50px;
-    left:70px;
-    width: 350px;
-    height: 148px;
-    padding: 20px 40px;
-    border-radius: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: #92CBFF;  }
-
-  
-.wrapper1:hover {
-  color: #170e91;
-  background-color: #6EADDF;
-  border: 2px solid #170e91;
-}
-  
- 
-  .Expired{
-  padding-left: 60px;
-  position: relative;
-  font-size: 20px;
-}
-.moneyimg{
-  width:10%;
-  left:-25px;
-  position: relative;
-  top:24px;
-}
-
-.addimg1{
-  
-  left:-25px;
-  position: relative;
-
-  top:24px;
- 
-}
-.h2 {
-  color: #81359C;
-}
-
-count{
-  color: #81359C;
-  font-size: x-large;
-  font-weight: bold;
-}
-
-.adcount{
-  
-  font-size: x-large;
-
-}
-
-.a-class{
-  justify-content: space-around;
-}
-
-
-.table-wrapper {
-  width: 1086px;
-  height: 400px;
-  top:-150px;
-  left:176px;
-  position: relative;
-  padding: 20px 40px;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #ffffff;
-}
 
 .button-add{
   position: absolute;
@@ -536,11 +360,9 @@ input::placeholder {
 
 th,td{
   padding: 20px 100px;
-  
 }
 
 .paytype{
-
   position: relative;
   bottom:400px;
   left:800px;
@@ -608,4 +430,5 @@ th,td{
           background-color: #ffffff;
       
       }
+
       
