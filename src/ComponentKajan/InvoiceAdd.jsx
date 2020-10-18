@@ -7,6 +7,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { shadows } from '@material-ui/system';
 import axios from 'axios';
 import KajanNav from "./KajanNav";
+import "./Css/kajan.css";
 
 
 
@@ -162,15 +163,6 @@ class InvoiceAdd extends Component {
       date : this.state.date
     }
 
-  //   const data =  {
-  //     invoice_id: "INV10800",
-  //     order_name: "Music Concert Tickets",
-  //     amount: 5000.0,
-  //     inv_status: "Success",
-  //     payment_type: "payhere",
-  //     date: "2020-09-08"
-  // }
-
     console.log("shipping data" , data)
 
     fetch("http://127.0.0.1:8000/invoice-create/",{
@@ -220,7 +212,7 @@ class InvoiceAdd extends Component {
                         </div>
                       <form onSubmit={this.sendData}>
                         <div class='form-group'>
-                          <label>
+                          <label className="label">
                             Order name
                           </label>
                           
@@ -303,9 +295,9 @@ class InvoiceAdd extends Component {
                 type='radio'
                 name='status'
                 noValidate
-                onChange={this.handleChange}
+                onChange={this.sendData}
               />
-              <label>UnSuccess</label>
+              <label>Success</label>
               </div>
               <div class='col'>
                           
@@ -318,7 +310,7 @@ class InvoiceAdd extends Component {
                 noValidate
                 onChange={this.handleChange}
               />
-              <label>Success</label>
+              <label>UnSuccess</label>
               </div>
                 
                           </div>

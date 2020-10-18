@@ -1,10 +1,48 @@
 import React, { Component } from 'react';
+import "./Css/kajan.css";
+
+
+
+
+
+
+
 class PaymentCard extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+          invoice:[],
+          selectedIndex:"",
+          selectedInvoice:{},
+          value: 1,
+          visible:false,
+          ordername: "",
+          paytype:"",
+          inv_amount: "",
+          status:"",
+          invo_date: "",
+         }
+    }
+
+    fetchDetails = () =>{
+      console.log('fetching...')
+  
+      fetch('http://127.0.0.1:8000/invoices/INV81ace27/')
+      .then(response => response.json())
+      .then(data => 
+        this.setState({
+          invoice:data
+        }) 
+        )
+        
+    }
+
+    componentDidMount(){
+      this.fetchDetails();
     }
     render() { 
+      return this.state.invoice.map((item) => {
+
         return ( 
             <div className="payment-wrapper">
 
@@ -16,28 +54,23 @@ class PaymentCard extends Component {
               <th>Price</th> 
             </tr>
             <tr>
-              <td>MusicMojo 2k20 tickets</td>
-              <td>Rs.4500</td>
+        <td>{item.order_name}</td>
+              <td>{item.amount}</td>
             </tr>
-            <tr>
-              <td>LED Light rental</td>
-              <td>Rs.15000</td>
-      </tr>
-            <tr>
-              <td>Food fest Ad</td>
-              <td>Rs.10000</td>
-            </tr>
+           
 
             <tr>
               <td><h5>Total</h5></td>
-              <td>Rs.29500</td>
+              <td>{item.amount}</td>
             </tr>
+            <button></button>
           </table>
           
                 
                 
             </div>
          );
+    })
     }
 }
  
