@@ -9,6 +9,8 @@ import { shadows } from '@material-ui/system';
 
 import axios from "axios";
 import NavApp from "../ComponentKajan/NavApp";
+import "./Css/shali.css";
+
 
 
 

@@ -7,6 +7,8 @@ import { InboxOutlined } from "@ant-design/icons";
 import { shadows } from '@material-ui/system';
 import axios from 'axios';
 import KajanNav from "./KajanNav";
+import "./Css/kajan.css";
+
 
 
 
