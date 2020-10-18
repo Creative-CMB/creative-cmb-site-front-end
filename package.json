@@ -35,11 +35,13 @@
     "react-dropdown-select": "^4.5.1",
     "react-google-maps": "^9.4.5",
     "react-notification-alert": "0.0.12",
+    "react-payhere-button": "^1.0.1",
     "react-perfect-scrollbar": "^1.5.8",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
     "reactstrap": "^8.5.1",
+    "typescript": "^4.0.3",
     "unsplash-js": "^6.0.0",
     "uuid": "^8.2.0"
   },

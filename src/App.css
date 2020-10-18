@@ -272,12 +272,14 @@ h1 {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-label {
+ label {
   font-size: 0.8em;
   
   color: #222;
   font-weight: lighter;
 }
+
+
 
 input {
   padding: 5px 5px;
@@ -509,7 +511,7 @@ input::placeholder {
     top:50px;
     left:155px;
     width: 450px;
-    height: 545px;
+    height: 285px;
     display: flex;
     flex-direction:column;
     padding: 20px 40px;
@@ -531,7 +533,7 @@ input::placeholder {
 .paypic{
   position: absolute;
   left:1100px;
-  bottom:-20px;
+  bottom:-150px;
 }
 
 th,td{
@@ -542,10 +544,10 @@ th,td{
 .paytype{
 
   position: relative;
-  bottom:400px;
+  bottom:237px;
   left:800px;
   width: 450px;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction:column;
   padding: 20px 40px;

@@ -31,7 +31,6 @@ import Editfeedbac from "./ComponentsMalaka/editfeedback";
 import DemoInvoice from "./ComponentKajan/DemoInvoice";
 import AddInvoice from "./ComponentKajan/AddInvoice";
 import InvoiceDashboard from "./ComponentKajan/InvoiceDashboard";
-import EditInvoice from "./ComponentKajan/EditInvoice";
 import Advertise from "./ComponentShalini/Advertise";
 import AdDash from "./ComponentShalini/AdDash";
 import PackageForm from "./ComponentShalini/PackageForm";
@@ -98,9 +97,9 @@ function App() {
       <Route component={AddInvoice} path='/AddInvoice'></Route>
       <Route component={InvoiceDashboard} path='/Invoice'></Route>
       <Route component={Payment} path='/Payment'></Route>
-      <Route component={EditInvoice} path='/EditInvoice'></Route>
       <Route component={Api} path='/apiinvo'></Route>
       <Route component={InvoiceAdd} path='/invoadd'></Route>
+
       <Route component={Home} path='/home'></Route>
 
 

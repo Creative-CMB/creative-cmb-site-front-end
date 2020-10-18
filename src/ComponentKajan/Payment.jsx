@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import KajanNav from "./KajanNav";
 import PaymentCard from "./PaymentCard";
+import Payhre from "./Payhere";
 import pay from "../Images/paypic.png";
+import debit from "../Images/debit.png";
 import {Radio, Input,Button} from "antd";
 
 
@@ -13,11 +15,29 @@ class Payment extends Component {
         super(props);
         this.state = { 
             value:"",
+            invoice:[],
+
          }
 
     }
 
-    
+    componentDidMount(){
+      this.fetchDetails();
+    }
+
+    fetchDetails = () =>{
+      console.log('fetching...')
+  
+      fetch('http://127.0.0.1:8000/invoices/INV81ace27/')
+      .then(response => response.json())
+      .then(data => 
+        this.setState({
+          invoice:data
+          
+        }) 
+        )
+        
+    }
 
     onChange = e => {
         console.log('radio checked', e.target.value);
@@ -46,21 +66,10 @@ class Payment extends Component {
                 
             <div className="paytype">
             
-                
-            <h4 style={{color:"#3AA1FF",paddingLeft:"120px"}}>Pay using</h4>
-            <Radio.Group onChange={this.onChange} value={value}>
-        <Radio style={radioStyle} value={1}>
-            cash
-        </Radio>
-        <Radio   style={radioStyle} value={2}>
-          Payhere
-        </Radio>
-        
-      </Radio.Group>
-
-      <Button style={{top:"50px"}} type='primary' block>
-              Checkout
-            </Button>
+               <img style={{width:"70%",height:"70%",margin:"0px 40px"}} src={debit}></img> 
+           <div style={{margin: "20px 90px"}}>
+              < Payhre/>
+            </div>
 
             
       </div>
