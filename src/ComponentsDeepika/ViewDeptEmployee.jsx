@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
-import { Input } from 'antd';
 import { Button } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -8,32 +7,28 @@ import { ExclamationCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import {
     Modal,
     notification,
-    Drawer,
-    Form,
-    Col,
-    Row,
-    Select,
-    DatePicker,
     Popconfirm,
     message,
   } from "antd";
 
-  const { confirm } = Modal;
-  const { Option } = Select;
-
-const { Search } = Input;
+const { confirm } = Modal;
 
 class ViewDeptEmployee extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            data:[]
-         }
+          demp:[],
+          selectedDEmployee:{},
+          editMode: false,
+          emp_id:'',
+          dept_id:'',
+          from_date:'',
+          to_date:'', 
+         };
     }
 
     componentDidMount(){
         //fetching the data from bend
-
         this.fetchEmpDetails();
     }
 
@@ -41,8 +36,8 @@ class ViewDeptEmployee extends Component {
         var url = "http://127.0.0.1:8000/deptEmp-list/";
 
         axios.get(url).then(res => {
-            const data = res.data;
-            this.setState({data});
+            const demp = res.data;
+            this.setState({demp});
         })
         
     }
@@ -72,9 +67,6 @@ class ViewDeptEmployee extends Component {
           },
         });
       };
-    //tookend
-
-
 
     confirm = (data) => {
         var url = "http://127.0.0.1:8000/deptEmp-Delete/" + data + "/";
@@ -101,6 +93,81 @@ class ViewDeptEmployee extends Component {
         message.error("Canceled deleting Department Employee");
       };
 
+      //EDIT
+      editManager(demp){
+        console.log("new Employee id:", demp.emp_id);
+        var url = "http://127.0.0.1:8000/deptEmp-Update/" + demp.emp_id + "/";
+        fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(demp),
+    })
+    .then((response) => response.json())
+    .then((demp) => {
+      const newdemp = this.state.demp.map((dempItem) => {
+        if (dempItem.emp_id == demp.emp_id) {
+          return Object.assign({}, demp);
+        } else {
+          return dempItem;
+        }
+      });
+      this.setState({ demp: newdemp });
+      console.log("object", demp);
+    });
+  }
+    editMode = (demp) => {
+      this.setState({ editMode: true });
+      this.passID(demp);
+      console.log("edit mode in employee: ", demp);
+      this.state.demp.filter((item)=>item.emp_id===demp).map((filteredItem)=>this.setState({selectedDEmployee:filteredItem}))
+    };
+
+    passID = (demp) => {
+      if (this.state.editMode) {
+        console.log("true");
+      }
+    };
+
+    handleSubmit=(e)=>{
+    this.setState({[e.target.name]:e.target.value})
+}
+
+updateData = (e) => {
+  e.preventDefault();
+
+  const {dept_id,to_date} = this.state.selectedDEmployee
+
+  const dempUpdateData = {
+    dept_id: this.state.dept_id || dept_id,
+    to_date: this.state.to_date || to_date,
+      
+
+  };
+
+  console.log(dempUpdateData);
+
+  var url= "http://127.0.0.1:8000/deptEmp-Update/" + this.state.selectedDEmployee.emp_id + "/"
+
+
+  fetch(url,{
+    method:"PATCH",
+    headers:{
+      "Content-type":"application/json"
+    },
+
+    body:JSON.stringify(dempUpdateData)
+
+  }).then(response=>this.setState({status:response.status})).catch(err=>console.log(err))
+
+
+  if(this.state.status=="200"){
+    this.fetchEmpDetails()
+
+    window.location.reload(true)
+  }
+}
 
     render() { 
         return ( 
@@ -122,7 +189,10 @@ class ViewDeptEmployee extends Component {
                     <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block ><Link to="/addDeptEmployee" >Add Department Employee</Link></Button>
                 </div><br></br>
 
-                <div className="table-responsive">
+                <div className="table-responsive"
+                 style={{height:450,
+                  overflow:"scroll",  
+                  }}>
                             <table className="table" style={{fontSize:"10px"}}>
                                 <thead className="theads">
                                 <tr>
@@ -138,18 +208,21 @@ class ViewDeptEmployee extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {this.state.data.map(user =>{
+                                {this.state.demp.map((demp) =>{
                                     return(
                                     <tr>
-                                    <td>{user.emp_id}</td>
-                                    <td>{user.dept_id}</td>
-                                    <td>{user.from_date}</td>
-                                    <td>{user.to_date}</td>
+                                    <td>{demp.emp_id}</td>
+                                    <td>{demp.dept_id}</td>
+                                    <td>{demp.from_date}</td>
+                                    <td>{demp.to_date}</td>
                                     
                                     
                                     
                                     <td>
                                         <Button type="button"
+                                        onClick={()=>this.editMode(demp.emp_id)}
+                                        data-toggle="modal"
+                                        data-target="#exampleModalCenter"                                    
                                         style={{
                                             color:"white",
                                             padding:"5px 10px",
@@ -178,7 +251,7 @@ class ViewDeptEmployee extends Component {
                                     }}>
                                     <Popconfirm
                                         title="Are you sure delete this Department?"
-                                        onConfirm={() => this.confirm(user.emp_id)}
+                                        onConfirm={() => this.confirm(demp.emp_id)}
                                         onCancel={this.cancel}
                                         okText="Yes,Delete"
                                         cancelText="No,Cancel"
@@ -194,7 +267,73 @@ class ViewDeptEmployee extends Component {
                             </table>
                             </div>
             </div>
-  
+            <div
+                          class="modal fade"
+                          id="exampleModalCenter"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalCenterTitle"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-headers">
+                                <br></br>
+                                <center><h5 class="modal-title" id="exampleModalLongTitles">
+                                <center>Update Employee</center> 
+                                </h5>
+                                </center>
+                              </div>
+                              <div class="modal-body">{this.passID()}
+                              
+                              <form onSubmit={this.updateData}>
+                                  Department ID : <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedDEmployee.dept_id} name="dept_id" id=""/>
+                                  To Date : <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedDEmployee.to_date} name="to_date" id=""/><br></br>
+                                  <br></br>
+                                  <center>
+                                  <button
+                                    type="submit" 
+                                    className="btn btn-primary"
+                                    style={{
+                                      color:"white",
+                                      padding:"5px 10px",
+                                      fontSize:"10px",
+                                      fontWeight:"bold",
+                                      cursor:"pointer",
+                                      backgroundColor:"white",
+                                      color:"black",
+                                      border:"2px solid blue",
+                                    }}
+                                    >
+                                      Update
+                                    </button>
+                                    </center>
+
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                              
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-dismiss="modal"
+                                style={{
+                                  color:"white",
+                                  padding:"5px 10px",
+                                  fontSize:"10px",
+                                  fontWeight:"bold",
+                                  cursor:"pointer",
+                                  backgroundColor:"white",
+                                  color:"black",
+                                  border:"2px solid red",
+                                }}
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+          </div>
         </div>
          );
     }
