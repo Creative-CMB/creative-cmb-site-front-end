@@ -5,6 +5,8 @@ import Payhre from "./Payhere";
 import pay from "../Images/paypic.png";
 import debit from "../Images/debit.png";
 import {Radio, Input,Button} from "antd";
+import "./Css/kajan.css";
+
 
 
 

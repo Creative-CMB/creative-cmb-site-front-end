@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
  
-import { PayHereButton } from 'react-payhere-button'
+import { PayHereButton } from 'react-payhere-button';
+import "./Css/kajan.css";
+
  
 class Payhere extends Component {
     constructor(props) {

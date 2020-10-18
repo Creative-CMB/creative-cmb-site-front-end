@@ -8,6 +8,7 @@ import Delete from "../Images/delete1.png";
 import EventNav from "../ComponentsAkila/EventNav";
 import axios from "axios";
 import moment from "moment";
+import "./Css/kajan.css";
 import jsPDF from "jspdf"
 import "jspdf-autotable"
 

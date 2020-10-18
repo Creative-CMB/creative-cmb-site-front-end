@@ -4,6 +4,7 @@ import Edit from "../Images/edit2.png";
 import Delete from "../Images/delete1.png";
 import {Space} from "antd";
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import "./Css/shali.css";
 
 
 
