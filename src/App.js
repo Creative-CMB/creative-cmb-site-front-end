@@ -76,7 +76,6 @@ import Admin_login from "./ComponentsSid/adminlogin";
 import Customers from "./ComponentsSid/customers";
 
 import Payment from "./ComponentKajan/Payment";
-import Testinvo from "./ComponentKajan/TestInvoCrud";
 function App() {
   
   const userLogin = (tok) => {
@@ -97,7 +96,6 @@ function App() {
       <Route component={Payment} path='/Payment'></Route>
       <Route component={Api} path='/apiinvo'></Route>
       <Route component={InvoiceAdd} path='/invoadd'></Route>
-      <Route component={Testinvo} path='/test'></Route>
 
       <Route component={Home} path='/home'></Route>
 

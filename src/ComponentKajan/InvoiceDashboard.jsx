@@ -8,6 +8,8 @@ import Delete from "../Images/delete1.png";
 import EventNav from "../ComponentsAkila/EventNav";
 import axios from "axios";
 import moment from "moment";
+import jsPDF from "jspdf"
+import "jspdf-autotable"
 
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import KajanNav from "./KajanNav";
@@ -24,7 +26,7 @@ const { Option } = Select;
 
 
 
-class TestInvoCrud extends Component {
+class InvoiceDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {  
@@ -52,7 +54,33 @@ class TestInvoCrud extends Component {
   document.title = "CreateCMB | Manage Invoice";
   }
 
- 
+  generatePDF = (invoicedata) => {
+    //initilize the pds
+    const doc = new jsPDF();
+
+    //column definition
+    const tableColumns = ["Invoice Id", "Order name", "Amount", "Status", "Payment Type", "Date"];
+    const tableRows = [];
+
+    const rowdata = [
+    invoicedata.invoice_id,
+    invoicedata.order_name,
+    invoicedata.amount,
+    invoicedata.inv_status,
+    invoicedata.payment_type,
+    invoicedata.date
+    ];
+
+    tableRows.push(rowdata);
+
+    doc.autoTable(tableColumns, tableRows, { startY: 20 });
+    const date = Date().split(" ");
+    //the filename will be the current systems date
+    const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
+    doc.text(invoicedata.order_name+ "'s " + "           - note that this is an auto generated file.", 14, 15);
+    doc.save(`report_${dateStr}.pdf`);
+
+  }
 
   fetchDetails = () =>{
     console.log('fetching...')
@@ -62,8 +90,10 @@ class TestInvoCrud extends Component {
     .then(data => 
       this.setState({
         invoice:data
+        
       }) 
       )
+      
   }
 
   delete = (id) => {
@@ -115,6 +145,7 @@ showDrawer = (id) => {
       date : this.state.invo_date,
     };
 
+
     console.log("data" , data);
 
     var url = "http://127.0.0.1:8000/invoice-update/" + this.state.selectedInvoice.invoice_id + "/";
@@ -142,6 +173,7 @@ showDrawer = (id) => {
     this.setState({ date: e });
   };
 
+  
 
 tableData() {
     var self = this 
@@ -156,9 +188,11 @@ tableData() {
               <td> {item.inv_status} </td>
               <td> {item.date} </td>
               <Space size="large">
-        <Button type = "button" class="btn btn-outline-primary" onClick={() => this.showDrawer(item.invoice_id)}>Edit</Button>
+        <button type = "button" class="btn btn-outline-primary" onClick={() => this.showDrawer(item.invoice_id)}>Edit</button>
        
         <button type="button" class="btn btn-outline-danger"  onClick={()=> this.delete(item.invoice_id)}>Delete</button>
+        <button type="button" class="btn btn-outline-success"  onClick={()=> this.generatePDF(item)}>Print Invoice</button>
+
     </Space>
            </tr>
         )
@@ -386,4 +420,4 @@ tableData() {
     }
 }
  
-export default TestInvoCrud;
+export default InvoiceDashboard;
