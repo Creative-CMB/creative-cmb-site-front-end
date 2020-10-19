@@ -6,6 +6,8 @@ import packing from '../Images/pack2.png';
 import { Checkbox } from 'antd';
 import axios from 'axios';
 import NavApp from "../ComponentKajan/NavApp";
+import "./Css/shali.css";
+
 
 
 

@@ -4,6 +4,8 @@ import React, { Component } from "react";
 
 import { Radio, Input, DatePicker, Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
+import "./Css/shali.css";
+
 
 const { Dragger } = Upload;
 

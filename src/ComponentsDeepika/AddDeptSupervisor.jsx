@@ -75,7 +75,7 @@ export default class AddDeptSupervisor extends Component {
             <div className="col-lg-1.5 side"
                 style={{
                     backgroundColor:"LightBlue",
-                    height:"700px"}}
+                    height:"650px"}}
                     >
             {/*Navigation bar */}
             <br></br>
@@ -101,10 +101,10 @@ export default class AddDeptSupervisor extends Component {
                         fontWeight:"bold"}}
                         >
                     <Card style={{ width: 600 }}>
-                    Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
-                    Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id" ></input><br></br><br></br>
-                    From : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
-                    To : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>    
+                    Employee ID : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
+                    Department ID : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id" ></input><br></br><br></br>
+                    From : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
+                    To : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>    
                     </Card>
                     <br></br><br></br><br></br>
                         <div>

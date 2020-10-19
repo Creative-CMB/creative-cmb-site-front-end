@@ -101,7 +101,7 @@ export default class AddDepartment extends Component {
                 <div className="col-lg-1.5 side" 
                     style={{
                         backgroundColor:"LightBlue",
-                        height:"700px"}}>
+                        height:"650px"}}>
                     {/*Navigation bar */}
                     <br></br>
                     <EmployeeSideNavBar />
@@ -124,7 +124,7 @@ export default class AddDepartment extends Component {
                                 >
                     <Card style={{ width: 1000,}}>
 
-                             <br></br>Admin ID :<select onChange={this.formData} id="admin" name="admin_id" style={{border: "3px solid #ccc",float: "right",width: "68%",height:45}}>
+                             <br></br>Admin ID :<select required onChange={this.formData} id="admin" name="admin_id" style={{border: "3px solid #ccc",float: "right",width: "68%",height:45}}>
                                         {this.state.admins.map((ad) =>{
                                             const adId = ad.id;
                                             const adName = ad.username;
@@ -136,20 +136,11 @@ export default class AddDepartment extends Component {
                             </select> 
                            
                             <br></br><br></br>
-                            <br></br>Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id"></input><br></br><br></br>
-                            Name : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_name" ></input><br></br><br></br>
-                            Manager of Department : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_manager_name" ></input><br></br><br></br>
+                            <br></br>Department ID : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id"></input><br></br><br></br>
+                            Name : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_name" ></input><br></br><br></br>
+                            Manager of Department : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_manager_name" ></input><br></br><br></br>
                             
-                            {/* Manager of Department : <select onChange={this.formData} id="empid" name="dept_manager_name" style={{border: "3px solid #ccc",float: "right",width: "68%"}} >
-                                        {this.state.empId.map((e) =>{
-                                            const empid = e.id;
-                                            const empName = e.username;
-
-                                            return(
-                                            <option value={e.id}>{e.username}</option>
-                                            );
-                                        })}
-                            </select> */}<br></br><br></br>
+                            <br></br><br></br>
                         
                     </Card>
                 <div>
