@@ -24,9 +24,11 @@ import ReservationReport from "./ComponentsSanda/ReservationReport";
 
 
 
+import Rental from './ComponentsHimasha/Rental';
 import InventoryItems from "./ComponentsHimasha/InventoryItems";
 import RentalDetails from "./ComponentsHimasha/RentalDetails";
 import AddItems from "./ComponentsHimasha/AddItems";
+import RentalHistory from './ComponentsHimasha/RentalHistory'
 
 import Feedback from "./ComponentsMalaka/FeedbackTemp";
 import Adminfeedback from "./ComponentsMalaka/feedadmin";
@@ -60,7 +62,10 @@ import ViewDeptManager from './ComponentsDeepika/ViewDeptManager';
 import ViewDeptSupervisors from './ComponentsDeepika/ViewDeptSupervisors';
 import ViewEmployee from './ComponentsDeepika/ViewEmployee';
 import ViewSalary from './ComponentsDeepika/ViewSalary';
-
+import EmployeePDF from './ComponentsDeepika/EmployeePDF';
+import DepartmentPDF from './ComponentsDeepika/DepartmentPDF';
+import DeptManagerPDF from './ComponentsDeepika/DeptManagerPDF';
+import SalaryPDF from './ComponentsDeepika/SalaryPDF';
 
 
 
@@ -136,11 +141,11 @@ function App() {
 
      <Route component={InventoryItems} path="/inventory"></Route>
       <Route component={AddItems} path="/add"></Route>
+      <Route component={Rental} path='/rent' ></Route>
+      <Route component={RentalDetails} path='/rental_details'></Route>
+      <Route component={RentalHistory} path='/rental_history' ></Route>
 
-
-
-      <Route component={Feedback} path="/feedback"></Route>
-      <Route component={Adminfeedback} path="/adminfeedback"></Route>
+    
       
 
       <Route component={AddEmployee} path="/addEmployee"></Route>
@@ -156,6 +161,10 @@ function App() {
       <Route component={ViewEmployee} path="/viewemp"></Route>
       <Route component={ViewSalary} path="/viewsalary"></Route>
       <Route component={EmployeeManagementHome} path="/employeeHome"></Route>
+      <Route component={EmployeePDF} path="/employeePDF"></Route>
+      <Route component={DepartmentPDF} path="/departmentPDF"></Route>
+      <Route component={DeptManagerPDF}path="/deptmanagerPDF"></Route>
+      <Route component={SalaryPDF} path="/salaryPDF"></Route>
 
       
       <Route component={Feedback} path='/feedback'></Route>

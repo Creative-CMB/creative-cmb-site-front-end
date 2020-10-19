@@ -172,7 +172,7 @@ updateData = (e) => {
         return ( 
             <div className="row">
   
-            <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"700px"}}>
+            <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"650px"}}>
                 {/*Navigation bar */}
                 <br></br>
                 <EmployeeSideNavBar />

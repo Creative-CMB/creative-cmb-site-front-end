@@ -216,6 +216,68 @@
   width: 250px;
   height: 61px;
   }
+
+  .button-booktkt{
+      position:relative;
+    background: linear-gradient(180deg, #49DCFC 0%, #3AA1FF 100%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  border:none;
+  color:black;
+  font-family: 'Roboto';
+  font-weight:600;
+  font-size: 20px;
+  margin:-60px 650px;
+  width: 150px;
+  height: 61px;
+  }
+
+  .services1{
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    left: 170px;
+    top: 76px;
+    
+    background: #FFFFFF;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+  }
+  .services2{
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    left: 483px;
+    top: 76px;
+    
+    background: #FFFFFF;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+  }
+
+  .services3{
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    left: 796px;
+    top: 76px;
+    
+    background: #FFFFFF;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+  }
+
+  .services4{
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    left: 1109px;
+    top: 76px;
+    
+    background: #FFFFFF;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+  }
   
   .button-print{
     position: absolute;
@@ -230,7 +292,7 @@
   background: linear-gradient(180deg, #4694DB 0%, #3AA1FF 100%);
   border-radius: 10px;
   }
-  
+
   
   
   h1 {
