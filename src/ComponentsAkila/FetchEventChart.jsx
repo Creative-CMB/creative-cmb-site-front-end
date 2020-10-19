@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Alert } from 'antd';
+import { Alert,Card } from 'antd';
 const chartColor = '#FFFFFF';
 
 const options = {
@@ -100,7 +100,9 @@ class FetchEventChart extends Component {
     render() { 
         return ( 
             <div>
-                <Line data={this.data} options={options} />
+                <Card title="Event creation progression over the time (Monthly vise)" bordered={false} >
+                    <Line data={this.data} options={options} />
+                </Card>
              </div>
          );
     }

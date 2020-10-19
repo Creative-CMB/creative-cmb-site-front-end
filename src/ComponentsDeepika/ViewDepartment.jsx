@@ -9,31 +9,24 @@ import { ExclamationCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import {
     Modal,
     notification,
-    Drawer,
-    Form,
-    Col,
-    Row,
-    Select,
-    DatePicker,
     Popconfirm,
     message,
   } from "antd";
 
   const { confirm } = Modal;
-  const { Option } = Select;
-const { Search } = Input;
+
 
 class ViewDepartment extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-          data:[],
             department:[],
             selectedDept:{},
-            admin_id:"",
-            dept_id:"",
-            dept_name:"",
-            dept_manager_name:"",
+            editMode: false,
+            admin_id:'',
+            dept_id:'',
+            dept_name:'',
+            dept_manager_name:'',
             
          };
     }
@@ -43,16 +36,12 @@ class ViewDepartment extends Component {
         this.fetchDepartment();
     }
 
-    componentDidMount() {
-      document.title = "CreateCMB | Update Department";
-  }
-
     fetchDepartment = () =>{
         var url = "http://127.0.0.1:8000/department-list/";
 
         axios.get(url).then(res => {
-            const data = res.data;
-            this.setState({data});
+            const department = res.data;
+            this.setState({department});
         })
         
     }
@@ -110,68 +99,83 @@ class ViewDepartment extends Component {
         message.error("Canceled deleting Department");
       };
 
-      //update
-      
-      showDrawer = (id) => {
-        this.state.department
-          .filter((item) => item.dept_id === id)
-          .map((filterdItem) => this.setState({ selectedDept: filterdItem }));
-    
-        this.setState(
-          {
-            visible: true,
-          },
-          () => console.log(this.state.selectedDept)
-        );
-    
-        console.log(this.state.selectedDept);
-      };
 
-  
-
-    onClose = () => {
-        window.location.reload(false);
-        this.setState(
-        {
-            visible: false,
-        },
-        () => console.log(this.state.visible)
-        );
-    };
-
-  
-    submitData = () => {
-        const data = {
-            admin_id: this.state.selectedDept.admin_id,
-            dept_id:this.state.selectedDept.dept_id,
-            dept_name:this.state.selectedDept.dept_name,
-            dept_manager_name:this.state.selectedDept.dept_manager_name,
-        };
-
-        console.log("data", data);
-
-        var url =
-        "http://127.0.0.1:8000/department-Update/" + this.state.selectedDept.dept_id + "/";
-        console.log("data", url);
-
+      //EDIT
+      editManager(department){
+        console.log("new Employee id:", department.dept_id);
+        var url = "http://127.0.0.1:8000/department-Update/" + department.dept_id + "/";
         fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => {
-            alert(response.headers)
-            }).catch((err) => console.log(err));
-            console.log(data);
-    };
-  
-    updateData = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(department),
+    })
+    .then((response) => response.json())
+    .then((department) => {
+      const newdepartment = this.state.department.map((departmentItem) => {
+        if (departmentItem.dept_id == department.dept_id) {
+          return Object.assign({}, department);
+        } else {
+          return departmentItem;
+        }
+      });
+      this.setState({ department: newdepartment });
+      console.log("object", department);
+    });
+  }
+    editMode = (department) => {
+      this.setState({ editMode: true });
+      this.passID(department);
+      console.log("edit mode in department: ", department);
+      this.state.department.filter((item)=>item.dept_id===department).map((filteredItem)=>this.setState({selectedDept:filteredItem}))
     };
 
-  
+    passID = (Employee) => {
+      if (this.state.editMode) {
+        console.log("true");
+      }
+    };
+
+    handleSubmit=(e)=>{
+    this.setState({[e.target.name]:e.target.value})
+}
+
+updateData = (e) => {
+  e.preventDefault();
+
+  const {dept_name,dept_manager_name} = this.state.selectedDept
+
+  const departmentUpdateData = {
+    dept_name: this.state.dept_name || dept_name,
+    dept_manager_name: this.state.dept_manager_name || dept_manager_name,
+      
+
+  };
+
+  console.log(departmentUpdateData);
+
+  var url= "http://127.0.0.1:8000/department-Update/" + this.state.selectedDept.dept_id + "/"
+
+
+  fetch(url,{
+    method:"PATCH",
+    headers:{
+      "Content-type":"application/json"
+    },
+
+    body:JSON.stringify(departmentUpdateData)
+
+  }).then(response=>this.setState({status:response.status})).catch(err=>console.log(err))
+
+
+  if(this.state.status=="200"){
+    this.fetchDepartment()
+
+    window.location.reload(true)
+  }
+}
+      
 
 
     render() { 
@@ -196,7 +200,10 @@ class ViewDepartment extends Component {
                 </div><br></br>
 
 
-                        <div className="table-responsive">
+                        <div className="table-responsive"
+                        style={{height:450,
+                          overflow:"scroll",  
+                          }}>
                             <table className="table" style={{fontSize:"13px"}}>
                                 <thead className="theads">
                                 <tr>
@@ -210,16 +217,18 @@ class ViewDepartment extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {this.state.data.map(user =>{
+                                {this.state.department.map((department) =>{
                                     return(
                                     <tr>
-                                    <td>{user.dept_id}</td>
-                                    <td>{user.admin_id}</td>
-                                    <td>{user.dept_name}</td>
-                                    <td>{user.dept_manager_name}</td>
+                                    <td>{department.dept_id}</td>
+                                    <td>{department.admin_id}</td>
+                                    <td>{department.dept_name}</td>
+                                    <td>{department.dept_manager_name}</td>
                                     
                                      <td>
-                                        <Button type="button" onClick={() => this.showDrawer(user.dept_id)}type="primary"
+                                        <Button type="button"  onClick={()=>this.editMode(department.dept_id)}
+                                        data-toggle="modal"
+                                        data-target="#exampleModalCenter"                                    
                                         style={{
                                             color:"white",
                                             padding:"5px 10px",
@@ -248,7 +257,7 @@ class ViewDepartment extends Component {
                                     }}>
                                     <Popconfirm
                                         title="Are you sure delete this Department?"
-                                        onConfirm={() => this.confirm(user.dept_id)}
+                                        onConfirm={() => this.confirm(department.dept_id)}
                                         onCancel={this.cancel}
                                         okText="Yes,Delete"
                                         cancelText="No,Cancel"
@@ -261,112 +270,75 @@ class ViewDepartment extends Component {
                                     );
                                 })}
                                 </tbody>
-                            </table>
-
-                            
-                            <Drawer
-                              title="Update Department"
-                              width="auto"
-                              onClose={this.onClose}
-                              visible={this.state.visible}
-                              bodyStyle={{ paddingBottom: 10 }}
-                              footer={
-                                <div
-                                  style={{
-                                    textAlign: "right",
-                                  }}
-                                >
-                                  <Button onClick={this.onClose} style={{ marginRight: 8 }}>
-                                    Cancel
-                                  </Button>
-                                  <Button onClick={this.submitData} type="primary">
-                                    Submit
-                                  </Button>
-                                </div>
-                              }
-                            >
-                              <Form layout="vertical" hideRequiredMark>
-                                <Row gutter={16}>
-                                  <Col span={12}>
-                                    <Form.Item
-                                      name="admin_id"
-                                      label="Admin ID"
-                                      rules={[
-                                        { required: true, message: "Please enter an Admin id" },
-                                      ]}
-                                    >
-                                      <Input
-                                        placeholder="Please enter an Admin id"
-                                        key={this.state.selectedDept.admin_id}
-                                        name="admin_id"
-                                        defaultValue={this.state.selectedDept.admin_id}
-                                        onChange={this.updateData}
-                                      />
-                                    </Form.Item>
-                                  </Col>
-                                  <Col span={12}>
-                                    <Form.Item
-                                      name="dept_id"
-                                      label="Department ID"
-                                      rules={[{ required: true, message: "Please enter a department id" }]}
-                                    >
-                                      <Input
-                                        style={{ width: "100%" }}
-                                        name="dept_id"
-                                        onChange={this.updateData}
-                                        placeholder="Please enter the department id"
-                                        defaultValue={this.state.selectedDept.dept_id}
-                                      />
-                                    </Form.Item>
-                                  </Col>
-                                </Row>
-                                <Row gutter={16}>
-                                  <Col span={12}>
-                                    <Form.Item
-                                      name="dept_name"
-                                      label="Department Name"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message: "Please enter the department name",
-                                        },
-                                      ]}
-                                    >
-                                      <Input
-                                        style={{ width: "100%" }}
-                                        onChange={this.updateData}
-                                        name="dept_name"
-                                        placeholder="Please enter the department name"
-                                        defaultValue={this.state.selectedDept.dept_name}
-                                      />
-                                    </Form.Item>
-                                  </Col>
-                                  <Col span={12}>
-                                    <Form.Item
-                                      name="dept_manager_name"
-                                      label="Manager of the department"
-                                      rules={[
-                                        {
-                                          required: true,
-                                          message: "Please enter the Manager",
-                                        },
-                                      ]}
-                                    >
-                                      <Input
-                                        style={{ width: "100%" }}
-                                        onChange={this.updateData}
-                                        name="dept_manager_name"
-                                        placeholder="Please enter the Manager"
-                                        defaultValue={this.state.selectedDept.dept_manager_name}
-                                      />
-                                    </Form.Item>
-                                  </Col>
-                                </Row>
-                              </Form>
-                            </Drawer>
-                                    
+                            </table>       
                             </div>
-                    
+                              </div>
+                              <div
+                          class="modal fade"
+                          id="exampleModalCenter"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalCenterTitle"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-headers">
+                                <br></br>
+                                <center><h5 class="modal-title" id="exampleModalLongTitles">
+                                <center>Update Employee</center> 
+                                </h5>
+                                </center>
+                              </div>
+                              <div class="modal-body">{this.passID()}
+                              
+                              <form onSubmit={this.updateData}>
+                                  Department Name : <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedDept.dept_name} name="dept_name" id=""/>
+                                  Manager name : <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedDept.dept_manager_name} name="dept_manager_name" id=""/><br></br>
+                                  <br></br>
+                                  <center>
+                                  <button
+                                    type="submit" 
+                                    className="btn btn-primary"
+                                    style={{
+                                      color:"white",
+                                      padding:"5px 10px",
+                                      fontSize:"10px",
+                                      fontWeight:"bold",
+                                      cursor:"pointer",
+                                      backgroundColor:"white",
+                                      color:"black",
+                                      border:"2px solid blue",
+                                    }}
+                                    >
+                                      Update
+                                    </button>
+                                    </center>
+
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                              
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-dismiss="modal"
+                                style={{
+                                  color:"white",
+                                  padding:"5px 10px",
+                                  fontSize:"10px",
+                                  fontWeight:"bold",
+                                  cursor:"pointer",
+                                  backgroundColor:"white",
+                                  color:"black",
+                                  border:"2px solid red",
+                                }}
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                 </div>
             </div>
   

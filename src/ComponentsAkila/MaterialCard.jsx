@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Statistic, Row, Col, Button } from 'antd';
+import { Statistic, Row, Col, Button,Card } from 'antd';
 
 class Materialcard extends Component {
     constructor(props) {
@@ -20,8 +20,9 @@ class Materialcard extends Component {
     }
     render() { 
         return ( 
-            <div>
-                <Row gutter={16}>
+            <div className="site-card-border-less-wrapper">
+                <Card title="Users Vs Events Count" bordered={false}>
+                    <Row gutter={16}>
                     <Col span={12}>
                     <Statistic title="Users linked to active events" value={this.state.cuscout} />
                     </Col>
@@ -32,6 +33,7 @@ class Materialcard extends Component {
                     </Button>
                     </Col>
                 </Row>
+                 </Card>
             </div>
          );
     }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from 'antd';
 import sample from "../Images/emp1.jpg";
+import { Link } from "react-router-dom";
 
 
 function EmployeeMiddle() {
@@ -33,16 +34,16 @@ function EmployeeMiddle() {
   
         <div className="row" style={{marginBottom:20,marginLeft:10,marginTop:10}}>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block >Department</Button>
+            <Link to="/departmentPDF"><Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block >Department</Button></Link>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Employee Details</Button>
+            <Link to="/employeePDF" ><Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Employee Details</Button></Link>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Leave Details</Button>
+          <Link to="/deptmanagerPDF"><Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Department Manager Details</Button></Link>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Salary Details</Button>
+          <Link to="/salaryPDF"><Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Salary Details</Button></Link>
           </div>
         </div>
         </div>

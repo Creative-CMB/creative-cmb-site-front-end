@@ -21,9 +21,11 @@ import TktTemplate from "./ComponentsSanda/TktTemplate";
 import ResTemplate from "./ComponentsSanda/ResTemplate";
 import TicketEdit from "./ComponentsSanda/TicketEdit"
 
+import Rental from './ComponentsHimasha/Rental';
 import InventoryItems from "./ComponentsHimasha/InventoryItems";
 import RentalDetails from "./ComponentsHimasha/RentalDetails";
 import AddItems from "./ComponentsHimasha/AddItems";
+import RentalHistory from './ComponentsHimasha/RentalHistory'
 
 import Feedback from "./ComponentsMalaka/FeedbackTemp";
 import Adminfeedback from "./ComponentsMalaka/feedadmin";
@@ -49,7 +51,6 @@ import AddDepartment from './ComponentsDeepika/AddDepartment';
 import AddDeptManager from './ComponentsDeepika/AddDeptManager';
 import AddDeptSupervisor from './ComponentsDeepika/AddDeptSupervisor';
 import AddDeptEmployee from './ComponentsDeepika/AddDeptEmployee';
-import AddLeave from './ComponentsDeepika/AddLeave';
 import AddSalary from './ComponentsDeepika/AddSalary';
 import EmployeeManagementHome from './ComponentsDeepika/EmployeeManagementHome';
 import ViewDepartment from './ComponentsDeepika/ViewDepartment';
@@ -57,9 +58,11 @@ import ViewDeptEmployee from './ComponentsDeepika/ViewDeptEmployee';
 import ViewDeptManager from './ComponentsDeepika/ViewDeptManager';
 import ViewDeptSupervisors from './ComponentsDeepika/ViewDeptSupervisors';
 import ViewEmployee from './ComponentsDeepika/ViewEmployee';
-import ViewLeave from './ComponentsDeepika/ViewLeave';
 import ViewSalary from './ComponentsDeepika/ViewSalary';
-
+import EmployeePDF from './ComponentsDeepika/EmployeePDF';
+import DepartmentPDF from './ComponentsDeepika/DepartmentPDF';
+import DeptManagerPDF from './ComponentsDeepika/DeptManagerPDF';
+import SalaryPDF from './ComponentsDeepika/SalaryPDF';
 
 
 
@@ -133,8 +136,9 @@ function App() {
 
       <Route component={InventoryItems} path="/inventory"></Route>
       <Route component={AddItems} path="/add"></Route>
-
-
+      <Route component={Rental} path='/rent' ></Route>
+      <Route component={RentalDetails} path='/rental_details'></Route>
+      <Route component={RentalHistory} path='/rental_history' ></Route>
 
     
       
@@ -144,16 +148,18 @@ function App() {
       <Route component={AddDeptManager} path="/addDeptManager"></Route>
       <Route component={AddDeptSupervisor} path="/addDeptSupervisor"></Route>
       <Route component={AddDeptEmployee} path="/addDeptEmployee"></Route>
-      <Route component={AddLeave} path="/addLeave"></Route>
       <Route component={AddSalary} path="/addSalary"></Route>
       <Route component={ViewDepartment} path="/viewdept"></Route>
       <Route component={ViewDeptEmployee} path="/viewdeptemp"></Route>
       <Route component={ViewDeptManager} path="/viewdeptmanag"></Route>
       <Route component={ViewDeptSupervisors} path="/viewdeptsuper"></Route>
       <Route component={ViewEmployee} path="/viewemp"></Route>
-      <Route component={ViewLeave} path="/viewleave"></Route>
       <Route component={ViewSalary} path="/viewsalary"></Route>
       <Route component={EmployeeManagementHome} path="/employeeHome"></Route>
+      <Route component={EmployeePDF} path="/employeePDF"></Route>
+      <Route component={DepartmentPDF} path="/departmentPDF"></Route>
+      <Route component={DeptManagerPDF}path="/deptmanagerPDF"></Route>
+      <Route component={SalaryPDF} path="/salaryPDF"></Route>
 
       
       <Route component={Feedback} path='/feedback'></Route>
