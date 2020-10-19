@@ -19,8 +19,11 @@ export default class test extends Component {
 
                 
                 </div>
-                <div className="col-9">
-                        <img  src={dash_image} style={{marginLeft:"45%", marginTop:"5%"}} />
+                <div className="col-4" > </div>
+                <div className="col-5">
+                   
+                        <img  src={dash_image} style={{marginLeft:"5%", marginTop:"10%"}} />
+                        
                 </div>
                 </div>
             </div>

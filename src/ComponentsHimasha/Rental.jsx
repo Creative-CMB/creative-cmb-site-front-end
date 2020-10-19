@@ -19,6 +19,7 @@ export default class Rental extends Component {
         eqp_id:'',
         isChecked:false,
         status:false,
+        total_price:'',
 
     }
 
@@ -110,10 +111,14 @@ export default class Rental extends Component {
             body:JSON.stringify(select_rentItem)
         }).then(response => response.json()).then(select_rentItem => {
             this.setState({selectedItems: this.state.selectedItems.concat([select_rentItem])});
+
+            this.calTotalPrice()
+
         });
 
         console.log('selected Item :', select_rentItem)
         this.handleReset()
+        this.calTotalPrice()
     } 
 
     
@@ -130,6 +135,13 @@ export default class Rental extends Component {
         }).catch(err=>console.log(err));
   }
 
+
+  calTotalPrice = () => {
+    const total = this.state.selectedItems.reduce((totalPrice, item) => totalPrice + item.price, 0);
+    console.log( 'cal total price' ,total)
+
+    this.setState({total_price:total})
+}
 
     render(){
         return(
@@ -184,7 +196,8 @@ export default class Rental extends Component {
                
                 <EquipmentRental 
                 selected_item = {this.state.selectedItems} 
-                deleteRental = {this.deleteRental} />
+                deleteRental = {this.deleteRental}
+                totalPrice = {this.state.total_price} />
 
 
 

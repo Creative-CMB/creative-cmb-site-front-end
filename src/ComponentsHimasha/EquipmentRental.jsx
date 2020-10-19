@@ -17,10 +17,11 @@ export default class EquipmentRental extends Component {
     }
   
     calTotalPrice = () => {
-        const total = this.props.selected_item.reduce((totalPrice, pilot) => totalPrice + pilot.price, 0);
-        console.log(total)
+        var total = this.props.selected_item.reduce((totalPrice, item) => totalPrice + item.price, 0);
+        //console.log( 'cal total price' ,total)
 
-        this.setState({total_price:total})
+        return total;
+        //this.setState({total_price:total})
     }
 
   delete = (id) => {
@@ -33,40 +34,48 @@ export default class EquipmentRental extends Component {
 
 
   handleRentalSubmit = (event) => {
-
     event.preventDefault()
+
+    var total = this.props.selected_item.reduce((totalPrice, item) => totalPrice + item.price, 0);
+    //console.log( 'cal total price' ,total)
 
     const rentalDetails = {
           rent_id: "RID" + cryptoRandomString({ length:5 }),
           rental_date: this.state.rental_date,
           rental_period:this.state.rental_period,
           status:'TEst',
-          price:this.state.price,
+          price:total,
           qty:this.state.qty,
           customer_id:'himasha',
       }
 
-      var url = 'http://127.0.0.1:8000/add-rental-details/'
+      var result = window.confirm('Your Total Price is :' + total)
+      if(result){
+        var url = 'http://127.0.0.1:8000/add-rental-details/'
     
-      fetch(url, {
-        method:'POST',
-        headers:{
-          'Content-type': 'application/json',
-        },
-  
-        body:JSON.stringify(rentalDetails)
+        fetch(url, {
+            method:'POST',
+            headers:{
+            'Content-type': 'application/json',
+            },
+    
+            body:JSON.stringify(rentalDetails)
+        }
+        );
+      }else{
+          alert('swbswsubwusuws')
       }
-      );
-      
+
       console.log('rental details', rentalDetails)
   }
 
-
-
-
     render() {
+        var price = this.calTotalPrice()
+        var stupid = this.props.selected_item.reduce((totalPrice, item) => totalPrice + item.price, 0);
         return (
-        
+
+            
+                
               
                     <div className="row">
                         <div className="col-md-6"><div class="card" style={{background:"#edf0f6"}} ><div class="card-body">
@@ -79,7 +88,8 @@ export default class EquipmentRental extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.props.selected_item.map((s_item => {
+                                    {
+                                    this.props.selected_item.map((s_item => {
                                     const{rent_equipment_id, name, price, quantity, customer_id} = s_item
                                     return (<tr>
                                         {/* <td> {rent_equipment_id} </td> */}

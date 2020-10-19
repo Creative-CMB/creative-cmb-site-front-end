@@ -1,5 +1,8 @@
 import { DatePicker } from 'antd'
 import React, { Component } from 'react'
+import jsPDF from "jspdf"
+import "jspdf-autotable"
+import { format } from "date-fns"
 
 export default class RentalHistory extends Component {
 
@@ -13,12 +16,7 @@ export default class RentalHistory extends Component {
 
     }
 
-    lol = (e) => {
-        this.setState({[e.target.name]:e.target.value})
-    }
-
-    checkIfClicked = (t) => {
-    }
+    
 
      componentDidMount() {
         this.fecthRentalHistory()
@@ -32,38 +30,38 @@ export default class RentalHistory extends Component {
                 rental_history:data}))            
     }
 
-    test = () => {
-        var date1 = new Date('December 25, 2017 01:30:00');
-        var date2 = new Date('June 18, 2016 02:30:00');
-
+    generatePDF = (rental_data) => {
+        //initilize the pds
+        const doc = new jsPDF();
     
-       
-        if(date1.getTime() > date2.getTime()){
-            console.log('ediedhdiehd')
-        }
-                
-        var OneDay = new Date().getTime() + (1 * 24 * 60 * 60 * 1000)
-        var yourDate = new Date('May 18, 2016 02:30:00')
-                                     
-        if (OneDay > yourDate) {
-           console.log('hi working')
-        }
-        else if (OneDay < yourDate) {
-            console.log('hi workrfrfring')
-        }
-    }
-
-    help = (date) => {
-        console.log('date',date)
-    }
+        //column definition
+        const tableColumns = ["Rented Date", "Period", "Quantity", "Returned Status", "Total Price"];
+        const tableRows = [];
+    
+        const rowdata = [
+          rental_data.rental_date,
+          rental_data.rental_period,
+          rental_data.qty,
+          rental_data.status,
+          rental_data.price,
+        ];
+    
+        tableRows.push(rowdata);
+    
+        doc.autoTable(tableColumns, tableRows, { startY: 20 });
+        const date = Date().split(" ");
+        //the filename will be the current systems date
+        const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
+        doc.text('Creative CMB ~ Rental Invoice' , 14, 15);
+        doc.save(`report_${dateStr}.pdf`);
+    
+      }
 
     render() {
         return (
             
             <div>
-                <h1> {this.state.status} </h1>
-                {this.test()}
-                <h1> {this.state.currentDate} </h1>
+                
                 <table table className= "table table-hover" >
                     <thead>
                         <tr>
@@ -83,7 +81,7 @@ export default class RentalHistory extends Component {
                             <td> {status} </td>
                             <td> {price} </td>
                             <td> {qty} </td>
-                            <td> <button type="button" onChange={()=> this.help(rental_date)}>help dude</button> </td>
+                            <td> <button type="button" onClick={()=> this.generatePDF(r_history)}>generate Invoice</button> </td>
                         </tr>
                         )})}
                     </tbody>
@@ -93,8 +91,7 @@ export default class RentalHistory extends Component {
                 <button type="submit" className="btn btn-danger" >cancel</button>
 
 
-                <input type="radio" name="status" value="Hello"></input>
-                <input type="radio" name="status" value="Bye"></input>
+            
 
             </div>
         )
