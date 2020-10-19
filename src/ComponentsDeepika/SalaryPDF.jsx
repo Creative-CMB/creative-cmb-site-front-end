@@ -85,6 +85,8 @@ class ViewSalary extends Component {
                                 </thead>
                                 <tbody>
                                 {this.state.sal.map(sal =>{
+                                    var extra = sal.extra_hours * 400;
+                                    var total = sal.basic_sal + sal.bonus + extra;
                                     return(
                                     <tr>
                                     <td>{sal.sal_id}</td>
@@ -93,7 +95,7 @@ class ViewSalary extends Component {
                                     <td>{sal.basic_sal}</td>
                                     <td>{sal.extra_hours}</td>
                                     <td>{sal.bonus}</td>
-                                    <td>{sal.basic_sal} + {sal.bonus} </td>
+                                    <td>{total} </td>
                                     <td>{sal.month}</td>
                                     <td>{sal.Year}</td>
                                     <td>{sal.paid}</td>
