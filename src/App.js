@@ -136,8 +136,7 @@ function App() {
 
 
 
-      <Route component={Feedback} path="/feedback"></Route>
-      <Route component={Adminfeedback} path="/adminfeedback"></Route>
+    
       
 
       <Route component={AddEmployee} path="/addEmployee"></Route>
