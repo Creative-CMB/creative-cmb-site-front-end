@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import home_icon from '../Images/home_icon.png';
 import logo_creative from '../Images/logo_creative.png';
+import jsPDF from "jspdf"
+import autoTable from 'jspdf-autotable'
+import {notification, Spin } from "antd";
 
 
-const cryptoRandomString = require('crypto-random-string')
+const cryptoRandomString = require('crypto-random-string');
 
 class AddUsers extends Component {
     constructor(props) {
@@ -16,8 +19,7 @@ class AddUsers extends Component {
             first_name: "",
             last_name: "",
             mobile_number: "",
-            email: "",
-            
+            email: "",            
             district: "",
             city: "",
           };
@@ -49,6 +51,34 @@ class AddUsers extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
+    generatePDF = (userdata) => {
+        const doc = new jsPDF();
+        const tableColumns = ["User Id", "Date of Birth", "First name", "Last Name", "Mobile Number", "Email", "District", "City"];
+        const tableRows = [];
+    
+        const rowdata = [
+            userdata.user_id,
+            userdata.date_of_birth,
+            userdata.first_name,
+            userdata.last_name,
+            userdata.mobile_number,
+            userdata.email,            
+            userdata.district,
+            userdata.city          
+        ];
+    
+        tableRows.push(rowdata);
+    
+        doc.autoTable(tableColumns, tableRows, { startY: 20 });
+        const date = Date().split(" ");
+
+        const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
+        doc.text(userdata.first_name + " " + userdata.last_name + "'s Details" + " - ** this is an auto generated file.", 14, 15);
+        doc.save(`report_${dateStr}.pdf`);
+    
+      }
+
+      
       
     OnSubmit = (e) => {
         e.preventDefault();
@@ -66,6 +96,18 @@ class AddUsers extends Component {
             city: this.state.city,
         };
 
+        
+
+        this.generatePDF(data);
+
+        const args = {
+            message: <Spin />,
+            description:
+              "The form is submitting. You will redirect to the page, once it is done. Thank you for your patience.",
+            duration: 0,
+        };
+        notification.open(args);
+    
         console.log(data);
 
         fetch("http://127.0.0.1:8000/new-user/", {
@@ -78,7 +120,6 @@ class AddUsers extends Component {
           }).catch(function(err){
             alert(err)
           })
-
         
           
     };
@@ -202,9 +243,12 @@ class AddUsers extends Component {
                             </div>
                             <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{marginLeft:120}}>
                                 <a href="/userdashboard">
-                                    <button type="button" class="btn btn-primary" style={{backgroundColor:"red"}}> Go Back </button>
+                                    <button type="button" class="btn btn-primary" style={{backgroundColor:"red"}}> Go to Home </button>
                                 </a>
-                            </div>
+                                <a href="/manageusers" style={{marginLeft:20}}>
+                                    <button type="button" class="btn btn-primary" style={{backgroundColor:"blue"}}> Go to DataBase </button>
+                                </a>
+                            </div>                           
                         </div>
                     </div>
                 </div>
