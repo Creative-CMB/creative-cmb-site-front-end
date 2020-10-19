@@ -101,7 +101,7 @@ export default class AddDepartment extends Component {
                 <div className="col-lg-1.5 side" 
                     style={{
                         backgroundColor:"LightBlue",
-                        height:"700px"}}>
+                        height:"650px"}}>
                     {/*Navigation bar */}
                     <br></br>
                     <EmployeeSideNavBar />
