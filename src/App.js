@@ -82,19 +82,9 @@ import Dashboard from "./ComponentsAkila/Dashboard";
 import AddUsers from "./ComponentsSid/AddUsers";
 import ManageUsers from "./ComponentsSid/ManageUsers";
 import UpdateUsers from "./ComponentsSid/UpdateUsers";
-import Admin_login from "./ComponentsSid/adminlogin";
-import Customers from "./ComponentsSid/customers";
 
 import Payment from "./ComponentKajan/Payment";
 function App() {
-  
-  const userLogin = (tok) => {
-    setToken(tok);
-    
-  }
-
-  const[ token, setToken] = useState('');
-
 
   return (
     <Router>
@@ -169,25 +159,23 @@ function App() {
       <Route component={SalaryPDF} path="/salaryPDF"></Route>
 
       
+      
       <Route component={Feedback} path='/feedback'></Route>
       <Route component={Adminfeedback} path='/adminfeedback'></Route>
       <Route component={Editfeedbac} path='/editfeedback'></Route>
-      <Route component={Startup} path="/startup"/>
-      <Route component={Signup} path="/signup"/>
-      <Route component={Login} path="/login"/>
+      
       <Route component={UserAccount} path="/useraccount"/>
       <Route component={UserDashboard} path="/userdashboard"/>
       <Route component={AddUsers} path="/addusers"/>
       <Route component={ManageUsers} path="/manageusers"/>
       <Route component={UpdateUsers} path="/updateusers"/>
-      <Route component={Admin_login} path="/adminlogin" userLogin={userLogin}/>
-      <Route component={Customers} path="/customers"/>
-     
 
 
      
 
     </Router>
+
+    
 
   );
 }
