@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Image } from "react-bootstrap";
+
 import ResTable from "./ResTable";
 import ResForm from "./ResForm";
-import img4 from "./img/5.jpg";
+
 import ResBar from "./ResBar";
 import TktNavBar from "./TktNavBar";
 import ResTicketImg from "./ResTicketImg";
+
+import imgwelcome from "./img/welcome.png";
+
 
 class ResTemplate extends Component {
   constructor(props) {
@@ -18,15 +21,17 @@ class ResTemplate extends Component {
       <div>
         <div className="row">
           <div className="col-lg-12">
-            <TktNavBar link1="Home" link2="Event Details" link3="Reservation" />
+            <TktNavBar link1="Home" link2="Reserved Tickets" link3="Reservation" />
           </div>
         </div>
         <div className="row">
           <ResTicketImg />
         </div>
 
-        <div className="row">
-          {/* <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"> */}
+
+
+{/*         <div className="row">
+          
           <div
             style={{
               width: "100%",
@@ -44,48 +49,51 @@ class ResTemplate extends Component {
               }}
             >
               <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12">
-                <h1 style={{ fontFamily: "sanseriff" }}>Event Name</h1>
+                <h1 style={{ fontFamily: "sanseriff", textAlign:"left" }}>Reserved Tickets</h1>
               </div>
               <div className="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <button type="button" class="btn btn-info">
+                 <button type="button" class="btn btn-info">
                   Reserve
-                </button>
+                </button> 
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="row" style={{ padding: "10px", marginTop: "30px" }}>
+        <div className="row" style={{ padding: "10px", marginTop: "70px" }}>
           <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
             <ResTable />
           </div>
 
-          <div
+           <div
             className="col-lg-4 col-md-12 col-sm-12 col-xs-12"
             style={{ textAlign: "center" }}
           >
-            <div className="row">
-              <h4>Event date:</h4>
-            </div>
-            <br />
-            <br />
-            <div className="row">
-              <h4>Venue:</h4>
-            </div>
-          </div>
+              <img className="d-block w-100" src={imgwelcome} alt="Third slide" style={{height:"100%" , width:"100%"}}/>
+          </div> 
         </div>
 
-        <div className="row" style={{ marginTop: "30px" }}>
-          <ResBar title="Reservation" />
+        <div className="row" style={{ marginLeft: "10px", marginTop: "50px" }}>
+        <button style={{backgroundColor:"red", padding:"5px 16px", borderRadius:"10px", color:"white", border:"none"}}>Report PDF</button>
+        </div>
+
+                
+        <div className="row" style={{ marginTop: "50px" }}>
+          
 
           <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-            <h4 style={{ marginTop: "20px" }}>Availability:</h4>
-            {/* button*/}
+            <h4 style={{ marginTop: "20px", color:"blue"}}>Availability:</h4>
+            
+            <img className="d-block w-100" src={imgwelcome} alt="Third slide" style={{height:"80%" , width:"80%"}}/>
           </div>
           <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+          <ResBar title="Reservation" />
             <ResForm />
           </div>
-        </div>
+        </div> 
+
+
+
       </div>
     );
   }

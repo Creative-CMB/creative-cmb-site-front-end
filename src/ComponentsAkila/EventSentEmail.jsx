@@ -63,7 +63,7 @@ class EventSentEmail extends Component {
             onClose={this.onClose}
           />
           <div style={{height:"40px",paddingLeft:0}} className="row item">
-            <div className="col-lg-9 email-div">
+            <div className="col-lg-9 col-md-9 col-sm-9 col-xs-9 email-div">
               <input
                 type="text"
                 name="email"
@@ -73,7 +73,7 @@ class EventSentEmail extends Component {
                 onBlur={this.validate}
               />
             </div>
-            <div className="col-lg-1">
+            <div className="col-lg-1 col-md-3 col-sm-3 col-xs-3">
               <a
                 className={this.state.class}
                 onClick={this.submitEmail}

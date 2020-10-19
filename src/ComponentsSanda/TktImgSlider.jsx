@@ -22,7 +22,7 @@ class TktImgSlider extends Component {
       <Carousel>
         {imgList.map((item) => {
           return (
-            <Carousel.Item style={{ height: "88vh" }}>
+            <Carousel.Item style={{ height: "88vh" , overflowY: "hidden"}}>
               <img className="d-block w-100" src={item} alt="First slide" />
               {/* <Carousel.Caption>
                 <h3>First slide label</h3>
