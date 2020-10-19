@@ -13,10 +13,12 @@ class EmployeeSideNavBar extends Component {
     render() { 
         return ( 
             <div>
+                
                     <Menu
                     mode="inline"
-                    style={{ height: "100%", margin: "0", borderRight: "200", background: "LightBlue",justifyContent: "center"}}
+                    style={{ height: "50%", margin: "0", borderRight: "200", background: "LightBlue",justifyContent: "center"}}
                     >
+                    
                     
                     <h1 style={{color: "black", fontSize: '20px',textAlign:"center",}}><Link to="/employeeHome" >Employee Home</Link></h1><br></br>
                     <SubMenu style={{padding:0,margin:0,textAlign:"left"}} key="sub1" icon={<UserOutlined />} title="Emplyee Details">

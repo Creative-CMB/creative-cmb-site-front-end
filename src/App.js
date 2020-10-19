@@ -60,7 +60,10 @@ import ViewDeptManager from './ComponentsDeepika/ViewDeptManager';
 import ViewDeptSupervisors from './ComponentsDeepika/ViewDeptSupervisors';
 import ViewEmployee from './ComponentsDeepika/ViewEmployee';
 import ViewSalary from './ComponentsDeepika/ViewSalary';
-
+import EmployeePDF from './ComponentsDeepika/EmployeePDF';
+import DepartmentPDF from './ComponentsDeepika/DepartmentPDF';
+import DeptManagerPDF from './ComponentsDeepika/DeptManagerPDF';
+import SalaryPDF from './ComponentsDeepika/SalaryPDF';
 
 
 
@@ -139,8 +142,7 @@ function App() {
       <Route component={RentalHistory} path='/rental_history' ></Route>
       <Route component={test} path='/hehehe'></Route>
 
-      <Route component={Feedback} path="/feedback"></Route>
-      <Route component={Adminfeedback} path="/adminfeedback"></Route>
+    
       
 
       <Route component={AddEmployee} path="/addEmployee"></Route>
@@ -156,6 +158,10 @@ function App() {
       <Route component={ViewEmployee} path="/viewemp"></Route>
       <Route component={ViewSalary} path="/viewsalary"></Route>
       <Route component={EmployeeManagementHome} path="/employeeHome"></Route>
+      <Route component={EmployeePDF} path="/employeePDF"></Route>
+      <Route component={DepartmentPDF} path="/departmentPDF"></Route>
+      <Route component={DeptManagerPDF}path="/deptmanagerPDF"></Route>
+      <Route component={SalaryPDF} path="/salaryPDF"></Route>
 
       
       <Route component={Feedback} path='/feedback'></Route>

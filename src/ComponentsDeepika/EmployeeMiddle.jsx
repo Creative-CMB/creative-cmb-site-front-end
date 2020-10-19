@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from 'antd';
 import sample from "../Images/emp1.jpg";
+import { Link } from "react-router-dom";
 
 
 function EmployeeMiddle() {
@@ -8,6 +9,7 @@ function EmployeeMiddle() {
         <div>
           <br></br>
         <div className="HomeHeading" style={{height:"100%"}}>
+          <br></br><br></br>
           <p style={{color: "DodgerBlue", fontSize: '30px'}}>
             <center>
             EMPLOYEE MANAGEMENT
@@ -31,18 +33,18 @@ function EmployeeMiddle() {
           
         </div>
   
-        <div className="row" style={{marginBottom:20,marginLeft:10,marginTop:10}}>
+        <div className="row" style={{marginBottom:20,marginLeft:19,marginTop:10}}>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block >Department</Button>
+            <Link to="/departmentPDF"><Button style={{border: "2px solid #008CBA",fontWeight:"bold",width:200}}block >Department</Button></Link>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Employee Details</Button>
+            <Link to="/employeePDF" ><Button style={{border: "2px solid #008CBA",fontWeight:"bold",width:200}} block>Employee</Button></Link>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Leave Details</Button>
+          <Link to="/deptmanagerPDF"><Button style={{border: "2px solid #008CBA",fontWeight:"bold",width:200}} block>Department Manager</Button></Link>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}} block>Salary Details</Button>
+          <Link to="/salaryPDF"><Button style={{border: "2px solid #008CBA",fontWeight:"bold",width:200}} block>Salary</Button></Link>
           </div>
         </div>
         </div>
