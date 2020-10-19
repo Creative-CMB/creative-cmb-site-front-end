@@ -140,8 +140,7 @@ function App() {
       <Route component={RentalDetails} path='/rental_details'></Route>
       <Route component={RentalHistory} path='/rental_history' ></Route>
 
-      <Route component={Feedback} path="/feedback"></Route>
-      <Route component={Adminfeedback} path="/adminfeedback"></Route>
+    
       
 
       <Route component={AddEmployee} path="/addEmployee"></Route>
