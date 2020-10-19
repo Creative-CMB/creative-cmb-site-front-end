@@ -22,6 +22,8 @@ import ResTemplate from "./ComponentsSanda/ResTemplate";
 import TicketEdit from "./ComponentsSanda/TicketEdit";
 import ReservationReport from "./ComponentsSanda/ReservationReport";
 
+
+
 import InventoryItems from "./ComponentsHimasha/InventoryItems";
 import RentalDetails from "./ComponentsHimasha/RentalDetails";
 import AddItems from "./ComponentsHimasha/AddItems";
@@ -130,8 +132,9 @@ function App() {
       <Route component={ResTemplate} path="/reservation"></Route>
       <Route component={TicketEdit} path="/ticketedit"></Route>
       <Route component={ReservationReport} path="/reservation-report"></Route>
+   
 
-      <Route component={InventoryItems} path="/inventory"></Route>
+     <Route component={InventoryItems} path="/inventory"></Route>
       <Route component={AddItems} path="/add"></Route>
 
 

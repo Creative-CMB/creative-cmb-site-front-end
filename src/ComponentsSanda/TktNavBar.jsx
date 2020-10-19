@@ -25,6 +25,7 @@ class TktNavBar extends Component {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
+            {/* <Button>{this.props.link1}</Button> */}
             <Nav.Link href="#features" style={{color:"#000000" , fontSize:"20px", fontFamily:"Times New Roman"}}>{this.props.link1}</Nav.Link>
             <Nav.Link href="#pricing" style={{color:"#000000", fontSize:"20px",fontFamily:"Times New Roman"}}>{this.props.link2}</Nav.Link>
             <Nav.Link href="#pricing" style={{color:"#000000", fontSize:"20px",fontFamily:"Times New Roman"}}>{this.props.link3}</Nav.Link>

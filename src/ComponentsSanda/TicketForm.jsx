@@ -19,12 +19,13 @@ class TicketForm extends Component {
       tname: "",
       type: "",
       price: "",
-      radstatus: false,
+      radstatus: "",
       quant: "",
       events: [],
       admins: [],
       exdate: "",
       batchid:cryptoRandomString({ length: 7 }),
+      finance:"",
     };
   }
 
@@ -51,7 +52,7 @@ class TicketForm extends Component {
 
   inputData = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    this.setState({ radstatus: !this.state.radstatus });
+    // this.setState({ radstatus: e.target.value });
 
     // validation
     if (e.target.name === "quant") {
@@ -59,6 +60,10 @@ class TicketForm extends Component {
         alert("quantity must be a number");
       }
     }
+
+    
+   
+     //this.setState({ finance });
 
     console.log(
       this.state.tid,
@@ -74,10 +79,10 @@ class TicketForm extends Component {
     console.log(this.state.admin);
   };
 
-  drop = (e) => {
+/*   drop = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state.event);
-  };
+  }; */
 
   inputAdmin = (val) => {
     console.log(val.target.value)
@@ -243,10 +248,21 @@ class TicketForm extends Component {
     })
   }
 
- 
+
+  //price validation - demo
+  handleChange = (e) => {
+    const finance = (e.target.validity.valid) ? e.target.value : this.state.finance;
+    this.setState({ finance });
+  
+  }
+
+
+
   pageRefresh() {
     window.location.reload(false);
   } 
+
+
  
   render() {
     return (
@@ -259,7 +275,7 @@ class TicketForm extends Component {
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <TktNavBar
-                
+                link1="Home"
                 link2="Ticket Details"
                 link3="Reservation Details"
               />
@@ -301,12 +317,13 @@ class TicketForm extends Component {
                     </div>
                   </div>
 
+                  {/*price value , onInput-bind, pattern */}
                   <div className="row">
                     <div className="col-3">
                       <label for="type">Ticket Price:</label>
                     </div>
                     <div className="col-5">
-                      <input className="form-control" onChange={this.inputData} type="text" id="price" name="price" placeholder="Rs.1000/=" required />
+                      <input className="form-control" pattern="[0-9]*" onChange={this.inputData} type="text" id="price" name="price" placeholder="Rs.1000/=" onInput={this.handleChange.bind(this)} value={this.state.finance} required />
                     </div>
                   </div>
 
@@ -318,12 +335,12 @@ class TicketForm extends Component {
 
                       <label className="radioText">
                         Available:
-                        <input onChange={this.inputData} type="radio" id="radstatus" name="radstatus"/>
+                        <input onChange={this.inputData} type="radio"  name="radstatus" value="Available"/>
                       </label>
 
                       <label className="radioText">
                         Not Available:
-                        <input onChange={this.inputData} type="radio" name="radstatus" id="radstatus1" />
+                        <input onChange={this.inputData} type="radio" name="radstatus"  value="Not Available"/>
                       </label>
 
                     </div>

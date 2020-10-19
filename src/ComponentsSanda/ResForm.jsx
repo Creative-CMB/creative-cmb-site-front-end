@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+// import {Link} from 'react-router-dom';
+
 const cryptoRandomString = require("crypto-random-string");
 
 class ResForm extends Component {
@@ -132,12 +134,14 @@ class ResForm extends Component {
               </div>
             </div> */}
             <div className="row" style={{margonTop:"20px",marginLeft:"600px"}}>
+            {/* <Link to="/reservation"> */}
             <button type="submit" style={{backgroundColor:"#3b558e" , borderRadius:"10px", color:"white", textDecoration:"none", padding:"8px 15px",border:"none"}}>
                
                Confirm
              
      
             </button>
+            {/* </Link> */}
             </div>
 
           </form>
