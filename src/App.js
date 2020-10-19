@@ -19,7 +19,10 @@ import EventSuccess from './ComponentsAkila/EventSuccess';
 import TicketForm from "./ComponentsSanda/TicketForm";
 import TktTemplate from "./ComponentsSanda/TktTemplate";
 import ResTemplate from "./ComponentsSanda/ResTemplate";
-import TicketEdit from "./ComponentsSanda/TicketEdit"
+import TicketEdit from "./ComponentsSanda/TicketEdit";
+import ReservationReport from "./ComponentsSanda/ReservationReport";
+
+
 
 import Rental from './ComponentsHimasha/Rental';
 import InventoryItems from "./ComponentsHimasha/InventoryItems";
@@ -134,8 +137,10 @@ function App() {
       <Route component={TktTemplate} path="/template"></Route>
       <Route component={ResTemplate} path="/reservation"></Route>
       <Route component={TicketEdit} path="/ticketedit"></Route>
+      <Route component={ReservationReport} path="/reservation-report"></Route>
+   
 
-      <Route component={InventoryItems} path="/inventory"></Route>
+     <Route component={InventoryItems} path="/inventory"></Route>
       <Route component={AddItems} path="/add"></Route>
       <Route component={Rental} path='/rent' ></Route>
       <Route component={RentalDetails} path='/rental_details'></Route>

@@ -10,7 +10,7 @@ class ResBar extends Component {
       <div
         style={{
           width: "100%",
-          background: " linear-gradient(to bottom, #33cccc 0%, #ffffcc 100%)",
+          background: " linear-gradient(to bottom, #00cc99 0%, #006699 100%)",
         }}
       >
         <div
@@ -23,7 +23,7 @@ class ResBar extends Component {
           }}
         >
           <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12">
-            <h1 style={{ fontFamily: "sanseriff" }}>{this.props.title}</h1>
+            <h1 style={{ fontFamily: "Times New Roman", textAlign:"left", fontSize:"25px" }}>{this.props.title}</h1>
           </div>
         </div>
       </div>
