@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card } from 'antd';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
 import axios from 'axios';
+import { notification} from "antd";
 
 export default class AddDeptManager extends Component {
 
@@ -74,6 +75,13 @@ export default class AddDeptManager extends Component {
         };
 
         console.log(dmData)
+
+        const args = {
+            description:
+              "Data added successfully",
+            duration: 0,
+          };
+          notification.open(args);
 
         var url = "http://127.0.0.1:8000/deptManager-Create/";
 

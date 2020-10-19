@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
-import axios from 'axios'
+import axios from 'axios';
+import { notification} from "antd";
 
 export default class AddDepartment extends Component {
 
@@ -74,6 +75,13 @@ export default class AddDepartment extends Component {
             }
     
             console.log(deptdata)
+
+            const args = {
+                description:
+                  "Data added successfully",
+                duration: 0,
+              };
+              notification.open(args);
     
             var url = "http://127.0.0.1:8000/department-Create/";
     
