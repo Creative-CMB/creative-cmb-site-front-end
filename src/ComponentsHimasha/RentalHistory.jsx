@@ -6,7 +6,18 @@ export default class RentalHistory extends Component {
     state = {
         rental_history:[],
         oldDate: new Date().getDate(),
-        currentDate: new Date().getDate()
+        currentDate: new Date().getDate(),
+        clicked:false,
+
+        status:'',
+
+    }
+
+    lol = (e) => {
+        this.setState({[e.target.name]:e.target.value})
+    }
+
+    checkIfClicked = (t) => {
     }
 
      componentDidMount() {
@@ -48,7 +59,9 @@ export default class RentalHistory extends Component {
 
     render() {
         return (
+            
             <div>
+                <h1> {this.state.status} </h1>
                 {this.test()}
                 <h1> {this.state.currentDate} </h1>
                 <table table className= "table table-hover" >
@@ -75,6 +88,14 @@ export default class RentalHistory extends Component {
                         )})}
                     </tbody>
                 </table>
+
+                <button type="submit" className="btn btn-primary" onClick={() => this.checkIfClicked(test)} >book</button>
+                <button type="submit" className="btn btn-danger" >cancel</button>
+
+
+                <input type="radio" name="status" value="Hello"></input>
+                <input type="radio" name="status" value="Bye"></input>
+
             </div>
         )
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EquipmentRental from './EquipmentRental'
 import {Button} from 'react-bootstrap'
 import * as Scroll from 'react-scroll';
+import NavBar from './NavBar'
 import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 const cryptoRandomString  = require("crypto-random-string");
@@ -132,8 +133,12 @@ export default class Rental extends Component {
 
     render(){
         return(
-            <div className="container" >
-                <div className="row"  >
+            <div>
+                
+            <NavBar />
+
+            {/* <div className="container" > */}
+                <div className="row" style={{marginLeft:"30px", marginRight:"30px"}} >
                     <div className="col-md-12"  >
                 <table className= "table table-hover" >
                     <thead style={{backgroundColor:"#7abfc4", color:"white"}} >
@@ -171,6 +176,7 @@ export default class Rental extends Component {
 
                 <div>
                 <Button type="button" onClick={this.scrollToBottom}>Rent Equipment</Button>
+
                 </div>
 
                 </div>
@@ -184,8 +190,8 @@ export default class Rental extends Component {
 
                 </div>
                 
+                {/* </div> */}
                 </div>
-           
         )
     }
     

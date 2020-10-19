@@ -25,7 +25,8 @@ import Rental from './ComponentsHimasha/Rental';
 import InventoryItems from "./ComponentsHimasha/InventoryItems";
 import RentalDetails from "./ComponentsHimasha/RentalDetails";
 import AddItems from "./ComponentsHimasha/AddItems";
-import RentalHistory from './ComponentsHimasha/RentalHistory'
+import RentalHistory from './ComponentsHimasha/RentalHistory';
+import test from './ComponentsHimasha/test';
 
 import Feedback from "./ComponentsMalaka/FeedbackTemp";
 import Adminfeedback from "./ComponentsMalaka/feedadmin";
@@ -136,6 +137,7 @@ function App() {
       <Route component={Rental} path='/rent' ></Route>
       <Route component={RentalDetails} path='/rental_details'></Route>
       <Route component={RentalHistory} path='/rental_history' ></Route>
+      <Route component={test} path='/hehehe'></Route>
 
       <Route component={Feedback} path="/feedback"></Route>
       <Route component={Adminfeedback} path="/adminfeedback"></Route>

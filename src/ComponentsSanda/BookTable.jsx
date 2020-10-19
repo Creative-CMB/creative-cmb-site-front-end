@@ -67,6 +67,7 @@ class BookTable extends Component {
                       <Button 
                         disabled={this.state.is_clicked}
                         type="button"
+                        
                         class="btn btn-primary"
                         onClick={this.setButtonStatus}
                       //  data-toggle="modal"
