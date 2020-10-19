@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
+import { notification} from "antd";
 export default class AddDeptSupervisor extends Component {
 
         constructor(props) {
             super(props);
             this.state = { 
-                emp_id:'',
-                dept_id:'',
-                from_date:'',
-                to_date:'',            
+                emp_id:"",
+                dept_id:"",
+                from_date:"",
+                to_date:"",            
              }
         }
         
@@ -48,7 +49,14 @@ export default class AddDeptSupervisor extends Component {
     
             };
     
-            console.log(dsData)
+            console.log("Supervisor data",dsData)
+
+            const args = {
+                description:
+                  "Data added successfully",
+                duration: 0,
+              };
+              notification.open(args);
     
             var url = "http://127.0.0.1:8000/deptSupervisor-Create/";
     
@@ -61,9 +69,7 @@ export default class AddDeptSupervisor extends Component {
     
             }).then((response)=>{
                 alert(response)
-            }).catch(function(err){
-                alert(err)
-            })
+            }).catch(err => console.log(err))
         }
        
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Col, Row } from 'antd';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
+import { message,notification } from "antd";
 
 export default class AddSalary extends Component {
 
@@ -16,10 +17,47 @@ export default class AddSalary extends Component {
                 month:'',
                 year:'',
                 paid:'',
-                Paid_Date:''
-             }
+                Paid_Date:'',
+                addDetVal: false,
+              
+             };
         }
-        
+        validatesubmit=()=>{
+            let hours = this.state.extra_hours;
+            let salary = this.state.basic_sal;
+            let year = this.state.year;
+            let bonus = this.state.bonus;
+
+            if(isNaN(hours)){
+                message.error("Hour must be a number");
+            }
+            else if(hours < 0 || hours>10){
+                message.error("Hours need to be between 0 to 10 ");
+            }
+            else if(isNaN(salary)){
+                message.error("salary must be a number");
+            }
+            else if(salary < 0){
+                message.error("salary can't be less than 0");
+            }
+            else if(isNaN(bonus)){
+                message.error("bonus must be a number");
+            }
+            else if(bonus < 0){
+                message.error("bonus can't be less than 0");
+            }
+            else if(isNaN(year)){
+                message.error("year must be a number");
+            }
+            else if(year < 2020 || year.length > 4){
+                message.error("year can't be less than 2020 or greter than 4 numbers");
+            }
+            
+            else{
+                this.state({addDetVal:true});
+            }
+        };
+
         
         formData = (e) => {
             this.setState({ [e.target.name]: e.target.value });
@@ -45,39 +83,50 @@ export default class AddSalary extends Component {
 
         formSubmit  = (e) =>{
             e.preventDefault();
-        
+            if(this.state.addDetVal){
+                const salData ={
+                    sal_id:this.state.sal_id,
+                    emp_det_id:this.state.emp_det_id,
+                    dept_id:this.state.dept_id,
+                    basic_sal:this.state.basic_sal,
+                    extra_hours:this.state.extra_hours,
+                    bonus:this.state.bonus,
+                    month:this.state.month,
+                    year:this.state.year,
+                    paid:this.state.paid,
+                    Paid_Date:this.state.Paid_Date,
 
-        const salData ={
-            sal_id:this.state.sal_id,
-                emp_det_id:this.state.emp_det_id,
-                dept_id:this.state.dept_id,
-                basic_sal:this.state.basic_sal,
-                extra_hours:this.state.extra_hours,
-                bonus:this.state.bonus,
-                month:this.state.month,
-                year:this.state.year,
-                paid:this.state.paid,
-                Paid_Date:this.state.Paid_Date,
+                 };
 
-        };
+            console.log(salData)
 
-        console.log(salData)
+            const args = {
+                description:
+                  "Data added successfully",
+                duration: 0,
+              };
+              notification.open(args);
 
-        var url = "http://127.0.0.1:8000/Salary-Create/";
+            var url = "http://127.0.0.1:8000/Salary-Create/";
 
-        fetch(url,{
-            method:'POST',
-            headers:{
-                'content-type':'application/json',
-            },
-            body:JSON.stringify(salData)
+            fetch(url,{
+                method:'POST',
+                headers:{
+                    'content-type':'application/json',
+                },
+                body:JSON.stringify(salData)
 
-        }).then((response)=>{
-            alert(response)
-        }).catch(function(err){
-            alert(err)
-        })
-    }
+            }).then((response)=>{
+                alert(response)
+            }).catch(function(err){
+                alert(err)
+            })
+            }
+            else {
+                message.error("Add numeric value for salary, bonus and years Please re-check");
+             }
+        }
+             
        
         
     render() {
@@ -125,8 +174,8 @@ export default class AddSalary extends Component {
                         Salary ID : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="sal_id" ></input><br></br><br></br>
                         Employee ID : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_det_id" ></input><br></br><br></br>
                         Department ID : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text"onChange= {this.formData} name="dept_id"></input><br></br><br></br><br></br>
-                        Basic Salary : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData} name="basic_sal"></input><br></br><br></br>
-                        Extra Hours : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData} name="extra_hours"></input><br></br><br></br><br></br>
+                        Basic Salary : <input  onBlur={this.validatesubmit} required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData} name="basic_sal"></input><br></br><br></br>
+                        Extra Hours : <input  onBlur={this.validatesubmit} required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData}  name="extra_hours"></input><br></br><br></br><br></br><br></br>
                         
                     </Card>
                 </Col>
@@ -135,8 +184,8 @@ export default class AddSalary extends Component {
                     <Card >
                         
                         
-                        Bonus : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData} name="bonus"></input><br></br><br></br>
-                        Month : <select required id="month"style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}}onChange= {this.formData} name="month">
+                        Bonus : <input required  onBlur={this.validatesubmit} style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange={this.formData} name="bonus" ></input><br></br><br></br>
+                        Month : <select required id="month"style={{border: "3px solid #ccc",float: "right",width: "68%",height:43}}onChange= {this.formData} name="month">
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
@@ -149,8 +198,8 @@ export default class AddSalary extends Component {
                                 <option value="October">October</option>
                                 <option value="November">November</option>
                                 <option value="December">December</option>
-                                </select><br></br><br></br>
-                        Year : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" maxLength="4" onChange= {this.formData} name="year"></input><br></br><br></br>
+                                </select><br></br><br></br><br></br>
+                        Year : <input  onBlur={this.validatesubmit} required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" maxLength="4" onChange= {this.formData} name="year"></input><br></br><br></br>
                         Date : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date" onChange= {this.formData} name="Paid_Date"></input><br></br>  <br></br>         
                         Paid : <select required id="Paid" style={{border: "3px solid #ccc",float: "right",width: "68%",height:42}} onChange= {this.formData} name="paid" >
                                         <option value="Yes">Yes</option>

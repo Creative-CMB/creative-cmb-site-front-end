@@ -16,7 +16,7 @@ class EmployeeSideNavBar extends Component {
                 
                     <Menu
                     mode="inline"
-                    style={{ height: "50%", margin: "0", borderRight: "200", background: "LightBlue",justifyContent: "center"}}
+                    style={{ height: "50%", margin: "0", borderRight: "360", background: "LightBlue",justifyContent: "center"}}
                     >
                     
                     
