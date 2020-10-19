@@ -3,6 +3,8 @@ import { Card } from 'antd';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
 import axios from 'axios';
 import { notification} from "antd";
+import jsPDF from "jspdf"
+import "jspdf-autotable"
 
 export default class AddDeptManager extends Component {
 
@@ -17,6 +19,49 @@ export default class AddDeptManager extends Component {
                 to_date:'',              
              }
         }
+
+        generatePDF = (managerdata) => {
+            //initilize the pds
+            const doc = new jsPDF();
+            const datas=[
+                managerdata.from_date,
+                managerdata.to_date,
+            ];
+        
+            const tableColumns = ["Employee  Id", "Department ID"];
+            const tableRows = [];
+        
+            const rowdata = [
+                managerdata.emp_id,
+                managerdata.dept_id,
+             
+            ];
+        
+            tableRows.push(rowdata);
+        
+            doc.autoTable(tableColumns, tableRows, { startY: 60 });
+            doc.text("Appointment Details. ",80 , 15);
+            doc.text("Creative CMB ",14 , 30);
+            doc.text("No:123, Perera lane, Colombo. ",14 , 35);
+            doc.text("_________________________________________________________________________________________________________________________________________________ ",14 , 40);
+            doc.setFont('helvetica');
+            doc.text(managerdata.emp_id + ", You have selected as a manager to the department " + managerdata.dept_id +".", 14, 50);
+            doc.setFont('helvetica');
+            doc.text("We are warmly welcome you to Creative CMB Team. ",14 , 55);
+            doc.text("Joined Date : " +managerdata.from_date+"",14 , 90);
+            doc.text("Renew Date : " +managerdata.to_date+"",14 , 100);
+            doc.text("Near the renew date we will check tour working capacity and performance. ",14 ,115 );
+            doc.text("Then we change your position higher or lower. ",14 ,120 );
+            doc.text("For more clarification please contact your senior manager.",14 , 135);
+            doc.text("Mr.Peter",14 , 145);
+            doc.text("Senior head Manager",14 , 151);
+            doc.text("0768777143",14 , 157);
+            doc.text("Thankyou and Conguraglation",120 , 170);
+            doc.text("Team Creative CMB",120 , 177);
+
+            doc.save(`Welcome_${managerdata.emp_id}.pdf`);
+        
+          }
 
     
         componentDidMount(){
@@ -73,6 +118,7 @@ export default class AddDeptManager extends Component {
             to_date : this.state.to_date,
 
         };
+        this.generatePDF(dmData);
 
         console.log(dmData)
 
