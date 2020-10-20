@@ -8,19 +8,17 @@ class TktAbout extends Component {
   }
   render() {
     return (
-      <div>
+      <div >
         <section id="about">
           <div class="about-right-col">
             <div class="about-text">
-              <h1>About Reservation</h1>
+              <h1 style={{textAlign:"left", color:"#000066", textShadow:"2px 2px 5px #000066" ,fontFamily:"Times New Roman"}}>About Reservation</h1>
               <span class="square"></span>
-              <p style={{ fontSize: "15px" }}>
+              <p style={{ fontSize: "20px", fontFamily:"Times New Roman",color:"#228B22" }}>
                 We are planning to give you the massive event experience. Get
-                Ready! paragraph is a series of related sentences developing a
-                central idea, called the topic. Try to think about paragraphs in
-                terms of thematic unity: a paragraph is a sentence or a group of
-                sentences that supports one central, unified idea. Paragraphs
-                add one idea at a time to your broader argument.
+                Ready! You can easily review the latest bookings and tickets
+                 sold on a user-friendly admin dashboard, customize the booking form,
+                  add and edit bookings manually, etc.
               </p>
               <br />
               <br />

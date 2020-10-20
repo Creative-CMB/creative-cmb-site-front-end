@@ -3,6 +3,10 @@ import EquipmentRental from './EquipmentRental'
 import 'antd/dist/antd.css';
 import {Button, notification ,message} from 'antd';
 
+import * as Scroll from 'react-scroll';
+import NavBar from './NavBar'
+import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+
 const cryptoRandomString  = require("crypto-random-string");
 
 
@@ -17,6 +21,7 @@ export default class Rental extends Component {
         eqp_id:'',
         isChecked:false,
         status:false,
+        total_price:'',
 
     }
 
@@ -104,6 +109,9 @@ export default class Rental extends Component {
             body:JSON.stringify(select_rentItem)
         }).then(response => response.json()).then(select_rentItem => {
             this.setState({selectedItems: this.state.selectedItems.concat([select_rentItem])});
+
+            this.calTotalPrice()
+
         });
 
         console.log('selected Item :', select_rentItem)
@@ -112,6 +120,7 @@ export default class Rental extends Component {
         console.log('array length: ', lenth)
         
         this.handleReset()
+        this.calTotalPrice()
     } 
 
     submitData = (e) => {
@@ -168,8 +177,20 @@ export default class Rental extends Component {
   }
 
 
+  calTotalPrice = () => {
+    const total = this.state.selectedItems.reduce((totalPrice, item) => totalPrice + item.price, 0);
+    console.log( 'cal total price' ,total)
+
+    this.setState({total_price:total})
+}
+
     render(){
+        
         return(
+            <div>
+
+                
+<div>
                 <div className="row">
                 <div className="col-md-12"  >
                     <h2>Please Rent Equipment! :(</h2>
@@ -225,20 +246,15 @@ export default class Rental extends Component {
 
                 
                 
+                {/* </div> */}
                 </div>
-           
+
+
+            </div>
+                </div>
+            
         )
     }
-    
-  /*   openNotification = () => {
-        const args = {
-          message: 'Notification Title',
-          description:
-            'I will never close automatically. This is a purposely very very long description that has many many characters and words.',
-          duration: 0,
-        };
-        notification.open(args);
-      }; */
 
        openNotificationWithIcon = type => {
         notification[type]({

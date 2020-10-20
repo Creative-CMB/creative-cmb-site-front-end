@@ -1,31 +1,23 @@
 
 import React, { Component } from 'react'
-import {Popover, OverlayTrigger} from 'react-bootstrap'
-import 'antd/dist/antd.css';
-import {Button, Alert } from 'antd';
+import jsPDF from "jspdf"
+import "jspdf-autotable"
+import { format } from "date-fns"
 
 export default class RentalHistory extends Component {
-  
-    constructor(props) {
-        
-        super(props);
-        this.state = {
-            rental_history:[],
-            value:0,
-            showA:true,
-           
-            
-        };
-      
-    }
- 
-    toggle = () => {
-        this.setState({show: !this.state.showA})
+
+    state = {
+        rental_history:[],
+        oldDate: new Date().getDate(),
+        currentDate: new Date().getDate(),
+        clicked:false,
+
+        status:'',
+
     }
 
-    buttonClicked(event) {
-    this.setState({value: this.state.value+1});
-  }
+    
+
      componentDidMount() {
         this.fecthRentalHistory()
     }
@@ -38,9 +30,32 @@ export default class RentalHistory extends Component {
                 rental_history:data}))            
     }
 
+    generatePDF = (rental_data) => {
+        //initilize the pds
+        const doc = new jsPDF();
     
-      
-   
+        //column definition
+        const tableColumns = ["Rented Date", "Period", "Quantity", "Returned Status", "Total Price"];
+        const tableRows = [];
+    
+        const rowdata = [
+          rental_data.rental_date,
+          rental_data.rental_period,
+          rental_data.qty,
+          rental_data.status,
+          rental_data.price,
+        ];
+    
+        tableRows.push(rowdata);
+    
+        doc.autoTable(tableColumns, tableRows, { startY: 20 });
+        const date = Date().split(" ");
+        //the filename will be the current systems date
+        const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
+        doc.text('Creative CMB ~ Rental Invoice' , 14, 15);
+        doc.save(`report_${dateStr}.pdf`);
+    
+      }
 
     render() {
 
@@ -64,24 +79,9 @@ export default class RentalHistory extends Component {
       
       )
         return (
-
             
             <div>
-                <OverlayTrigger trigger="click" placement="right" overlay={popover} trigger="focus">
-              <Button variant="success">Click me to see</Button>
-            </OverlayTrigger>
-
-    
-            <Alert color="primary" toggle={this.toggle} isOpen={this.state.showA}>hiiiiiiiiiiiiii</Alert>
-
-        <Button onClick={this.toggle}>
-          Toggle Toast <strong>with</strong> Animation
-        </Button>
-
-        
-      <button onClick={alert} >3defrgg</button> 
-
-                <h1> {this.state.currentDate} </h1>
+                
                 <table table className= "table table-hover" >
                     <thead>
                         <tr>
@@ -101,14 +101,18 @@ export default class RentalHistory extends Component {
                             <td> {status} </td>
                             <td> {price} </td>
                             <td> {qty} </td>
-                            <td>  </td>
+                            <td> <button type="button" onClick={()=> this.generatePDF(r_history)}>generate Invoice</button> </td>
                         </tr>
                         )})}
                     </tbody>
                 </table>
-                {this.state.value} <button type="button" onClick={this.buttonClicked.bind(this)}>help dude</button>
 
-                    
+                <button type="submit" className="btn btn-primary" onClick={() => this.checkIfClicked(test)} >book</button>
+                <button type="submit" className="btn btn-danger" >cancel</button>
+
+
+            
+
             </div>
         )
     }
