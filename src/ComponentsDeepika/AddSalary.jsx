@@ -54,9 +54,9 @@ export default class AddSalary extends Component {
             }
             
             else{
-                this.state({addDetVal:true});
+                this.setState({addDetVal:true});
             }
-        };
+        };z
 
         
         formData = (e) => {
