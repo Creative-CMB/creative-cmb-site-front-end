@@ -64,7 +64,6 @@ class EventCreate extends Component {
   getChartData() {
     this.setState({
       data: {
-        //labels: ["Complete", "Not complete"],
         datasets: [
           {
             label: "complete",

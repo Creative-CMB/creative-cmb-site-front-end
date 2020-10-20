@@ -1,14 +1,31 @@
-import { DatePicker } from 'antd'
+
 import React, { Component } from 'react'
+import {Popover, OverlayTrigger} from 'react-bootstrap'
+import 'antd/dist/antd.css';
+import {Button, Alert } from 'antd';
 
 export default class RentalHistory extends Component {
-
-    state = {
-        rental_history:[],
-        oldDate: new Date().getDate(),
-        currentDate: new Date().getDate()
+  
+    constructor(props) {
+        
+        super(props);
+        this.state = {
+            rental_history:[],
+            value:0,
+            showA:true,
+           
+            
+        };
+      
+    }
+ 
+    toggle = () => {
+        this.setState({show: !this.state.showA})
     }
 
+    buttonClicked(event) {
+    this.setState({value: this.state.value+1});
+  }
      componentDidMount() {
         this.fecthRentalHistory()
     }
@@ -21,35 +38,49 @@ export default class RentalHistory extends Component {
                 rental_history:data}))            
     }
 
-    test = () => {
-        var date1 = new Date('December 25, 2017 01:30:00');
-        var date2 = new Date('June 18, 2016 02:30:00');
-
     
-       
-        if(date1.getTime() > date2.getTime()){
-            console.log('ediedhdiehd')
-        }
-                
-        var OneDay = new Date().getTime() + (1 * 24 * 60 * 60 * 1000)
-        var yourDate = new Date('May 18, 2016 02:30:00')
-                                     
-        if (OneDay > yourDate) {
-           console.log('hi working')
-        }
-        else if (OneDay < yourDate) {
-            console.log('hi workrfrfring')
-        }
-    }
-
-    help = (date) => {
-        console.log('date',date)
-    }
+      
+   
 
     render() {
+
+       
+
+        const popover = (
+            <Popover id="popover-basic">
+              <Popover.Content>
+                And here's some <strong>amazing</strong> content. It's very engaging.
+                right?
+              </Popover.Content>
+            </Popover>
+          );
+          
+      const alert = (
+        <Alert
+        message="Warning Text Warning Text Warning TextW arning Text Warning Text Warning TextWarning Text"
+        type="warning"
+        closable
+        onClose={this.onClose}></Alert>
+      
+      )
         return (
+
+            
             <div>
-                {this.test()}
+                <OverlayTrigger trigger="click" placement="right" overlay={popover} trigger="focus">
+              <Button variant="success">Click me to see</Button>
+            </OverlayTrigger>
+
+    
+            <Alert color="primary" toggle={this.toggle} isOpen={this.state.showA}>hiiiiiiiiiiiiii</Alert>
+
+        <Button onClick={this.toggle}>
+          Toggle Toast <strong>with</strong> Animation
+        </Button>
+
+        
+      <button onClick={alert} >3defrgg</button> 
+
                 <h1> {this.state.currentDate} </h1>
                 <table table className= "table table-hover" >
                     <thead>
@@ -70,11 +101,14 @@ export default class RentalHistory extends Component {
                             <td> {status} </td>
                             <td> {price} </td>
                             <td> {qty} </td>
-                            <td> <button type="button" onChange={()=> this.help(rental_date)}>help dude</button> </td>
+                            <td>  </td>
                         </tr>
                         )})}
                     </tbody>
                 </table>
+                {this.state.value} <button type="button" onClick={this.buttonClicked.bind(this)}>help dude</button>
+
+                    
             </div>
         )
     }

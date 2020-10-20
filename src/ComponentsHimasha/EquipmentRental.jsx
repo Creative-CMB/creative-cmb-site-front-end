@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import agreement from './Images/agreement.png'
+import {Popover, OverlayTrigger} from 'react-bootstrap'
+
+import 'antd/dist/antd.css';
+
+import {Button, Popconfirm, message} from 'antd';
 
 const cryptoRandomString  = require("crypto-random-string");
 
@@ -22,20 +27,33 @@ export default class EquipmentRental extends Component {
         this.setState({total_price:total})
     }
 
-  delete = (id) => {
-      this.props.deleteRental(id)
-  }
+    delete = (id) => {
+        this.props.deleteRental(id)
+    }
 
-  getInputDetails = (event) => {
-    this.setState({[event.target.name]:event.target.value})
-  }
+    getInputDetails = (event) => {
+        this.setState({[event.target.name]:event.target.value})
+    }
+    validateInputFields = (e) => {
+        e.preventDefault()
+        const {rental_date, rental_period} = this.state
 
+        if(!rental_period || isNaN(rental_period)){
+            message.error( 'Please Enter Rental Period',1);
 
-  handleRentalSubmit = (event) => {
+        }else{
 
-    event.preventDefault()
+            this.handleRentalSubmit(e)
 
-    const rentalDetails = {
+        }
+    }
+
+    handleRentalSubmit = (event) => {
+        //event.preventDefault()
+
+        const {rental_date, rental_period} = this.state
+
+        const rentalDetails = {
           rent_id: "RID" + cryptoRandomString({ length:5 }),
           rental_date: this.state.rental_date,
           rental_period:this.state.rental_period,
@@ -56,19 +74,47 @@ export default class EquipmentRental extends Component {
         body:JSON.stringify(rentalDetails)
       }
       );
-      
       console.log('rental details', rentalDetails)
+
+      this.handleReset()
+  }
+
+  handleReset = () => {
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    );
+    this.setState({
+        rental_date:[{}],
+        rental_period:[{}],
+    });
+};
+
+   confirm(id, e) {
+    console.log(e);
+    this.delete(id)
+    message.success('Click on Delete');
+  }
+  
+    cancel(e) {
+    console.log(e);
+    message.error('Click on Cancel');
   }
 
 
-
-
     render() {
+        const popover = (
+            <Popover id="popover-basic">
+              <Popover.Content>
+                And here's some <strong>amazing</strong> content. It's very engaging.
+                right?
+              </Popover.Content>
+            </Popover>
+          );
         return (
-            <div>{()=>this.calTotalPrice()}
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6"><div class="card"><div class="card-body">
+            <div  style={{marginTop:"200px"}} >{()=>this.calTotalPrice()}
+                
+                    <div className="row mt-5">
+                        <div className="col-md-6"><div className="card" style={{marginLeft:"10%"}}><div className="card-body">
                             <table className= "table table-hover table-borderless" style={{width:"100%"}} >
                                 <thead>
                                     <tr>
@@ -86,8 +132,15 @@ export default class EquipmentRental extends Component {
                                         <td>{price}</td>
                                         <td>{quantity}</td>
                                         {/* <td> {customer_id} </td> */}
-                                        <td><button type="button" className="btn btn-danger btn-sm" 
-                                            onClick = {() => this.delete(rent_equipment_id)} >Delete</button> 
+                                        <td><Popconfirm
+                                                title="Are you sure delete this task?"
+                                                onConfirm={() => this.confirm(rent_equipment_id)}
+                                                onCancel={this.cancel}
+                                                okText="Delete"
+                                                cancelText="Cancel">
+                                                 <button type="primary" className="btn btn-danger btn-sm">Delete</button> </Popconfirm>
+                                            
+                                           
                                         </td>
                                     </tr>)
                                 }))
@@ -97,8 +150,8 @@ export default class EquipmentRental extends Component {
                         </div>
                         
                         <div className="col-md-6" >
-                        <div class="card"><div class="card-body">
-                            <form onSubmit={this.handleRentalSubmit} style = {{width: "100%"}} >
+                        <div class="card" style={{width:"92%"}}><div class="card-body">
+                            <form onSubmit={this.validateInputFields} style = {{width: "100%"}} >
 
                             <div className="form-row">
                                 <div className="col">
@@ -120,7 +173,11 @@ export default class EquipmentRental extends Component {
 
                             <div className="form-row" style={{marginTop:"15px", marginLeft:"32%"}}>
                                 <div className="col">
-                                <button type="submit" className="btn btn-primary">Rent Equipment</button>
+                            
+                                    <button type="submit" className="btn btn-primary">Rent Equipment</button>
+                                
+                                
+                                
                                 <Link to='/rental_history' ><button type="button" style={{marginLeft:"20px"}} className="btn btn-dark" >History</button></Link> 
                                 </div>
                             </div>
@@ -139,10 +196,10 @@ export default class EquipmentRental extends Component {
 
 
                         </div>
-                        <img  src={agreement} style={{height:"30%" , width:"30%"}}/>
+                        {/* <img   style={{height:"30%" , width:"30%"}}/> */}
 
                     </div>
-                </div>
+               
             </div>
         )
     }

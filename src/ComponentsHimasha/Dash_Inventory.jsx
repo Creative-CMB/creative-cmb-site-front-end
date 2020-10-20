@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react' 
 import AddItems from './AddItems'
 import InventoryItems from './InventoryItems'
 
