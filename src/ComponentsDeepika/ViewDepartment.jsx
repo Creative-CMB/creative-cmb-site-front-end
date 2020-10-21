@@ -286,7 +286,7 @@ updateData = (e) => {
                               <div class="modal-headers">
                                 <br></br>
                                 <center><h5 class="modal-title" id="exampleModalLongTitles">
-                                <center>Update Employee</center> 
+                                <center>Update Department</center> 
                                 </h5>
                                 </center>
                               </div>
