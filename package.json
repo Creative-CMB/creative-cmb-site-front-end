@@ -41,10 +41,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-<<<<<<< HEAD
-=======
     "react-scroll": "^1.8.1",
->>>>>>> d4b581e2aa3f5c5f322c997fe82d7c278862ebce
     "reactstrap": "^8.5.1",
     "typecript": "0.0.1-security",
     "typescript": "^4.0.3",
