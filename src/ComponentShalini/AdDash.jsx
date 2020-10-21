@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import AdIcon from "../Images/AdIcon.png";
 import Edit from "../Images/edit2.png";
 import Delete from "../Images/delete1.png";
-import {Space} from "antd";
+import {Space, Button, Select, Drawer,Form,Input,Col,Row} from "antd";
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import moment from "moment";
 
 
-
+const {Option} = Select;
 
 
 
@@ -16,12 +17,24 @@ class AdDash extends Component {
         super(props);
         this.state = { 
           advertistment:[],
+          selectedIndex:"",
+            selectedAd:{},
+            value:1,
+            visible:false,
+            packageType:"",
+            advertisingDate:"",
+            duration:"",
+            adTitle:"",
          }
+    }
+
+    componentWillMount(){
+      this.fetchDetails();
     }
 
     componentDidMount
     (){
-      this.fetchDetails()
+      document.title = "CreateCMB | Manage Advertisement";
     }
 
     fetchDetails = () =>{
@@ -48,6 +61,75 @@ fetch(url,{
     this.fetchDetails()
 }).catch(err => console.log(err))
 }
+
+
+showDrawer = (id) => {
+  this.state.advertistment
+    .filter((item) => item.ad_id === id)
+    .map((filterdItem) => this.setState({ selectedAd: filterdItem }));
+
+  this.setState(
+    {
+      visible: true,
+    },
+    () => console.log(this.state.selectedAd)
+  );
+
+  console.log(this.state.selectedAd);
+};
+
+onClose = () => {
+  window.location.reload(false);
+  this.setState(
+    {
+      visible: false,
+    },
+    () => console.log(this.state.visible)
+  );
+};
+
+sendData = () => {
+  
+    const data = {
+    ad_id :this.state.selectedAd.ad_id,
+    date : this.state.advertisingDate,
+    duration : this.state.duration,
+    ad_type : this.state.packageType,
+    ad_title : this.state.adTitle,
+   
+  };
+
+  
+
+  console.log("data" , data);
+
+  var url = "http://127.0.0.1:8000/advertisement-update/" + this.state.selectedAd.ad_id + "/";
+  console.log("data",url);
+
+  fetch(url,{
+    method:'POST',
+    headers:{
+      'Content-type' : 'application/json',
+    },
+    body:JSON.stringify(data),
+  }).then(res => console.log(res.status)).catch(err => console.log(err));
+};
+
+updateData = (e) => {
+  this.setState({ [e.target.name]: e.target.value });
+};
+
+selectData = (e) => {
+  this.setState({ type: e[0] });
+};
+
+
+getdate = (e) => {
+  this.setState({ date: e });
+};
+
+
+
     
 
 AdvertisementData() {
@@ -63,7 +145,7 @@ AdvertisementData() {
                 <td> {item.date} </td>
                 <td> {item.ad_type} </td>
                 <Space size="large">
-          <button type = "button" class="btn btn-outline-primary">Edit</button>
+          <button type = "button" class="btn btn-outline-primary" onClick={() => this.showDrawer(item.ad_id)}>Edit</button>
          
           <button type="button" class="btn btn-outline-danger" onClick={()=> this.delete(item.ad_id)}>Delete</button>
   
@@ -140,6 +222,119 @@ AdvertisementData() {
   </tbody>
 </table>
 <Link to="/advertise"><button type="button" class="btn btn-primary">Add</button></Link>
+
+
+<Drawer
+            title = "Update Advertisemet"
+            width="400px"
+            onClose = {this.onClose}
+            visible={this.state.visible}
+            bodyStyle={{paddingBottom:10}}
+            footer={
+                <div
+                  style={{
+                    textAlign: "right",
+                  }}
+                >
+             <Button onClick={this.onClose} style={{ marginRight: 8 }}>
+                  Cancel
+                </Button>
+                <Button onClick={this.sendData} type="primary">
+                  Update
+                </Button>
+              </div>
+            }
+          >
+              <Form layout="vertical" hideRequiredMark>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    name="adTitle"
+                    label="Ad Title"
+                    rules={[
+                      { required: true, message: "Please enter a Ad Title" },
+                    ]}
+                  >
+                    <Input
+                    onChange={this.updateData}
+                      placeholder="Please enter Ad Title"
+                      name="adTitle"
+                      defaultValue={this.state.selectedAd.ad_title}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name="duration"
+                    label="Duration"
+                    rules={[
+                      { required: true, message: "Please enter Duration" },
+                    ]}
+                  >
+                    <Input
+                      onChange={this.updateData}
+                      placeholder="Please enter Duration"
+                      name="duration"
+
+                      defaultValue={this.state.selectedAd.duration}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+                    </Row>
+                    <Row>
+                    <Col span={12}>
+                  <Form.Item
+                    name="packageType"
+                    label="Package Type"
+                    rules={[
+                      { required: true, message: "Please enter Package Type" },
+                    ]}
+                  >
+                      <Input
+                      onChange={this.updateData}
+                      placeholder="Please enter Package Type"
+                      name="packageType"
+
+                      defaultValue={this.state.selectedAd.ad_type}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+                    </Row>
+                    
+                 <Row>  
+                <Col span={12}>
+                  <Form.Item
+                    name="advertisingDate"
+                   
+                    rules={[
+                      { required: true, message: "Please enter a Date" },
+                    ]}
+                  >
+                    <div class='form-group'>
+                          <label>
+                            Advertising Date
+                          </label>
+                          <div class='col-lg-9 col-md-9 col-sm-9'>
+                          <input type="date"
+                           onChange={(value) =>
+                            this.getdate(value.format("YYYY-MM-DD"))
+                          }
+                          name="advertisingDate"
+                           onChange={this.updateData}
+                           defaultValue={moment(this.state.selectedAd.date)}/>
+                          </div>
+                        </div>
+                  </Form.Item>
+                </Col>
+               
+                    </Row>
+                    
+                      
+                    </Form>
+          </Drawer>
 
 </div>
      
