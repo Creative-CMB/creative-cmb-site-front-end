@@ -13,17 +13,31 @@ class UserDashboard extends Component {
         super(props);
         this.state = {  }
     }
+
     render() { 
         return ( 
             <div>
                 <div className="row">
-                    <div className="col-lg-1 col-md-1 col-sm-1 col-xm-1">
-                        <div class="sidenav">
-                            <a href="/userdashboard">
-                                <img src={home_icon} style={{marginLeft:50,width:50, height:50 }}></img>
-                            </a>
-                            <a href="/addusers" style={{marginTop:30}}>Add Users</a>
-                            <a href="/manageusers" style={{marginTop:30}}>Manage Users</a>
+                <div className="col-lg-1 col-md-1 col-sm-1 col-xm-1">
+                        <div class="sidenav" style={{backgroundColor:'#3a64c7'}}>
+                            <div className="row">
+                                <a href="/userdashboard">
+                                    <img src={home_icon} style={{marginLeft:50,width:50, height:50 }}></img>
+                                </a>
+                                <a href="/addusers" style={{marginTop:30,marginLeft:20}}>Add Customers</a>
+                                <a href="/manageusers" style={{marginTop:30,marginLeft:20}}>Manage Customers</a>                                
+                                <a href="/manageloggedusers" style={{marginTop:30,marginLeft:20}}>Manage Logged Users</a>                                                    
+                                <a href="http://127.0.0.1:8000/registeradmin/" style={{marginTop:30,marginLeft:20}}>Add Admin</a>
+                            </div>
+                            <div className="row" style={{height:300}}>
+                            </div>
+                            <div className="row" style={{marginBottom:10}}>
+                                <a href="http://127.0.0.1:8000/login/" style={{marginTop:30,marginLeft:20}}>
+                                    <h3 >
+                                        Logout
+                                    </h3>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div className="col-lg-11 col-md-11 col-sm-11 col-xm-11">
@@ -37,103 +51,11 @@ class UserDashboard extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-12 d-md-block d-none" style={{backgroundColor:"white", height: 500}}>
+                            <div className="col-lg-12 d-md-block d-none" style={{backgroundColor:"white", marginTop:100, height: 500}}>
                                 <img src={user_dash_pic} style={{marginLeft: 550, width:650, height:500 }}></img>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 58}}>
-                                <h4 style={{paddingLeft:125, marginTop:30}}>Summary</h4>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-4" style={{backgroundColor:"", height: 230}}>
-                                <div className="container" style={{paddingLeft: 20, paddingTop:20, width:380}}>
-                                    <div className="col-lg-12" style={{backgroundColor:"", height: 160}}>    
-                                        <div class="col shadow p-3 mb-5  rounded" style={{backgroundColor:"#f06ec6",height: 160, width: 380}} >
-                                            <div className="row">
-                                                <div className="col-lg-4 col-md-4 col-sm-4 col-xm-4" style={{backgroundColor:"", height: 130}}>
-                                                    <img src={user_group} style={{marginTop:35, marginLeft: 10, width:50, height:50 }}></img>
-                                                </div>
-                                                <div className="col-lg-8 col-md-8 col-sm-8 col-xm-8" style={{backgroundColor:"", height: 130}}>
-                                                    <div className="row">
-                                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h5 style={{color:"white",textAlign:"center", marginTop: 25}}>No of Customers</h5>
-                                                        </div>
-                                                         
-                                                    </div>
-                                                    <div className="row">
-                                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h3 style={{color:"white", textAlign:"center"}}>512</h3>
-                                                        </div>
-                                                         
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                              
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4" style={{backgroundColor:"", height: 230}}>
-                                <div className="container" style={{paddingLeft: 20, paddingTop:20, width:380}}>
-                                    <div className="col-lg-12" style={{backgroundColor:"", height: 160}}>    
-                                        <div class="col shadow p-3 mb-5  rounded" style={{backgroundColor:"#f06ec6",height: 160, width: 380}} >
-                                            <div className="row">
-                                                <div className="col-lg-4 col-md-4 col-sm-4 col-xm-4" style={{backgroundColor:"", height: 130}}>
-                                                    <img src={user_group} style={{marginTop:35, marginLeft: 10, width:50, height:50 }}></img>
-                                                </div>
-                                                <div className="col-lg-8 col-md-8 col-sm-8 col-xm-8" style={{backgroundColor:"", height: 130}}>
-                                                    <div className="row">
-                                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h5 style={{color:"white",textAlign:"center", marginTop: 25}}>No of Customers</h5>
-                                                        </div>
-                                                         
-                                                    </div>
-                                                    <div className="row">
-                                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h3 style={{color:"white", textAlign:"center"}}>512</h3>
-                                                        </div>
-                                                         
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                              
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4" style={{backgroundColor:"", height: 230}}>
-                                <div className="container" style={{paddingLeft: 20, paddingTop:20, width:380}}>
-                                    <div className="col-lg-12" style={{backgroundColor:"", height: 160}}>    
-                                        <div class="col shadow p-3 mb-5  rounded" style={{backgroundColor:"#f06ec6",height: 160, width: 380}} >
-                                            <div className="row">
-                                                <div className="col-lg-4 col-md-4 col-sm-4 col-xm-4" style={{backgroundColor:"", height: 130}}>
-                                                    <img src={user_group} style={{marginTop:35, marginLeft: 10, width:50, height:50 }}></img>
-                                                </div>
-                                                <div className="col-lg-8 col-md-8 col-sm-8 col-xm-8" style={{backgroundColor:"", height: 130}}>
-                                                    <div className="row">
-                                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h5 style={{color:"white",textAlign:"center", marginTop: 25}}>No of Customers</h5>
-                                                        </div>
-                                                         
-                                                    </div>
-                                                    <div className="row">
-                                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h3 style={{color:"white", textAlign:"center"}}>512</h3>
-                                                        </div>
-                                                         
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                              
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
+                        
 
                     </div>
                 </div>
