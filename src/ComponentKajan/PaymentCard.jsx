@@ -36,7 +36,6 @@ class PaymentCard extends Component {
     
     
     render() { 
-      return this.state.invoice.map((item) => {
 
         return ( 
             <div className="payment-wrapper">
@@ -49,14 +48,14 @@ class PaymentCard extends Component {
               <th>Price</th> 
             </tr>
             <tr>
-        <td>{item.order_name}</td>
-              <td>{item.amount}</td>
+        <td>Pepsi</td>
+              <td>5000</td>
             </tr>
            
 
             <tr>
               <td><h5>Total</h5></td>
-              <td>{item.amount}</td>
+              <td>5000</td>
             </tr>
             <button></button>
           </table>
@@ -64,7 +63,6 @@ class PaymentCard extends Component {
                 
                 
             </div>
-        )}
          );
     }
 }

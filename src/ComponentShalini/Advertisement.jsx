@@ -46,7 +46,7 @@ class Advertisement extends Component {
                     <div className="col-md-4">
                         <Card imgsrc={concert} title="Music Concert" para="Music concert will be held on 10th of december..."/>
                     </div>
-                    <a href="https://documentcloud.adobe.com/link/track?uri=urn:aaid:scds:US:75a2d9be-d4ae-4e5c-b7c4-c17851cdfef9" download>click</a>
+                   
 
                 </div> 
                
@@ -57,13 +57,13 @@ class Advertisement extends Component {
 
 <div className="row">
                     <div className="col-md-4">
-                        <Card style={{width:"50%"}} imgsrc={dfcc} title="Exhibition" para="Mega Exhibition will be held on 27th of november..."/>
+                        <Card style={{width:"50%"}} imgsrc={dfcc} title="Discounts" para="20% huge Discounts on House of Fashion..."/>
                     </div>
                     <div className="col-md-4">
-                        <Card imgsrc={food} title="Product Launching" para="Codegen stepping up another stone in technology..."/>
+                        <Card imgsrc={food} title="Food Fest" para="Be ready on 30 and 31st with our meals..."/>
                     </div>
                     <div className="col-md-4">
-                        <Card imgsrc={pepsi} title="Music Concert" para="Music concert will be held on 10th of december..."/>
+                        <Card imgsrc={pepsi} title="Pepsi Offer" para="Buy Pepsi and be a Winner of Iphone..."/>
                     </div>
                 </div>
                 </div>  

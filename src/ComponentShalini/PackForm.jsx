@@ -7,7 +7,7 @@ import { Checkbox } from 'antd';
 import axios from 'axios';
 import NavApp from "../ComponentKajan/NavApp";
 import "./Css/shali.css";
-
+import EventFooter from "../ComponentsAkila/EventFooter";
 
 
 
@@ -216,7 +216,7 @@ class PackForm extends Component {
           <div class='container py-3'>
             <div class='row'>
               <div class='mx-auto col-sm-12'>
-                <div class='card' style={{height:"500px", top:"80px",right:"-20px"}}>
+                <div class='card' style={{height:"450px", top:"70px",right:"-20px"}}>
                 <span class="border border-primary"></span>
 
         
@@ -327,7 +327,7 @@ class PackForm extends Component {
                       
                       
 
-                      <input class="col-lg-5 mt-5 btn btn-md btn btn-secondary mt-3" value="CREATE PACKAGE" type="submit"></input>
+                      <input class="col-lg-5 mt-5 btn btn-md btn btn-secondary mt-3" value="CREATE PACKAGE" type="submit" style={{top:"-30px", right:"-175px"}}></input>
 
        
                     </div></form>
@@ -341,13 +341,25 @@ class PackForm extends Component {
     
         <div
             className='col-sm-9 mt-6 col-md-6 col-lg-6'>
-                <img style={{position:"relative",top:"80px",right:"-40px",width:"80%"}} src={packing}></img>
+                <img style={{position:"relative",top:"80px",right:"-70px",width:"80%"}} src={packing}></img>
           </div>
         </div>
+                    {/*  <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <img
+              src={ticketcreate}
+              alt="Third slide"
+              style={{ width: "500px" }}
+            />
+          </div>
+        </div> */}
+          <EventFooter />
       </div>
+      
 
     
   );
+       
 }
 }
 export default PackForm;

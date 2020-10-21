@@ -10,7 +10,7 @@ import platinum from "../Images/platinum.png";
 import pack from "../Images/pack.png";
 import cusicon from "../Images/AdCustomer.png";
 import background from "../Images/background.jpg";
-import {Space, Button} from 'antd';
+import {Space, Button, Select, Drawer,Form,Input,Col,Row} from 'antd';
 import Table from 'react-bootstrap/Table'
 import NavApp from "../ComponentKajan/NavApp";
 import "./Css/shali.css";
@@ -19,7 +19,7 @@ import "./Css/shali.css";
 
 
 
-
+const {Option} = Select;
 
 
 
@@ -27,12 +27,25 @@ class shali extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            package:[]
+            package:[],
+            selectedIndex:"",
+            selectedPackage:{},
+            value:1,
+            visible:false,
+            packageName:"",
+            packagePrice:"",
+            packageType:"",
+            packfeatures:"",
          }
     }
 
+    componentWillMount(){
+        this.fetchDetails();
+      }
+     
+
     componentDidMount(){
-      this.fetchDetails()
+        document.title = "CreateCMB | Manage Package";
     }
   
     fetchDetails = () =>{
@@ -46,6 +59,89 @@ class shali extends Component {
         }) 
         )
     }
+
+    
+  delete = (id) => {
+    var url = "http://127.0.0.1:8000/package-delete/" + id + "/"
+;
+fetch(url,{
+  method:"DELETE",
+  headers:{
+      'Content-type':'application/jason',
+  },
+}).then((response) => {
+  this.fetchDetails()
+}).catch(err => console.log(err))
+}
+
+
+showDrawer = (id) => {
+    this.state.package
+      .filter((item) => item.pack_id === id)
+      .map((filterdItem) => this.setState({ selectedPackage: filterdItem }));
+
+    this.setState(
+      {
+        visible: true,
+      },
+      () => console.log(this.state.selectedPackage)
+    );
+
+    console.log(this.state.selectedPackage);
+  };
+
+  onClose = () => {
+    window.location.reload(false);
+    this.setState(
+      {
+        visible: false,
+      },
+      () => console.log(this.state.visible)
+    );
+  };
+
+  sendData = () => {
+    
+      const data = {
+      pack_id :this.state.selectedPackage.pack_id,
+      pack_name : this.state.packageName,
+      price : this.state.packagePrice,
+      pack_type : this.state.packageType,
+      featuers : this.state.packfeatures,
+     
+    };
+
+    
+
+    console.log("data" , data);
+
+    var url = "http://127.0.0.1:8000/package-update/" + this.state.selectedPackage.pack_id + "/";
+    console.log("data",url);
+
+    fetch(url,{
+      method:'POST',
+      headers:{
+        'Content-type' : 'application/json',
+      },
+      body:JSON.stringify(data),
+    }).then(res => console.log(res.status)).catch(err => console.log(err));
+  };
+
+  updateData = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  selectData = (e) => {
+    this.setState({ type: e[0] });
+  };
+
+
+  getdate = (e) => {
+    this.setState({ date: e });
+  };
+
+
+
   
   
   
@@ -59,25 +155,16 @@ class shali extends Component {
                 <td> {item.featuers} </td>
                 <td> {item.pack_type} </td>
                 <td> {item.price} </td>
-                <td> <Link to="/packform"> <Button type="button" size="sm"  >Edit</Button></Link></td>
-                <td>  <Button type="button" onClick={()=> this.delete(item.pack_id)}>Delete</Button> </td>
+                <Space size="large">
+                 <Button type="button" size="sm" onClick={() => this.showDrawer(item.pack_id)} >Edit</Button>
+                 <Button type="button" onClick={()=> this.delete(item.pack_id)}>Delete</Button> 
+                 </Space>
              </tr>
           )
        })
   }
 
-  delete = (id) => {
-    var url = "http://127.0.0.1:8000/package-delete/" + id + "/"
-;
-fetch(url,{
-  method:"DELETE",
-  headers:{
-      'Content-type':'application/jason',
-  },
-}).then((response) => {
-  this.fetchDetails()
-}).catch(err => console.log(err))
-}
+ 
 
     render() { 
         return ( 
@@ -148,6 +235,112 @@ fetch(url,{
                 </table>
                 </div>
                 <Link to="/packform"><button type="button" class="btn btn-primary">Add</button></Link>
+
+                <Drawer
+            title = "Update Package"
+            width="400px"
+            onClose = {this.onClose}
+            visible={this.state.visible}
+            bodyStyle={{paddingBottom:10}}
+            footer={
+                <div
+                  style={{
+                    textAlign: "right",
+                  }}
+                >
+             <Button onClick={this.onClose} style={{ marginRight: 8 }}>
+                  Cancel
+                </Button>
+                <Button onClick={this.sendData} type="primary">
+                  Update
+                </Button>
+              </div>
+            }
+          >
+              <Form layout="vertical" hideRequiredMark>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    name="packageName"
+                    label="Package Name"
+                    rules={[
+                      { required: true, message: "Please enter a Package name" },
+                    ]}
+                  >
+                    <Input
+                    onChange={this.updateData}
+                      placeholder="Please enter Package name"
+                      name="packageName"
+                      defaultValue={this.state.selectedPackage.pack_name}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name="packagePrice"
+                    label="Package Price"
+                    rules={[
+                      { required: true, message: "Please enter Package Price" },
+                    ]}
+                  >
+                    <Input
+                      onChange={this.updateData}
+                      placeholder="Please enter Package Price"
+                      name="packagePrice"
+
+                      defaultValue={this.state.selectedPackage.price}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+                    </Row>
+                    <Row>
+                    <Col span={12}>
+                  <Form.Item
+                    name="packageType"
+                    label="Package Type"
+                    rules={[
+                      { required: true, message: "Please enter Package Type" },
+                    ]}
+                  >
+                      <Input
+                      onChange={this.updateData}
+                      placeholder="Please enter Package Type"
+                      name="packageType"
+
+                      defaultValue={this.state.selectedPackage.pack_type}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+                    </Row>
+                    
+                 <Row>  
+                <Col span={12}>
+                  <Form.Item
+                    name="packfeatures"
+                    label="Features"
+                    rules={[
+                      { required: true, message: "Please enter a feature" },
+                    ]}
+                  >
+                    <Input
+                      onChange={this.updateData}
+                      placeholder="Please enter a feature"
+                      name="packfeatures"
+
+                      defaultValue={this.state.selectedPackage.featuers}
+                      
+                    />
+                  </Form.Item>
+                </Col>
+               
+                    </Row>
+                    
+                      
+                    </Form>
+          </Drawer>
                 <div >
 
 

@@ -17,7 +17,7 @@
     "antd": "^4.5.2",
     "aws-amplify-react": "^4.2.2",
     "axios": "^0.19.2",
-    "bootstrap": "^4.5.2",
+    "bootstrap": "^4.5.3",
     "chart.js": "^2.9.3",
     "crypto-random-string": "^3.3.0",
     "email-validator": "^2.0.4",
@@ -41,7 +41,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-
     "react-scroll": "^1.8.1",
     "reactstrap": "^8.5.1",
     "typecript": "0.0.1-security",

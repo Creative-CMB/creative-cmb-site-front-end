@@ -45,7 +45,6 @@ class Payhere extends Component {
     const onDismissed = () => console.log('onDismissed');
     const onError = (error) => console.log('onError', error);
  
-    return this.state.invoice.map((item) => {
       
     return <PayHereButton
     sandbox={true}
@@ -54,8 +53,8 @@ class Payhere extends Component {
     onDismissed={onDismissed}
     onError={onError}
     order_id={'tkt12345'}
-    items={item.order_name}
-    amount={item.amount}
+    item={'Pepsi'}
+    amount={'5000'}
     currency={'LKR'}
     first_name={'Kajathees'}
     last_name={'Prem'}
@@ -68,7 +67,6 @@ class Payhere extends Component {
         notify_url: 'http://localhost:3000/inventory',
       }}
     />
-    })
   }
 }
 
