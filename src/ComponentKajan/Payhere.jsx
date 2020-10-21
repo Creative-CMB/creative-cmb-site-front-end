@@ -30,7 +30,7 @@ class Payhere extends Component {
       fetchDetails = () =>{
         console.log('fetching...')
     
-        fetch('http://127.0.0.1:8000/invoices/INV324b875/')
+        fetch('http://127.0.0.1:8000/invoices/INV01af924/')
         .then(response => response.json())
         .then(data => 
           this.setState({

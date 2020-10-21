@@ -6,6 +6,8 @@ import Unsuccess from "../Images/unsuccess.png";
 import Edit from "../Images/edit2.png";
 import Delete from "../Images/delete1.png";
 import EventNav from "../ComponentsAkila/EventNav";
+import Payhre from "./Payhere";
+
 import axios from "axios";
 import moment from "moment";
 import "./Css/kajan.css";
@@ -281,7 +283,7 @@ tableData() {
             </div>
            
               <Link to="/invoadd" > <button className="button-add">Add Invoice</button></Link>
-                <button className="button-print">Print Invoice</button>
+                              
             <Drawer
             title = "Update invoice"
             width="400px"

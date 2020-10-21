@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { Component } from "react";
-import { Radio, message } from "antd";
+import { Radio, message,notification} from "antd";
 import packing from '../Images/pack2.png';
 import { Checkbox } from 'antd';
 import axios from 'axios';
@@ -39,7 +39,8 @@ class PackForm extends Component {
       packageName: "",
       packageType: "",
       features: "",
-      packagePrice: 0.00,
+      packagePrice: "",
+      priceVal:false,
       admins:[],
       admin:"",
       formErrors: {
@@ -65,6 +66,39 @@ class PackForm extends Component {
     )
   }
 
+  validatePackage = (e) => {
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+    let packageName = this.state.packageName;
+
+
+
+    if (formErrors.packageName = value =="") {
+    message.error(
+      "Package is Required"
+      );
+      
+    
+    }
+      else {
+      this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    }
+  };
+
+  validateAmount = () => {
+    let packagePrice = this.state.packagePrice;
+    if (isNaN(packagePrice)) {
+      message.error(
+        "Price should be in number"
+        );
+    
+    } else {
+      this.setState({priceVal: true });
+    }
+  };                 
+  handledata = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -205,8 +239,8 @@ class PackForm extends Component {
                             type='text'
                             placeholder="Summer"
                             name='packageName'
-                            noValidate
-                            onChange={this.handleChange}/>
+                            
+                            onChange={this.validatePackage}/>
                             
                             {formErrors.packageName.length > 0 && (
                 <span className='errorMessage'>{formErrors.packageName}</span>
@@ -244,14 +278,14 @@ class PackForm extends Component {
                           className={formErrors.packagePrice.length > 0 ? "error" : null}
                             class='form-control'
                             type='text'
-                            placeholder="8000.00"
+                            placeholder="price"
                             name='packagePrice'
-                            noValidate
-                            onChange={this.handleChange}/>
+                            
+                            onBlur={this.validateAmount}
+                            onChange={this.handledata}/>
 
-{formErrors.packagePrice.length > 0 && (
-                <span className='errorMessage'>{formErrors.packagePrice}</span>
-              )}
+
+              
             </div>
                    
                     

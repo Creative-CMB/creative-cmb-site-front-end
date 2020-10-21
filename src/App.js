@@ -43,6 +43,9 @@ import PackageForm from "./ComponentShalini/PackageForm";
 import PackageBasic from "./ComponentShalini/PackageBasic";
 import Add from "./ComponentShalini/Add";
 import CreateAdd from "./ComponentShalini/CreateAdd";
+import AdHome from "./ComponentShalini/Advertisement";
+
+
 import Api from "./ComponentKajan/ApiInvoice";
 import InvoiceAdd from "./ComponentKajan/InvoiceAdd";
 import Home from "./ComponentKajan/Home";
@@ -111,6 +114,8 @@ function App() {
       <Route component={Add} path='/Adddemo'></Route>
       <Route component={CreateAdd} path='/advertise'></Route>
       <Route component={PackForm} path='/packform'></Route>
+      <Route component={AdHome} path='/marketing'></Route>
+
 
 
 

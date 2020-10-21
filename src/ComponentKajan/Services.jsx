@@ -31,7 +31,7 @@ class Services extends Component {
                   <div className="services1">
                         <img style={{position:"absolute",left:"73px",top:"40px"}} src={ticket}></img>
                         <h3 style={{fontFamily:"Roboto",fontSize:"25px",fontWeight:"bold",position:"relative",top:"150px",textAlign:"center"}}>Tickets</h3>
-                        <Link to="/advertise">  <button style={{position:"relative",top:"170px",left:"73px"}} type="button" className="btn btn-outline-primary">View Details</button></Link>
+                        <Link to="/template">  <button style={{position:"relative",top:"170px",left:"73px"}} type="button" className="btn btn-outline-primary">View Details</button></Link>
 
 
                     </div>
@@ -46,14 +46,14 @@ class Services extends Component {
                     <div className="services3">
                     <img style={{position:"absolute",left:"90px",top:"40px"}} src={ad}></img>
                     <h3 style={{fontFamily:"Roboto",fontSize:"25px",fontWeight:"bold",position:"relative",top:"150px",textAlign:"center"}}>Marketing</h3>
-                    <Link to="/advertise">  <button style={{position:"relative",top:"170px",left:"73px"}} type="button" className="btn btn-outline-primary">View Details</button></Link>
+                    <Link to="/marketing">  <button style={{position:"relative",top:"170px",left:"73px"}} type="button" className="btn btn-outline-primary">View Details</button></Link>
 
 
                     </div>
                     <div className="services4">
                     <img style={{position:"absolute",left:"90px",top:"40px"}} src={rent}></img>
                     <h3 style={{fontFamily:"Roboto",fontSize:"25px",fontWeight:"bold",position:"relative",top:"150px",textAlign:"center"}}>Rental</h3>
-                    <button style={{position:"relative",top:"170px",left:"73px"}} type="button" className="btn btn-outline-primary">View Details</button>
+                    <Link to="/rent">  <button style={{position:"relative",top:"170px",left:"73px"}} type="button" className="btn btn-outline-primary">View Details</button></Link>
 
 
 

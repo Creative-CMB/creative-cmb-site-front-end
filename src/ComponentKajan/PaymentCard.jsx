@@ -12,22 +12,14 @@ class PaymentCard extends Component {
         super(props);
         this.state = { 
           invoice:[],
-          selectedIndex:"",
-          selectedInvoice:{},
-          value: 1,
-          visible:false,
-          ordername: "",
-          paytype:"",
-          inv_amount: "",
-          status:"",
-          invo_date: "",
+          ordername:"",
          }
     }
 
     fetchDetails = () =>{
       console.log('fetching...')
   
-      fetch('http://127.0.0.1:8000/invoices/INV81ace27/')
+      fetch('http://127.0.0.1:8000/invoices/INV01af924/')
       .then(response => response.json())
       .then(data => 
         this.setState({
@@ -37,9 +29,12 @@ class PaymentCard extends Component {
         
     }
 
-    componentDidMount(){
+     componentDidMount(){
       this.fetchDetails();
     }
+
+    
+    
     render() { 
       return this.state.invoice.map((item) => {
 
@@ -69,8 +64,8 @@ class PaymentCard extends Component {
                 
                 
             </div>
+        )}
          );
-    })
     }
 }
  

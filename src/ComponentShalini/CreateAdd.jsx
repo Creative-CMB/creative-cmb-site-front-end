@@ -3,13 +3,15 @@
 import React, { Component } from "react";
 import adpic1 from "../Images/adpic1.png";
 import blue from '../Images/blue.jpg';
-import { DatePicker, Radio, Upload, message } from "antd";
+import { DatePicker, Radio, Upload, message, notification } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { shadows } from '@material-ui/system';
 
 import axios from "axios";
 import NavApp from "../ComponentKajan/NavApp";
 import "./Css/shali.css";
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -54,7 +56,27 @@ class CreateAdd extends Component {
     };
   }
 
-  
+  validateTitle = (e) => {
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+    let adTitle = this.state.adTitle;
+
+
+
+    if (formErrors.adTitle = value =="") {
+    message.error(
+      "Advertisement Title is Required"
+      
+    
+        
+      );
+      
+    
+    }
+      else {
+      this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    }
+  };
 
   
 
@@ -187,8 +209,8 @@ class CreateAdd extends Component {
                             type='text'
                             placeholder="Summer"
                             name='adTitle'
-                            noValidate
-                            onChange={this.handleChange}/>
+                          
+                            onChange={this.validateTitle}/>
                             
                             {formErrors.adTitle.length > 0 && (
                 <span className='errorMessage'>{formErrors.adTitle}</span>
@@ -255,7 +277,7 @@ class CreateAdd extends Component {
                         
                         
 
-                        <input class="btn btn-md btn-primary btn-block mt-3" value="Submit" type="submit"></input>
+                      <Link to="/Payment"> <input class="btn btn-md btn-primary btn-block mt-3" value="Submit" type="submit"></input></Link>
 
                         
                         
