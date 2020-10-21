@@ -69,9 +69,8 @@ class Payment extends Component {
             <div className="paytype">
             
                <img style={{width:"70%",height:"70%",margin:"0px 40px"}} src={debit}></img> 
-           <div style={{margin: "20px 90px"}}>
-              < Payhre/>
-            </div>
+              <Payhre/>
+          
 
             
       </div>

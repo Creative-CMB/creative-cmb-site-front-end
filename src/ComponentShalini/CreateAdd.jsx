@@ -3,13 +3,19 @@
 import React, { Component } from "react";
 import adpic1 from "../Images/adpic1.png";
 import blue from '../Images/blue.jpg';
-import { DatePicker, Radio, Upload, message } from "antd";
+import { DatePicker, Radio, Upload, message, notification } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { shadows } from '@material-ui/system';
+import EventFooter from "../ComponentsAkila/EventFooter";
+
 
 import axios from "axios";
 import NavApp from "../ComponentKajan/NavApp";
+import jsPDF from "jspdf"
+import "jspdf-autotable"
 import "./Css/shali.css";
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -54,6 +60,57 @@ class CreateAdd extends Component {
     };
   }
 
+  validateTitle = (e) => {
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+    let adTitle = this.state.adTitle;
+
+
+
+    if (formErrors.adTitle = value =="") {
+    message.error(
+      "Advertisement Title is Required"
+      
+    
+        
+      );
+      
+    
+    }
+      else {
+      this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    }
+  };
+
+  generatePDF = (addata) => {
+    //initilize the pds
+    const doc = new jsPDF();
+
+    //column definition
+    const tableColumns = ["Ad Id", "Ad Title", "Duration", "Package Type","Date"];
+    const tableRows = [];
+
+    const rowdata = [
+      addata.ad_id,
+      addata.ad_title,
+      addata.ad_type,
+      addata.duration,
+      addata.date
+     
+    ];
+
+    tableRows.push(rowdata);
+
+    doc.autoTable(tableColumns, tableRows, { startY: 20 });
+    const date = Date().split(" ");
+    //the filename will be the current systems date
+    const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
+    doc.text(addata.ad_title + "'s " +  "           - note that this is an auto generated file.", 14, 15);
+    doc.save(`report_${dateStr}.pdf`);
+
+  }
+
+  
   
 
   
@@ -71,6 +128,8 @@ class CreateAdd extends Component {
       ad_type : this.state.packageType,
       ad_title : this.state.adTitle,
     }
+
+    this.generatePDF(advData);
 
     console.log("ship",advData)
 
@@ -155,19 +214,20 @@ class CreateAdd extends Component {
   const { formErrors } = this.state;
   
     return (
-      
+     
       <div>
+        
         <div>
           < NavApp/>
         </div>
         <div class='back'>
-        <img style={{position:"relative",width:"100%"}} src={blue}></img>
+        <img style={{width:"100%"}} src={blue}></img>
         <div className='row'>
           <div className=' col-sm-6 col-md-6 col-lg-6'>
             <div class='container py-3'>
               <div class='row'>
                 <div class='mx-auto col-sm-12'>
-                  <div class='card' style={{ height:"800px",right:"-220px", top:"-1050px", boxShadow:"2"}}>
+                  <div class='card' style={{ height:"650px",right:"-220px", top:"-1050px", width:"650px",boxShadow:"2"}}>
                     
                     <div class='card-body'>
                         <div className="row">
@@ -177,18 +237,18 @@ class CreateAdd extends Component {
                         </div>
                         <form class='form' role='form' onSubmit={this.handleSubmit}>
                      
-                        <label class='col-lg-6 col-form-label mt-3 form-control-label'>
+                        <label class='col-lg-6 mt-3 col-form-label form-control-label' style={{fontFamily:"initial", fontSize:"20px",left:"-12px"}}>
                           Advertisement Title
                         </label>
-                        <div class='col-lg-9 '>
-                          <input className='form-control form-control-sm'
+                        <div class='col-lg-9 ' style={{left:"-12px"}}>
+                          <input className='form-control form-control-sm' 
                           className={formErrors.adTitle.length > 0 ? "error" : null}
                             class='form-control'
                             type='text'
                             placeholder="Summer"
                             name='adTitle'
-                            noValidate
-                            onChange={this.handleChange}/>
+                          
+                            onChange={this.validateTitle}/>
                             
                             {formErrors.adTitle.length > 0 && (
                 <span className='errorMessage'>{formErrors.adTitle}</span>
@@ -255,24 +315,40 @@ class CreateAdd extends Component {
                         
                         
 
-                        <input class="btn btn-md btn-primary btn-block mt-3" value="Submit" type="submit"></input>
+                       <input class="btn btn-md btn-primary btn-block mt-3" value="Submit" type="submit"></input>
 
                         
                         
                         </div>
                       </form>
+       
                     </div>
+                                                    {/*  <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <img
+              src={ticketcreate}
+              alt="Third slide"
+              style={{ width: "500px" }}
+            />
+          </div>
+        </div> */}
+          <EventFooter />
+        
                   </div>
+                                  
                 </div>
+               
               </div>
             </div>
           </div>
           </div>
+            
 
           <div
             className='col-sm-6 mt-4 col-md-6 col-lg-6'>
             <img style={{position:"relative",top:"-1700px",right:"-900px",width:"80%"}} src={adpic1}></img>
           </div>
+           
         </div>
     </div>
     );

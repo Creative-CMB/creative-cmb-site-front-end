@@ -15,14 +15,14 @@ function KajanNav() {
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="#Services">About</Nav.Link>
         <NavDropdown title="Services" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="/advertise">Tickets</NavDropdown.Item>
-        <NavDropdown.Item href="/advertise">Advertisements</NavDropdown.Item>
-        <NavDropdown.Item href="/advertise">Equipment Rentals</NavDropdown.Item>
+        <NavDropdown.Item href="/template">Tickets</NavDropdown.Item>
+        <NavDropdown.Item href="/marketing">Advertisements</NavDropdown.Item>
+        <NavDropdown.Item href="/rent">Equipment Rentals</NavDropdown.Item>
         
       </NavDropdown>
         <Nav.Link href="/create">Events</Nav.Link>
         <Nav.Link href="/Feedback">Contact Us</Nav.Link>
-        <Nav.Link href="/Feedback">Logout</Nav.Link>
+        <Nav.Link href="http://127.0.0.1:8000/login">Logout</Nav.Link>
 
 
       </Nav>

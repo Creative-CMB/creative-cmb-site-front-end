@@ -7,6 +7,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import "./Css/shali.css";
 
 
+
 const { Dragger } = Upload;
 
 const props = {
