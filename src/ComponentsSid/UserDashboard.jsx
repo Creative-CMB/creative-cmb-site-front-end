@@ -13,6 +13,7 @@ class UserDashboard extends Component {
         super(props);
         this.state = {  }
     }
+
     render() { 
         return ( 
             <div>
@@ -24,6 +25,9 @@ class UserDashboard extends Component {
                             </a>
                             <a href="/addusers" style={{marginTop:30}}>Add Users</a>
                             <a href="/manageusers" style={{marginTop:30}}>Manage Users</a>
+                            
+                            
+                            <a href="http://127.0.0.1:8000/login/" style={{marginTop:30}}>Logout</a>
                         </div>
                     </div>
                     <div className="col-lg-11 col-md-11 col-sm-11 col-xm-11">
@@ -64,7 +68,7 @@ class UserDashboard extends Component {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h3 style={{color:"white", textAlign:"center"}}>512</h3>
+                                                            <h3 style={{color:"white", textAlign:"center"}}>---</h3>
                                                         </div>
                                                          
                                                     </div>
@@ -92,7 +96,7 @@ class UserDashboard extends Component {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h3 style={{color:"white", textAlign:"center"}}>512</h3>
+                                                            <h3 style={{color:"white", textAlign:"center"}}>---</h3>
                                                         </div>
                                                          
                                                     </div>
@@ -120,7 +124,7 @@ class UserDashboard extends Component {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xm-12" style={{backgroundColor:"", height: 65}}>
-                                                            <h3 style={{color:"white", textAlign:"center"}}>512</h3>
+                                                            <h3 style={{color:"white", textAlign:"center"}}>---</h3>
                                                         </div>
                                                          
                                                     </div>

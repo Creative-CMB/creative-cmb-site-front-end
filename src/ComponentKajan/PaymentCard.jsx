@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import "./Css/kajan.css";
+
 
 
 
@@ -10,22 +12,14 @@ class PaymentCard extends Component {
         super(props);
         this.state = { 
           invoice:[],
-          selectedIndex:"",
-          selectedInvoice:{},
-          value: 1,
-          visible:false,
-          ordername: "",
-          paytype:"",
-          inv_amount: "",
-          status:"",
-          invo_date: "",
+          ordername:"",
          }
     }
 
     fetchDetails = () =>{
       console.log('fetching...')
   
-      fetch('http://127.0.0.1:8000/invoices/INV81ace27/')
+      fetch('http://127.0.0.1:8000/invoices/INV01af924/')
       .then(response => response.json())
       .then(data => 
         this.setState({
@@ -35,11 +29,13 @@ class PaymentCard extends Component {
         
     }
 
-    componentDidMount(){
+     componentDidMount(){
       this.fetchDetails();
     }
+
+    
+    
     render() { 
-      return this.state.invoice.map((item) => {
 
         return ( 
             <div className="payment-wrapper">
@@ -52,14 +48,14 @@ class PaymentCard extends Component {
               <th>Price</th> 
             </tr>
             <tr>
-        <td>{item.order_name}</td>
-              <td>{item.amount}</td>
+        <td>Pepsi</td>
+              <td>5000</td>
             </tr>
            
 
             <tr>
               <td><h5>Total</h5></td>
-              <td>{item.amount}</td>
+              <td>5000</td>
             </tr>
             <button></button>
           </table>
@@ -68,7 +64,6 @@ class PaymentCard extends Component {
                 
             </div>
          );
-    })
     }
 }
  

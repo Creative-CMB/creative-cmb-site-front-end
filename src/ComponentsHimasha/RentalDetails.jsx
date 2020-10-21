@@ -1,19 +1,53 @@
 import React, { Component } from 'react'
-import AddItems from './AddItems'
 
 export default class RentalDetails extends Component {
-
-    testing = () => {
-        console.log("hi")
-        return <h1>hiii</h1>
+    
+    state = {
+        rentalDetails: []
     }
+
+    componentDidMount() {
+        this.fetchRentalDetails()
+    }
+    
+    fetchRentalDetails() {
+        fetch('http://127.0.0.1:8000/rentalDetails/')
+        .then(response => response.json())
+        .then(data =>
+            this.setState({
+                rentalDetails:data}))            
+    }
+
 
     render() {
         return (
             <div>
-                <AddItems test={this.testing.bind(this)} />
+                 <table>
+                    <thead>
+                        <tr >
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody  >
+                        {this.state.rentalDetails.map((r_details) => {
+                        const {rent_id, rental_date, rental_period, status, price, qty, customer_id} = r_details
+                        return (
+                        <tr  >
+                            <td> {rent_id} </td>
+                            <td> {rental_date} </td>
+                            <td> {rental_period} </td>
+                            <td> {status} </td>
+                            <td> {price} </td>
+                            <td> {qty} </td>
+                        </tr>
+                    )
+                })
+                    }
+                    </tbody>
+                </table>
             </div>
         )
     }
 }
-

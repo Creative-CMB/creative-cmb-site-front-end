@@ -19,11 +19,17 @@ import EventSuccess from './ComponentsAkila/EventSuccess';
 import TicketForm from "./ComponentsSanda/TicketForm";
 import TktTemplate from "./ComponentsSanda/TktTemplate";
 import ResTemplate from "./ComponentsSanda/ResTemplate";
-import TicketEdit from "./ComponentsSanda/TicketEdit"
+import TicketEdit from "./ComponentsSanda/TicketEdit";
+import ReservationReport from "./ComponentsSanda/ReservationReport";
 
+
+
+import Rental from './ComponentsHimasha/Rental';
 import InventoryItems from "./ComponentsHimasha/InventoryItems";
 import RentalDetails from "./ComponentsHimasha/RentalDetails";
 import AddItems from "./ComponentsHimasha/AddItems";
+import RentalHistory from './ComponentsHimasha/RentalHistory';
+import test from './ComponentsHimasha/test';
 
 import Feedback from "./ComponentsMalaka/FeedbackTemp";
 import Adminfeedback from "./ComponentsMalaka/feedadmin";
@@ -37,6 +43,9 @@ import PackageForm from "./ComponentShalini/PackageForm";
 import PackageBasic from "./ComponentShalini/PackageBasic";
 import Add from "./ComponentShalini/Add";
 import CreateAdd from "./ComponentShalini/CreateAdd";
+import AdHome from "./ComponentShalini/Advertisement";
+
+
 import Api from "./ComponentKajan/ApiInvoice";
 import InvoiceAdd from "./ComponentKajan/InvoiceAdd";
 import Home from "./ComponentKajan/Home";
@@ -50,7 +59,6 @@ import AddDepartment from './ComponentsDeepika/AddDepartment';
 import AddDeptManager from './ComponentsDeepika/AddDeptManager';
 import AddDeptSupervisor from './ComponentsDeepika/AddDeptSupervisor';
 import AddDeptEmployee from './ComponentsDeepika/AddDeptEmployee';
-import AddLeave from './ComponentsDeepika/AddLeave';
 import AddSalary from './ComponentsDeepika/AddSalary';
 import EmployeeManagementHome from './ComponentsDeepika/EmployeeManagementHome';
 import ViewDepartment from './ComponentsDeepika/ViewDepartment';
@@ -58,9 +66,11 @@ import ViewDeptEmployee from './ComponentsDeepika/ViewDeptEmployee';
 import ViewDeptManager from './ComponentsDeepika/ViewDeptManager';
 import ViewDeptSupervisors from './ComponentsDeepika/ViewDeptSupervisors';
 import ViewEmployee from './ComponentsDeepika/ViewEmployee';
-import ViewLeave from './ComponentsDeepika/ViewLeave';
 import ViewSalary from './ComponentsDeepika/ViewSalary';
-
+import EmployeePDF from './ComponentsDeepika/EmployeePDF';
+import DepartmentPDF from './ComponentsDeepika/DepartmentPDF';
+import DeptManagerPDF from './ComponentsDeepika/DeptManagerPDF';
+import SalaryPDF from './ComponentsDeepika/SalaryPDF';
 
 
 
@@ -76,19 +86,9 @@ import Dashboard from "./ComponentsAkila/Dashboard";
 import AddUsers from "./ComponentsSid/AddUsers";
 import ManageUsers from "./ComponentsSid/ManageUsers";
 import UpdateUsers from "./ComponentsSid/UpdateUsers";
-import Admin_login from "./ComponentsSid/adminlogin";
-import Customers from "./ComponentsSid/customers";
 
 import Payment from "./ComponentKajan/Payment";
 function App() {
-  
-  const userLogin = (tok) => {
-    setToken(tok);
-    
-  }
-
-  const[ token, setToken] = useState('');
-
 
   return (
     <Router>
@@ -115,8 +115,8 @@ function App() {
       <Route component={Add} path='/Adddemo'></Route>
       <Route component={CreateAdd} path='/advertise'></Route>
       <Route component={PackForm} path='/packform'></Route>
-     
-     
+      <Route component={AdHome} path='/marketing'></Route>
+
 
 
 
@@ -133,14 +133,17 @@ function App() {
       <Route component={TktTemplate} path="/template"></Route>
       <Route component={ResTemplate} path="/reservation"></Route>
       <Route component={TicketEdit} path="/ticketedit"></Route>
+      <Route component={ReservationReport} path="/reservation-report"></Route>
+   
 
-      <Route component={InventoryItems} path="/inventory"></Route>
+     <Route component={InventoryItems} path="/inventory"></Route>
       <Route component={AddItems} path="/add"></Route>
+      <Route component={Rental} path='/rent' ></Route>
+      <Route component={RentalDetails} path='/rental_details'></Route>
+      <Route component={RentalHistory} path='/rental_history' ></Route>
+      <Route component={test} path='/hehehe'></Route>
 
-
-
-      <Route component={Feedback} path="/feedback"></Route>
-      <Route component={Adminfeedback} path="/adminfeedback"></Route>
+    
       
 
       <Route component={AddEmployee} path="/addEmployee"></Route>
@@ -148,37 +151,37 @@ function App() {
       <Route component={AddDeptManager} path="/addDeptManager"></Route>
       <Route component={AddDeptSupervisor} path="/addDeptSupervisor"></Route>
       <Route component={AddDeptEmployee} path="/addDeptEmployee"></Route>
-      <Route component={AddLeave} path="/addLeave"></Route>
       <Route component={AddSalary} path="/addSalary"></Route>
       <Route component={ViewDepartment} path="/viewdept"></Route>
       <Route component={ViewDeptEmployee} path="/viewdeptemp"></Route>
       <Route component={ViewDeptManager} path="/viewdeptmanag"></Route>
       <Route component={ViewDeptSupervisors} path="/viewdeptsuper"></Route>
       <Route component={ViewEmployee} path="/viewemp"></Route>
-      <Route component={ViewLeave} path="/viewleave"></Route>
       <Route component={ViewSalary} path="/viewsalary"></Route>
       <Route component={EmployeeManagementHome} path="/employeeHome"></Route>
+      <Route component={EmployeePDF} path="/employeePDF"></Route>
+      <Route component={DepartmentPDF} path="/departmentPDF"></Route>
+      <Route component={DeptManagerPDF}path="/deptmanagerPDF"></Route>
+      <Route component={SalaryPDF} path="/salaryPDF"></Route>
 
+      
       
       <Route component={Feedback} path='/feedback'></Route>
       <Route component={Adminfeedback} path='/adminfeedback'></Route>
       <Route component={Editfeedbac} path='/editfeedback'></Route>
-      <Route component={Startup} path="/startup"/>
-      <Route component={Signup} path="/signup"/>
-      <Route component={Login} path="/login"/>
+      
       <Route component={UserAccount} path="/useraccount"/>
       <Route component={UserDashboard} path="/userdashboard"/>
       <Route component={AddUsers} path="/addusers"/>
       <Route component={ManageUsers} path="/manageusers"/>
       <Route component={UpdateUsers} path="/updateusers"/>
-      <Route component={Admin_login} path="/adminlogin" userLogin={userLogin}/>
-      <Route component={Customers} path="/customers"/>
-     
 
 
      
 
     </Router>
+
+    
 
   );
 }

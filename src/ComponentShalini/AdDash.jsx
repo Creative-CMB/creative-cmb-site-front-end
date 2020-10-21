@@ -5,6 +5,7 @@ import Delete from "../Images/delete1.png";
 import {Space, Button, Select, Drawer,Form,Input,Col,Row} from "antd";
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import moment from "moment";
+import "./Css/shali.css";
 
 
 const {Option} = Select;

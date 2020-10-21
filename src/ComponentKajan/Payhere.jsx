@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
  
-import { PayHereButton } from 'react-payhere-button'
+import { PayHereButton } from 'react-payhere-button';
+import "./Css/kajan.css";
+
  
 class Payhere extends Component {
     constructor(props) {
@@ -28,7 +30,7 @@ class Payhere extends Component {
       fetchDetails = () =>{
         console.log('fetching...')
     
-        fetch('http://127.0.0.1:8000/invoices/INV324b875/')
+        fetch('http://127.0.0.1:8000/invoices/INV01af924/')
         .then(response => response.json())
         .then(data => 
           this.setState({
@@ -43,7 +45,6 @@ class Payhere extends Component {
     const onDismissed = () => console.log('onDismissed');
     const onError = (error) => console.log('onError', error);
  
-    return this.state.invoice.map((item) => {
       
     return <PayHereButton
     sandbox={true}
@@ -52,8 +53,8 @@ class Payhere extends Component {
     onDismissed={onDismissed}
     onError={onError}
     order_id={'tkt12345'}
-    items={item.order_name}
-    amount={item.amount}
+    item={'Pepsi'}
+    amount={'5000'}
     currency={'LKR'}
     first_name={'Kajathees'}
     last_name={'Prem'}
@@ -66,7 +67,6 @@ class Payhere extends Component {
         notify_url: 'http://localhost:3000/inventory',
       }}
     />
-    })
   }
 }
 

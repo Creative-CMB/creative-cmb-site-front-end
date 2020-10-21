@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
-import { Input } from 'antd';
 import { Button } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -8,41 +7,43 @@ import { ExclamationCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import {
     Modal,
     notification,
-    Drawer,
-    Form,
-    Col,
-    Row,
-    Select,
-    DatePicker,
     Popconfirm,
     message,
   } from "antd";
 
   const { confirm } = Modal;
-  const { Option } = Select;
-const { Search } = Input;
 
 class ViewSalary extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            data:[]
+            sal:[],
+            selectedSalary:{},
+            editMode: false,
+            sal_id:'',
+            emp_det_id:'',
+            dept_id:'',
+            basic_sal:'',
+            extra_hours:'',
+            bonus:'',
+            month:'',
+            year:'',
+            paid:'',
+            Paid_Date:''
          }
     }
 
 
     componentDidMount(){
         //fetching the data from bend
-
         this.fetchEmpDetails();
     }
 
     fetchEmpDetails = () =>{
         var url = "http://127.0.0.1:8000/Salary-list/";
-
         axios.get(url).then(res => {
-            const data = res.data;
-            this.setState({data});
+            const sal = res.data;
+            this.setState({sal});
         })
         
     }
@@ -72,9 +73,6 @@ class ViewSalary extends Component {
           },
         });
       };
-    //tookend
-
-
 
     confirm = (data) => {
         var url = "http://127.0.0.1:8000/Salary-Delete/" + data + "/";
@@ -101,12 +99,89 @@ class ViewSalary extends Component {
         message.error("Canceled deleting Salary detail");
       };
 
+      //EDIT
+      editManager(sal){
+        console.log("new salary id:", sal.sal_id);
+        var url = "http://127.0.0.1:8000/Salary-Update/" +  sal.sal_id + "/";
+        fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(sal),
+    })
+    .then((response) => response.json())
+    .then((sal) => {
+      const newsal= this.state.sal.map((salItem) => {
+        if (salItem.sal_id == sal.sal_id) {
+          return Object.assign({}, sal);
+        } else {
+          return salItem;
+        }
+      });
+      this.setState({ sal: newsal });
+      console.log("object", sal);
+    });
+  }
+    editMode = (sal) => {
+      this.setState({ editMode: true });
+      this.passID(sal);
+      console.log("edit mode in salary: ", sal);
+      this.state.sal.filter((item)=>item.sal_id===sal).map((filteredItem)=>this.setState({selectedSalary:filteredItem}))
+    };
+
+    passID = (sal) => {
+      if (this.state.editMode) {
+        console.log("true");
+      }
+    };
+
+    handleSubmit=(e)=>{
+    this.setState({[e.target.name]:e.target.value})
+}
+
+updateData = (e) => {
+  e.preventDefault();
+
+  const {paid,Paid_Date} = this.state.selectedSalary
+
+  const salUpdateData = {
+    paid: this.state.paid || paid,
+    Paid_Date: this.state.Paid_Date || Paid_Date,
+      
+
+  };
+
+  console.log(salUpdateData);
+
+  var url= "http://127.0.0.1:8000/Salary-Update/" + this.state.selectedSalary.sal_id + "/"
+
+
+  fetch("http://127.0.0.1:8000/Salary-Update/" + this.state.selectedSalary.sal_id + "/"
+  ,{
+    method:"PATCH",
+    headers:{
+      "Content-type":"application/json"
+    },
+
+    body:JSON.stringify(salUpdateData)
+
+  }).then(response=>this.setState({status:response.status})).catch(err=>console.log(err))
+
+
+  if(this.state.status=="200"){
+    this.fetchEmpDetails()
+
+    window.location.reload(true)
+  }
+}
+
 
     render() { 
         return ( 
             <div className="row">
   
-            <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"700px"}}>
+            <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"650px"}}>
                 {/*Navigation bar */}
                 <br></br>
                 <EmployeeSideNavBar />
@@ -122,7 +197,10 @@ class ViewSalary extends Component {
                     <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block ><Link to="/addSalary" >Add Salary</Link></Button>
                 </div><br></br>
 
-                <div className="table-responsive">
+                <div className="table-responsive"
+                style={{height:450,
+                  overflow:"scroll",  
+                  }}>
                             <table className="table" style={{fontSize:"10px"}}>
                                 <thead className="theads">
                                 <tr>
@@ -145,25 +223,30 @@ class ViewSalary extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {this.state.data.map(user =>{
+                                {this.state.sal.map(sal =>{
+                                  var extra = sal.extra_hours * 400;
+                                  var total = sal.basic_sal + sal.bonus + extra;
                                     return(
                                     <tr>
-                                    <td>{user.sal_id}</td>
-                                    <td>{user.emp_det_id}</td>
-                                    <td>{user.dept_id}</td>
-                                    <td>{user.basic_sal}</td>
-                                    <td>{user.extra_hours}</td>
-                                    <td>{user.bonus}</td>
-                                    <td>{user.basic_sal} + {user.bonus} </td>
-                                    <td>{user.month}</td>
-                                    <td>{user.Year}</td>
-                                    <td>{user.paid}</td>
-                                    <td>{user.Paid_Date}</td>
+                                    <td>{sal.sal_id}</td>
+                                    <td>{sal.emp_det_id}</td>
+                                    <td>{sal.dept_id}</td>
+                                    <td>{sal.basic_sal}</td>
+                                    <td>{sal.extra_hours}</td>
+                                    <td>{sal.bonus}</td>
+                                    <td>{total}</td>
+                                    <td>{sal.month}</td>
+                                    <td>{sal.Year}</td>
+                                    <td>{sal.paid}</td>
+                                    <td>{sal.Paid_Date}</td>
                                     
                                     
                                     
                                     <td>
                                         <Button type="button"
+                                        onClick={()=>this.editMode(sal.sal_id)}
+                                        data-toggle="modal"
+                                        data-target="#exampleModalCenter"
                                          style={{
                                             color:"white",
                                             padding:"5px 10px",
@@ -191,7 +274,7 @@ class ViewSalary extends Component {
                                     }}>
                                     <Popconfirm
                                         title="Are you sure delete this Salary detail?"
-                                        onConfirm={() => this.confirm(user.sal_id)}
+                                        onConfirm={() => this.confirm(sal.sal_id)}
                                         onCancel={this.cancel}
                                         okText="Yes,Delete"
                                         cancelText="No,Cancel"
@@ -206,8 +289,78 @@ class ViewSalary extends Component {
                                 </tbody>
                             </table>
                             </div>
-            </div>
-  
+                           </div>
+                           <div
+                          class="modal fade"
+                          id="exampleModalCenter"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalCenterTitle"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-headers">
+                                <br></br>
+                                <center><h5 class="modal-title" id="exampleModalLongTitles">
+                                <center>Update Salary Details</center> 
+                                </h5>
+                                </center>
+                              </div>
+                              <div class="modal-body">{this.passID()}
+                              
+                              <form onSubmit={this.updateData}>
+                                  Paid : <select type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedSalary.paid} id="" name="paid" >
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        </select>
+                                Paid Date : <input type="date" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedSalary.Paid_Date} id=""name="Paid_Date"></input><br></br>
+                                  
+                                  <br></br>
+                                  <center>
+                                  <button
+                                    type="submit" 
+                                    className="btn btn-primary"
+                                    style={{
+                                      color:"white",
+                                      padding:"5px 10px",
+                                      fontSize:"10px",
+                                      fontWeight:"bold",
+                                      cursor:"pointer",
+                                      backgroundColor:"white",
+                                      color:"black",
+                                      border:"2px solid blue",
+                                    }}
+                                    >
+                                      Update
+                                    </button>
+                                    </center>
+
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                              
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-dismiss="modal"
+                                style={{
+                                  color:"white",
+                                  padding:"5px 10px",
+                                  fontSize:"10px",
+                                  fontWeight:"bold",
+                                  cursor:"pointer",
+                                  backgroundColor:"white",
+                                  color:"black",
+                                  border:"2px solid red",
+                                }}
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+               </div>
         </div>
          );
     }

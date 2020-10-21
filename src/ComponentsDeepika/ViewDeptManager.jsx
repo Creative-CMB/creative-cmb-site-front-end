@@ -8,46 +8,40 @@ import { ExclamationCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import {
     Modal,
     notification,
-    Drawer,
-    Form,
-    Col,
-    Row,
-    Select,
-    DatePicker,
     Popconfirm,
     message,
   } from "antd";
 
-  const { confirm } = Modal;
-  const { Option } = Select;
-
-const { Search } = Input;
-
+const { confirm } = Modal;
 
 class ViewDeptManager extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            data:[]
-         }
+          manag:[],
+          selectedManager:{},
+          editMode: false,
+          emp_id:'',
+          dept_id:'',
+          from_date:'',
+          to_date:'', 
+       };
     }
 
     componentDidMount(){
         //fetching the data from bend
-
         this.fetchManangerdet();
     }
 
     fetchManangerdet = () =>{
         var url = "http://127.0.0.1:8000/deptManager-list/";
-
         axios.get(url).then(res => {
-            const data = res.data;
-            this.setState({data});
+            const manag = res.data;
+            this.setState({manag});
         })
         
     }
-    
+    //DELETE
     showDeleteConfirm = (data) => {
         confirm({
           title: "Are you sure delete this Department Manager?",
@@ -73,9 +67,6 @@ class ViewDeptManager extends Component {
           },
         });
       };
-    //tookend
-
-
 
     confirm = (data) => {
         var url = "http://127.0.0.1:8000/deptManager-Delete/" + data + "/";
@@ -102,11 +93,86 @@ class ViewDeptManager extends Component {
         message.error("Canceled deleting Department Manager");
       };
 
+      //EDIT
+      editManager(manag){
+        console.log("new Manager id:", manag.emp_id);
+        var url = "http://127.0.0.1:8000/deptManager-Update/" + manag.emp_id + "/";
+        fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(manag),
+    })
+    .then((response) => response.json())
+    .then((manag) => {
+      const newmanag = this.state.manag.map((managItem) => {
+        if (managItem.emp_id == manag.emp_id) {
+          return Object.assign({}, manag);
+        } else {
+          return managItem;
+        }
+      });
+      this.setState({ manag: newmanag });
+      console.log("object", manag);
+    });
+  }
+    editMode = (manag) => {
+      this.setState({ editMode: true });
+      this.passID(manag);
+      console.log("edit mode in manager: ", manag);
+      this.state.manag.filter((item)=>item.emp_id===manag).map((filteredItem)=>this.setState({selectedManager:filteredItem}))
+    };
+
+    passID = (manag) => {
+      if (this.state.editMode) {
+        console.log("true");
+      }
+    };
+
+    handleSubmit=(e)=>{
+    this.setState({[e.target.name]:e.target.value})
+}
+
+updateData = (e) => {
+  e.preventDefault();
+
+  const {dept_id,to_date} = this.state.selectedManager
+
+  const mnaUpdateData = {
+    dept_id: this.state.dept_id || dept_id,
+    to_date: this.state.to_date || to_date,
+      
+
+  };
+
+  console.log(mnaUpdateData);
+
+  var url= "http://127.0.0.1:8000/deptManager-Update/" + this.state.selectedManager.emp_id + "/"
+
+
+  fetch(url,{
+    method:"PATCH",
+    headers:{
+      "Content-type":"application/json"
+    },
+
+    body:JSON.stringify(mnaUpdateData)
+
+  }).then(response=>this.setState({status:response.status})).catch(err=>console.log(err))
+
+
+  if(this.state.status=="200"){
+    this.fetchManangerdet()
+
+    window.location.reload(true)
+  }
+}
     render() { 
         return ( 
             <div className="row">
   
-            <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"700px"}}>
+            <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"650px"}}>
                 {/*Navigation bar */}
                 <br></br>
                 <EmployeeSideNavBar />
@@ -122,7 +188,10 @@ class ViewDeptManager extends Component {
                     <Button style={{border: "2px solid #008CBA",fontWeight:"bold"}}block ><Link to="/addDeptManager" >Add Department Manager</Link></Button>
                 </div><br></br>
 
-                <div className="table-responsive">
+                <div className="table-responsive"
+                style={{height:450,
+                  overflow:"scroll",  
+                  }}>
                             <table className="table" style={{fontSize:"10px"}}>
                                 <thead className="theads">
                                 <tr>
@@ -138,18 +207,21 @@ class ViewDeptManager extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {this.state.data.map(user =>{
+                                {this.state.manag.map((manag) =>{
                                     return(
                                     <tr>
-                                    <td>{user.emp_id}</td>
-                                    <td>{user.dept_id}</td>
-                                    <td>{user.from_date}</td>
-                                    <td>{user.to_date}</td>
+                                    <td>{manag.emp_id}</td>
+                                    <td>{manag.dept_id}</td>
+                                    <td>{manag.from_date}</td>
+                                    <td>{manag.to_date}</td>
                                     
                                     
                                     
                                     <td>
                                         <Button type="button"
+                                        onClick={()=>this.editMode(manag.emp_id)}
+                                        data-toggle="modal"
+                                        data-target="#exampleModalCenter"
                                         style={{
                                             color:"white",
                                             padding:"5px 10px",
@@ -178,7 +250,7 @@ class ViewDeptManager extends Component {
                                     }}>
                                     <Popconfirm
                                         title="Are you sure delete this Department Manager?"
-                                        onConfirm={() => this.confirm(user.emp_id)}
+                                        onConfirm={() => this.confirm(manag.emp_id)}
                                         onCancel={this.cancel}
                                         okText="Yes,Delete"
                                         cancelText="No,Cancel"
@@ -193,9 +265,76 @@ class ViewDeptManager extends Component {
                                 </tbody>
                             </table>
                             </div>
-            </div>
+                        </div>
+                        <div
+                          class="modal fade"
+                          id="exampleModalCenter"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalCenterTitle"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-headers">
+                                <br></br>
+                                <center><h5 class="modal-title" id="exampleModalLongTitles">
+                                <center>Update Manager</center> 
+                                </h5>
+                                </center>
+                              </div>
+                              <div class="modal-body">{this.passID()}
+                              
+                              <form onSubmit={this.updateData}>
+                                  Department ID : <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedManager.dept_id} name="dept_id" id=""/>
+                                  To Date : <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedManager.to_date} name="to_date" id=""/><br></br>
+                                  <br></br>
+                                  <center>
+                                  <button
+                                    type="submit" 
+                                    className="btn btn-primary"
+                                    style={{
+                                      color:"white",
+                                      padding:"5px 10px",
+                                      fontSize:"10px",
+                                      fontWeight:"bold",
+                                      cursor:"pointer",
+                                      backgroundColor:"white",
+                                      color:"black",
+                                      border:"2px solid blue",
+                                    }}
+                                    >
+                                      Update
+                                    </button>
+                                    </center>
+
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                              
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-dismiss="modal"
+                                style={{
+                                  color:"white",
+                                  padding:"5px 10px",
+                                  fontSize:"10px",
+                                  fontWeight:"bold",
+                                  cursor:"pointer",
+                                  backgroundColor:"white",
+                                  color:"black",
+                                  border:"2px solid red",
+                                }}
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </div>
   
-        </div>
+                        </div>
+                      </div>
          );
     }
 }

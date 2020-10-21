@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 
 import { Checkbox } from 'antd';
+import "./Css/shali.css";
+
 //import Pack1 from '../Images/pack2.png';
 
 const CheckboxGroup = Checkbox.Group;
 
 const plainOptions = ['Newsletter', 'Poster design', 'Email promotion'];
 const defaultCheckedList = ['Newsletter'];
+
 
 
 

@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import adpic1 from "../Images/adpic1.png";
 import blue from '../Images/blue.jpg';
-import { DatePicker, Radio, Upload, message } from "antd";
+import { DatePicker, Radio, Upload, message, notification } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { shadows } from '@material-ui/system';
 import EventFooter from "../ComponentsAkila/EventFooter";
@@ -13,6 +13,10 @@ import axios from "axios";
 import NavApp from "../ComponentKajan/NavApp";
 import jsPDF from "jspdf"
 import "jspdf-autotable"
+import "./Css/shali.css";
+import { Link } from 'react-router-dom';
+
+
 
 
 
@@ -56,7 +60,27 @@ class CreateAdd extends Component {
     };
   }
 
-  
+  validateTitle = (e) => {
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+    let adTitle = this.state.adTitle;
+
+
+
+    if (formErrors.adTitle = value =="") {
+    message.error(
+      "Advertisement Title is Required"
+      
+    
+        
+      );
+      
+    
+    }
+      else {
+      this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    }
+  };
 
   generatePDF = (addata) => {
     //initilize the pds
@@ -190,13 +214,14 @@ class CreateAdd extends Component {
   const { formErrors } = this.state;
   
     return (
-      
+     
       <div>
+        
         <div>
           < NavApp/>
         </div>
         <div class='back'>
-        <img style={{position:"relative",width:"100%"}} src={blue}></img>
+        <img style={{width:"100%"}} src={blue}></img>
         <div className='row'>
           <div className=' col-sm-6 col-md-6 col-lg-6'>
             <div class='container py-3'>
@@ -212,18 +237,18 @@ class CreateAdd extends Component {
                         </div>
                         <form class='form' role='form' onSubmit={this.handleSubmit}>
                      
-                        <label class='col-lg-6 col-form-label mt-3 form-control-label' style={{fontFamily:"initial", fontSize:"20px"}}>
+                        <label class='col-lg-6 mt-3 col-form-label form-control-label' style={{fontFamily:"initial", fontSize:"20px",left:"-12px"}}>
                           Advertisement Title
                         </label>
-                        <div class='col-lg-9 '>
-                          <input className='form-control form-control-sm'
+                        <div class='col-lg-9 ' style={{left:"-12px"}}>
+                          <input className='form-control form-control-sm' 
                           className={formErrors.adTitle.length > 0 ? "error" : null}
                             class='form-control'
                             type='text'
                             placeholder="Summer"
                             name='adTitle'
-                            noValidate
-                            onChange={this.handleChange}/>
+                          
+                            onChange={this.validateTitle}/>
                             
                             {formErrors.adTitle.length > 0 && (
                 <span className='errorMessage'>{formErrors.adTitle}</span>
@@ -290,8 +315,8 @@ class CreateAdd extends Component {
                         
                         
 
-                        <input class="btn btn-md btn-primary btn-block mt-3" value="CREATE ADVERTISEMENT" type="submit"></input>
-       
+                       <input class="btn btn-md btn-primary btn-block mt-3" value="Submit" type="submit"></input>
+
                         
                         
                         </div>

@@ -13,6 +13,8 @@ import background from "../Images/background.jpg";
 import {Space, Button, Select, Drawer,Form,Input,Col,Row} from 'antd';
 import Table from 'react-bootstrap/Table'
 import NavApp from "../ComponentKajan/NavApp";
+import "./Css/shali.css";
+
 
 
 

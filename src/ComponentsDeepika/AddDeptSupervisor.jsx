@@ -1,17 +1,64 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
+import { notification} from "antd";
+import jsPDF from "jspdf"
+import "jspdf-autotable"
+
 export default class AddDeptSupervisor extends Component {
 
         constructor(props) {
             super(props);
             this.state = { 
-                emp_id:'',
-                dept_id:'',
-                from_date:'',
-                to_date:'',            
+                emp_id:"",
+                dept_id:"",
+                from_date:"",
+                to_date:"",            
              }
         }
+
+        generatePDF = (managerdata) => {
+            //initilize the pds
+            const doc = new jsPDF();
+            const datas=[
+                managerdata.from_date,
+                managerdata.to_date,
+            ];
+        
+            const tableColumns = ["Employee  Id", "Department ID"];
+            const tableRows = [];
+        
+            const rowdata = [
+                managerdata.emp_id,
+                managerdata.dept_id,
+             
+            ];
+        
+            tableRows.push(rowdata);
+        
+            doc.autoTable(tableColumns, tableRows, { startY: 60 });
+            doc.text("Appointment Details. ",80 , 15);
+            doc.text("Creative CMB ",14 , 30);
+            doc.text("No:123, Perera lane, Colombo. ",14 , 35);
+            doc.text("_________________________________________________________________________________________________________________________________________________ ",14 , 40);
+            doc.setFont('helvetica');
+            doc.text(managerdata.emp_id + ", You have selected as a supervisor to the department " + managerdata.dept_id +".", 14, 50);
+            doc.setFont('helvetica');
+            doc.text("We are warmly welcome you to Creative CMB Team. ",14 , 55);
+            doc.text("Joined Date : " +managerdata.from_date+"",14 , 90);
+            doc.text("Renew Date : " +managerdata.to_date+"",14 , 100);
+            doc.text("Near the renew date we will check tour working capacity and performance. ",14 ,115 );
+            doc.text("Then we change your position higher or lower. ",14 ,120 );
+            doc.text("For more clarification please contact your senior manager.",14 , 135);
+            doc.text("Mr.Peter",14 , 145);
+            doc.text("Senior head Manager",14 , 151);
+            doc.text("0768777143",14 , 157);
+            doc.text("Thankyou and Conguraglation",120 , 170);
+            doc.text("Team Creative CMB",120 , 177);
+
+            doc.save(`Welcome_${managerdata.emp_id}.pdf`);
+        
+          }
         
         formData = (e) => {
                 this.setState({ [e.target.name]: e.target.value });
@@ -47,8 +94,16 @@ export default class AddDeptSupervisor extends Component {
                 to_date : this.state.to_date,
     
             };
+            this.generatePDF(dsData);
     
-            console.log(dsData)
+            console.log("Supervisor data",dsData)
+
+            const args = {
+                description:
+                  "Data added successfully",
+                duration: 0,
+              };
+              notification.open(args);
     
             var url = "http://127.0.0.1:8000/deptSupervisor-Create/";
     
@@ -61,9 +116,7 @@ export default class AddDeptSupervisor extends Component {
     
             }).then((response)=>{
                 alert(response)
-            }).catch(function(err){
-                alert(err)
-            })
+            }).catch(err => console.log(err))
         }
        
 
@@ -75,7 +128,7 @@ export default class AddDeptSupervisor extends Component {
             <div className="col-lg-1.5 side"
                 style={{
                     backgroundColor:"LightBlue",
-                    height:"700px"}}
+                    height:"650px"}}
                     >
             {/*Navigation bar */}
             <br></br>
@@ -101,10 +154,10 @@ export default class AddDeptSupervisor extends Component {
                         fontWeight:"bold"}}
                         >
                     <Card style={{ width: 600 }}>
-                    Employee ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
-                    Department ID : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id" ></input><br></br><br></br>
-                    From : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
-                    To : <input style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>    
+                    Employee ID : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_id"></input><br></br><br></br>
+                    Department ID : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="dept_id" ></input><br></br><br></br>
+                    From : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"onChange= {this.formData} name="from_date"></input><br></br><br></br>
+                    To : <input required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="date"  onChange= {this.formData} name="to_date"></input><br></br><br></br>    
                     </Card>
                     <br></br><br></br><br></br>
                         <div>

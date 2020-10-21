@@ -13,10 +13,12 @@ class EmployeeSideNavBar extends Component {
     render() { 
         return ( 
             <div>
+                
                     <Menu
                     mode="inline"
-                    style={{ height: "100%", margin: "0", borderRight: "200", background: "LightBlue",justifyContent: "center"}}
+                    style={{ height: "50%", margin: "0", borderRight: "360", background: "LightBlue",justifyContent: "center"}}
                     >
+                    
                     
                     <h1 style={{color: "black", fontSize: '20px',textAlign:"center",}}><Link to="/employeeHome" >Employee Home</Link></h1><br></br>
                     <SubMenu style={{padding:0,margin:0,textAlign:"left"}} key="sub1" icon={<UserOutlined />} title="Emplyee Details">
@@ -39,10 +41,6 @@ class EmployeeSideNavBar extends Component {
                     <SubMenu style={{padding:0,margin:0,textAlign:"left"}}  key="sub5" icon={<UserOutlined />} title="Employees">
                         <Menu.Item style={{padding:0,margin:0,textAlign:"left", background: "azure"}}key="9"><Link to="/addDeptEmployee" >Add Employees</Link></Menu.Item>
                         <Menu.Item style={{padding:0,margin:0,textAlign:"left", background: "azure"}}key="10"><Link to="/viewdeptemp" >View Employees</Link></Menu.Item>
-                        </SubMenu>
-                    <SubMenu style={{padding:0,margin:0,textAlign:"left"}}  key="sub6" icon={<UserOutlined />} title="Leave Details">
-                        <Menu.Item style={{padding:0,margin:0,textAlign:"left", background: "azure"}}key="11"><Link to="/addLeave" >Add Leave</Link></Menu.Item>
-                        <Menu.Item style={{padding:0,margin:0,textAlign:"left", background: "azure"}}key="12"><Link to="/viewleave" >View Leave</Link></Menu.Item>
                         </SubMenu>
                     <SubMenu style={{padding:0,margin:0,textAlign:"left"}}  key="sub7" icon={<UserOutlined />} title="Salary Details">
                         <Menu.Item style={{padding:0,margin:0,textAlign:"left", background: "azure"}}key="13"><Link to="/addSalary" >Add Salary</Link></Menu.Item>
