@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import invoicepic from "../Images/invoicepic.jpg";
-import { DatePicker, Radio, Upload, message } from "antd";
+import { DatePicker, Radio, Upload, message,Alert,notification } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { shadows } from '@material-ui/system';
 import axios from 'axios';
@@ -16,21 +16,6 @@ import { Link } from 'react-router-dom';
 
 
 
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
-
-  // validate form errors being empty
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
-
-  // validate the form was filled out
-  Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
-  });
-
-  return valid;
-};
 
 const cryptoRandomString = require('crypto-random-string')
 
@@ -45,7 +30,7 @@ class InvoiceAdd extends Component {
         amount: "",
         status: false,
         date: "",
-
+        amountVal:false,
         formErrors: {
           ordername: "",
           status: "",
@@ -56,47 +41,6 @@ class InvoiceAdd extends Component {
   }
 
   
-
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const invoData = {
-  //     invoice_id : "INV"+this.state.invoiceid,
-  //     order_name : this.state.ordername,
-  //     amount : this.state.amount,
-  //     inv_status : this.state.status,
-  //     payment_type : this.state.paytype,
-  //     date : this.state.date
-
-  //   }
-
-  //   console.log("shipping data" , invoData)
-
-  //   var url = "http://127.0.0.1:8000/invoice-create/";
-
-  //   fetch(url,{
-  //     method: 'POST',
-  //     headers:{
-  //       'Content-type':'application/json',
-  //     },
-  //     body: JSON.stringify(invoData)
-  //   }).then((response) => {
-  //     alert(response.status)
-  //   }).catch((err)=> console.log(err))
-
-  //   if (formValid(this.state)) {
-  //     console.log(`
-  //       --SUBMITTING--
-  //       Order Name: ${this.state.ordername}
-  //       Amount: ${this.state.amount}
-  //       Status: ${this.state.status}
-  //       Payment Type: ${this.state.paymenttype}
-  //     `);
-  //   } else {
-  //     console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-  //   }
-  // };
-
   handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -105,21 +49,21 @@ class InvoiceAdd extends Component {
   
 
 
-
+   
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
       case "ordername":
         formErrors.ordername =
-          value.length < 3? "Required Data" : "";
+          value==""? notification.error:"";
         break;
       case "amount":
         formErrors.amount =
-          value.length < 3 ? "Required Data" : "";
+          value.length=="" ? "Required Data" : "";
         break;
         case "paymenttype":
           formErrors.paymenttype =
-            value.length < 3? "Required Data" : "";
+            value.length==""? "Required Data" : "";
       
         break;
       default:
@@ -140,8 +84,46 @@ class InvoiceAdd extends Component {
     
   };
 
+  handledata = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  validateAmount = () => {
+    let amount = this.state.amount;
+    if (isNaN(amount)) {
+    notification.error({
+      message:"Error",
+      description:"Amount should be in number",
+      
+    }
+        
+      );
+    
+    } else {
+      this.setState({amountVal: true });
+    }
+  };
+  validateName = (e) => {
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+    let ordername = this.state.ordername;
 
 
+
+    if (formErrors.ordername = value =="") {
+    notification.error({
+      message:"Error",
+      description:"Order Name is Required",
+      
+    }
+        
+      );
+      
+    
+    }
+      else {
+      this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    }
+  };
   onCreateInvoice = () => {
     console.log();
   };
@@ -156,6 +138,7 @@ class InvoiceAdd extends Component {
       stat="success"
     }
 
+    
     const data = {
       invoice_id : "INV" + this.state.invoiceid,
       order_name : this.state.ordername,
@@ -164,9 +147,7 @@ class InvoiceAdd extends Component {
       payment_type : this.state.paytype,
       date : this.state.date
     }
-
    
-
     console.log("shipping data" , data)
 
     fetch("http://127.0.0.1:8000/invoice-create/",{
@@ -176,6 +157,12 @@ class InvoiceAdd extends Component {
       },
       body:JSON.stringify(data)
     }).then(res => console.log(res.status)).catch(err => console.log(err))
+    message.success(
+      "Invoice created Successfully"
+      
+    
+        
+      );
   }
 
 
@@ -226,8 +213,8 @@ class InvoiceAdd extends Component {
                 placeholder='Order Name'
                 type='text'
                 name='ordername'
-                noValidate
-                onChange={this.handleChange}
+                
+                onChange={this.validateName}
               />
 
               {formErrors.ordername.length > 0 && (
@@ -250,8 +237,9 @@ class InvoiceAdd extends Component {
                 placeholder='Amount'
                 type='text'
                 name='amount'
-                noValidate
-                onChange={this.handleChange}
+                onBlur={this.validateAmount}
+                onChange={this.handledata}
+                
               />
 
               {formErrors.amount.length > 0 && (
@@ -328,7 +316,7 @@ class InvoiceAdd extends Component {
                           
                         </div>
 
-                        <input className="btn btn-md btn-block  button-submit" value="Submit" type="submit"></input>
+                       <Link to="/invoice"><input className="btn btn-md btn-block  button-submit" value="Submit" type="submit"></input></Link>
 
                         
                         

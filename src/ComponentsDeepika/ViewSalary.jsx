@@ -181,7 +181,7 @@ updateData = (e) => {
         return ( 
             <div className="row">
   
-            <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"700px"}}>
+            <div className="col-lg-1.5 side" style={{backgroundColor:"LightBlue", height:"650px"}}>
                 {/*Navigation bar */}
                 <br></br>
                 <EmployeeSideNavBar />
@@ -224,6 +224,8 @@ updateData = (e) => {
                                 </thead>
                                 <tbody>
                                 {this.state.sal.map(sal =>{
+                                  var extra = sal.extra_hours * 400;
+                                  var total = sal.basic_sal + sal.bonus + extra;
                                     return(
                                     <tr>
                                     <td>{sal.sal_id}</td>
@@ -232,7 +234,7 @@ updateData = (e) => {
                                     <td>{sal.basic_sal}</td>
                                     <td>{sal.extra_hours}</td>
                                     <td>{sal.bonus}</td>
-                                    <td>{sal.basic_sal} + {sal.bonus} </td>
+                                    <td>{total}</td>
                                     <td>{sal.month}</td>
                                     <td>{sal.Year}</td>
                                     <td>{sal.paid}</td>

@@ -41,8 +41,7 @@ export default class AddItems extends Component {
             this.setState({
                   ...this.state,
                   [event.target.name] : event.target.value
-                
-              })
+            })
 
 
               if(event.target.name=== "qty") {

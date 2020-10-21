@@ -25,7 +25,9 @@ export default class RentalDetails extends Component {
                  <table>
                     <thead>
                         <tr >
-                        
+                        <th></th>
+                        <th></th>
+                        <th></th>
                         </tr>
                     </thead>
                     <tbody  >

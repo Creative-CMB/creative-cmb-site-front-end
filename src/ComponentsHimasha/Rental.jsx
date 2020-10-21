@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EquipmentRental from './EquipmentRental'
 import {Button} from 'react-bootstrap'
 import * as Scroll from 'react-scroll';
+import NavBar from './NavBar'
 import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 const cryptoRandomString  = require("crypto-random-string");
@@ -18,6 +19,7 @@ export default class Rental extends Component {
         eqp_id:'',
         isChecked:false,
         status:false,
+        total_price:'',
 
     }
 
@@ -109,10 +111,14 @@ export default class Rental extends Component {
             body:JSON.stringify(select_rentItem)
         }).then(response => response.json()).then(select_rentItem => {
             this.setState({selectedItems: this.state.selectedItems.concat([select_rentItem])});
+
+            this.calTotalPrice()
+
         });
 
         console.log('selected Item :', select_rentItem)
         this.handleReset()
+        this.calTotalPrice()
     } 
 
     
@@ -130,10 +136,21 @@ export default class Rental extends Component {
   }
 
 
+  calTotalPrice = () => {
+    const total = this.state.selectedItems.reduce((totalPrice, item) => totalPrice + item.price, 0);
+    console.log( 'cal total price' ,total)
+
+    this.setState({total_price:total})
+}
+
     render(){
         return(
-            <div className="container" >
-                <div className="row"  >
+            <div>
+                
+            <NavBar />
+
+            {/* <div className="container" > */}
+                <div className="row" style={{marginLeft:"30px", marginRight:"30px"}} >
                     <div className="col-md-12"  >
                 <table className= "table table-hover" >
                     <thead style={{backgroundColor:"#7abfc4", color:"white"}} >
@@ -171,6 +188,7 @@ export default class Rental extends Component {
 
                 <div>
                 <Button type="button" onClick={this.scrollToBottom}>Rent Equipment</Button>
+
                 </div>
 
                 </div>
@@ -178,14 +196,15 @@ export default class Rental extends Component {
                
                 <EquipmentRental 
                 selected_item = {this.state.selectedItems} 
-                deleteRental = {this.deleteRental} />
+                deleteRental = {this.deleteRental}
+                totalPrice = {this.state.total_price} />
 
 
 
                 </div>
                 
+                {/* </div> */}
                 </div>
-           
         )
     }
     

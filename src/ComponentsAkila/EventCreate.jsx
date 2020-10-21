@@ -178,7 +178,8 @@ class EventCreate extends Component {
       //sending final data
       const data = {
         event_id: "EVT" + this.state.event_id,
-        user_id: "USR1rgda67",
+
+        user_id: "USR4567lmn",
         event_name: this.state.eventName,
         budget: this.state.budget,
         email_address: this.state.email,

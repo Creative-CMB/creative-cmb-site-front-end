@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Card, Col, Row } from 'antd';
 import EmployeeSideNavBar from './EmployeeSideNavBar';
 import axios from 'axios';
-import { message } from "antd";
+import { message ,notification} from "antd";
+
 
 class AddEmployees extends Component {
 
@@ -102,26 +103,33 @@ class AddEmployees extends Component {
 
         formSubmit  = (e) =>{
             e.preventDefault();
-        if (this.state.phoneVal && this.state.addDetVal){
-        const empData ={
-            admin_id : this.state.admin_id,
-            emp_det_id : this.state.emp_det_id,
-            employee_name : this.state.employee_name,
-            primary_phone : this.state.primary_phone,
-            secondary_phone : this.state.secondary_phone,
-            position : this.state.position,
-            address : this.state.address,
-            email : this.state.email,
-            qualification : this.state.qualification,
-            trained_years : this.state.trained_years,
-            dob : this.state.dob,
-            gender : this.state.gender,
-            permenent : this.state.permenent,
-            joined_date : this.state.joined_date
+            if (this.state.phoneVal && this.state.addDetVal){
+                const empData ={
+                    admin_id : this.state.admin_id,
+                    emp_det_id : this.state.emp_det_id,
+                    employee_name : this.state.employee_name,
+                    primary_phone : this.state.primary_phone,
+                    secondary_phone : this.state.secondary_phone,
+                    position : this.state.position,
+                    address : this.state.address,
+                    email : this.state.email,
+                    qualification : this.state.qualification,
+                    trained_years : this.state.trained_years,
+                    dob : this.state.dob,
+                    gender : this.state.gender,
+                    permenent : this.state.permenent,
+                    joined_date : this.state.joined_date
 
-        };
+                };
 
         console.log(empData)
+
+        const args = {
+            description:
+              "Data added successfully",
+            duration: 0,
+          };
+          notification.open(args);
 
         var url = "http://127.0.0.1:8000/EmployeeDetail-Create/";
 
@@ -148,7 +156,7 @@ class AddEmployees extends Component {
                 <div className="col-lg-1.5 side" 
                     style={{
                         backgroundColor:"LightBlue",
-                        height:"700px"}}
+                        height:"650px"}}
                         >
                 {/*Navigation bar */}
                 <br></br>

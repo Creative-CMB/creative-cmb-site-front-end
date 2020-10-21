@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./cssSanda/Ticket.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import imgp from "./img/6386.png";
+import ticketsor from "./img/tickets-or.png";
 import TktNavBar from "./TktNavBar";
 import EventFooter from "../ComponentsAkila/EventFooter";
 import axios from "axios";
@@ -19,12 +19,13 @@ class TicketForm extends Component {
       tname: "",
       type: "",
       price: "",
-      radstatus: false,
+      radstatus: "",
       quant: "",
       events: [],
       admins: [],
       exdate: "",
       batchid:cryptoRandomString({ length: 7 }),
+      finance:"",
     };
   }
 
@@ -51,7 +52,7 @@ class TicketForm extends Component {
 
   inputData = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    this.setState({ radstatus: !this.state.radstatus });
+    // this.setState({ radstatus: e.target.value });
 
     // validation
     if (e.target.name === "quant") {
@@ -59,6 +60,10 @@ class TicketForm extends Component {
         alert("quantity must be a number");
       }
     }
+
+    
+   
+     //this.setState({ finance });
 
     console.log(
       this.state.tid,
@@ -74,10 +79,10 @@ class TicketForm extends Component {
     console.log(this.state.admin);
   };
 
-  drop = (e) => {
+/*   drop = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state.event);
-  };
+  }; */
 
   inputAdmin = (val) => {
     console.log(val.target.value)
@@ -243,10 +248,21 @@ class TicketForm extends Component {
     })
   }
 
-/* 
+
+  //price validation - demo
+  handleChange = (e) => {
+    const finance = (e.target.validity.valid) ? e.target.value : this.state.finance;
+    this.setState({ finance });
+  
+  }
+
+
+
   pageRefresh() {
     window.location.reload(false);
-  } */
+  } 
+
+
  
   render() {
     return (
@@ -260,124 +276,82 @@ class TicketForm extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <TktNavBar
                 link1="Home"
-                link2="Event"
-                link3="Seminar"
-                link4="About Us"
+                link2="Ticket Details"
+                link3="Reservation Details"
               />
             </div>
           </div>
-          <div
-            style={{
-              width: "100%",
-              background:
-                "  linear-gradient(to bottom, #0099ff 0%, #ccffff 100%",
-            }}
-          >
-            <div
-              className="row"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-                marginLeft: "15px",
-              }}
-            >
-              <h1 style={{ fontFamily: "sanseriff", fontSize: "30px" }}>
-                Create Ticket
-              </h1>
-            </div>
+
+          {/*Create Ticket Topic in Create Ticket Page */}
+      
+          <div className="row" style={{marginLeft: "15px",}}>
+            <h2 style={{ fontFamily: "sanseriff", fontWeight: "bold", textAlign:"center"}}>
+              Create Ticket
+            </h2>
           </div>
+
+
+
+
           <div className="row">
             <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
               <div className="container">
+
                 <form className="formstyle" onSubmit={this.submitData}>
+
                   <div className="row">
                     <div className="col-3">
                       <label for="fname">Ticket Name:</label>
                     </div>
                     <div className="col-5">
-                      <input
-                        className="form-control"
-                        onChange={this.inputData}
-                        type="text"
-                        id="tname"
-                        name="tname"
-                        placeholder="Ticket Name"
-                        required
-                      />
+                      <input className="form-control" onChange={this.inputData} type="text" id="tname" name="tname" placeholder="Ticket Name" required/>
                     </div>
                   </div>
+
                   <div className="row">
                     <div className="col-3">
                       <label for="type">Ticket Type:</label>
                     </div>
                     <div className="col-5">
-                      <input
-                        className="form-control"
-                        onChange={this.inputData}
-                        type="text"
-                        id="type"
-                        name="type"
-                        placeholder="Type"
-                        required
-                      />
+                      <input className="form-control" onChange={this.inputData} type="text" id="type" name="type" placeholder="Type" required/>
                     </div>
                   </div>
+
+                  {/*price value , onInput-bind, pattern */}
                   <div className="row">
                     <div className="col-3">
                       <label for="type">Ticket Price:</label>
                     </div>
                     <div className="col-5">
-                      <input
-                        className="form-control"
-                        onChange={this.inputData}
-                        type="text"
-                        id="price"
-                        name="price"
-                        placeholder="Rs.1000/="
-                        required
-                      />
+                      <input className="form-control" pattern="[0-9]*" onChange={this.inputData} type="text" id="price" name="price" placeholder="Rs.1000/=" onInput={this.handleChange.bind(this)} value={this.state.finance} required />
                     </div>
                   </div>
+
                   <div className="row">
                     <div className="col-3">
                       <label for="type">Ticket Status:</label>
                     </div>
                     <div className="col-5">
+
                       <label className="radioText">
                         Available:
-                        <input
-                          onChange={this.inputData}
-                          type="radio"
-                          id="radstatus"
-                          name="radstatus"
-                        />
+                        <input onChange={this.inputData} type="radio"  name="radstatus" value="Available"/>
                       </label>
+
                       <label className="radioText">
                         Not Available:
-                        <input
-                          onChange={this.inputData}
-                          type="radio"
-                          name="radstatus"
-                          id="radstatus1"
-                        />
+                        <input onChange={this.inputData} type="radio" name="radstatus"  value="Not Available"/>
                       </label>
+
                     </div>
                   </div>
+
                   <div className="row">
                     <div className="col-3">
                       <label for="type">Ticket Quantity:</label>
                     </div>
                     <div className="col-5">
-                      <input
-                        className="form-control"
-                        onChange={this.inputData}
-                        type="text"
-                        id="quant"
-                        name="quant"
-                        placeholder="100"
-                        required
-                      />
+                      <input className="form-control" onChange={this.inputData} type="text" id="quant" name="quant" placeholder="100" required/>
                     </div>
                   </div>
 
@@ -385,14 +359,8 @@ class TicketForm extends Component {
                     <div class="col-3">
                       <label for="event">Image:</label>
                     </div>
-                    <div class="col-5">
-                      <input
-                        onChange={this.inputData}
-                        type="file"
-                        id="quant"
-                        name="quant"
-                        placeholder="100"
-                      />
+                    <div class="col-5"> {/*check here the image value */}
+                      <input onChange={this.inputData} type="file" id="quant" name="quant" placeholder="100"/>
                     </div>
                   </div>
 
@@ -401,14 +369,7 @@ class TicketForm extends Component {
                       <label for="event">Expiration Date:</label>
                     </div>
                     <div class="col-5">
-                      <input
-                        className="form-control"
-                        onChange={this.inputData}
-                        type="date"
-                        id="exdate"
-                        name="exdate"
-                        required
-                      />
+                      <input className="form-control" onChange={this.inputData} type="date" id="exdate" name="exdate" required/>
                     </div>
                   </div>
 
@@ -429,6 +390,7 @@ class TicketForm extends Component {
                       </select>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-3">
                       <label for="event">Admin</label>
@@ -442,38 +404,23 @@ class TicketForm extends Component {
                       </select>
                     </div>
                   </div>
-                  <button
-                  // onDoubleClick={this.pageRefresh}
-                    type="submit"
-                    className="btn btn-primary"
-                    
-                  >
-                    <p
-                      style={{
-                        color: "white",
-                        fontFamily: "times new roman",
-                        fontSize: "20px",
-                        
-                      }}
-                    >
+
+                  <button onDoubleClick={this.pageRefresh} type="submit" className="btn btn-primary">
+                    <p style={{color: "white",fontFamily: "times new roman",fontSize: "20px"}}>
                       Create Ticket
                     </p>
                   </button>
+
                 </form>
+
               </div>
             </div>
 
-            <div
-              className="col-lg-4 col-md-12 col-sm-12 col-xs-12"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <img src={imgp} alt="Third slide" style={{ width: "500px" }} />
+            <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12" style={{display: "flex",justifyContent: "center",alignItems: "center"}}>
+              <img src={ticketsor} alt="Third slide" style={{ width: "450px"}} />
             </div>
           </div>
+
           <div className="row">
             <div className="col-lg-12">
               <h2 style={{ fontFamily: "sanseriff", fontWeight: "bold" }}>
@@ -481,24 +428,15 @@ class TicketForm extends Component {
               </h2>
             </div>
           </div>
+
           <div className="row">
-            <div
-              className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-              style={{ marginTop: "40px" }}
-            >
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{ marginTop: "40px" }}>
               <TicketEdit/>
             </div>
           </div>
-          {/*  <div className="row">
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <img
-              src={ticketcreate}
-              alt="Third slide"
-              style={{ width: "500px" }}
-            />
-          </div>
-        </div> */}
+
           <EventFooter />
+
         </div>
       </div>
     );

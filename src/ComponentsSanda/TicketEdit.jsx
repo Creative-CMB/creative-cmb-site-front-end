@@ -151,9 +151,6 @@ updateData = (e) => {
 
       window.location.reload(true)
     }
-
-
-
 }
 
   render() {
@@ -161,17 +158,17 @@ updateData = (e) => {
       <div>
         <div className="table-responsive">
           <table className="table">
-            <thead>
+            <thead style={{background:"linear-gradient(to bottom, #00cc99 0%, #006699 100%)"}}>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Type</th>
+                <th style={{fontFamily:"Times New Roman", fontSize:"18px"}}>ID</th>
+                <th style={{fontFamily:"Times New Roman", fontSize:"18px"}}>Name</th>
+                <th style={{fontFamily:"Times New Roman", fontSize:"18px"}}>Type</th>
                 {/* <th>Status</th> */}
-                <th>Price</th>
-                <th>Expiration Date</th>
-                <th>Quantity</th>
-                <th>Edit</th>
-                <th>Delete </th>
+                <th style={{fontFamily:"Times New Roman", fontSize:"18px"}}>Price</th>
+                <th style={{fontFamily:"Times New Roman", fontSize:"18px"}}>Expiration Date</th>
+                <th style={{fontFamily:"Times New Roman", fontSize:"18px"}}>Quantity</th>
+                <th style={{fontFamily:"Times New Roman", fontSize:"18px"}}>Edit</th>
+                <th style={{fontFamily:"Times New Roman", fontSize:"18px"}}>Delete </th>
               </tr>
             </thead>
             <tbody>
@@ -186,13 +183,9 @@ updateData = (e) => {
                     <td>{tik.expiration_date}</td>
                     <td>{tik.no_of_tickets}</td>
                     <td>
-                      <Button
-                        type="button"
-                        class="btn btn-primary"
-                        onClick={()=>this.editMode(tik.ticket_id)}
-                        data-toggle="modal"
-                        data-target="#exampleModalCenter"
-                      >
+                      <Button type="button" class="btn btn-primary"
+                      onClick={()=>this.editMode(tik.ticket_id)} 
+                      data-toggle="modal" data-target="#exampleModalCenter">
                         Edit
                       </Button>
                     </td>
@@ -212,14 +205,7 @@ updateData = (e) => {
           </table>
         </div>
 
-        <div
-          class="modal fade"
-          id="exampleModalCenter"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-        >
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -240,27 +226,64 @@ updateData = (e) => {
               </div>
               <div class="modal-body">{this.passID()}
               
+              {/*ticket update form */}
               <form onSubmit={this.updateData}>
-                   <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedTicket.tkt_name} name="name" id=""/>
-                   <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedTicket.tkt_type} name="type" id=""/>
-                   <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedTicket.price} name="price" id=""/>
-                   <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedTicket.no_of_tickets} name="quantity" id=""/>
 
-                <button type="submit" class="btn btn-primary">
+              <div className="row">
+                  <div className="col-4">
+                    <label for="fname" style={{fontSize:"18px"}}>Ticket Name:</label>
+                  </div>
+                  <div className="col-5">
+                    <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedTicket.tkt_name} name="name" id=""/>
+                  </div>
+              </div>
+
+              <div className="row">
+                  <div className="col-4">
+                    <label for="fname" style={{fontSize:"18px"}}>Ticket Type:</label>
+                  </div>
+                  <div className="col-5">
+                  <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedTicket.tkt_type} name="type" id=""/>
+                  </div>
+              </div>
+
+              <div className="row">
+                  <div className="col-4">
+                    <label for="fname" style={{fontSize:"18px"}}>Ticket Price:</label>
+                  </div>
+                  <div className="col-5">
+                  <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedTicket.price} name="price" id=""/>
+                  </div>
+              </div>
+
+              <div className="row">
+                  <div className="col-4">
+                    <label for="fname" style={{fontSize:"18px"}}>Ticket Quantity:</label>
+                  </div>
+                  <div className="col-5">
+                  <input type="text" onChange={this.handleSubmit.bind(this)} defaultValue={this.state.selectedTicket.no_of_tickets} name="quantity" id=""/>
+                  </div>
+              </div>
+
+                <button type="submit" class="btn btn-primary"  style={{display:"inline-block"}}>
                   Save changes
                 </button>
+                                
+                <button
+                  style={{display:"inline-block"}}
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                  style={{backgroundColor:"red", marginLeft:"50px"}}
+                >
+                  Close
+                </button>
+          
 
                 </form>
               </div>
               <div class="modal-footer">
-              
-              <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
+
               </div>
             </div>
           </div>
