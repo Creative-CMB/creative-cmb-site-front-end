@@ -74,10 +74,6 @@ import SalaryPDF from './ComponentsDeepika/SalaryPDF';
 
 
 
-import Startup from "./ComponentsSid/Startup";
-import Signup from "./ComponentsSid/Signup";
-import Login from "./ComponentsSid/Login";
-import UserAccount from "./ComponentsSid/UserAccount";
 import UserDashboard from "./ComponentsSid/UserDashboard";
 
 //admin panal
@@ -85,7 +81,7 @@ import Dashboard from "./ComponentsAkila/Dashboard";
 
 import AddUsers from "./ComponentsSid/AddUsers";
 import ManageUsers from "./ComponentsSid/ManageUsers";
-import UpdateUsers from "./ComponentsSid/UpdateUsers";
+import ManageLoggedUsers from "./ComponentsSid/manageLoggedUsers";
 
 import Payment from "./ComponentKajan/Payment";
 function App() {
@@ -170,11 +166,10 @@ function App() {
       <Route component={Adminfeedback} path='/adminfeedback'></Route>
       <Route component={Editfeedbac} path='/editfeedback'></Route>
       
-      <Route component={UserAccount} path="/useraccount"/>
       <Route component={UserDashboard} path="/userdashboard"/>
       <Route component={AddUsers} path="/addusers"/>
       <Route component={ManageUsers} path="/manageusers"/>
-      <Route component={UpdateUsers} path="/updateusers"/>
+      <Route component={ManageLoggedUsers} path="/manageloggedusers"/>
 
 
      
