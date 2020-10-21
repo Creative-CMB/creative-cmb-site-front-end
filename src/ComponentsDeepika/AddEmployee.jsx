@@ -27,6 +27,7 @@ class AddEmployees extends Component {
                 joined_date:'',
                 phoneVal: false,
                 addDetVal: false,
+                email_validation: false,
              };
            
         }
@@ -60,6 +61,20 @@ class AddEmployees extends Component {
                   this.setState({addDetVal:true});
               }
           };
+
+          validateEmail = () => {        
+        
+            let email = this.state.email;
+            var email_values = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+                
+            if (!email_values.test(email)) {
+                message.error("Invalid Entry! Please check the email field and try again.");
+            }         
+            else {
+              this.setState({ email_validation: true });
+            }
+        };
+    
 
         componentDidMount(){
             this.fetchAdmins();
@@ -200,14 +215,14 @@ class AddEmployees extends Component {
                             Employee ID : <input id="emp" required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="emp_det_id"></input><br></br><br></br>
                             Name : <input id="name"required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" onChange= {this.formData} name="employee_name" ></input><br></br><br></br>
                             Primary phone : <input id="phone1"required onBlur={this.validatePhone} style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text" placeholder=" Like : 07X XXXX XXX" maxLength="10" onChange= {this.formData} name="primary_phone"></input><br></br><br></br>
-                            Secondary phone : <input id="phone2" required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text"  placeholder=" Like : 07X XXXX XXX"  maxLength="10" onChange= {this.formData} name="secondary_phone"></input><br></br><br></br>
+                            Secondary phone : <input id="phone2" onBlur={this.validatePhone} required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="text"  placeholder=" Like : 07X XXXX XXX"  maxLength="10" onChange= {this.formData} name="secondary_phone"></input><br></br><br></br>
                             Position :  <select id="pos" required style={{border: "3px solid #ccc",float: "right",width: "68%",height:40,fontSize:10}} onChange={this.formData} name="position">
                                         <option value="Manager" >Manager</option>
                                         <option value="Supervisor">Supervisor</option>
                                         <option value="Employee">Employee</option>
                                         </select><br></br><br></br><br></br>
                             Address : <input id="add" required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="textarea" rows="3" onChange= {this.formData} name="address"></input><br></br><br></br>
-                            Email : <input id="email" required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="email" onChange= {this.formData} name="email"></input><br></br><br></br>
+                            Email : <input id="email" onBlur={this.validateEmail} required style={{border: "3px solid #ccc",float: "right",width: "68%",height:30}} type="email" onChange= {this.formData} name="email"></input><br></br><br></br>
                            
                         
                         </Card>
