@@ -16,7 +16,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.5.2",
     "aws-amplify-react": "^4.2.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "chart.js": "^2.9.3",
     "crypto-random-string": "^3.3.0",
